@@ -28,12 +28,6 @@ body {
   align-items: flex-start;
 }
 
-.main {
-  background-color: #1c1b21;
-  flex-grow: 1;
-  padding: 20px;
-}
-
 .side-header {
   display: flex;
   align-items: center;
@@ -71,7 +65,7 @@ body {
 }
 
 .hr-with-plus i {
-   font-size: 1.2rem; 
+  font-size: 1.2rem;
 }
 
 .side-body {
@@ -100,8 +94,78 @@ body {
 }
 
 .side-body ul li.active {
+  color: #fbfbfb;
   padding: 9px 15px;
   background-color: #333439;
   border: 1px solid #696a70;
   border-radius: 0.5rem;
+}
+
+.main {
+  background-color: #1c1b21;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 40px;
+}
+
+.main-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding: 0px 10px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  color: #fbfbfb;
+  gap: 0.6rem;
+}
+
+.header-logo p {
+  font-size: 0.85rem;
+  font-weight: 550;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #fbfbfb;
+}
+
+.main-add {
+  color: #fbfbfb;
+}
+
+.note-body {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  gap: 50px;
+}
+
+.note-img img {
+  width: 180px;
+}
+
+.note-main {
+  padding: 0px 8px;
+}
+
+.note-header {
+  font-size: 0.8rem;
+  font-weight: 550;
+  letter-spacing: 0.6px;
+  color: #fbfbfb;
+  margin-bottom: 0.5rem;
+}
+
+.note-text {
+  font-size: 0.7rem;
+  font-weight: 450;
+  letter-spacing: 0.4px;
+  color: #696a70;
 }
