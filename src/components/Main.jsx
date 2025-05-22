@@ -18,7 +18,7 @@ function Main() {
                 </div>
            </div>
 
-           <div className="hr-with-plus">
+           <div className="hr-with-plus2">
                 <i className="bi bi-plus"></i>
                 <div className="line"></div>
                 <i className="bi bi-plus"></i>

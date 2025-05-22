@@ -33,7 +33,7 @@ body {
   align-items: center;
   gap: 0.8rem;
   padding-left: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .side-header p {
@@ -49,7 +49,7 @@ body {
   display: block;
 }
 
-.hr-with-plus {
+.hr-with-plus1 {
   display: flex;
   align-items: center;
   width: 100%;
@@ -57,14 +57,14 @@ body {
   margin-bottom: 30px;
 }
 
-.hr-with-plus .line {
+.hr-with-plus1 .line {
   flex-grow: 1;
   height: 0.5px;
   background-color: #696a70;
   margin: 0 -12px;
 }
 
-.hr-with-plus i {
+.hr-with-plus1 i {
   font-size: 1.2rem;
 }
 
@@ -116,7 +116,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   padding: 0px 10px;
 }
 
@@ -139,6 +139,25 @@ body {
   color: #fbfbfb;
 }
 
+.hr-with-plus2 {
+  display: flex;
+  align-items: center;
+  width: 200%;
+  color: #696a70;
+  margin-bottom: 20px;
+}
+
+.hr-with-plus2 .line {
+  flex-grow: 1;
+  height: 0.5px;
+  background-color: #696a70;
+  margin: 0 -12px;
+}
+
+.hr-with-plus2 i {
+  font-size: 1.2rem;
+}
+
 .note-body {
   width: 100%;
   display: flex;
@@ -148,7 +167,7 @@ body {
 }
 
 .note-img img {
-  width: 180px;
+  width: 160px;
 }
 
 .note-main {
@@ -164,7 +183,7 @@ body {
 }
 
 .note-text {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 450;
   letter-spacing: 0.4px;
   color: #696a70;

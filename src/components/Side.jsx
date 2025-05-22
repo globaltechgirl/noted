@@ -8,7 +8,7 @@ function Side() {
              <p>Noted</p>
            </div>
 
-          <div className="hr-with-plus">
+          <div className="hr-with-plus1">
             <i className="bi bi-plus"></i>
             <div className="line"></div>
             <i className="bi bi-plus"></i>
