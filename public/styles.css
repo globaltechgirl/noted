@@ -31,7 +31,7 @@ body {
 
 .side {
   background-color: var(--color-sidebar-bg);
-  width: 15%;
+  width: 17%;
   padding: 40px 25px;
   display: flex;
   flex-direction: column;
@@ -42,18 +42,18 @@ body {
 .side-logo {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.5rem;
   padding-left: 15px;
   margin-bottom: 20px;
 }
 
 .side-logo img {
-  width: 25px;
+  width: 23px;
   display: block;
 }
 
 .side-logo p {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -95,7 +95,7 @@ body {
 
 .side-body ul li {
   margin-bottom: 25px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 550;
   letter-spacing: 0.6px;
   text-transform: uppercase;
@@ -131,7 +131,7 @@ body {
 }
 
 .main-header {
-  width: 96%;
+  width: 95%;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -147,7 +147,7 @@ body {
 }
 
 .header-logo p {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 550;
   letter-spacing: 0.6px;
   text-transform: uppercase;
@@ -183,7 +183,7 @@ body {
 }
 
 .note-body {
-  width: 96%;
+  width: 95%;
   margin: 0 auto;
   display: flex;
   align-items: flex-start;
@@ -212,17 +212,13 @@ body {
 
 .note-overlay-text {
   position: absolute;
-  top: 78%;
-  left: 15%;
-  font-size: 0.7rem;
+  bottom: 35px;
+  left: 16%;
+  font-size: 0.75rem;
   font-weight: 650;
   letter-spacing: 0.4px;
   line-height: 1.6;
   pointer-events: none;
-}
-
-.note-overlay .note-overlay-text {
-  top: 69%;
 }
 
 .note-white .note-overlay-text {
@@ -251,7 +247,7 @@ body {
 }
 
 .note-header {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.6px;
   color: var(--color-text-primary);
@@ -259,7 +255,7 @@ body {
 }
 
 .note-text {
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 450;
   letter-spacing: 0.4px;
   line-height: 1.6;
@@ -297,11 +293,12 @@ body {
   }
 
   .header-logo p {
-    font-size: 0.75rem;
+    font-size: 0.95rem;
   }
 
   .note-overlay-text {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
+    bottom: 37px;
   }
 
   .note-main {
@@ -309,12 +306,12 @@ body {
   }
 
   .note-header {
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin-bottom: 0.3rem;
   }
 
   .note-text {
-    font-size: 0.65rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -348,11 +345,12 @@ body {
   }
 
   .header-logo p {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .note-overlay-text {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    bottom: 47px;
   }
 
   .note-main {
@@ -360,11 +358,11 @@ body {
   }
 
   .note-header {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 
   .note-text {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -403,10 +401,11 @@ body {
 
   .note-overlay-text {
     font-size: 1rem;
+    bottom: 59px;
   }
 
   .note-main {
-    padding: 0 25px;
+    padding: 0 20px;
   }
 
   .note-header {
@@ -492,10 +491,43 @@ body {
   }
 }
 
-@media (min-width: 769px) and (max-width: 992px) {
+@media (min-width: 769px) and (max-width: 1024px) {
   .side {
-    width: 25%;
-    padding: 40px 25px;
+    width: 30%;
+  }
+
+  .side-logo {
+    margin-bottom: 15px;
+  }
+
+  .side-logo p {
+    font-size: 0.9rem;
+  }
+
+  .hr-with-plus1 {
+    margin-bottom: 20px;
+  }
+
+  .side-body ul li {
+    font-size: 0.75rem;
+    margin-bottom: 23px;
+    padding-left: 13px;
+  }
+
+  .side-body ul li.active {
+    padding: 7px 13px;
+  }
+
+  .main-header {
+    margin-bottom: 15px;
+  }
+
+  .header-logo p {
+    font-size: 0.85rem;
+  }
+
+  .hr-with-plus2 {
+    margin-bottom: 5px;
   }
 
   .note-body {
@@ -505,10 +537,35 @@ body {
   }
 
   .note-img {
-    max-width: 220px;
+    max-width: 240px;
   }
 
   .note-main {
     padding: 0 10px;
+  }
+
+  .note-overlay-text {
+    font-size: 0.8rem;
+    bottom: 39px;
+  }
+
+  .note-header {
+    font-size: 0.9rem;
+  }
+
+  .note-text {
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .side {
+    width: 25%;
+  }
+}
+
+@media (min-width: 1201px) and (max-width: 1280px) {
+  .side {
+    width: 20%;
   }
 }
