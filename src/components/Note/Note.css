@@ -1,0 +1,179 @@
+.note-body {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: auto;
+}
+
+.note-img {
+  position: relative;
+  width: 100%;
+  max-width: 180px;
+}
+
+.note-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.note-overlay-text {
+  position: absolute;
+  bottom: 35px;
+  left: 16%;
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.4px;
+  line-height: 1.6;
+  pointer-events: none;
+}
+
+.note-white .note-overlay-text {
+  color: var(--color-text-secondary);
+}
+
+.note-black .note-overlay-text {
+  color: var(--color-text-primary);
+}
+
+.note-overlay-text svg {
+  margin-bottom: 0.15rem;
+}
+
+.note-white .note-overlay-text svg {
+  color: var(--color-text-primary);
+}
+
+.note-black .note-overlay-text svg {
+  color: var(--color-text-accent);
+}
+
+.note-main {
+  padding: 0 8px;
+  min-height: 20px;
+}
+
+.note-header {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  color: var(--color-text-primary);
+  margin-bottom: 0.4rem;
+}
+
+.note-text {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  line-height: 1.6;
+  color: var(--color-text-accent);
+}
+
+@media (max-width: 480px) {
+  .note-overlay-text {
+    font-size: 0.9rem;
+    bottom: 37px;
+  }
+
+  .note-main {
+    padding: 0 10px;
+  }
+
+  .note-header {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .note-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 600px) {
+  .note-overlay-text {
+    font-size: 0.95rem;
+    bottom: 47px;
+  }
+
+  .note-main {
+    padding: 0 15px;
+  }
+
+  .note-header {
+    font-size: 1.05rem;
+  }
+
+  .note-text {
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  .note-overlay-text {
+    font-size: 1rem;
+    bottom: 59px;
+  }
+
+  .note-main {
+    padding: 0 20px;
+  }
+
+  .note-header {
+    font-size: 1.1rem;
+  }
+
+  .note-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .note-body {
+    width: 93%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .note-img {
+    max-width: 360px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .note-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+
+  .note-img {
+    max-width: 240px;
+  }
+
+  .note-main {
+    padding: 0 10px;
+  }
+
+  .note-overlay-text {
+    font-size: 0.8rem;
+    bottom: 39px;
+  }
+
+  .note-header {
+    font-size: 0.9rem;
+  }
+
+  .note-text {
+    font-size: 0.7rem;
+  }
+}
