@@ -266,7 +266,7 @@ body {
   color: var(--color-text-accent);
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 480px) {
   .side {
     padding: 35px 15px 20px 15px;
   }
@@ -275,14 +275,15 @@ body {
     width: 30px;
   }
 
-  .side-user-svg {
+  .side-user-svg,
+  .side-body-svg,
+  .main-header-svg {
     width: 20px;
     height: 20px;
   }
 
-  .side-body-svg {
-    width: 20px;
-    height: 20px;
+  .hr-with-plus1 {
+    margin-bottom: 15px;
   }
 
   .main {
@@ -292,19 +293,15 @@ body {
 
   .main-header {
     padding-top: 15px;
+    margin-bottom: 15px;
   }
 
-  .note-img {
-    max-width: 360px;
+  .header-logo p {
+    font-size: 0.75rem;
   }
 
   .note-overlay-text {
-    font-size: 0.6rem;
-    top: 74%;
-  }
-
-  .note-overlay .note-overlay-text {
-    top: 65%;
+    font-size: 0.7rem;
   }
 
   .note-main {
@@ -312,16 +309,16 @@ body {
   }
 
   .note-header {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     margin-bottom: 0.3rem;
   }
 
   .note-text {
-    font-size: 0.55rem;
+    font-size: 0.65rem;
   }
 }
 
-@media (min-width: 576px) and (max-width: 767.98px) {
+@media (min-width: 481px) and (max-width: 600px) {
   .side {
     padding: 40px 20px 25px 20px;
   }
@@ -330,14 +327,15 @@ body {
     width: 35px;
   }
 
-  .side-user-svg {
+  .side-user-svg,
+  .side-body-svg,
+  .main-header-svg {
     width: 25px;
     height: 25px;
   }
 
-  .side-body-svg {
-    width: 25px;
-    height: 25px;
+  .hr-with-plus1 {
+    margin-bottom: 20px;
   }
 
   .main {
@@ -349,13 +347,12 @@ body {
     padding-top: 20px;
   }
 
-  .note-overlay-text {
-    font-size: 0.8rem;
-    top: 76%;
+  .header-logo p {
+    font-size: 0.95rem;
   }
 
-  .note-overlay .note-overlay-text {
-    top: 67%;
+  .note-overlay-text {
+    font-size: 0.9rem;
   }
 
   .note-main {
@@ -363,15 +360,65 @@ body {
   }
 
   .note-header {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .note-text {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 }
 
-@media only screen and (max-width: 767.98px) {
+@media (min-width: 601px) and (max-width: 768px) {
+  .side {
+    padding: 40px 20px 25px 20px;
+  }
+
+  .side-logo img {
+    width: 40px;
+  }
+
+  .side-user-svg,
+  .side-body-svg,
+  .main-header-svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .hr-with-plus1 {
+    margin-bottom: 25px;
+  }
+
+  .main {
+    padding: 20px;
+    padding-bottom: 80px;
+  }
+
+  .main-header {
+    padding-top: 25px;
+  }
+
+  .header-logo p {
+    font-size: 1.05rem;
+  }
+
+  .note-overlay-text {
+    font-size: 1rem;
+  }
+
+  .note-main {
+    padding: 0 25px;
+  }
+
+  .note-header {
+    font-size: 1.1rem;
+  }
+
+  .note-text {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
   .app-container {
     flex-direction: column;
     height: auto;
@@ -406,10 +453,6 @@ body {
     color: var(--color-text-primary);
   }
 
-  .hr-with-plus1 {
-    margin-bottom: 15px;
-  }
-
   .side-body ul {
     width: 93%;
     margin: 0 auto;
@@ -437,10 +480,6 @@ body {
     width: 93%;
   }
 
-  .header-logo p {
-    font-size: 0.95rem;
-  }
-
   .note-body {
     width: 93%;
     display: grid;
@@ -453,7 +492,7 @@ body {
   }
 }
 
-@media (min-width: 768px) and (max-width: 991.98px) {
+@media (min-width: 769px) and (max-width: 992px) {
   .side {
     width: 25%;
     padding: 40px 25px;
