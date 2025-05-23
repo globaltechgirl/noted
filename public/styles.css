@@ -44,7 +44,7 @@ body {
   align-items: center;
   gap: 0.8rem;
   padding-left: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .side-logo img {
@@ -69,7 +69,7 @@ body {
   align-items: center;
   width: 100%;
   color: var(--color-text-accent);
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .hr-with-plus1 .line {
@@ -125,7 +125,7 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 40px;
+  padding: 40px 25px;
   width: 100%;
   height: auto;
 }
@@ -168,7 +168,7 @@ body {
   display: flex;
   align-items: center;
   color: var(--color-text-accent);
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .hr-with-plus2 .line {
@@ -186,23 +186,22 @@ body {
   width: 96%;
   margin: 0 auto;
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  align-items: flex-start;
   gap: 50px;
 }
 
 .note {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   height: auto;
 }
 
 .note-img {
   position: relative;
   width: 100%;
-  max-width: 160px;
+  max-width: 180px;
 }
 
 .note-img img {
@@ -213,17 +212,17 @@ body {
 
 .note-overlay-text {
   position: absolute;
-  top: 75%;
+  top: 78%;
   left: 15%;
   font-size: 0.7rem;
   font-weight: 650;
   letter-spacing: 0.4px;
-  line-height: 1.5;
+  line-height: 1.6;
   pointer-events: none;
 }
 
 .note-overlay .note-overlay-text {
-  top: 66%;
+  top: 69%;
 }
 
 .note-white .note-overlay-text {
@@ -247,8 +246,8 @@ body {
 }
 
 .note-main {
-  padding: 0px 8px;
-  min-height: 40px;
+  padding: 0 8px;
+  min-height: 20px;
 }
 
 .note-header {
@@ -263,11 +262,116 @@ body {
   font-size: 0.65rem;
   font-weight: 450;
   letter-spacing: 0.4px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--color-text-accent);
 }
 
-@media only screen and (max-width: 600px) {
+@media (max-width: 575.98px) {
+  .side {
+    padding: 35px 15px 20px 15px;
+  }
+
+  .side-logo img {
+    width: 30px;
+  }
+
+  .side-user-svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .side-body-svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .main {
+    padding: 15px;
+    padding-bottom: 75px;
+  }
+
+  .main-header {
+    padding-top: 15px;
+  }
+
+  .note-img {
+    max-width: 360px;
+  }
+
+  .note-overlay-text {
+    font-size: 0.6rem;
+    top: 74%;
+  }
+
+  .note-overlay .note-overlay-text {
+    top: 65%;
+  }
+
+  .note-main {
+    padding: 0 10px;
+  }
+
+  .note-header {
+    font-size: 0.65rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .note-text {
+    font-size: 0.55rem;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .side {
+    padding: 40px 20px 25px 20px;
+  }
+
+  .side-logo img {
+    width: 35px;
+  }
+
+  .side-user-svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .side-body-svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .main {
+    padding: 20px;
+    padding-bottom: 80px;
+  }
+
+  .main-header {
+    padding-top: 20px;
+  }
+
+  .note-overlay-text {
+    font-size: 0.8rem;
+    top: 76%;
+  }
+
+  .note-overlay .note-overlay-text {
+    top: 67%;
+  }
+
+  .note-main {
+    padding: 0 15px;
+  }
+
+  .note-header {
+    font-size: 0.95rem;
+  }
+
+  .note-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
   .app-container {
     flex-direction: column;
     height: auto;
@@ -277,25 +381,20 @@ body {
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    padding-top: 60px;
   }
 
   .side-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    padding: 0 20px;
-    margin-bottom: 20px;
+    width: 93%;
+    margin: 0 auto;
+    margin-bottom: 15px;
   }
 
   .side-logo {
     padding-left: 0;
     margin-bottom: 0;
-  }
-
-  .side-logo img {
-    width: 60px;
   }
 
   .side-logo p {
@@ -305,88 +404,72 @@ body {
   .side-user-svg {
     display: block;
     color: var(--color-text-primary);
-    width: 30px;
-    height: 30px;
   }
 
   .hr-with-plus1 {
-    margin-bottom: 50px;
+    margin-bottom: 15px;
   }
 
   .side-body ul {
+    width: 93%;
+    margin: 0 auto;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    gap: 10px;
   }
 
   .side-body ul li {
-    margin-bottom: 5px;
-  }
-
-  .side-body-svg {
-    width: 30px;
-    height: 30px;
+    margin-bottom: 0;
+    padding-left: 0;
   }
 
   .side-body span {
     display: none;
   }
 
-  .main {
-    height: auto;
-    padding: 20px;
+  .side-body ul li.active {
+    padding: 6px 12px;
   }
 
   .main-header {
     width: 93%;
-    margin-bottom: 15px;
   }
 
   .header-logo p {
-    font-size: 1.05rem;
-  }
-
-  .main-header-svg {
-    width: 30px;
-    height: 30px;
-  }
-
-  .hr-with-plus2 {
-    margin-bottom: 15px;
+    font-size: 0.95rem;
   }
 
   .note-body {
     width: 93%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
+    gap: 25px;
   }
 
   .note-img {
-    max-width: 450px;
+    max-width: 360px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .side {
+    width: 25%;
+    padding: 40px 25px;
   }
 
-  .note-overlay-text {
-    top: 77%;
-    font-size: 0.9rem;
+  .note-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
   }
 
-  .note-overlay .note-overlay-text {
-    top: 68%;
+  .note-img {
+    max-width: 220px;
   }
 
   .note-main {
-    padding-right: 18px;
-  }
-
-  .note-header {
-    font-size: 1rem;
-    margin-bottom: 0.6rem;
-  }
-
-  .note-text {
-    font-size: 0.85rem;
+    padding: 0 10px;
   }
 }
