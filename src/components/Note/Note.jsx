@@ -40,7 +40,7 @@ function Note({ onFolderClick }) {
                         </div>
 
                         <div className="note-main">
-                            <p className="note-header">All Notes</p>
+                            <p className="note-title">All Notes</p>
                             <p className="note-text">Friday</p>
                         </div>
                     </div>
@@ -72,7 +72,7 @@ function Note({ onFolderClick }) {
                         </div>
 
                         <div className="note-main">
-                            <p className="note-header">Daily</p>
+                            <p className="note-title">Daily</p>
                             <p className="note-text">5/11/25</p>
                         </div>
                     </div>
@@ -91,7 +91,7 @@ function Note({ onFolderClick }) {
                         </div>
 
                         <div className="note-main">
-                            <p className="note-header">Personal</p>
+                            <p className="note-title">Personal</p>
                             <p className="note-text">Wednesday</p>
                         </div>
                     </div>
@@ -109,7 +109,7 @@ function Note({ onFolderClick }) {
                         </div>
 
                         <div className="note-main">
-                            <p className="note-header">Daily</p>
+                            <p className="note-title">Daily</p>
                             <p className="note-text">5/11/25</p>
                         </div>
                     </div>
@@ -128,7 +128,7 @@ function Note({ onFolderClick }) {
                         </div>
 
                         <div className="note-main">
-                            <p className="note-header">Personal</p>
+                            <p className="note-title">Personal</p>
                             <p className="note-text">Wednesday</p>
                         </div>
                     </div>                

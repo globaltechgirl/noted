@@ -1,3 +1,4 @@
+/* Folder header */
 .folder-header {
   width: 95%;
   margin: 0 auto;
@@ -5,6 +6,11 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+}
+
+.folder-header-svg {
+  width: 20px;
+  height: 20px;
 }
 
 .folder-logo {
@@ -20,11 +26,6 @@
   letter-spacing: 0.6px;
   text-transform: uppercase;
   color: var(--color-text-primary);
-}
-
-.folder-header-svg {
-  width: 20px;
-  height: 20px;
 }
 
 .folder-icons {
@@ -52,6 +53,7 @@
   font-size: 1.2rem;
 }
 
+/* Folder wrapper */
 .folder-wrapper {
   width: 95%;
   margin: 0 auto;
@@ -59,7 +61,8 @@
   flex-direction: column;
 }
 
-.folder-header {
+/* Folder body header */
+.folder-body-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -125,6 +128,7 @@
   border-radius: 0.5rem;
 }
 
+/* Folder main */
 .folder-main {
   width: 100%;
   margin: 0 auto;
@@ -194,7 +198,7 @@
   text-align: center;
 }
 
-.folder-hr {
+.folder-body-hr {
   width: 100%;
   display: flex;
   align-items: center;
@@ -202,14 +206,14 @@
   padding: 0 15px;
 }
 
-.folder-hr .line {
+.folder-body-hr .line {
   flex-grow: 1;
   height: 0.5px;
   background-color: var(--color-text-accent);
   margin: 0 -12px;
 }
 
-.folder-hr i {
+.folder-body-hr i {
   font-size: 1.2rem;
 }
 
@@ -275,4 +279,3 @@
     font-size: 0.85rem;
   }
 }
-

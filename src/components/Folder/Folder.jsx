@@ -38,7 +38,7 @@ function Folder({ folderName, onBack }) {
         
         <div className="folder-wrapper">
             <div className="folder-body">
-                <div className="folder-header">
+                <div className="folder-body-header">
                     <div className="folder-left">
                         <div className="folder-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" className="folder-icon-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M9 3a1 1 0 0 1 .608.206l.1.087L12.414 6H19a3 3 0 0 1 2.995 2.824L22 9v8a3 3 0 0 1-2.824 2.995L19 20H5a3 3 0 0 1-2.995-2.824L2 17V6a3 3 0 0 1 2.824-2.995L5 3z"/></svg>
@@ -87,7 +87,7 @@ function Folder({ folderName, onBack }) {
                             </div>
                         </div>
 
-                        <div className="folder-hr">
+                        <div className="folder-body-hr">
                             <i className="bi bi-plus"></i>
                             <div className="line"></div>
                             <i className="bi bi-plus"></i>
@@ -125,7 +125,7 @@ function Folder({ folderName, onBack }) {
                             </div>
                         </div>
 
-                        <div className="folder-hr">
+                        <div className="folder-body-hr">
                             <i className="bi bi-plus"></i>
                             <div className="line"></div>
                             <i className="bi bi-plus"></i>
@@ -163,7 +163,7 @@ function Folder({ folderName, onBack }) {
                             </div>
                         </div>
 
-                        <div className="folder-hr">
+                        <div className="folder-body-hr">
                             <i className="bi bi-plus"></i>
                             <div className="line"></div>
                             <i className="bi bi-plus"></i>
@@ -201,7 +201,7 @@ function Folder({ folderName, onBack }) {
                             </div>
                         </div>
 
-                        <div className="folder-hr">
+                        <div className="folder-body-hr">
                             <i className="bi bi-plus"></i>
                             <div className="line"></div>
                             <i className="bi bi-plus"></i>
@@ -239,7 +239,7 @@ function Folder({ folderName, onBack }) {
                             </div>
                         </div>
 
-                        <div className="folder-hr">
+                        <div className="folder-body-hr">
                             <i className="bi bi-plus"></i>
                             <div className="line"></div>
                             <i className="bi bi-plus"></i>
@@ -277,7 +277,7 @@ function Folder({ folderName, onBack }) {
                             </div>
                         </div>
 
-                        <div className="folder-hr">
+                        <div className="folder-body-hr">
                             <i className="bi bi-plus"></i>
                             <div className="line"></div>
                             <i className="bi bi-plus"></i>
@@ -315,7 +315,7 @@ function Folder({ folderName, onBack }) {
                             </div>
                         </div>
 
-                        <div className="folder-hr">
+                        <div className="folder-body-hr">
                             <i className="bi bi-plus"></i>
                             <div className="line"></div>
                             <i className="bi bi-plus"></i>
@@ -353,7 +353,7 @@ function Folder({ folderName, onBack }) {
                             </div>
                         </div>
 
-                        <div className="folder-hr">
+                        <div className="folder-body-hr">
                             <i className="bi bi-plus"></i>
                             <div className="line"></div>
                             <i className="bi bi-plus"></i>
