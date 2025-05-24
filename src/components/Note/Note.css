@@ -1,23 +1,81 @@
-.note-body {
+.note-header {
   width: 95%;
   margin: 0 auto;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.note-logo {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-primary);
+  gap: 0.5rem;
+}
+
+.note-logo p {
+  font-size: 0.9rem;
+  font-weight: 550;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.note-header-svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-primary);
+}
+
+.note-hr {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: var(--color-text-accent);
+  margin-bottom: 10px;
+}
+
+.note-hr .line {
+  flex-grow: 1;
+  height: 0.5px;
+  background-color: var(--color-text-accent);
+  margin: 0 -12px;
+}
+
+.note-hr i {
+  font-size: 1.2rem;
+}
+
+.note-wrapper {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.note-body {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
   gap: 50px;
 }
 
 .note {
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  height: auto;
+  flex: 1;
 }
 
 .note-img {
   position: relative;
   width: 100%;
-  max-width: 180px;
+  max-width: 200px;
 }
 
 .note-img img {
@@ -79,6 +137,15 @@
 }
 
 @media (max-width: 480px) {
+  .note-header {
+    padding-top: 20px;
+    margin-bottom: 15px;
+  }
+
+  .note-logo p {
+    font-size: 0.95rem;
+  }
+
   .note-overlay-text {
     font-size: 0.9rem;
     bottom: 37px;
@@ -99,6 +166,14 @@
 }
 
 @media (min-width: 481px) and (max-width: 600px) {
+  .note-header {
+    padding-top: 25px;
+  }
+
+  .note-logo p {
+    font-size: 1rem;
+  }
+
   .note-overlay-text {
     font-size: 0.95rem;
     bottom: 47px;
@@ -118,6 +193,14 @@
 }
 
 @media (min-width: 601px) and (max-width: 768px) {
+  .note-header {
+    padding-top: 30px;
+  }
+
+  .note-logo p {
+    font-size: 1.05rem;
+  }
+
   .note-overlay-text {
     font-size: 1rem;
     bottom: 59px;
@@ -137,6 +220,10 @@
 }
 
 @media (max-width: 768px) {
+  .note-header {
+    width: 93%;
+  }
+
   .note-body {
     width: 93%;
     display: grid;
@@ -150,6 +237,10 @@
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
+  .note-logo p {
+    font-size: 0.85rem;
+  }
+
   .note-body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -175,5 +266,21 @@
 
   .note-text {
     font-size: 0.7rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .note-body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px;
+  }
+}
+
+@media (min-width: 1201px) and (max-width: 1280px) {
+  .note-body {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 45px;
   }
 }

@@ -1,3 +1,57 @@
+.folder-header {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.folder-logo {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-primary);
+  gap: 0.5rem;
+}
+
+.folder-logo p {
+  font-size: 0.9rem;
+  font-weight: 550;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.folder-header-svg {
+  width: 20px;
+  height: 20px;
+}
+
+.folder-icons {
+  color: var(--color-text-primary);
+  display: flex;
+  gap: 1rem;
+}
+
+.folder-hr {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: var(--color-text-accent);
+  margin-bottom: 10px;
+}
+
+.folder-hr .line {
+  flex-grow: 1;
+  height: 0.5px;
+  background-color: var(--color-text-accent);
+  margin: 0 -12px;
+}
+
+.folder-hr i {
+  font-size: 1.2rem;
+}
+
 .folder-wrapper {
   width: 95%;
   margin: 0 auto;
@@ -84,8 +138,8 @@
   display: flex;
   flex-direction: column;
   height: auto;
-  gap: 20px;
-  padding: 30px 25px;
+  gap: 15px;
+  padding: 30px 0;
   background-color: var(--color-surface-secondary);
   border-radius: 0.5rem;
 }
@@ -94,6 +148,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 25px;
 }
 
 .folder-top-star .folder-top-star-svg,
@@ -110,6 +165,7 @@
   align-items: center;
   justify-content: center;
   gap: 30px;
+  padding: 0 25px;
 }
 
 .folder-middle .middle-icon {
@@ -117,7 +173,7 @@
   width: 40px;
   height: 50px;
   background-color: var(--color-surface-accent);
-  color: var(--color-text-primary);
+  color: var(--color-surface-primary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,7 +188,7 @@
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.6px;
-  line-height: 1.8;
+  line-height: 2;
   color: var(--color-text-primary);
   width: 100%;
   text-align: center;
@@ -143,6 +199,7 @@
   display: flex;
   align-items: center;
   color: var(--color-text-accent);
+  padding: 0 15px;
 }
 
 .folder-hr .line {
@@ -160,16 +217,62 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-weight: 500;
   letter-spacing: 0.6px;
+  padding: 0 30px;
 }
 
 .folder-bottom .bottom-title {
   color: var(--color-text-primary);
   font-size: 0.74rem;
+  font-weight: 500;
 }
 
 .folder-bottom .bottom-text {
   color: var(--color-surface-accent);
   font-size: 0.72rem;
+  font-weight: 450;
 }
+
+@media (max-width: 480px) {
+  .folder-header {
+    padding-top: 20px;
+    margin-bottom: 15px;
+  }
+
+  .folder-logo p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 600px) {
+  .folder-header {
+    padding-top: 25px;
+  }
+
+  .folder-logo p {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  .folder-header {
+    padding-top: 30px;
+  }
+
+  .folder-logo p {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .folder-header {
+    width: 93%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .folder-logo p {
+    font-size: 0.85rem;
+  }
+}
+

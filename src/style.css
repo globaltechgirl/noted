@@ -45,11 +45,11 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 body::-webkit-scrollbar-track {
- background-color: var(--color-sidebar-bg);
+  background-color: var(--color-sidebar-bg);
 }
 
 body::-webkit-scrollbar-track:hover {
-background-color: var(--color-sidebar-bg);
+  background-color: var(--color-sidebar-bg);
 }
 
 /* App container */
@@ -162,58 +162,6 @@ background-color: var(--color-sidebar-bg);
   height: auto;
 }
 
-.main-header {
-  width: 95%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.header-logo {
-  display: flex;
-  align-items: center;
-  color: var(--color-text-primary);
-  gap: 0.5rem;
-}
-
-.header-logo p {
-  font-size: 0.9rem;
-  font-weight: 550;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  color: var(--color-text-primary);
-}
-
-.main-header-svg {
-  width: 20px;
-  height: 20px;
-}
-
-.main-add {
-  color: var(--color-text-primary);
-}
-
-.main-hr {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  color: var(--color-text-accent);
-  margin-bottom: 10px;
-}
-
-.main-hr .line {
-  flex-grow: 1;
-  height: 0.5px;
-  background-color: var(--color-text-accent);
-  margin: 0 -12px;
-}
-
-.main-hr i {
-  font-size: 1.2rem;
-}
-
 @media (max-width: 480px) {
   /* Side container */
   .side {
@@ -252,15 +200,6 @@ background-color: var(--color-sidebar-bg);
   .main {
     padding: 15px;
     padding-bottom: 75px;
-  }
-
-  .main-header {
-    padding-top: 20px;
-    margin-bottom: 15px;
-  }
-
-  .header-logo p {
-    font-size: 0.95rem;
   }
 }
 
@@ -303,14 +242,6 @@ background-color: var(--color-sidebar-bg);
     padding: 20px;
     padding-bottom: 80px;
   }
-
-  .main-header {
-    padding-top: 25px;
-  }
-
-  .header-logo p {
-    font-size: 1rem;
-  }
 }
 
 @media (min-width: 601px) and (max-width: 768px) {
@@ -351,14 +282,6 @@ background-color: var(--color-sidebar-bg);
   .main {
     padding: 20px;
     padding-bottom: 80px;
-  }
-
-  .main-header {
-    padding-top: 30px;
-  }
-
-  .header-logo p {
-    font-size: 1.05rem;
   }
 }
 
@@ -440,11 +363,6 @@ background-color: var(--color-sidebar-bg);
   .side-body ul li.active span {
     display: inline;
   }
-
-  /* Main container */
-  .main-header {
-    width: 93%;
-  }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -465,11 +383,6 @@ background-color: var(--color-sidebar-bg);
 
   .side-body ul li.active {
     padding: 7px 13px;
-  }
-
-  /* Main container */
-  .header-logo p {
-    font-size: 0.85rem;
   }
 }
 
