@@ -74,7 +74,7 @@
 
 /* Folder body */
 .folder-body {
-  width: 96%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -82,6 +82,8 @@
 
 /* Folder body header */
 .folder-body-header {
+  width: 96%;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -367,7 +369,7 @@
   }
 
   /* Folder main */
-  .folder-body {
+  .folder-body-header {
     width: 93%;
   }
 
@@ -391,7 +393,7 @@
   }
 
   /* Folder main */
-  .folder-body {
+  .folder-body-header {
     width: 94%;
   }
 
@@ -412,7 +414,7 @@
   }
 
   /* Folder main */
-  .folder-body {
+  .folder-body-header {
     width: 95%;
   }
 

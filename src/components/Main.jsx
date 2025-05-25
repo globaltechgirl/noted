@@ -1,24 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import Note from "./Note/Note";
 import Folder from "./Folder/Folder";
+import AllFolders from "./AllFolders"; 
+import OneFolder from "./OneFolder"; 
 
-function Main() {
-    const [activeFolder, setActiveFolder] = useState(null);
-
-    const handleFolderClick = (folderName) => {
-        setActiveFolder(folderName);
-    };
-
-    const handleBack = () => {
-        setActiveFolder(null);
-    };
-
+function Main({ view, activeFolder, onFolderClick, onBack }) {
     return (
         <div className="main">
-            {activeFolder ? (
-                <Folder folderName={activeFolder} onBack={handleBack} />
-                    ) : (
-                <Note onFolderClick={handleFolderClick} />
+            {view === "folder" && activeFolder ? (
+                <Folder folderName={activeFolder} onBack={onBack} />
+            ) : view === "all-notes" ? (
+                <AllFolders onFolderClick={onFolderClick} />
+            ) : view === "one-folder" ? (
+                <OneFolder onFolderClick={onFolderClick} />
+            ) : (
+                <Note onFolderClick={onFolderClick} />
             )}
         </div>
     );
