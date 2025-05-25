@@ -26,9 +26,7 @@ function Note({ onFolderClick }) {
                     <div className="line"></div>
                     <i className="bi bi-plus"></i>
                 </div>
-            </div>
 
-            <div className="note-wrapper">
                 <div className="note-body">
                     <div className="note note-white">
                         <div className="note-img">

@@ -157,7 +157,7 @@ body::-webkit-scrollbar-track:hover {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 40px 25px;
+  padding: 40px 2px;
   width: 100%;
   height: auto;
 }
@@ -172,7 +172,11 @@ body::-webkit-scrollbar-track:hover {
     width: 30px;
   }
 
-  .side-user-svg,
+  .side-user-svg {
+    width: 23px;
+    height: 23px;
+  }
+
   .side-body-svg,
   .main-header-svg {
     width: 20px;

@@ -1,6 +1,25 @@
+/* Folder container */
+.folder-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: auto;
+}
+
+/* Folder wrapper */
+.folder-wrapper {
+  width: 96%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Folder header */
 .folder-header {
-  width: 95%;
+  width: 96%;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -53,9 +72,9 @@
   font-size: 1.2rem;
 }
 
-/* Folder wrapper */
-.folder-wrapper {
-  width: 95%;
+/* Folder body */
+.folder-body {
+  width: 96%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -73,7 +92,7 @@
 .folder-left {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.2rem;
 }
 
 .folder-left .folder-icon {
@@ -238,6 +257,7 @@
 }
 
 @media (max-width: 480px) {
+  /* Folder header */
   .folder-header {
     padding-top: 20px;
     margin-bottom: 15px;
@@ -246,9 +266,53 @@
   .folder-logo p {
     font-size: 0.95rem;
   }
+
+  .folder-icons {
+    gap: 0.8rem;
+  }
+
+  .folder-icons .folder-header-svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Folder body header */
+  .folder-left {
+    gap: 1rem;
+  }
+
+  .folder-left .folder-tag {
+    font-size: 0.8rem;
+  }
+
+  .folder-icon .folder-icon-svg,
+  .folder-grid .grid-list-svg,
+  .folder-grid .grid-layout-svg,
+  .folder-grid .grid-compact-svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  /* Folder main */
+  .folder-main {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .folder-middle .middle-text {
+    font-size: 0.9rem;
+  }
+
+  .folder-bottom .bottom-title {
+    font-size: 0.84rem;
+  }
+
+  .folder-bottom .bottom-text {
+    font-size: 0.82rem;
+  }
 }
 
 @media (min-width: 481px) and (max-width: 600px) {
+  /* Folder header */
   .folder-header {
     padding-top: 25px;
   }
@@ -256,9 +320,15 @@
   .folder-logo p {
     font-size: 1rem;
   }
+
+  /* Folder main */
+  .folder-main {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (min-width: 601px) and (max-width: 768px) {
+  /* Folder header */
   .folder-header {
     padding-top: 30px;
   }
@@ -266,16 +336,87 @@
   .folder-logo p {
     font-size: 1.05rem;
   }
+
+  /* Folder main */
+  .folder-main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .folder-middle .middle-text {
+    font-size: 0.85rem;
+  }
+
+  .folder-bottom .bottom-title {
+    font-size: 0.79rem;
+  }
+
+  .folder-bottom .bottom-text {
+    font-size: 0.77rem;
+  }
 }
 
 @media (max-width: 768px) {
+  /* Folder wrapper */
+  .folder-wrapper {
+    width: 98%;
+  }
+
+  /* Folder header */
   .folder-header {
     width: 93%;
+  }
+
+  /* Folder main */
+  .folder-body {
+    width: 93%;
+  }
+
+  .folder-main {
+    gap: 25px;
+  }
+
+  .folder-middle .middle-text {
+    width: 90%;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
+  /* Folder header */
+  .folder-header {
+    width: 94%;
+  }
+
   .folder-logo p {
     font-size: 0.85rem;
+  }
+
+  /* Folder main */
+  .folder-body {
+    width: 94%;
+  }
+
+  .folder-main {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .folder-middle .middle-text {
+    width: 90%;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  /* Folder header */
+  .folder-header {
+    width: 95%;
+  }
+
+  /* Folder main */
+  .folder-body {
+    width: 95%;
+  }
+
+  .folder-main {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
