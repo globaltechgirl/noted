@@ -4,6 +4,7 @@ import Main from "./Main";
 
 function App() {
     const [view, setView] = useState("home");
+    
     const [activeFolder, setActiveFolder] = useState(null);
 
     const handleFolderClick = (folderName) => {

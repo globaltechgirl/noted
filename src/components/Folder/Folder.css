@@ -48,9 +48,14 @@
 }
 
 .folder-icons {
-  color: var(--color-text-primary);
+  color: var(--color-surface-accent);
   display: flex;
   gap: 1rem;
+}
+
+.folder-icons .folder-header-svg {
+  width: 19px;
+  height: 19px;
 }
 
 .folder-hr {
@@ -125,13 +130,14 @@
 }
 
 .folder-right {
+  width: fit-content;
   display: flex;
   align-items: center;
   gap: 0.8rem;
   color: var(--color-surface-accent);
-  padding: 4px 13px;
   background-color: var(--color-surface-secondary);
   border-radius: 0.5rem;
+  padding: 5px 10px;
 }
 
 .folder-grid .grid-list-svg,
@@ -140,6 +146,7 @@
   width: 18px;
   height: 18px;
   display: block;
+  cursor: pointer;
 }
 
 .folder-right .grid-active {
@@ -167,6 +174,12 @@
   padding: 30px 0;
   background-color: var(--color-surface-secondary);
   border-radius: 0.5rem;
+}
+
+.folder:hover {
+  background-color: var(--color-surface-primary);
+  border: 0.5px solid var(--color-border);
+  cursor: pointer;
 }
 
 .folder-top {

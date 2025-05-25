@@ -145,7 +145,6 @@ function Note({ onFolderClick }) {
                 </div>
             </div>
         </div>
-        
     );
 }
 

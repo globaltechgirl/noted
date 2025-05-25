@@ -12,7 +12,7 @@ function Main({ view, activeFolder, onFolderClick, onBack }) {
             ) : view === "all-notes" ? (
                 <AllFolders onFolderClick={onFolderClick} />
             ) : view === "one-folder" ? (
-                <OneFolder onFolderClick={onFolderClick} />
+                <OneFolder folderName={activeFolder} onFolderClick={onFolderClick} />
             ) : (
                 <Note onFolderClick={onFolderClick} />
             )}

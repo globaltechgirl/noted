@@ -54,6 +54,11 @@
   gap: 1rem;
 }
 
+.note-icons .note-header-svg {
+  width: 19px;
+  height: 19px;
+}
+
 .note-hr {
   width: 100%;
   display: flex;
