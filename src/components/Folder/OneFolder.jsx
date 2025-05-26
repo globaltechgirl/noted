@@ -1,15 +1,40 @@
-import React, { useState } from "react";
-import Folder from "./Folder/Folder";
+import React, { useState, useEffect } from "react";
+import Folder from "./Folder";
 
-function AllFolders() {
-
-    const positions = {
-        list: 4,
-        layout: 38,
-        compact: 72,
-    };
+function OneFolder({ folderName, onFolderClick }) {
 
     const [activeGrid, setActiveGrid] = useState("layout");
+
+    const [positions, setPositions] = useState({
+        list: 2.5,
+        layout: 36.5,
+        compact: 70,
+    });
+
+    useEffect(() => {
+        const updatePosition = () => {
+            const isMobile = window.innerWidth <= 480;
+
+            if (isMobile) {
+                setPositions({
+                    list: 1.5,
+                    layout: 33,
+                    compact: 63.5,
+                });
+            } else {
+                setPositions({
+                    list: 2.5,
+                    layout: 36.5,
+                    compact: 70,
+                });
+            }
+        };
+
+        updatePosition();
+        window.addEventListener("resize", updatePosition);
+
+        return () => window.removeEventListener("resize", updatePosition);
+    }, []);
 
     return (
         <div className="folder-container">
@@ -20,7 +45,7 @@ function AllFolders() {
                             <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2M9 9h1m-1 4h6m-6 4h6"/></g></svg>
                         </p>
 
-                        <p>All Notes</p>
+                        <p>{folderName || "Note"}</p>
                     </div>
 
                     <div className="folder-icons">
@@ -49,11 +74,6 @@ function AllFolders() {
                         <div className="folder-left">
                             <div className="folder-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="folder-icon-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M9 3a1 1 0 0 1 .608.206l.1.087L12.414 6H19a3 3 0 0 1 2.995 2.824L22 9v8a3 3 0 0 1-2.824 2.995L19 20H5a3 3 0 0 1-2.995-2.824L2 17V6a3 3 0 0 1 2.824-2.995L5 3z"/></svg>
-                                <i className="fa-solid fa-angle-down"></i>
-                            </div>
-
-                            <div className="folder-tag">
-                                <p>Daily Files</p>
                             </div>
                         </div>
 
@@ -97,4 +117,4 @@ function AllFolders() {
     );
 }
 
-export default AllFolders;
+export default OneFolder;

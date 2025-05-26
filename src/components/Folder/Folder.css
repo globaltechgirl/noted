@@ -132,29 +132,28 @@
 .folder-right .folder-grid-wrapper {
   display: flex;
   position: relative;
+  height: 35px;
   color: var(--color-surface-accent);
   background-color: var(--color-surface-secondary);
   border-radius: 0.5rem;
-  padding: 9px 11px;
+  padding: 9px 9.5px;
   gap: 1rem;
+  align-items: center;
 }
 
 .folder-right .slider {
   position: relative;
-  top: 0;
-  left: 0;
   width: 69px;
   height: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   pointer-events: none;
 }
 
 .folder-right .slider .ball {
   position: absolute;
-  top: 35%;
-  transform: translateY(-110%);
+  bottom: 2.5px;
   left: 0;
   width: 33px;
   height: 30px;
@@ -208,6 +207,18 @@
     font-size: 0.8rem;
   }
 
+  .folder-right .folder-grid-wrapper {
+    height: 28px;
+    padding: 9px 8px;
+    gap: 1rem;
+  }
+
+  .folder-right .slider .ball {
+    bottom: 1.5px;
+    width: 28px;
+    height: 25px;
+  }
+
   .folder-icon .folder-icon-svg,
   .folder-grid .grid-list-svg,
   .folder-grid .grid-layout-svg,
@@ -225,11 +236,6 @@
 
   .folder-logo p {
     font-size: 1rem;
-  }
-
-  /* Folder main */
-  .folder-main {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 

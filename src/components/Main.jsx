@@ -1,8 +1,8 @@
 import React from "react";
 import Note from "./Note/Note";
 import Folder from "./Folder/Folder";
-import AllFolders from "./AllFolders"; 
-import OneFolder from "./OneFolder"; 
+import AllFolders from "./Folder/AllFolders"; 
+import OneFolder from "./Folder/OneFolder"; 
 
 function Main({ view, activeFolder, onFolderClick, onBack }) {
     return (
