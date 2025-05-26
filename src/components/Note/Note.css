@@ -12,7 +12,7 @@
 
 /* Note wrapper */
 .note-wrapper {
-  width: 96%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -20,12 +20,21 @@
 
 /* Note header */
 .note-header {
-  width: 96%;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  padding-bottom: 30px;
+  padding-top: 35px;
+  border-bottom: 0.5px solid var(--color-border);
+  background-color: var(--color-sidebar-bg);
+}
+
+.note-header-wrapper {
+  width: 93%;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
 
 .note-header-svg {
@@ -59,28 +68,9 @@
   height: 19px;
 }
 
-.note-hr {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  color: var(--color-text-accent);
-  margin-bottom: 10px;
-}
-
-.note-hr .line {
-  flex-grow: 1;
-  height: 0.5px;
-  background-color: var(--color-text-accent);
-  margin: 0 -12px;
-}
-
-.note-hr i {
-  font-size: 1.2rem;
-}
-
 /* Note body */
 .note-body {
-  width: 96%;
+  width: 93%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -100,7 +90,7 @@
 .note-img {
   position: relative;
   width: 100%;
-  max-width: 200px;
+  max-width: 210px;
 }
 
 .note-img img {
@@ -256,20 +246,8 @@
 }
 
 @media (max-width: 768px) {
-  /* Note wrapper */
-  .note-wrapper {
-    width: 98%;
-  }
-
-  /* Note header */
-  .note-header {
-    width: 93%;
-  }
-
   /* Note body */
   .note-body {
-    width: 93%;
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
   }
@@ -281,18 +259,12 @@
 
 @media (min-width: 769px) and (max-width: 1024px) {
   /* Note header */
-  .note-header {
-    width: 94%;
-  }
-
   .note-logo p {
     font-size: 0.85rem;
   }
 
   /* Note body */
   .note-body {
-    width: 94%;
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
   }
@@ -319,24 +291,29 @@
   }
 }
 
-@media (min-width: 1025px) and (max-width: 1200px) {
+@media (max-width: 1024px) {
   /* Note header */
-  .note-header {
-    width: 95%;
+  .note-header-wrapper {
+    width: 90%;
   }
 
   /* Note body */
   .note-body {
-    width: 95%;
-    display: grid;
+    width: 90%;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  /* Note body */
+  .note-body {
     grid-template-columns: repeat(4, 1fr);
     gap: 35px;
   }
 }
 
 @media (min-width: 1201px) and (max-width: 1280px) {
+  /* Note body */
   .note-body {
-    display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 45px;
   }

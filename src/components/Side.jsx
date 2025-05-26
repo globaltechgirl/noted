@@ -11,20 +11,16 @@ function Side({ onSectionClick }) {
     return (
         <div className = "side">
             <div className="side-header">
-                <div className="side-logo">
-                    <img src="/src/assets/images/logo.png" />
-                    <p>Noted</p>
-                </div>
+                <div className="side-header-wrapper">
+                    <div className="side-logo">
+                        <img src="/src/assets/images/logo.png" />
+                        <p>Noted</p>
+                    </div>
 
-                <div className="side-user">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="side-user-svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/><path d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0-6 0m-2.832 8.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"/></g></svg>
+                    <div className="side-user">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="side-user-svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/><path d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0-6 0m-2.832 8.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"/></g></svg>
+                    </div>
                 </div>
-            </div>
-
-            <div className="side-hr">
-                <i className="bi bi-plus"></i>
-                <div className="line"></div>
-                <i className="bi bi-plus"></i>
             </div>
 
             <div className="side-body">

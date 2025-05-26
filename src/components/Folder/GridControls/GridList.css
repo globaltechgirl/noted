@@ -1,6 +1,6 @@
 /* Folder main */
 .folder-list-main {
-  width: 100%;
+  width: 93%;
   margin: 0 auto;
   display: grid;
   gap: 20px;
@@ -133,6 +133,13 @@
   /* Folder main */
   .folder-list-left {
     flex: 4;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Folder main */
+  .folder-list-main {
+    width: 90%;
   }
 }
 

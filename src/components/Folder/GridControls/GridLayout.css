@@ -1,6 +1,6 @@
 /* Folder main */
 .folder-layout-main {
-  width: 100%;
+  width: 93%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -172,6 +172,13 @@
   }
 
   .folder-layout-middle .middle-text {
+    width: 90%;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Folder main */
+  .folder-layout-main {
     width: 90%;
   }
 }
