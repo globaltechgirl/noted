@@ -1,4 +1,5 @@
 import React from "react";
+import "./GridCompact.css"; 
 
 function GridCompact ({ folderName, onBack }) {
     return (

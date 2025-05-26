@@ -1,4 +1,5 @@
 import React from "react";
+import "./GridLayout.css"; 
 
 function GridLayout ({ folderName, onBack }) {
     return (
