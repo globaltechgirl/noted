@@ -66,24 +66,23 @@ body::-webkit-scrollbar-track:hover {
   flex-direction: column;
   background-color: var(--color-sidebar-bg);
   border-right: 0.5px solid var(--color-border);
+  padding-left: 5px;
 }
 
 .side-header {
   width: 100%;
   margin: 0 auto;
-  margin-bottom: 40px;
-  padding-bottom: 30px;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
   margin-top: 35.5px;
-  border-bottom: 0.5px solid var(--color-border);
   background-color: var(--color-sidebar-bg);
 }
 
 .side-header-wrapper {
-  width: 75%;
+  width: 70%;
   margin: 0 auto;
   display: flex;
   justify-content: flex-start;
-  padding-left: 15px;
 }
 
 .side-logo {
@@ -93,16 +92,11 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-logo img {
-  width: 23px;
+  width: 50px;
   display: block;
-}
-
-.side-logo p {
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--color-text-primary);
+  padding: 5px;
+  background-color: var(--color-active-bg);
+  border-radius: 0.5rem;
 }
 
 .side-user-svg {
@@ -111,7 +105,7 @@ body::-webkit-scrollbar-track:hover {
 
 .side-body {
   color: var(--color-text-accent);
-  width: 75%;
+  width: 70%;
   margin: 0 auto;
 }
 
@@ -128,7 +122,6 @@ body::-webkit-scrollbar-track:hover {
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  padding-left: 15px;
 }
 
 .side-body-svg {
@@ -139,10 +132,19 @@ body::-webkit-scrollbar-track:hover {
 
 .side-body ul li.active {
   color: var(--color-text-primary);
-  padding: 8px 15px;
-  background-color: var(--color-active-bg);
-  border: 0.5px solid var(--color-border);
   border-radius: 0.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.side-active-arrow {
+  width: 11%;
+  height: 11%;
+  display: block;
+  transform: rotate(40deg);
+  transition: transform 0.3s ease;
 }
 
 /* Main container */
