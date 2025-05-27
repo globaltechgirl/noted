@@ -74,12 +74,12 @@ body::-webkit-scrollbar-track:hover {
   margin: 0 auto;
   margin-bottom: 25px;
   padding-bottom: 20px;
-  margin-top: 35.5px;
+  margin-top: 30.5px;
   background-color: var(--color-sidebar-bg);
 }
 
 .side-header-wrapper {
-  width: 70%;
+  width: 75%;
   margin: 0 auto;
   display: flex;
   justify-content: flex-start;
@@ -105,7 +105,7 @@ body::-webkit-scrollbar-track:hover {
 
 .side-body {
   color: var(--color-text-accent);
-  width: 70%;
+  width: 75%;
   margin: 0 auto;
 }
 
@@ -162,110 +162,23 @@ body::-webkit-scrollbar-track:hover {
 
 @media (max-width: 480px) {
   /* Side container */
-  .side {
-    padding: 35px 15px 20px 15px;
-  }
-
-  .side-logo img {
-    width: 30px;
-  }
-
-  .side-user-svg {
-    width: 23px;
-    height: 23px;
-  }
-
-  .side-body-svg,
-  .main-header-svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .side-body ul li.active .side-body-svg {
-    width: 15px;
-    height: 15px;
-  }
-
-  .side-hr {
-    margin-bottom: 20px;
-  }
-
-  .side-body ul {
-    gap: 15px;
-  }
-
-  .side-body ul li.active span {
-    font-size: 0.75rem;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 600px) {
-  /* Side container */
-  .side {
-    padding: 40px 20px 25px 20px;
-  }
-
-  .side-logo img {
-    width: 35px;
-  }
-
-  .side-user-svg,
-  .side-body-svg,
-  .main-header-svg {
-    width: 25px;
-    height: 25px;
-  }
-
-  .side-body ul li.active .side-body-svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .side-hr {
-    margin-bottom: 20px;
-  }
-
-  .side-body ul {
-    gap: 17px;
-  }
-
-  .side-body ul li.active span {
-    font-size: 0.8rem;
-  }
-}
-
-@media (min-width: 601px) and (max-width: 768px) {
-  /* Side container */
-  .side {
-    padding: 40px 20px 25px 20px;
-  }
-
   .side-logo img {
     width: 40px;
   }
 
-  .side-user-svg,
-  .side-body-svg,
-  .main-header-svg {
-    width: 30px;
-    height: 30px;
+  .side-body ul {
+    gap: 25px;
   }
+}
 
-  .side-body ul li.active .side-body-svg {
-    width: 25px;
-    height: 25px;
-  }
-
-  .side-hr {
-    margin-bottom: 25px;
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Side container */
+  .side-logo img {
+    width: 45px;
   }
 
   .side-body ul {
-    gap: 19px;
-  }
-
-  .side-body ul li.active span {
-    font-size: 0.85rem;
+    gap: 30px;
   }
 }
 
@@ -280,68 +193,60 @@ body::-webkit-scrollbar-track:hover {
     width: 100%;
     align-items: center;
     justify-content: space-between;
+    padding: 20px 0 20px 0;
+    border-bottom: 0.5px solid var(--color-border);
   }
 
   .side-header {
+    margin-bottom: 20px;
+  }
+
+  .side-header-wrapper {
+    width: 90%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    width: 93%;
-    margin: 0 auto;
-    margin-bottom: 15px;
-  }
-
-  .side-logo {
-    padding-left: 0;
-    margin-bottom: 0;
-  }
-
-  .side-logo p {
-    display: none;
+    align-items: center;
   }
 
   .side-user-svg {
+    width: 23px;
+    height: 23px;
     display: block;
     color: var(--color-text-primary);
   }
 
+  .side-body {
+    width: 90%;
+  }
+
   .side-body ul {
-    width: 93%;
-    margin: 0 auto;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    overflow-x: auto;
     white-space: nowrap;
-  }
-
-  .side-body ul {
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
 
-  .side-body ul::-webkit-scrollbar {
-    display: none;
-  }
-
   .side-body ul li {
-    margin-bottom: 0;
-    padding-left: 0;
-    flex: 0 0 auto;
-  }
-
-  .side-body span {
-    display: none;
+    margin-bottom: 20px;
   }
 
   .side-body-svg {
+    width: 20px;
+    height: 20px;
     margin-right: 0.5rem;
   }
 
-  .side-body ul li.active {
-    padding: 6px 12px;
+  .side-body span {
+    font-size: 0.85rem;
+  }
+
+  .side-active-arrow,
+  .side-body ul::-webkit-scrollbar {
+    display: none;
   }
 
   .side-body ul li.active span {
@@ -353,20 +258,6 @@ body::-webkit-scrollbar-track:hover {
   /* Side container */
   .side {
     width: 30%;
-  }
-
-  .side-logo p {
-    font-size: 0.9rem;
-  }
-
-  .side-body ul li {
-    font-size: 0.75rem;
-    margin-bottom: 23px;
-    padding-left: 13px;
-  }
-
-  .side-body ul li.active {
-    padding: 7px 13px;
   }
 }
 
