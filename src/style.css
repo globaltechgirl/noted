@@ -140,8 +140,8 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-active-arrow {
-  width: 11%;
-  height: 11%;
+  width: 10%;
+  height: 10%;
   display: block;
   transform: rotate(40deg);
   transition: transform 0.3s ease;

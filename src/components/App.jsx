@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Side from "./Side";
-import Main from "./Main";
+import Side from "./App/Side";
+import Main from "./App/Main";
 
 function App() {
     const [view, setView] = useState("home");
@@ -11,9 +11,12 @@ function App() {
         if (folderName === "all-notes") {
             setView("all-notes");
             setActiveFolder(null);
+        } else if (folderName === "Media" || folderName === "media-folder") {
+            setView("media-folder");
+            setActiveFolder("Media"); 
         } else {
             setView("one-folder");
-            setActiveFolder(section); 
+            setActiveFolder(folderName); 
         }
     };
 
@@ -26,9 +29,12 @@ function App() {
                 } else if (section === "all-notes") {
                     setView("all-notes");
                     setActiveFolder(null);
+                } else if (section === "media-folder") {
+                    setView("media-folder");
+                    setActiveFolder(Media);
                 } else {
                     setView("one-folder");
-                    setActiveFolder(section); 
+                    setActiveFolder(section);
                 }
             }} />
 

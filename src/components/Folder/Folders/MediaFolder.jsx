@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Folder from "./Folder";
+import Folder from "../Folder";
+import img1 from '../../../assets/images/img1.jpg';
 
-function AllFolders() {
-    
+function MediaFolder() {
+
     const [activeGrid, setActiveGrid] = useState("layout");
 
     const [positions, setPositions] = useState({
@@ -36,6 +37,33 @@ function AllFolders() {
         return () => window.removeEventListener("resize", updatePosition);
     }, []);
 
+    const sampleData = [
+        {
+            icon: "F",
+            image: null,
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+        },
+        {
+            icon: null,
+            image: img1,
+            title: "Project Proposal Document",
+            filesize: "1.8 MB",
+        },
+        {
+            icon: "D",
+            image: null,
+            title: "Budget Plan",
+            filesize: "4.2 MB",
+        },
+        {
+            icon: null,
+            image: img1,
+            title: "Marketing Strategy",
+            filesize: "3.7 MB",
+        },
+    ];
+
     return (
         <div className="folder-container">
             <div className="folder-wrapper">
@@ -46,7 +74,7 @@ function AllFolders() {
                                 <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M7 3.34a10 10 0 1 1-4.995 8.984L2 12l.005-.324A10 10 0 0 1 7 3.34"/></svg>
                             </p>
 
-                            <p>All Notes</p>
+                            <p>Media</p>
                         </div>
 
                         <div className="folder-icons">
@@ -64,17 +92,12 @@ function AllFolders() {
                         </div>
                     </div>
                 </div>
-            
+
                 <div className="folder-body">
                     <div className="folder-body-header">
                         <div className="folder-left">
                             <div className="folder-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="folder-icon-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M9 3a1 1 0 0 1 .608.206l.1.087L12.414 6H19a3 3 0 0 1 2.995 2.824L22 9v8a3 3 0 0 1-2.824 2.995L19 20H5a3 3 0 0 1-2.995-2.824L2 17V6a3 3 0 0 1 2.824-2.995L5 3z"/></svg>
-                                <i className="fa-solid fa-angle-down"></i>
-                            </div>
-
-                            <div className="folder-tag">
-                                <p>Daily Files</p>
                             </div>
                         </div>
 
@@ -110,12 +133,12 @@ function AllFolders() {
                             </div>
                         </div>
                     </div>
-                </div> 
-
-                <Folder view={activeGrid} />
+                </div>
+                
+                <Folder view={activeGrid} data={sampleData} />
             </div>
         </div>
     );
 }
 
-export default AllFolders;
+export default MediaFolder;

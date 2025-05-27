@@ -48,7 +48,13 @@
   padding: 0 25px;
 }
 
-.folder-compact-middle .middle-icon {
+.folder-compact-middle .middle-icon img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.folder-compact-middle .middle-icon p {
   position: relative;
   width: 40px;
   height: 50px;

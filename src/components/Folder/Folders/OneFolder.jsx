@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Folder from "./Folder";
+import Folder from "../Folder";
 
-function OneFolder({ folderName, onFolderClick }) {
+function OneFolder({ folderName }) {
 
     const [activeGrid, setActiveGrid] = useState("layout");
 
@@ -35,6 +35,49 @@ function OneFolder({ folderName, onFolderClick }) {
 
         return () => window.removeEventListener("resize", updatePosition);
     }, []);
+
+    const sampleData = [
+        {
+            icon: "F",
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+        },
+        {
+            icon: "F",
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+        },
+        {
+            icon: "F",
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+        },
+        {
+            icon: "F",
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+        },
+        {
+            icon: "F",
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+        },
+        {
+            icon: "F",
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+        },
+        {
+            icon: "F",
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+        },
+        {
+            icon: "F",
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+        }
+    ];
 
     return (
         <div className="folder-container">
@@ -107,7 +150,7 @@ function OneFolder({ folderName, onFolderClick }) {
                     </div>
                 </div> 
 
-                <Folder view={activeGrid} />
+                <Folder view={activeGrid} data={sampleData} />
             </div>
         </div>
     );

@@ -1,8 +1,9 @@
 import React from "react";
-import Note from "./Note/Note";
-import Folder from "./Folder/Folder";
-import AllFolders from "./Folder/AllFolders"; 
-import OneFolder from "./Folder/OneFolder"; 
+import Note from "../Note/Note";
+import Folder from "../Folder/Folder";
+import AllFolders from "../Folder/Folders/AllFolders"; 
+import OneFolder from "../Folder/Folders/OneFolder";
+import MediaFolder from "../Folder/Folders/MediaFolder";
 
 function Main({ view, activeFolder, onFolderClick, onBack }) {
     return (
@@ -13,6 +14,8 @@ function Main({ view, activeFolder, onFolderClick, onBack }) {
                 <AllFolders onFolderClick={onFolderClick} />
             ) : view === "one-folder" ? (
                 <OneFolder folderName={activeFolder} onFolderClick={onFolderClick} />
+            ) : view === "media-folder" ? (
+                <MediaFolder folderName={activeFolder} onFolderClick={onFolderClick} />
             ) : (
                 <Note onFolderClick={onFolderClick} />
             )}
