@@ -37,31 +37,63 @@ function MediaFolder() {
         return () => window.removeEventListener("resize", updatePosition);
     }, []);
 
-    const sampleData = [
+    const folderData = [
         {
-            icon: "F",
-            image: null,
+            icon: null,
+            image: img1,
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
+            date: "15.05.25"
         },
         {
             icon: null,
             image: img1,
-            title: "Project Proposal Document",
-            filesize: "1.8 MB",
-        },
-        {
-            icon: "D",
-            image: null,
-            title: "Budget Plan",
-            filesize: "4.2 MB",
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+            date: "15.05.25"
         },
         {
             icon: null,
             image: img1,
-            title: "Marketing Strategy",
-            filesize: "3.7 MB",
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+            date: "15.05.25"
         },
+        {
+            icon: null,
+            image: img1,
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+            date: "15.05.25"
+        },
+                {
+            icon: null,
+            image: img1,
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+            date: "15.05.25"
+        },
+        {
+            icon: null,
+            image: img1,
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+            date: "15.05.25"
+        },
+        {
+            icon: null,
+            image: img1,
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+            date: "15.05.25"
+        },
+        {
+            icon: null,
+            image: img1,
+            title: "Licence Agreement on Waterfall INC",
+            filesize: "2.3 MB",
+            date: "15.05.25"
+        }
     ];
 
     return (
@@ -135,7 +167,7 @@ function MediaFolder() {
                     </div>
                 </div>
                 
-                <Folder view={activeGrid} data={sampleData} />
+                <Folder view={activeGrid} data={folderData} />
             </div>
         </div>
     );

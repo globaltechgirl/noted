@@ -9,11 +9,12 @@
 }
 
 .folder-compact {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: auto;
   gap: 20px;
-  padding: 30px 0;
+  padding: 0 0 30px 0;
   background-color: var(--color-surface-secondary);
   border-radius: 0.5rem;
 }
@@ -24,11 +25,19 @@
   cursor: pointer;
 }
 
+.folder-image-wrapper {
+  position: relative;
+}
+
 .folder-compact-top {
+  position: absolute;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 25px;
+  padding: 30px 20px;
+  z-index: 2;
+  pointer-events: auto;
 }
 
 .folder-compact-top .folder-top-star .folder-top-star-svg,
@@ -39,23 +48,28 @@
   color: var(--color-surface-accent);
 }
 
-.folder-compact-middle {
+.folder-compact-image {
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 30px;
-  padding: 0 25px;
+  margin-bottom: 5px;
 }
 
-.folder-compact-middle .middle-icon img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-
-.folder-compact-middle .middle-icon p {
+.folder-compact-image img {
+  width: 100%;
+  max-height: 180px;
+  border-radius: 0.5rem 0.5rem 0 0;
+  display: block;
+  object-fit: cover;
   position: relative;
+  z-index: 1;
+}
+
+.folder-compact-image p {
+  position: relative;
+  margin-top: 60px;
   width: 40px;
   height: 50px;
   background-color: var(--color-surface-accent);
@@ -68,6 +82,12 @@
   font-weight: bold;
   padding: 30px 25px;
   clip-path: polygon(0% 0%, 75% 0%, 100% 20%, 100% 100%, 0% 100%);
+}
+
+.folder-compact-middle {
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
 }
 
 .folder-compact-middle .middle-text {
@@ -85,16 +105,12 @@
   .folder-compact-main {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .folder-compact-middle .middle-text {
-    font-size: 0.9rem;
-  }
 }
 
-@media (min-width: 601px) and (max-width: 768px) {
+@media (max-width: 768px) {
   /* Folder main */
-  .folder-compact-middle .middle-text {
-    font-size: 0.85rem;
+  .folder-compact-image p {
+    margin-top: 62px;
   }
 }
 

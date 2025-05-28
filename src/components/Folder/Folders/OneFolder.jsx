@@ -36,46 +36,54 @@ function OneFolder({ folderName }) {
         return () => window.removeEventListener("resize", updatePosition);
     }, []);
 
-    const sampleData = [
+    const folderData = [
         {
             icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
+            date: "15.05.25"
         },
         {
             icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
+            date: "15.05.25"
         },
         {
             icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
+            date: "15.05.25"
         },
         {
             icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
+            date: "15.05.25"
         },
         {
             icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
+            date: "15.05.25"
         },
         {
             icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
+            date: "15.05.25"
         },
         {
             icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
+            date: "15.05.25"
         },
         {
             icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
+            date: "15.05.25"
         }
     ];
 
@@ -150,7 +158,7 @@ function OneFolder({ folderName }) {
                     </div>
                 </div> 
 
-                <Folder view={activeGrid} data={sampleData} />
+                <Folder view={activeGrid} data={folderData} />
             </div>
         </div>
     );
