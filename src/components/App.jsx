@@ -14,6 +14,9 @@ function App() {
         } else if (folderName === "Media" || folderName === "media-folder") {
             setView("media-folder");
             setActiveFolder("Media"); 
+        } else if (folderName === "Links" || folderName === "link-folder") {
+            setView("link-folder");
+            setActiveFolder("Links"); 
         } else {
             setView("one-folder");
             setActiveFolder(folderName); 
@@ -32,6 +35,9 @@ function App() {
                 } else if (section === "media-folder") {
                     setView("media-folder");
                     setActiveFolder(Media);
+                } else if (section === "link-folder") {
+                    setView("link-folder");
+                    setActiveFolder(Links);
                 } else {
                     setView("one-folder");
                     setActiveFolder(section);
