@@ -176,7 +176,7 @@ function AllFolders() {
                     </div>
                 </div>
             
-                <div className="folder-body">
+                <div className="folder-body folder-body-main">
                     <div className="folder-body-header">
                         <div className="folder-left">
                             <div className="folder-icon">

@@ -5,7 +5,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
-  margin-top: 35px;
+  margin-top: -75px;
 }
 
 .folder-compact {
@@ -55,6 +55,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 5px;
+  align-items: center;
 }
 
 .folder-compact-image img {
