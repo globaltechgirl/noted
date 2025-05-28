@@ -28,5 +28,4 @@ function Folder({ view, data = [] }) {
     );
 }
 
-
 export default Folder;
