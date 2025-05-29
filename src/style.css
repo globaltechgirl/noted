@@ -160,7 +160,6 @@ body::-webkit-scrollbar-track:hover {
   height: 10%;
   display: block;
   transform: rotate(40deg);
-  transition: transform 0.3s ease;
 }
 
 .side-user {
