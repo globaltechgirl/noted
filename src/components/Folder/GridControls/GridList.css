@@ -58,6 +58,13 @@
   clip-path: polygon(0% 0%, 75% 0%, 100% 20%, 100% 100%, 0% 100%);
 }
 
+.folder-list-left .folder-link-svg {
+  width: 25px;
+  height: 25px;
+  display: block;
+  color: var(--color-surface-accent);
+}
+
 .folder-list-left .left-text {
   font-size: 0.8rem;
   font-weight: 500;

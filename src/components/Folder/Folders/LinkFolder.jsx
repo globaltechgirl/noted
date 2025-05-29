@@ -38,52 +38,52 @@ function LinkFolder({ folderName }) {
 
     const folderData = [
         {
-            icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
-            date: "15.05.25"
+            date: "15.05.25",
+            link: "https://example.com/waterfall-licence-1"
         },
         {
-            icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
-            date: "15.05.25"
+            date: "15.05.25",
+            link: "https://example.com/waterfall-licence-1"
         },
         {
-            icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
-            date: "15.05.25"
+            date: "15.05.25",
+            link: "https://example.com/waterfall-licence-1"
         },
         {
-            icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
-            date: "15.05.25"
+            date: "15.05.25",
+            link: "https://example.com/waterfall-licence-1"
         },
         {
-            icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
-            date: "15.05.25"
+            date: "15.05.25",
+            link: "https://example.com/waterfall-licence-1"
         },
         {
-            icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
-            date: "15.05.25"
+            date: "15.05.25",
+            link: "https://example.com/waterfall-licence-1"
         },
         {
-            icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
-            date: "15.05.25"
+            date: "15.05.25",
+            link: "https://example.com/waterfall-licence-1"
         },
         {
-            icon: "F",
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
-            date: "15.05.25"
+            date: "15.05.25",
+            link: "https://example.com/waterfall-licence-1"
         }
     ];
 

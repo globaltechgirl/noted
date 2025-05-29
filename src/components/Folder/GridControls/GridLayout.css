@@ -8,7 +8,7 @@
   margin-top: -75px;
 }
 
-.folder-layout {
+.folder-layout-regular {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@
   border-radius: 0.5rem;
 }
 
-.folder-layout:hover {
+.folder-layout-regular:hover {
   background-color: var(--color-surface-primary);
   border: 0.5px solid var(--color-border);
   cursor: pointer;
@@ -85,6 +85,14 @@
   clip-path: polygon(0% 0%, 75% 0%, 100% 20%, 100% 100%, 0% 100%);
 }
 
+.folder-layout-image .folder-link-svg {
+  margin-top: 60px;
+  width: 45px;
+  height: 45px;
+  display: block;
+  color: var(--color-surface-accent);
+}
+
 .folder-layout-middle {
   display: flex;
   justify-content: center;
@@ -101,6 +109,8 @@
   width: 100%;
   text-align: center;
 }
+
+
 
 .folder-layout-body-hr {
   width: 100%;
@@ -140,6 +150,75 @@
   font-size: 0.72rem;
   font-weight: 450;
 }
+
+.folder-link-wrapper {
+  position: relative;
+  z-index: 0;
+  background-color: red;
+}
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+[class^="invert"], [class^="invert"]::before {
+    backface-visibility: hidden;
+    transform: translateZ(0) translate(0, 0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    will-change: transform, clip-path;
+}
+
+[class^="invert"] {
+    clip-path: inset(0);
+    will-change: transform, clip-path;
+}
+
+.invert-1::before {
+    border-radius: 25px 0px 0px 25px;
+    content: '';
+    position: absolute;
+    background-color: transparent;
+    box-shadow: 0 0 0 50px #FFF, 0 0 0 0 #FFF;
+    pointer-events: none;
+    clip-path: inset(0);
+}
+
+.invert-3::before {
+    border-radius: 0px 25px 0px 0px;
+    content: '';
+    position: absolute;
+    background-color: transparent;
+    box-shadow: 0 0 0 50px #FFF, 0 0 0 0 #FFF;
+    pointer-events: none;
+    clip-path: inset(0);
+}
+
+.invert-4 {
+    border-radius: 0 0 0 25px;
+    background-color: #FFF;
+    will-change: transform, clip-path;
+}
+
+@media only screen and (max-width: 500px) {
+    .invert-4 {
+        border-radius: 0 0 0 20px;
+        background-color: #FFF;
+        will-change: transform, clip-path;
+    }
+}
+
+.invert-6::before {
+    border-radius: 0px 25px 25px 0px;
+    content: '';
+    position: absolute;
+    background-color: transparent;
+    box-shadow: 0 0 0 50px #FFF, 0 0 0 0 #FFF;
+    pointer-events: none;
+    clip-path: inset(0);
+}
+
 
 @media (max-width: 480px) {
   /* Folder main */

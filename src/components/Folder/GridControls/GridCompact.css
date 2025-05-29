@@ -85,6 +85,14 @@
   clip-path: polygon(0% 0%, 75% 0%, 100% 20%, 100% 100%, 0% 100%);
 }
 
+.folder-compact-image .folder-link-svg {
+  margin-top: 60px;
+  width: 35px;
+  height: 35px;
+  display: block;
+  color: var(--color-surface-accent);
+}
+
 .folder-compact-middle {
   display: flex;
   justify-content: center;
