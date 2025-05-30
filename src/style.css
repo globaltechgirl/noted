@@ -65,7 +65,7 @@ body::-webkit-scrollbar-track:hover {
   top: 0;
   left: 0;
   height: 100vh;
-  width: 17%;
+  width: 15%;
   display: flex;
   flex-direction: column;
   background-color: var(--color-sidebar-bg);
@@ -77,8 +77,8 @@ body::-webkit-scrollbar-track:hover {
 .side-header {
   width: 100%;
   margin: 0 auto;
-  margin-top: 30.5px;
-  margin-bottom: 45px;
+  margin-top: 22px;
+  margin-bottom: 40px;
   background-color: var(--color-sidebar-bg);
 }
 
@@ -96,7 +96,7 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-logo img {
-  width: 50px;
+  width: 38px;
   display: block;
   padding: 5px;
   background-color: var(--color-active-bg);
@@ -116,7 +116,7 @@ body::-webkit-scrollbar-track:hover {
   width: 75%;
   margin: 0 auto;
   color: var(--color-text-accent);
-  margin-bottom: 45px;
+  margin-bottom: 40px;
 }
 
 .side-body-wrapper::-webkit-scrollbar {
@@ -131,8 +131,8 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-body ul li {
-  margin-bottom: 25px;
-  font-size: 0.75rem;
+  margin-bottom: 23px;
+  font-size: 0.6rem;
   font-weight: 550;
   letter-spacing: 0.6px;
   text-transform: uppercase;
@@ -141,9 +141,9 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-body-svg {
-  margin-right: 0.7rem;
-  width: 20px;
-  height: 20px;
+  margin-right: 0.6rem;
+  width: 15px;
+  height: 15px;
 }
 
 .side-body ul li.active {
@@ -156,8 +156,8 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-active-arrow {
-  width: 10%;
-  height: 10%;
+  width: 13px;
+  height: 13px;
   display: block;
   transform: rotate(40deg);
 }
@@ -166,7 +166,7 @@ body::-webkit-scrollbar-track:hover {
   margin-top: auto;
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 30.5px;
+  margin-bottom: 20.5px;
 }
 
 .side-user-wrapper {
@@ -175,7 +175,7 @@ body::-webkit-scrollbar-track:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 13px;
+  padding: 8px 8px;
   background-color: var(--color-surface-primary);
   border: 0.5px solid var(--color-border);
   border-radius: 0.5rem;
@@ -186,7 +186,7 @@ body::-webkit-scrollbar-track:hover {
   flex-grow: 1;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.6rem;
 }
 
 .side-user-image {
@@ -194,8 +194,8 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-user-image img {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border-radius: 0.5rem;
   object-fit: cover;
   object-position: top;
@@ -205,18 +205,18 @@ body::-webkit-scrollbar-track:hover {
 .side-user-details {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
 }
 
 .side-user-name {
   color: var(--color-text-primary);
-  font-size: 0.75rem;
+  font-size: 0.6rem;
   font-weight: 500;
 }
 
 .side-user-title {
   color: var(--color-surface-accent);
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   font-weight: 450;
   text-transform: uppercase;
 }
@@ -226,8 +226,8 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-user-menu .side-user-menu-svg {
-  width: 16px;
-  height: 16px;
+  width: 13px;
+  height: 13px;
   color: var(--color-surface-accent);
   display: block;
 }
@@ -240,20 +240,20 @@ body::-webkit-scrollbar-track:hover {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: calc(100% - 17%);
+  width: calc(100% - 15%);
   height: auto;
   padding-bottom: 50px;
-  margin-left: 17%;
+  margin-left: 15%;
 }
 
 @media (max-width: 480px) {
   /* Side container */
   .side-logo img {
-    width: 40px;
+    width: 35px;
   }
 
   .side-body ul {
-    gap: 25px;
+    gap: 20px;
   }
 }
 
@@ -281,7 +281,7 @@ body::-webkit-scrollbar-track:hover {
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 0 20px 0;
+    padding: 0 0 20px 0;
     border-bottom: 0.5px solid var(--color-border);
   }
 
@@ -297,8 +297,8 @@ body::-webkit-scrollbar-track:hover {
   }
 
   .side-user-max-svg {
-    width: 23px;
-    height: 23px;
+    width: 20px;
+    height: 20px;
     display: block;
     color: var(--color-text-primary);
   }
@@ -306,8 +306,8 @@ body::-webkit-scrollbar-track:hover {
   .side-body-wrapper {
     overflow-x: auto;
     width: 90%;
-    margin-top: 35px;
-    margin-bottom: 15px;
+    margin-top: 30px;
+    margin-bottom: 10px;
   }
 
   .side-body ul {
@@ -324,13 +324,13 @@ body::-webkit-scrollbar-track:hover {
   }
 
   .side-body-svg {
-    width: 20px;
-    height: 20px;
-    margin-right: 0.5rem;
+    width: 15px;
+    height: 15px;
+    margin-right: 0.1rem;
   }
 
   .side-body span {
-    font-size: 0.85rem;
+    font-size: 0.7rem;
   }
 
   .side-active-arrow {
@@ -362,19 +362,6 @@ body::-webkit-scrollbar-track:hover {
 @media (min-width: 769px) and (max-width: 1024px) {
   /* Side container */
   .side {
-    width: 25%;
-  }
-
-  /* Main container */
-  .main {
-    width: calc(100% - 25%);
-    margin-left: 25%;
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1280px) {
-  /* Side container */
-  .side {
     width: 20%;
   }
 
@@ -382,5 +369,18 @@ body::-webkit-scrollbar-track:hover {
   .main {
     width: calc(100% - 20%);
     margin-left: 20%;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  /* Side container */
+  .side {
+    width: 17%;
+  }
+
+  /* Main container */
+  .main {
+    width: calc(100% - 17%);
+    margin-left: 17%;
   }
 }
