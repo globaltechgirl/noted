@@ -9,7 +9,7 @@ function GridLayout ({ data = [] }) {
                     <div className="folder-layout-wrapper">
                         <div className="folder-layout-main">
                             {data.map((folder, index) => (
-                                <div key={index} className={`folder ${folder.link ? "folder-link-wrapper invert-6" : "folder-layout-regular"}`}>
+                                <div key={index} className={`folder ${folder.link ? "folder-link-wrapper" : "folder-layout-regular"}`}>
                                     {folder.link ? (
                                             <div className="folder-link-main">
                                                 <div className="folder-link-arrow folder-link-main-arrow">

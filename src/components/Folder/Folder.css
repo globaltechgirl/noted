@@ -272,6 +272,11 @@
 }
 
 @media (max-width: 768px) {
+  /* Folder body */
+.folder-body {
+  margin-top: 35px;
+}
+
   /* Folder header */
   .folder-header {
     padding-right: 0;
