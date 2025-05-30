@@ -13,7 +13,6 @@
 /* Note wrapper */
 .note-wrapper {
   width: 100%;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
@@ -21,7 +20,6 @@
 /* Note header */
 .note-header {
   width: 100%;
-  margin: 0 auto;
   margin-bottom: 25px;
   padding-bottom: 25px;
   padding-top: 25px;
@@ -30,7 +28,7 @@
 }
 
 .note-header-wrapper {
-  width: 93%;
+  width: 95%;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -88,13 +86,13 @@
 }
 
 .note-icons .note-header-svg {
-  width: 15px;
-  height: 15px;
+  width: 13px;
+  height: 13px;
 }
 
 /* Note body */
 .note-body {
-  width: 93%;
+  width: 95%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -217,7 +215,7 @@
   }
 
   .note-text {
-    font-size: 0.55rem;
+    font-size: 0.6rem;
   }
 }
 

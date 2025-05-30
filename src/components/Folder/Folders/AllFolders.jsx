@@ -7,35 +7,10 @@ function AllFolders() {
     const [activeGrid, setActiveGrid] = useState("layout");
 
     const [positions, setPositions] = useState({
-        list: 2.5,
-        layout: 36.5,
-        compact: 70,
+        list: 1.5,
+        layout: 33,
+        compact: 63.5,
     });
-
-    useEffect(() => {
-        const updatePosition = () => {
-            const isMobile = window.innerWidth <= 480;
-
-            if (isMobile) {
-                setPositions({
-                    list: 1.5,
-                    layout: 33,
-                    compact: 63.5,
-                });
-            } else {
-                setPositions({
-                    list: 2.5,
-                    layout: 36.5,
-                    compact: 70,
-                });
-            }
-        };
-
-        updatePosition();
-        window.addEventListener("resize", updatePosition);
-
-        return () => window.removeEventListener("resize", updatePosition);
-    }, []);
 
     const allFolderData = [
         { 
