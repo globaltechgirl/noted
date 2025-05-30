@@ -193,3 +193,24 @@
     flex: 2.5;
   }
 }
+
+/* Folder link */
+@media (max-width: 768px) {
+  .folder-list-main .folder-link-wrapper {
+    padding: 0 0 19px 0;
+  }
+
+  .folder-list-main .folder-link-body {
+    padding: 12px 0 0 12px;
+  }
+
+  .folder-list-main .folder-link-left .folder-link-left-svg {
+    width: 23px;
+    height: 25px;
+    padding: 4px;
+  }
+
+  .folder-list-main .folder-link-right a {
+    font-size: 0.6rem;
+  }
+}

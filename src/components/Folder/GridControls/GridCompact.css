@@ -175,6 +175,24 @@
   .folder-compact-main:has(.folder-link-wrapper) {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .folder-compact-main .folder-link-wrapper {
+    padding: 0 0 12px 0;
+  }
+
+  .folder-compact-main .folder-link-body {
+    padding: 12px 0 0 10px;
+  }
+
+  .folder-compact-main .folder-link-left .folder-link-left-svg {
+    width: 23px;
+    height: 25px;
+    padding: 4px;
+  }
+
+  .folder-compact-main .folder-link-right a {
+    font-size: 0.6rem;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1200px) {

@@ -222,6 +222,24 @@
   .folder-layout-main:has(.folder-link-wrapper) {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .folder-layout-main .folder-link-wrapper {
+    padding: 0 0 12px 0;
+  }
+
+  .folder-layout-main .folder-link-body {
+    padding: 12px 0 0 12px;
+  }
+
+  .folder-layout-main .folder-link-left .folder-link-left-svg {
+    width: 23px;
+    height: 25px;
+    padding: 4px;
+  }
+
+  .folder-layout-main .folder-link-right a {
+    font-size: 0.6rem;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1200px) {
