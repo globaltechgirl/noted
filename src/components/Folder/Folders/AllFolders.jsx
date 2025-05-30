@@ -8,8 +8,8 @@ function AllFolders() {
 
     const [positions, setPositions] = useState({
         list: 1.5,
-        layout: 33,
-        compact: 63.5,
+        layout: 28,
+        compact: 53.5,
     });
 
     const allFolderData = [

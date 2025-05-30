@@ -4,7 +4,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
   margin-top: -80px;
 }
 
@@ -14,7 +14,7 @@
   justify-content: space-between;
   height: auto;
   gap: 15px;
-  padding: 20px 0;
+  padding: 15px 0;
   background-color: var(--color-surface-secondary);
   border-radius: 0.5rem;
 }
@@ -26,47 +26,41 @@
 }
 
 .folder-list-left {
-  flex: 2;
+  flex: 1.5;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: 20px;
-  padding-left: 30px;
+  gap: 12px;
+  padding-left: 20px;
 }
 
 .folder-list-left .left-icon img {
-  width: 35px;
-  height: 40px;
+  width: 25px;
+  height: 30px;
   object-fit: cover;
   border-radius: 0.5rem;
+  display: block;
 }
 
 .folder-list-left .left-icon p {
   position: relative;
-  width: 35px;
-  height: 40px;
+  width: 25px;
+  height: 30px;
   background-color: var(--color-surface-accent);
   color: var(--color-surface-primary);
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 0.85rem;
   font-weight: bold;
-  padding: 20px 15px;
+  padding: 10px;
   clip-path: polygon(0% 0%, 75% 0%, 100% 20%, 100% 100%, 0% 100%);
 }
 
-.folder-list-left .folder-link-svg {
-  width: 25px;
-  height: 25px;
-  display: block;
-  color: var(--color-surface-accent);
-}
-
 .folder-list-left .left-text {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-weight: 500;
   letter-spacing: 0.6px;
   line-height: 2;
@@ -84,7 +78,7 @@
 
 .folder-list-middle .middle-text {
   color: var(--color-surface-accent);
-  font-size: 0.72rem;
+  font-size: 0.55rem;
   font-weight: 450;
   letter-spacing: 0.6px;
 }
@@ -94,33 +88,16 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 30px;
-  gap: 20px;
+  padding-right: 20px;
+  gap: 0.6rem;
 }
 
 .folder-list-right .folder-top-star .folder-top-star-svg,
 .folder-list-right .folder-top-menu .folder-top-menu-svg {
-  width: 18px;
-  height: 18px;
+  width: 13px;
+  height: 13px;
   display: block;
   color: var(--color-surface-accent);
-}
-
-@media (max-width: 480px) {
-  /* Folder main */
-  .folder-list-left {
-    flex: 6;
-    padding-left: 25px;
-  }
-
-  .folder-list-left .left-icon img,
-  .folder-list-left .left-icon p {
-    height: 45px;
-  }
-
-  .folder-list-left .left-text {
-    font-size: 0.75rem;
-  }
 }
 
 @media (max-width: 600px) {
@@ -130,29 +107,22 @@
   }
 }
 
-@media (min-width: 601px) and (max-width: 768px) {
-  /* Folder main */
-  .folder-list-middle .middle-text {
-    font-size: 0.77rem;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
+@media (max-width: 768px) {
   /* Folder main */
   .folder-list-left {
-    flex: 5;
-    padding-left: 25px;
+    flex: 4.5;
+    padding-left: 15px;
   }
 
-  .folder-list-left .left-text {
-    font-size: 0.77rem;
+  .folder-list-right {
+    padding-right: 15px;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   /* Folder main */
   .folder-list-left {
-    flex: 4;
+    flex: 3.5;
   }
 }
 
@@ -166,6 +136,6 @@
 @media (min-width: 1025px) and (max-width: 1200px) {
   /* Folder main */
   .folder-list-left {
-    flex: 3;
+    flex: 2.5;
   }
 }

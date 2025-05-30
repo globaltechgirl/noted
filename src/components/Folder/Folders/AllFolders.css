@@ -59,10 +59,6 @@
   .all-folders {
     gap: 15px;
   }
-
-  .all-folders-wrapper {
-    margin-top: -95px;
-  }
 }
 
 @media (min-width: 481px) and (max-width: 1024px) {
