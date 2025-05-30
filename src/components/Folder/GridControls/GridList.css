@@ -5,10 +5,10 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-top: -80px;
+  margin-top: -90px;
 }
 
-.folder-list {
+.folder-link-regular {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -19,7 +19,7 @@
   border-radius: 0.5rem;
 }
 
-.folder-list:hover {
+.folder-link-regular:hover {
   background-color: var(--color-surface-primary);
   border: 0.5px solid var(--color-border);
   cursor: pointer;
@@ -98,6 +98,60 @@
   height: 13px;
   display: block;
   color: var(--color-surface-accent);
+}
+
+/* Folder link */
+.folder-list-main .folder-link-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  gap: 10px;
+  padding: 0 0 20px 0;
+  background-color: var(--color-surface-secondary);
+  border-radius: 0.5rem;
+}
+
+.folder-list-main .folder-link-wrapper:hover {
+  background-color: var(--color-surface-primary);
+  border: 0.5px solid var(--color-border);
+  cursor: pointer;
+}
+
+.folder-list-main .folder-link-body {
+  flex: 1;
+  padding: 15px 0 0 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+}
+
+.folder-list-main .folder-link-left .folder-link-left-svg {
+  width: 25px;
+  height: 28px;
+  display: block;
+  background-color: var(--color-surface-primary);
+  border: 0.5px solid var(--color-border);
+  border-radius: 0.5rem;
+  color: var(--color-surface-accent);
+  padding: 5px;
+}
+
+.folder-list-main .folder-link-right a {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  line-height: 2;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.folder-list-main .folder-link-side {
+  margin-top: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 @media (max-width: 600px) {

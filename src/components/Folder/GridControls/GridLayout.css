@@ -5,7 +5,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 15px;
-  margin-top: -80px;
+  margin-top: -90px;
 }
 
 .folder-layout-regular {
@@ -139,23 +139,93 @@
   font-weight: 450;
 }
 
+/* Folder link */
+.folder-layout-main:has(.folder-link-wrapper) {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.folder-layout-main .folder-link-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  gap: 10px;
+  padding: 0 0 15px 0;
+  background-color: var(--color-surface-secondary);
+  border-radius: 0.5rem;
+}
+
+.folder-layout-main .folder-link-wrapper:hover {
+  background-color: var(--color-surface-primary);
+  border: 0.5px solid var(--color-border);
+  cursor: pointer;
+}
+
+.folder-layout-main .folder-link-body {
+  flex: 1;
+  padding: 15px 0 0 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.folder-layout-main .folder-link-left .folder-link-left-svg {
+  width: 25px;
+  height: 28px;
+  display: block;
+  background-color: var(--color-surface-primary);
+  border: 0.5px solid var(--color-border);
+  border-radius: 0.5rem;
+  color: var(--color-surface-accent);
+  padding: 5px;
+}
+
+.folder-layout-main .folder-link-right a {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  line-height: 2;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.folder-layout-main .folder-link-side {
+  margin-top: -35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Folder regular */
 @media (max-width: 480px) {
-  /* Folder regular */
   .folder-layout-main {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 768px) {
-  /* Folder main */
+@media (min-width: 601px) and (max-width: 1024px) {
   .folder-layout-main {
-    margin-top: -80px;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (min-width: 481px) and (max-width: 1024px) {
-  /* Folder main */
+@media (min-width: 1025px) and (max-width: 1200px) {
   .folder-layout-main {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Folder link */
+@media (max-width: 768px) {
+  .folder-layout-main:has(.folder-link-wrapper) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .folder-layout-main:has(.folder-link-wrapper) {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -164,12 +234,5 @@
   /* Folder main */
   .folder-layout-main {
     width: 90%;
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1200px) {
-  /* Folder main */
-  .folder-layout-main {
-    grid-template-columns: repeat(4, 1fr);
   }
 }

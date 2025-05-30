@@ -200,6 +200,8 @@
   color: var(--color-text-primary);
 }
 
+
+
 @media (max-width: 768px) {
   /* Folder header */
   .folder-header {
