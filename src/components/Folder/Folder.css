@@ -20,9 +20,8 @@
 /* Folder header */
 .folder-header {
   position: fixed;
-  padding-right: 15%;
   z-index: 10;
-  width: 100%;
+  width: 85vw;
   margin-bottom: -75px;
   padding-bottom: 25px;
   padding-top: 25px;
@@ -200,12 +199,10 @@
   color: var(--color-text-primary);
 }
 
-
-
 @media (max-width: 768px) {
   /* Folder header */
   .folder-header {
-    padding-right: 0;
+    width: 100vw;
     position: static;
     padding-top: 18px;
     padding-bottom: 18px;
@@ -219,7 +216,7 @@
 @media (min-width: 769px) and (max-width: 1024px) {
   /* Folder header */
   .folder-header {
-    padding-right: 20%;
+    width: 80vw;
   }
 }
 
@@ -238,6 +235,6 @@
 @media (min-width: 1025px) and (max-width: 1200px) {
   /* Folder header */
   .folder-header {
-    padding-right: 17%;
+    width: 83vw;
   }
 }

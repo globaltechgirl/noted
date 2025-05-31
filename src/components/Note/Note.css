@@ -19,7 +19,7 @@
 
 /* Note header */
 .note-header {
-  width: 100%;
+  width: 85vw;
   margin-bottom: 25px;
   padding-bottom: 25px;
   padding-top: 25px;
@@ -199,6 +199,7 @@
 @media (max-width: 768px) {
   /* Note header */
   .note-header {
+    width: 100vw;
     padding-top: 18px;
     padding-bottom: 18px;
     margin-bottom: 20px;
@@ -235,6 +236,13 @@
   }
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Note header */
+  .note-header {
+    width: 80vw;
+  }
+}
+
 @media (max-width: 1024px) {
   /* Note header */
   .note-header-wrapper {
@@ -252,6 +260,11 @@
 }
 
 @media (min-width: 1025px) and (max-width: 1200px) {
+  /* Note header */
+  .note-header {
+    width: 83vw;
+  }
+
   /* Note body */
   .note-body {
     grid-template-columns: repeat(5, 1fr);

@@ -83,7 +83,7 @@ function Side({ onSectionClick }) {
                                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11"/></svg>
                                 <span>Links</span>
                             </div>
-                            {activeSection === "link-folder" && <i class="fa-solid fa-arrow-up side-active-arrow"></i>}
+                            {activeSection === "link-folder" && <svg xmlns="http://www.w3.org/2000/svg" className="side-active-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m6-8l-6-6m-6 6l6-6"/></svg>}
                         </li>
 
                         <li onClick={() => handleClick("settings")} className={activeSection === "settings" ? "active" : ""}>
@@ -97,7 +97,11 @@ function Side({ onSectionClick }) {
                 </div>
             </div>
 
-            <div className="side-user">
+            <div
+                className={`side-user ${activeSection === "profile" ? "active" : ""}`}
+                onClick={() => handleClick("profile")}
+                style={{ cursor: "pointer" }}
+            >
                 <div className="side-user-wrapper">
                     <div className="side-user-main">
                         <div className="side-user-image">
