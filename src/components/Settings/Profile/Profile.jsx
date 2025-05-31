@@ -3,16 +3,17 @@ import './Profile.css';
 import { allCountries } from "country-telephone-data";
 
 function Profile() {
-    const [fullName, setFullName] = useState("John Doe");
-    const [username, setUsername] = useState("johndoe");
-    const [email, setEmail] = useState("john.doe@example.com");
-    const [password, setPassword] = useState("*******");
-    const [birthday, setBirthday] = useState("February 3rd, 2005");
-    const [instagramHandle, setInstagramHandle] = useState("johndoe_ig");
-    const [tiktokHandle, setTiktokHandle] = useState("johndoe_tt");
-    const [twitterHandle, setTwitterHandle] = useState("johndoe_tw");
+    const [fullName, setFullName] = useState("First Last");
+    const [username, setUsername] = useState("username");
+    const [email, setEmail] = useState("name@gmail.com");
+    const [password, setPassword] = useState("password");
+    const [showPassword, setShowPassword] = useState(false);
+    const [birthday, setBirthday] = useState("Month 00, Year");
+    const [instagramHandle, setInstagramHandle] = useState("username_ig");
+    const [tiktokHandle, setTiktokHandle] = useState("username_tt");
+    const [twitterHandle, setTwitterHandle] = useState("username_tw");
     const [phonePrefix, setPhonePrefix] = useState("+234");
-    const [phoneNumber, setPhoneNumber] = useState("0913625175");
+    const [phoneNumber, setPhoneNumber] = useState("913625175");
 
     const [editingField, setEditingField] = useState(null);
 
@@ -244,39 +245,88 @@ function Profile() {
 
                                 <div className="profile-details">
                                     <div className="profile-details-left">
-                                        {editingField === "password" ? (
+                                       {editingField === "password" ? (
                                             <>
-                                                <input 
-                                                    type="text" 
-                                                    value={password} 
-                                                    onChange={(e) => setPassword(e.target.value)} 
-                                                    onKeyDown={(e) => {
-                                                        if (e.key === "Enter") {
-                                                            setEditingField(null);
-                                                        }
-                                                    }}
-                                                    className="profile-input"
-                                                    autoFocus
-                                                />
+                                                <div className="profile-password-input-wrapper">
+                                                    <input 
+                                                        type={showPassword ? "text" : "password"}
+                                                        value={password}
+                                                        onChange={(e) => setPassword(e.target.value)}
+                                                        onKeyDown={(e) => {
+                                                            if (e.key === "Enter") {
+                                                                setEditingField(null);
+                                                            }
+                                                        }}
+                                                        className="profile-input"
+                                                        autoFocus
+                                                    />
+                                                </div>
 
-                                                <div 
-                                                    className="profile-details-save"
-                                                    onClick={() => setEditingField(null)}
-                                                    style={{ cursor: "pointer" }}
-                                                    title="Save"
-                                                >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="profile-save-svg" viewBox="0 0 24 24">
-                                                        <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                                                            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
-                                                            <path d="m9 12l2 2l4-4"/>
-                                                        </g>
-                                                    </svg>
+                                                <div className="profile-actions-inline">
+                                                    <div
+                                                        className="toggle-password-visibility"
+                                                        onClick={() => setShowPassword(prev => !prev)}
+                                                        title={showPassword ? "Hide Password" : "Show Password"}
+                                                        style={{ cursor: "pointer" }}
+                                                    >
+                                                        {showPassword ? (
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="eye-icon" viewBox="0 0 24 24">
+                                                                <path fill="none" stroke="currentColor" strokeWidth="2" d="M3 3l18 18M10.73 10.73a3 3 0 0 0 4.24 4.24M9.88 5.63A9.77 9.77 0 0 1 12 5c5.523 0 10 4.03 10 7s-4.477 7-10 7a9.77 9.77 0 0 1-3.01-.47M6.24 6.24C4.318 7.39 2 9.45 2 12c0 .918.39 1.786 1.06 2.537"/>
+                                                            </svg>
+                                                        ) : (
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="eye-icon" viewBox="0 0 24 24">
+                                                                <g fill="none" stroke="currentColor" strokeWidth="2">
+                                                                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+                                                                    <circle cx="12" cy="12" r="3"/>
+                                                                </g>
+                                                            </svg>
+                                                        )}
+                                                    </div>
+
+                                                    <div 
+                                                        className="profile-details-save"
+                                                        onClick={() => setEditingField(null)}
+                                                        title="Save"
+                                                        style={{ cursor: "pointer" }}
+                                                    >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="profile-save-svg" viewBox="0 0 24 24">
+                                                            <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                                                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
+                                                                <path d="m9 12l2 2l4-4"/>
+                                                            </g>
+                                                        </svg>
+                                                    </div>
                                                 </div>
                                             </>
                                         ) : (
                                             <>
-                                                <p className="profile-text profile-password-text">{password}</p>
-                                                <EditIcon field="password" />
+                                                <p className="profile-text profile-password-text">
+                                                    {showPassword ? password : "•".repeat(password.length)}
+                                                </p>
+
+                                                <div className="profile-actions-inline">
+                                                    <div
+                                                        className="toggle-password-visibility"
+                                                        onClick={() => setShowPassword(prev => !prev)}
+                                                        title={showPassword ? "Hide Password" : "Show Password"}
+                                                        style={{ cursor: "pointer" }}
+                                                    >
+                                                        {showPassword ? (
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="eye-icon" viewBox="0 0 24 24">
+                                                                <path fill="none" stroke="currentColor" strokeWidth="2" d="M3 3l18 18M10.73 10.73a3 3 0 0 0 4.24 4.24M9.88 5.63A9.77 9.77 0 0 1 12 5c5.523 0 10 4.03 10 7s-4.477 7-10 7a9.77 9.77 0 0 1-3.01-.47M6.24 6.24C4.318 7.39 2 9.45 2 12c0 .918.39 1.786 1.06 2.537"/>
+                                                            </svg>
+                                                        ) : (
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="eye-icon" viewBox="0 0 24 24">
+                                                                <g fill="none" stroke="currentColor" strokeWidth="2">
+                                                                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+                                                                    <circle cx="12" cy="12" r="3"/>
+                                                                </g>
+                                                            </svg>
+                                                        )}
+                                                    </div>
+
+                                                    <EditIcon field="password" />
+                                                </div>
                                             </>
                                         )}
                                     </div>
@@ -544,6 +594,24 @@ function Profile() {
                                                 </>
                                             )}
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="profile-main-wrapper">
+                                <div className="profile-placeholder">
+                                    <p className="profile-placeholder-title">Danger zone</p>
+
+                                    <p className="profile-placeholder-text">Delete account</p>
+                                </div>
+
+                                <div className="profile-danger-wrapper">
+                                    <div className="profile-details profile-details-danger profile-danger-logout">
+                                        <p className="profile-text profile-danger-text">Logout</p>
+                                    </div>
+
+                                    <div className="profile-details profile-details-danger profile-danger-delete">
+                                        <p className="profile-text profile-danger-text">Delete</p>
                                     </div>
                                 </div>
                             </div>

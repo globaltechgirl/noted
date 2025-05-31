@@ -20,7 +20,7 @@
 /* Note header */
 .note-header {
   width: 85vw;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   padding-bottom: 25px;
   padding-top: 25px;
   border-bottom: 0.5px solid var(--color-border);
