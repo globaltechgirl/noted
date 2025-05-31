@@ -96,7 +96,7 @@
 /* Profile top */
 .profile-background img {
   width: 100%;
-  max-height: 180px;
+  max-height: 200px;
   object-fit: cover;
   display: block;
   border-radius: 0.5rem;
@@ -170,17 +170,23 @@
 }
 
 .profile-details-specific {
-  grid-template-columns: 1fr 419px;
+  grid-template-columns: 1fr 404px;
   padding: 0;
   gap: 12px;
   padding-right: 15px;
 }
 
-/* Profile details left */
+.profile-details-right,
+.profile-details-left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .profile-text,
 .profile-input {
-  font-size: 0.6rem;
-  font-weight: 500;
+  font-size: 0.59rem;
+  font-weight: 450;
   color: var(--color-text-primary);
   letter-spacing: 0.6px;
   width: 100%;
@@ -194,24 +200,18 @@
   outline: none;
 }
 
-/* Profile details right */
-.profile-details-right,
-.profile-details-left {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .profile-tag {
   padding: 12px;
-  font-size: 0.62rem;
-  font-weight: 500;
+  font-size: 0.6rem;
+  font-weight: 450;
   letter-spacing: 0.6px;
   color: var(--color-surface-accent);
   background-color: var(--color-surface-primary);
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   border-right: 0.5px solid var(--color-border);
+  width: 100px;
+  flex-shrink: 0;
 }
 
 .profile-edit-svg,
@@ -220,19 +220,6 @@
   height: 13px;
   color: var(--color-surface-accent);
   cursor: pointer;
-}
-
-.profile-phone-tag {
-  width: 80px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.profile-phone-tag {
-  border: none;
-  border-right: 0.5px solid var(--color-border);
-  outline: none;
 }
 
 /* Profile socials */
@@ -253,17 +240,19 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  width: 130px;
+  flex-shrink: 0;
 }
 
 .profile-socials-tag-svg {
-  width: 15px;
-  height: 15px;
+  width: 13px;
+  height: 13px;
   color: var(--color-surface-accent);
 }
 
 /* Profile phone */
 .profile-details-phone {
-  grid-template-columns: 1fr 424px;
+  grid-template-columns: 1fr 415px;
   padding: 0;
   gap: 12px;
   padding-right: 15px;
@@ -278,7 +267,9 @@
 }
 
 .profile-phone-tag {
-  font-size: 0.6em;
+  font-size: 0.6rem;
+  font-weight: 450;
+  letter-spacing: 0.6px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -287,11 +278,15 @@
   padding: 12px;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
+  width: 90px;
+  flex-shrink: 0;
+  border: none;
+  border-right: 0.5px solid var(--color-border);
 }
 
 .custom-dropdown-arrow {
   position: absolute;
-  right: 0.5rem;
+  right: 12px;
   top: 50%;
   pointer-events: none;
   transform: translateY(-50%);

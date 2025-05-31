@@ -91,7 +91,7 @@ function Profile() {
                            <div className="profile-main-wrapper">
                                 <div className="profile-placeholder">
                                     <p className="profile-placeholder-title">Full name</p>
-                                    <p className="profile-placeholder-text">Your display name.</p>
+                                    <p className="profile-placeholder-text">Your display name</p>
                                 </div>
 
                                 <div className="profile-details">
@@ -139,7 +139,7 @@ function Profile() {
                                 <div className="profile-placeholder">
                                     <p className="profile-placeholder-title">Username</p>
 
-                                    <p className="profile-placeholder-text">A unique name for your profile.</p>
+                                    <p className="profile-placeholder-text">A unique name for your profile</p>
                                 </div>
 
                                 <div className="profile-details profile-details-specific">
@@ -191,7 +191,7 @@ function Profile() {
                                 <div className="profile-placeholder">
                                     <p className="profile-placeholder-title">Email</p>
 
-                                    <p className="profile-placeholder-text">Your email address.</p>
+                                    <p className="profile-placeholder-text">Your email address</p>
                                 </div>
 
                                 <div className="profile-details">
@@ -239,7 +239,7 @@ function Profile() {
                                 <div className="profile-placeholder">
                                     <p className="profile-placeholder-title">Password</p>
 
-                                    <p className="profile-placeholder-text">Your secret password.</p>
+                                    <p className="profile-placeholder-text">Your secret password</p>
                                 </div>
 
                                 <div className="profile-details">
@@ -333,8 +333,76 @@ function Profile() {
 
                             <div className="profile-main-wrapper">
                                 <div className="profile-placeholder">
+                                    <p className="profile-placeholder-title">Phone number</p>
+
+                                    <p className="profile-placeholder-text">Your phone number</p>
+                                </div>
+
+                                <div className="profile-details profile-details-phone">
+                                    <div className="profile-details-left">
+                                        <div className="profile-phone-dropdown-wrapper">
+                                            <select
+                                                className="profile-phone-tag"
+                                                value={phonePrefix}
+                                                onChange={(e) => setPhonePrefix(e.target.value)}
+                                            >
+                                                {allCountries.map((country, index) => (
+                                                    <option key={index} value={`+${country.dialCode}`}>
+                                                        +{country.dialCode}
+                                                    </option>
+                                                ))}
+                                            </select>
+
+                                            <svg className="custom-dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+
+                                    <div className="profile-details-right">
+                                        {editingField === "phoneNumber" ? (
+                                            <>
+                                                <input 
+                                                    type="text" 
+                                                    value={phoneNumber} 
+                                                    onChange={(e) => setPhoneNumber(e.target.value)}
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === "Enter") {
+                                                            setEditingField(null);
+                                                        }
+                                                    }}
+                                                    className="profile-input"
+                                                    autoFocus
+                                                />
+
+                                                <div 
+                                                    className="profile-details-save"
+                                                    onClick={() => setEditingField(null)}
+                                                    style={{ cursor: "pointer" }}
+                                                    title="Save"
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="profile-save-svg" viewBox="0 0 24 24">
+                                                        <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                                                            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
+                                                            <path d="m9 12l2 2l4-4"/>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <p className="profile-text profile-phone-text">{phoneNumber}</p>
+                                                <EditIcon field="phoneNumber" />
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="profile-main-wrapper">
+                                <div className="profile-placeholder">
                                     <p className="profile-placeholder-title">Connect your socials</p>
-                                    <p className="profile-placeholder-text">Add your social links.</p>
+                                    <p className="profile-placeholder-text">Add your social links</p>
                                 </div>
 
                                 <div className="profile-socials-wrapper">
@@ -476,74 +544,6 @@ function Profile() {
                                                 </>
                                             )}
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="profile-main-wrapper">
-                                <div className="profile-placeholder">
-                                    <p className="profile-placeholder-title">Phone number</p>
-
-                                    <p className="profile-placeholder-text">Your phone number.</p>
-                                </div>
-
-                                <div className="profile-details profile-details-phone">
-                                    <div className="profile-details-left">
-                                        <div className="profile-phone-dropdown-wrapper">
-                                            <select
-                                                className="profile-phone-tag"
-                                                value={phonePrefix}
-                                                onChange={(e) => setPhonePrefix(e.target.value)}
-                                            >
-                                                {allCountries.map((country, index) => (
-                                                    <option key={index} value={`+${country.dialCode}`}>
-                                                        +{country.dialCode}
-                                                    </option>
-                                                ))}
-                                            </select>
-
-                                            <svg className="custom-dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                                            </svg>
-                                        </div>
-                                    </div>
-
-                                    <div className="profile-details-right">
-                                        {editingField === "phoneNumber" ? (
-                                            <>
-                                                <input 
-                                                    type="text" 
-                                                    value={phoneNumber} 
-                                                    onChange={(e) => setPhoneNumber(e.target.value)}
-                                                    onKeyDown={(e) => {
-                                                        if (e.key === "Enter") {
-                                                            setEditingField(null);
-                                                        }
-                                                    }}
-                                                    className="profile-input"
-                                                    autoFocus
-                                                />
-
-                                                <div 
-                                                    className="profile-details-save"
-                                                    onClick={() => setEditingField(null)}
-                                                    style={{ cursor: "pointer" }}
-                                                    title="Save"
-                                                >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="profile-save-svg" viewBox="0 0 24 24">
-                                                        <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                                                            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
-                                                            <path d="m9 12l2 2l4-4"/>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <p className="profile-text profile-phone-text">{phoneNumber}</p>
-                                                <EditIcon field="phoneNumber" />
-                                            </>
-                                        )}
                                     </div>
                                 </div>
                             </div>
