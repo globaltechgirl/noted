@@ -16,11 +16,42 @@ function Profile() {
     const [phoneNumber, setPhoneNumber] = useState("913625175");
 
     const [editingField, setEditingField] = useState(null);
-
     const fullNameRef = useRef(null);
 
+    // Profile image
+    const [profileImage, setProfileImage] = useState("/src/assets/images/user2.png");
+    const fileInputRef = useRef(null);
+
+    // Background image/color
+    const [backgroundImage, setBackgroundImage] = useState("");
+    const [backgroundType, setBackgroundType] = useState("image");
+    const [backgroundColor, setBackgroundColor] = useState("#fcd5ce");
+    const backgroundInputRef = useRef(null);
+
+    const [activeTab, setActiveTab] = useState("gallery");
+    const [showBackgroundPopup, setShowBackgroundPopup] = useState(false);
+    const popupRef = useRef(null);
+
+    // Hide background popup when clicking outside
     useEffect(() => {
-        function handleClickOutside(event) {
+        function handleClickOutsidePopup(event) {
+            if (popupRef.current && !popupRef.current.contains(event.target)) {
+                setShowBackgroundPopup(false);
+            }
+        }
+
+        if (showBackgroundPopup) {
+            document.addEventListener("mousedown", handleClickOutsidePopup);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutsidePopup);
+        };
+    }, [showBackgroundPopup]);
+
+    // Hide input editing field on outside click
+    useEffect(() => {
+        function handleClickOutsideField(event) {
             if (
                 editingField === "fullName" &&
                 fullNameRef.current &&
@@ -30,30 +61,57 @@ function Profile() {
             }
         }
 
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("mousedown", handleClickOutsideField);
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("mousedown", handleClickOutsideField);
         };
     }, [editingField]);
 
+    // Edit icon component
     function EditIcon({ field }) {
         return (
             <div
                 className="profile-details-edit"
                 onClick={() => setEditingField(field)}
-                style={{ cursor: "pointer" }}
                 title="Edit"
+                style={{ cursor: "pointer" }}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" className="profile-edit-svg" viewBox="0 0 24 24">
-                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6"/>
+                    <path
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6"
+                    />
                 </svg>
             </div>
         );
     }
 
-    function handleSave(field) {
+    // Save field and close editing
+    const handleSave = (field) => {
         setEditingField(null);
-    }
+    };
+
+    // Profile picture change
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const imageUrl = URL.createObjectURL(file);
+            setProfileImage(imageUrl);
+        }
+    };
+
+    // Background image change
+    const handleBackgroundChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const imageUrl = URL.createObjectURL(file);
+            setBackgroundImage(imageUrl);
+        }
+    };
 
     return (
         <div className="profile-container">
@@ -79,12 +137,117 @@ function Profile() {
                 <div className="profile-body">
                     <div className="profile">
                         <div className="profile-top">
-                            <div className="profile-background">
-                                <img src="/src/assets/images/background2.jpg" alt="Profile Background" />
+                            <div className="profile-background-wrapper">
+                                <div className="profile-background" style={{ backgroundColor: backgroundType === 'color' ? backgroundColor : undefined }}>
+                                    {backgroundType === 'image' && (
+                                        <img src={backgroundImage} alt="Profile Background" />
+                                    )}
+
+                                    <div className="background-edit-icon" onClick={() => setShowBackgroundPopup(prev => !prev)} itle="Edit Background">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="camera-svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 7h1a2 2 0 0 0 2-2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2"/><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0-6 0"/></g></svg>
+                                    </div>
+
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        ref={backgroundInputRef}
+                                        onChange={handleBackgroundChange}
+                                        style={{ display: 'none' }}
+                                    />
+                                </div>
+                                
+                                {showBackgroundPopup && (
+                                    <div className="background-popup" ref={popupRef}>
+                                        <div className="popup-tabs-wrapper">
+                                            <div className="popup-tabs">
+                                                <button
+                                                    className={activeTab === "gallery" ? "active" : ""}
+                                                    onClick={() => setActiveTab("gallery")}
+                                                >
+                                                    Gallery
+                                                </button>
+
+                                                <button
+                                                    className={activeTab === "upload" ? "active" : ""}
+                                                    onClick={() => setActiveTab("upload")}
+                                                >
+                                                    Upload
+                                                </button>
+                                            </div>
+
+                                            <button className="remove-bg-button" onClick={() => {
+                                                setBackgroundImage(null);
+                                                setBackgroundColor("");
+                                                setBackgroundType(null);
+                                            }}>
+                                                Remove
+                                            </button>
+                                        </div>
+
+                                        {activeTab === "gallery" && (
+                                            <div className="popup-section">
+                                                <div className="color-options">
+                                                    {["#fcd5ce", "#ffe5b4", "#fff9b0", "#d0f4de", "#cfe7f5", "#dcd0ff", "#f3c7e9", "#e2e2e2", "#f9f9f9"].map(color => (
+                                                        <div
+                                                            key={color}
+                                                            className={`color-circle ${backgroundColor === color ? "active" : ""}`}
+                                                            style={{ backgroundColor: color }}
+                                                            onClick={() => {
+                                                                setBackgroundColor(color);
+                                                                setBackgroundType("color");
+                                                            }}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {activeTab === "upload" && (
+                                            <div className="popup-section">
+                                                <button
+                                                        onClick={() => {
+                                                        setBackgroundType("image");
+                                                        backgroundInputRef.current.click();
+                                                    }}
+                                                >
+                                                    Upload Image
+                                                </button>
+
+                                                <p className="popup-section-text">
+                                                    Images wider than 400 pixels works best.
+                                                </p>
+
+                                                <p className="popup-section-text">
+                                                    The maximum size per file is 5MB.
+                                                </p>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
                             </div>
 
                             <div className="profile-pic">
-                                <img src="/src/assets/images/user2.png" alt="Profile" />
+                                <img src={profileImage} alt="Profile Pic" className="profile-img" />
+
+                                <div className="icon camera-icon" onClick={() => fileInputRef.current.click()} title="Change Profile Picture">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="camera-svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 7h1a2 2 0 0 0 2-2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2"/><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0-6 0"/></g></svg>
+                                </div>
+
+                                <div
+                                    className="icon delete-icon"
+                                    onClick={() => setProfileImage(null)}
+                                    title="Remove Profile Picture"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="delete-svg" viewBox="0 0 24 24"><g fill="none"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M14.28 2a2 2 0 0 1 1.897 1.368L16.72 5H20a1 1 0 1 1 0 2l-.003.071l-.867 12.143A3 3 0 0 1 16.138 22H7.862a3 3 0 0 1-2.992-2.786L4.003 7.07L4 7a1 1 0 0 1 0-2h3.28l.543-1.632A2 2 0 0 1 9.721 2zm3.717 5H6.003l.862 12.071a1 1 0 0 0 .997.929h8.276a1 1 0 0 0 .997-.929zM10 10a1 1 0 0 1 .993.883L11 11v5a1 1 0 0 1-1.993.117L9 16v-5a1 1 0 0 1 1-1m4 0a1 1 0 0 1 1 1v5a1 1 0 1 1-2 0v-5a1 1 0 0 1 1-1m.28-6H9.72l-.333 1h5.226z"/></g></svg>
+                                </div>
+
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    ref={fileInputRef}
+                                    onChange={handleImageChange}
+                                    style={{ display: 'none' }}
+                                />
                             </div>
                         </div>
 
