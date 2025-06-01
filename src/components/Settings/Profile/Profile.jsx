@@ -23,7 +23,7 @@ function Profile() {
     const fileInputRef = useRef(null);
 
     // Background image/color
-    const [backgroundImage, setBackgroundImage] = useState("");
+    const [backgroundImage, setBackgroundImage] = useState("/src/assets/images/background.png");
     const [backgroundType, setBackgroundType] = useState("image");
     const [backgroundColor, setBackgroundColor] = useState("#fcd5ce");
     const backgroundInputRef = useRef(null);

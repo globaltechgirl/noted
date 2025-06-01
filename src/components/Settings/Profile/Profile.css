@@ -136,8 +136,8 @@
 
 .background-popup {
   position: absolute;
-  top: 55%;
-  right: 20px;
+  top: 310px;
+  right: 2%;
   z-index: 100;
   width: 300px;
   background-color: var(--color-sidebar-bg);
@@ -259,7 +259,7 @@
 .camera-icon,
 .icon {
   position: absolute;
-  bottom: 4px;
+  bottom: 3px;
   cursor: pointer;
   display: none;
 }
@@ -506,16 +506,18 @@
   }
 
   /* Profile top */
-  .profile-background img {
-    height: 140px;
+  .background-popup {
+    top: 420px;
+    right: 5%;
+  }
+
+  .profile-background {
+    height: 150px;
   }
 
   .profile-pic {
     margin-top: -35px;
     margin-left: 50px;
-  }
-
-  .profile-pic img {
     width: 70px;
     height: 70px;
   }
@@ -550,16 +552,17 @@
   }
 
   /* Profile top */
-  .profile-background img {
+  .background-popup {
+    right: 4%;
+  }
+
+  .profile-background {
     height: 180px;
   }
 
   .profile-pic {
     margin-top: -40px;
     margin-left: 60px;
-  }
-
-  .profile-pic img {
     width: 85px;
     height: 85px;
   }
