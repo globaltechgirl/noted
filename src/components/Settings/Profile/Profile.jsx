@@ -143,7 +143,7 @@ function Profile() {
                                     <p className="profile-placeholder-text">A unique name for your profile</p>
                                 </div>
 
-                                <div className="profile-details profile-details-specific">
+                                <div className="profile-details-specific">
                                     <div className="profile-details-left">
                                         <p className="profile-tag profile-username-tag">noted.com/</p>
                                     </div>
@@ -388,7 +388,7 @@ function Profile() {
                                     <p className="profile-placeholder-text">Your phone number</p>
                                 </div>
 
-                                <div className="profile-details profile-details-phone">
+                                <div className="profile-details-specific">
                                     <div className="profile-details-left">
                                         <div className="profile-phone-dropdown-wrapper">
                                             <select
@@ -456,7 +456,7 @@ function Profile() {
                                 </div>
 
                                 <div className="profile-socials-wrapper">
-                                    <div className="profile-details profile-details-socials">
+                                    <div className="profile-details-specific">
                                         <div className="profile-details-left">
                                             <div className="profile-tag profile-socials-tag">
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="profile-socials-tag-svg" viewBox="0 0 24 24">
@@ -505,7 +505,7 @@ function Profile() {
                                         </div>
                                     </div>
 
-                                    <div className="profile-details profile-details-socials">
+                                    <div className="profile-details-specific">
                                         <div className="profile-details-left">
                                             <div className="profile-tag profile-socials-tag">
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="profile-socials-tag-svg" viewBox="0 0 24 24">
@@ -550,7 +550,7 @@ function Profile() {
                                         </div>
                                     </div>
 
-                                    <div className="profile-details profile-details-socials">
+                                    <div className="profile-details-specific">
                                         <div className="profile-details-left">
                                             <div className="profile-tag profile-socials-tag">
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="profile-socials-tag-svg" viewBox="0 0 24 24">

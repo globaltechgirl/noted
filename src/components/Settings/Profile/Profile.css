@@ -158,29 +158,37 @@
 }
 
 /* Profile details */
-.profile-details {
-  display: grid;
-  grid-template-columns: 504px 1fr;
+.profile-details,
+.profile-details-specific {
+  display: flex;
+  width: 62.5%;
   align-items: center;
-  padding: 10px 13px;
   background-color: var(--color-sidebar-bg);
   border: 0.5px solid var(--color-border);
   border-radius: 0.5rem;
-  padding-right: 18px;
+  padding-right: 7px;
 }
 
 .profile-details-specific {
-  grid-template-columns: 1fr 421px;
   padding: 0;
   gap: 12px;
-  padding-right: 18px;
+  padding-right: 20px;
 }
 
-.profile-details-right,
-.profile-details-left {
+.profile-details-left,
+.profile-details-right {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.profile-details .profile-details-left {
+  flex: 1;
+  padding: 8px 13px;
+}
+
+.profile-details-specific .profile-details-right {
+  flex: 1;
 }
 
 .profile-text,
@@ -190,18 +198,13 @@
   color: var(--color-text-primary);
   letter-spacing: 0.6px;
   width: 100%;
-  padding: 0 2px;
   display: block;
-}
-
-.profile-input {
   border: none;
   background: transparent;
   outline: none;
 }
 
 .profile-tag {
-  padding: 13px 13.5px;
   font-size: 0.6rem;
   font-weight: 450;
   letter-spacing: 0.6px;
@@ -214,8 +217,14 @@
   flex-shrink: 0;
 }
 
+.profile-details-specific .profile-tag {
+  padding: 11px 13px;
+}
+
 .profile-edit-svg,
-.profile-save-svg {
+.profile-save-svg,
+.eye-icon,
+.profile-socials-tag-svg {
   width: 13px;
   height: 13px;
   color: var(--color-surface-accent);
@@ -229,24 +238,16 @@
   gap: 10px;
 }
 
-.eye-icon {
-  width: 13px;
-  height: 13px;
-  color: var(--color-surface-accent);
-}
-
 /* Profile socials */
 .profile-socials-wrapper {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  width: 62.5%;
 }
 
-.profile-details-socials {
-  grid-template-columns: 1fr 376px;
-  padding: 0;
-  gap: 12px;
-  padding-right: 18px;
+.profile-socials-wrapper .profile-details-specific {
+  width: 100%;
 }
 
 .profile-socials-tag {
@@ -257,20 +258,7 @@
   flex-shrink: 0;
 }
 
-.profile-socials-tag-svg {
-  width: 13px;
-  height: 13px;
-  color: var(--color-surface-accent);
-}
-
 /* Profile phone */
-.profile-details-phone {
-  grid-template-columns: 1fr 429px;
-  padding: 0;
-  gap: 12px;
-  padding-right: 18px;
-}
-
 .profile-phone-dropdown-wrapper {
   position: relative;
   display: inline-block;
@@ -288,7 +276,7 @@
   -moz-appearance: none;
   color: var(--color-surface-accent);
   background-color: var(--color-surface-primary);
-  padding: 13px 13.5px;
+  padding: 12px 13px;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   width: 75px;
@@ -314,12 +302,11 @@
   display: flex;
   flex-direction: flex-end;
   gap: 15px;
+  width: 35%;
 }
 
 .profile-details-danger {
-  grid-template-columns: 1fr 60px;
-  padding: 13px 13.5px;
-  gap: 12px;
+  padding: 11px 13px;
 }
 
 .profile-danger-logout {
@@ -350,12 +337,84 @@
   }
 
   /* Profile body */
+  .profile {
+    width: 100%;
+  }
+
+  /* Profile main */
+  .profile-main {
+    gap: 30px;
+    width: 90%;
+    margin-top: 40px;
+  }
+
+  .profile-main-wrapper {
+    gap: 15px;
+    flex-direction: column;
+  }
+
+  /* Profile top */
+  .profile-background img {
+    max-height: 140px;
+  }
+
+  .profile-pic {
+    margin-top: -35px;
+    margin-left: 50px;
+  }
+
+  .profile-pic img {
+    width: 70px;
+    height: 70px;
+  }
+
+  /* Profile details */
+  .profile-details,
+  .profile-details-specific,
+  .profile-socials-wrapper {
+    width: 100%;
+  }
+
+  .profile-danger-wrapper {
+    width: 75%;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   /* Profile header */
   .profile-header {
     width: 80vw;
+  }
+
+  /* Profile body */
+  .profile {
+    width: 100%;
+  }
+
+  /* Profile main */
+  .profile-main {
+    width: 85%;
+    margin-top: 55px;
+  }
+
+  /* Profile top */
+  .profile-background img {
+    max-height: 180px;
+  }
+
+  .profile-pic {
+    margin-top: -40px;
+    margin-left: 60px;
+  }
+
+  .profile-pic img {
+    width: 85px;
+    height: 85px;
+  }
+
+  /* Profile details */
+  .profile-danger-wrapper {
+    width: 50%;
   }
 }
 
