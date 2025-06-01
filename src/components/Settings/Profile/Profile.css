@@ -145,7 +145,7 @@
 
 .profile-placeholder-title {
   color: var(--color-text-primary);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.6px;
 }
@@ -172,7 +172,7 @@
 .profile-details-specific {
   grid-template-columns: 1fr 421px;
   padding: 0;
-  gap: 10px;
+  gap: 12px;
   padding-right: 18px;
 }
 
