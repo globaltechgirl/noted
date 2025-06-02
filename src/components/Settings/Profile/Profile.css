@@ -219,6 +219,7 @@
   background-color: var(--color-surface-primary);
   border: 0.5px solid var(--color-border);
   border-radius: 0.5rem;
+  color: var(--color-surface-accent);
 }
 
 .background-popup button:hover {

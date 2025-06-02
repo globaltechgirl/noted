@@ -48,6 +48,12 @@
   color: var(--color-surface-accent);
 }
 
+.folder-link-wrapper .folder-layout-top .folder-top-star .folder-top-star-svg {
+  width: 11px;
+  height: 11px;
+  margin-right: 2px;
+}
+
 .folder-layout-image {
   width: 100%;
   overflow: hidden;
