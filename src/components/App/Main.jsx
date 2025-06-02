@@ -6,6 +6,7 @@ import OneFolder from "../Folder/Folders/OneFolder";
 import MediaFolder from "../Folder/Folders/MediaFolder";
 import LinkFolder from "../Folder/Folders/LinkFolder";
 import Profile from "../Settings/Profile/Profile"; 
+import Settings from "../Settings/Settings/Setting"
 
 function Main({ view, activeFolder, onFolderClick, onBack }) {
     const renderContent = () => {
@@ -22,6 +23,8 @@ function Main({ view, activeFolder, onFolderClick, onBack }) {
                 return activeFolder && <Folder folderName={activeFolder} onBack={onBack} />;
             case "profile":
                 return <Profile />;
+            case "settings":
+                return <Settings />;
             default:
                 return <Note onFolderClick={onFolderClick} />;
         }

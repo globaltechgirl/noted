@@ -23,6 +23,9 @@ function App() {
         } else if (section === "profile") {
             setView("profile");
             setActiveFolder(null);
+         } else if (section === "settings") {
+            setView("settings");
+            setActiveFolder(null);
         } else {
             setView("one-folder");
             setActiveFolder(section);
