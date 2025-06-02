@@ -42,15 +42,15 @@ function Note({ onFolderClick }) {
                         </div>
                     </div>
 
-                    <div className="note note-black"  
-                    onClick={() => onFolderClick && onFolderClick("one-folder")}
+                    <div className="note note-white"
+                    onClick={() => onFolderClick && onFolderClick("daily")}
                     style={{ cursor: "pointer" }}
                     >
                         <div className="note-img">
-                            <img src="/src/assets/images/note-black.png" />  
+                            <img src="/src/assets/images/note-white.png" />  
 
                             <div className="note-overlay-text">
-                                <p className="note-overlay-p">65 Notes</p>  
+                                <p className="note-overlay-p">128 Notes</p>  
                             </div>
                         </div>
 
@@ -61,7 +61,7 @@ function Note({ onFolderClick }) {
                     </div>
 
                     <div className="note note-black note-overlay"
-                    onClick={() => onFolderClick && onFolderClick("one-folder")}
+                    onClick={() => onFolderClick && onFolderClick("personal")}
                     style={{ cursor: "pointer" }}
                     >
                         <div className="note-img">
@@ -79,6 +79,42 @@ function Note({ onFolderClick }) {
                         <div className="note-main">
                             <p className="note-title">Personal</p>
                             <p className="note-text">Wednesday</p>
+                        </div>
+                    </div>
+
+                    <div className="note note-black"  
+                    onClick={() => onFolderClick && onFolderClick("work")}
+                    style={{ cursor: "pointer" }}
+                    >
+                        <div className="note-img">
+                            <img src="/src/assets/images/note-black.png" />  
+
+                            <div className="note-overlay-text">
+                                <p className="note-overlay-p">65 Notes</p>  
+                            </div>
+                        </div>
+
+                        <div className="note-main">
+                            <p className="note-title">Work</p>
+                            <p className="note-text">2/06/25</p>
+                        </div>
+                    </div>
+
+                    <div className="note note-white"
+                    onClick={() => onFolderClick && onFolderClick("one-note")}
+                    style={{ cursor: "pointer" }}
+                    >
+                        <div className="note-img">
+                            <img src="/src/assets/images/note-white.png" />  
+
+                            <div className="note-overlay-text">
+                                <p className="note-overlay-p">128 Notes</p>  
+                            </div>
+                        </div>
+
+                        <div className="note-main">
+                            <p className="note-title">Randoms</p>
+                            <p className="note-text">Tuesday</p>
                         </div>
                     </div>
 
