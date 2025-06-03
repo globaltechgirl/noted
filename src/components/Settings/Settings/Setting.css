@@ -127,7 +127,7 @@
 .settings-details-left {
   font-weight: 450;
   font-size: 0.62rem;
-   display: flex;
+  display: flex;
   gap: 0.4rem;
   align-items: center;
 }
@@ -148,19 +148,35 @@
   background-color: var(--color-surface-primary);
   border-radius: 0.5rem;
   border: 0.5px solid var(--color-border);
-  padding: 8px 12px;
+  padding: 6px 12px;
+
+.settings-details-language {
+  padding: 7.5px 12px;
 }
 
 .settings-right {
   display: flex;
-  gap: 0.3rem;
   align-items: center;
+  gap: 0.3rem;
 }
 
 .settings-right-svg {
   width: 13px;
   height: 13px;
   color: var(--color-surface-accent);
+}
+
+.settings-dark-svg {
+  width: 11.5px;
+  height: 11.5px;
+}
+
+.settings-options {
+  background-color: var(--color-sidebar-bg);
+  border: 0.5px solid var(--color-border);
+  border-radius: 0.3rem;
+  padding: 3px 6px;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
