@@ -8,7 +8,7 @@
   margin-top: -90px;
 }
 
-.folder-link-regular {
+.folder-list-regular {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -19,7 +19,7 @@
   border-radius: 0.5rem;
 }
 
-.folder-link-regular:hover {
+.folder-list-regular:hover {
   background-color: var(--color-surface-primary);
   border: 0.5px solid var(--color-border);
   cursor: pointer;

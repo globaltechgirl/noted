@@ -1,7 +1,57 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './Setting.css';
 
 function Settings() {
+    const [username, setUsername] = useState("username");
+
+    const [editingField, setEditingField] = useState(null);
+
+    // Hide input editing field on outside click
+    useEffect(() => {
+        function handleClickOutsideField(event) {
+            if (
+                editingField === "fullName" &&
+                fullNameRef.current &&
+                !fullNameRef.current.contains(event.target)
+            ) {
+                setEditingField(null);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutsideField);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutsideField);
+        };
+    }, [editingField]);
+
+    // Edit icon component
+    function EditIcon({ field }) {
+        return (
+            <div
+                className="profile-details-edit"
+                onClick={() => setEditingField(field)}
+                title="Edit"
+                style={{ cursor: "pointer" }}
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" className="profile-edit-svg" viewBox="0 0 24 24">
+                    <path
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6"
+                    />
+                </svg>
+            </div>
+        );
+    }
+
+    // Save field and close editing
+    const handleSave = (field) => {
+        setEditingField(null);
+    };
+    
     return (
         <div className="settings-container">
             <div className="settings-wrapper">
@@ -26,14 +76,108 @@ function Settings() {
                 <div className="settings-body">
                     <div className="settings-main">
                         <div className="settings">
-                            <div className="settings-top">
-                                <p className="settings-top-text">
-                                    Appearance
+                            <div className="settings-headers">
+                                <p className="settings-headers-text">
+                                    Preferences
                                 </p>
                             </div>
 
-                            <div className="settings-bottom">
+                            <div className="settings-details-wrapper">
+                                <div className="settings-details">
+                                    <div className="settings-details-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                        <p>Appearance</p>
+                                    </div>
 
+                                    <div className="settings-details-right">
+                                        <div className="settings-right">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19h18M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/></svg>
+                                            <p>System</p>
+                                        </div>
+
+                                        <div className="settings-right">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7"/></svg>
+                                            <p>Light</p>
+                                        </div>
+
+                                        <div className="settings-right">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></svg>
+                                            <p>Dark</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="settings-details">
+                                    <div className="settings-details-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                        <p>Language</p>
+                                    </div>
+
+                                    <div className="settings-details-right">
+                                        <div className="settings-right">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19h18M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/></svg>
+                                            <p>System</p>
+                                        </div>
+
+                                        <div className="settings-right">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7"/></svg>
+                                            <p>Light</p>
+                                        </div>
+
+                                        <div className="settings-right">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></svg>
+                                            <p>Dark</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="settings-details">
+                                    <div className="settings-details-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                        <p>Spellchecker</p>
+                                    </div>
+
+                                    <div className="settings-details-right">
+                                        <div className="settings-right">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19h18M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/></svg>
+                                            <p>System</p>
+                                        </div>
+
+                                        <div className="settings-right">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7"/></svg>
+                                            <p>Light</p>
+                                        </div>
+
+                                        <div className="settings-right">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></svg>
+                                            <p>Dark</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="settings-details">
+                                    <div className="settings-details-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                        <p>Timezone</p>
+                                    </div>
+
+                                    <div className="settings-details-right">
+                                        <div className="settings-right">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19h18M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/></svg>
+                                            <p>System</p>
+                                        </div>
+
+                                        <div className="settings-right">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7"/></svg>
+                                            <p>Light</p>
+                                        </div>
+
+                                        <div className="settings-right">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></svg>
+                                            <p>Dark</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
