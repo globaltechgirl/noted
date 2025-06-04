@@ -83,45 +83,128 @@ function Settings() {
                                     </div>
                                 </div>
 
-                                <div className="settings-top-details-wrapper">
-                                    <div className="settings-top-details">
-                                        <div className="settings-top-details-left">
-                                            <p>Display Name</p>
+                                <div className="settings-details-wrapper">
+                                    <div className="settings-line-wrapper">
+                                        <div className="settings-line">
+                                            <div className="settings-line-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="settings-line-icon-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h2.5m4.501 4a2 2 0 1 0 4 0a2 2 0 1 0-4 0m2-3.5V17m0 4v1.5m3.031-5.25l-1.299.75m-3.463 2l-1.3.75m0-3.5l1.3.75m3.463 2l1.3.75"/></svg>
+                                            </div>
+
+                                            <div className="settings-line-details">
+                                                <div className="settings-line-header">
+                                                    <p>Memory</p>
+                                                </div>
+
+                                                <div className="settings-line-body">
+                                                    <div className="settings-line-body-left">
+                                                        <p>Memory Usage</p>
+                                                    </div>
+
+                                                    <div className="settings-line-body-right">
+                                                        <p>50 MB / 200MB</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div className="settings-top-details-left">
-                                            <p>s_wilson_168920</p>
+                                        <div className="settings-line">
+                                            <div className="settings-line-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="settings-line-icon-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 21v-2a4 4 0 0 1 4-4h2m10 1c0 4-2.5 6-3.5 6S15 20 15 16c1 0 2.5-.5 3.5-1.5c1 1 2.5 1.5 3.5 1.5M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0"/></svg>
+                                            </div>
+
+                                            <div className="settings-line-details">
+                                                <div className="settings-line-header">
+                                                    <p>Password</p>
+                                                </div>
+
+                                                <div className="settings-line-body">
+                                                    <div className="settings-line-body-left">
+                                                        <p>Password Last Changed</p>
+                                                    </div>
+
+                                                    <div className="settings-line-body-right">
+                                                        <p>June 15, 2025</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="settings-line">
+                                            <div className="settings-line-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="settings-line-icon-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4m1 4l2 2l4-4"/></svg>
+                                            </div>
+
+                                            <div className="settings-line-details">
+                                                <div className="settings-line-header">
+                                                    <p>Login Info</p>
+                                                </div>
+
+                                                <div className="settings-line-body">
+                                                    <div className="settings-line-body-left">
+                                                        <p>Last Login</p>
+                                                    </div>
+
+                                                    <div className="settings-line-body-right">
+                                                        <p>June 4, 2025</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="settings-line">
+                                            <div className="settings-line-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="settings-line-icon-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0m8 12h6m-3-3v6M6 21v-2a4 4 0 0 1 4-4h4"/></svg>
+                                            </div>
+
+                                            <div className="settings-line-details">
+                                                <div className="settings-line-header">
+                                                    <p>Account</p>
+                                                </div>
+
+                                                <div className="settings-line-body">
+                                                    <div className="settings-line-body-left">
+                                                        <p>Account Created</p>
+                                                    </div>
+
+                                                    <div className="settings-line-body-right">
+                                                        <p>June 1, 2025</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="settings-line">
+                                            <div className="settings-line-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="settings-line-icon-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+                                            </div>
+
+                                            <div className="settings-line-details">
+                                                <div className="settings-line-header">
+                                                    <p>Profile</p>
+                                                </div>
+
+                                                <div className="settings-line-body">
+                                                    <div className="settings-line-body-left">
+                                                        <p>Display Name</p>
+                                                    </div>
+
+                                                    <div className="settings-line-body-right">
+                                                        <p>globaltechgirl</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div className="settings-top-details">
-                                        <div className="settings-top-details-left">
-                                            <p>Account Created</p>
-                                        </div>
+                                    <div className="settings-save">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-save-svg" viewBox="0 0 24 24">
+                                            <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
+                                                <path d="m9 12l2 2l4-4"/>
+                                            </g>
+                                        </svg>
 
-                                        <div className="settings-top-details-left">
-                                            <p>March 20, 2020</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="settings-top-details">
-                                        <div className="settings-top-details-left">
-                                            <p>Last Login</p>
-                                        </div>
-
-                                        <div className="settings-top-details-left">
-                                            <p>August 22, 2024</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="settings-top-details">
-                                        <div className="settings-top-details-left">
-                                            <p>Password Last Changed</p>
-                                        </div>
-
-                                        <div className="settings-top-details-left">
-                                            <p>July 15, 2024</p>
-                                        </div>
+                                        <p>saving changes</p>
                                     </div>
                                 </div>
                             </div>
