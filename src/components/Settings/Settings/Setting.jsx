@@ -78,11 +78,45 @@ function Settings() {
                         <div className="settings">
                             <div className="settings-headers">
                                 <p className="settings-headers-text">
-                                    Preferences
+                                    Account Settings
                                 </p>
                             </div>
 
                             <div className="settings-details-wrapper">
+                                <div className="settings-details">
+                                    <div className="settings-details-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                        <p>On Startup</p>
+                                    </div>
+
+                                    <div className="settings-details-right settings-details-language">
+                                        <div className="settings-right">
+                                            <p>Default Page</p>
+                                        </div>
+
+                                        <div className="settings-right settings-options">
+                                            <p>Last visited page</p>
+                                        </div>                                        
+                                    </div>
+                                </div>
+
+                                <div className="settings-details">
+                                    <div className="settings-details-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                        <p>Dashboard</p>
+                                    </div>
+
+                                    <div className="settings-details-right settings-details-language">
+                                        <div className="settings-right">
+                                            <p>Default Dashboard View</p>
+                                        </div>
+
+                                        <div className="settings-right settings-options">
+                                            <p>Compact</p>
+                                        </div>                                        
+                                    </div>
+                                </div>
+
                                 <div className="settings-details">
                                     <div className="settings-details-left">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
@@ -106,7 +140,78 @@ function Settings() {
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        
+                        <div className="settings">
+                            <div className="settings-headers">
+                                <p className="settings-headers-text">
+                                    Account Settings
+                                </p>
+                            </div>
 
+                            <div className="settings-details-wrapper">
+                                <div className="settings-details">
+                                    <div className="settings-details-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                        <p>Notifications</p>
+                                    </div>
+
+                                    <div className="settings-details-right settings-details-language">
+                                        <div className="settings-right">
+                                            <p>Login Notifications</p>
+                                        </div>
+
+                                        <div className="settings-right settings-options">
+                                            <p>Enabled</p>
+                                        </div>                                        
+                                    </div>
+                                </div>
+
+                                <div className="settings-details">
+                                    <div className="settings-details-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                        <p>Notifications</p>
+                                    </div>
+
+                                    <div className="settings-details-right settings-details-language">
+                                        <div className="settings-right">
+                                            <p>Email Notifications</p>
+                                        </div>
+
+                                        <div className="settings-right settings-options">
+                                            <p>Subscribed</p>
+                                        </div>                                        
+                                    </div>
+                                </div>
+
+                                <div className="settings-details">
+                                    <div className="settings-details-left">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                        <p>Membership</p>
+                                    </div>
+
+                                    <div className="settings-details-right settings-details-language">
+                                        <div className="settings-right">
+                                            <p>Membership Status</p>
+                                        </div>
+
+                                        <div className="settings-right settings-options">
+                                            <p>Free Member</p>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="settings">
+                            <div className="settings-headers">
+                                <p className="settings-headers-text">
+                                    Preferences
+                                </p>
+                            </div>
+
+                            <div className="settings-details-wrapper">
                                 <div className="settings-details">
                                     <div className="settings-details-left">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
@@ -154,128 +259,6 @@ function Settings() {
 
                                         <div className="settings-right settings-options">
                                             <p>Enabled</p>
-                                        </div>                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="settings">
-                            <div className="settings-headers">
-                                <p className="settings-headers-text">
-                                    Account Settings
-                                </p>
-                            </div>
-
-                            <div className="settings-details-wrapper">
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Notifications</p>
-                                    </div>
-
-                                    <div className="settings-details-right settings-details-language">
-                                        <div className="settings-right">
-                                            <p>Login Notifications</p>
-                                        </div>
-
-                                        <div className="settings-right settings-options">
-                                            <p>Enabled</p>
-                                        </div>                                        
-                                    </div>
-                                </div>
-
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Notifications</p>
-                                    </div>
-
-                                    <div className="settings-details-right settings-details-language">
-                                        <div className="settings-right">
-                                            <p>Email Notifications</p>
-                                        </div>
-
-                                        <div className="settings-right settings-options">
-                                            <p>Subscribed</p>
-                                        </div>                                        
-                                    </div>
-                                </div>
-
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Membership</p>
-                                    </div>
-
-                                    <div className="settings-details-right settings-details-language">
-                                        <div className="settings-right">
-                                            <p>Membership Status</p>
-                                        </div>
-
-                                        <div className="settings-right settings-options">
-                                            <p>Free Member</p>
-                                        </div>                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="settings">
-                            <div className="settings-headers">
-                                <p className="settings-headers-text">
-                                    Account Settings
-                                </p>
-                            </div>
-
-                            <div className="settings-details-wrapper">
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Notifications</p>
-                                    </div>
-
-                                    <div className="settings-details-right settings-details-language">
-                                        <div className="settings-right">
-                                            <p>Login Notifications</p>
-                                        </div>
-
-                                        <div className="settings-right settings-options">
-                                            <p>Enabled</p>
-                                        </div>                                        
-                                    </div>
-                                </div>
-
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Notifications</p>
-                                    </div>
-
-                                    <div className="settings-details-right settings-details-language">
-                                        <div className="settings-right">
-                                            <p>Email Notifications</p>
-                                        </div>
-
-                                        <div className="settings-right settings-options">
-                                            <p>Subscribed</p>
-                                        </div>                                        
-                                    </div>
-                                </div>
-
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Membership</p>
-                                    </div>
-
-                                    <div className="settings-details-right settings-details-language">
-                                        <div className="settings-right">
-                                            <p>Membership Status</p>
-                                        </div>
-
-                                        <div className="settings-right settings-options">
-                                            <p>Free Member</p>
                                         </div>                                        
                                     </div>
                                 </div>
