@@ -75,192 +75,205 @@ function Settings() {
 
                 <div className="settings-body">
                     <div className="settings-main">
-                        <div className="settings">
-                            <div className="settings-headers">
-                                <p className="settings-headers-text">
-                                    Account Settings
-                                </p>
-                            </div>
-
-                            <div className="settings-details-wrapper">
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>On Startup</p>
-                                    </div>
-
-                                    <div className="settings-details-right settings-details-language">
-                                        <div className="settings-right">
-                                            <p>Default Page</p>
-                                        </div>
-
-                                        <div className="settings-right settings-options">
-                                            <p>Last visited page</p>
-                                        </div>                                        
+                        <div className="settings-top">
+                            <div className="settings-top-left">
+                                <div className="settings-user-wrapper">
+                                    <div className="settings-user">
+                                        <img src="/src/assets/images/user.png" alt="user-png" />
                                     </div>
                                 </div>
 
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Dashboard</p>
-                                    </div>
-
-                                    <div className="settings-details-right settings-details-language">
-                                        <div className="settings-right">
-                                            <p>Default Dashboard View</p>
+                                <div className="settings-top-details-wrapper">
+                                    <div className="settings-top-details">
+                                        <div className="settings-top-details-left">
+                                            <p>Display Name</p>
                                         </div>
 
-                                        <div className="settings-right settings-options">
-                                            <p>Compact</p>
-                                        </div>                                        
-                                    </div>
-                                </div>
-
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Appearance</p>
+                                        <div className="settings-top-details-left">
+                                            <p>s_wilson_168920</p>
+                                        </div>
                                     </div>
 
-                                    <div className="settings-details-right settings-details-appearance">
-                                        <div className="settings-right">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19h18M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/></svg>
-                                            <p>System</p>
+                                    <div className="settings-top-details">
+                                        <div className="settings-top-details-left">
+                                            <p>Account Created</p>
                                         </div>
 
-                                        <div className="settings-right settings-options">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7"/></svg>
-                                            <p>Light</p>
+                                        <div className="settings-top-details-left">
+                                            <p>March 20, 2020</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="settings-top-details">
+                                        <div className="settings-top-details-left">
+                                            <p>Last Login</p>
                                         </div>
 
-                                        <div className="settings-right">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg settings-dark-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></svg>
-                                            <p>Dark</p>
+                                        <div className="settings-top-details-left">
+                                            <p>August 22, 2024</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="settings-top-details">
+                                        <div className="settings-top-details-left">
+                                            <p>Password Last Changed</p>
+                                        </div>
+
+                                        <div className="settings-top-details-left">
+                                            <p>July 15, 2024</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div className="settings">
-                            <div className="settings-headers">
-                                <p className="settings-headers-text">
-                                    Account Settings
-                                </p>
-                            </div>
 
-                            <div className="settings-details-wrapper">
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Notifications</p>
-                                    </div>
-
-                                    <div className="settings-details-right settings-details-language">
-                                        <div className="settings-right">
-                                            <p>Login Notifications</p>
+                            <div className="settings-top-right">
+                                <div className="settings-top-right1">
+                                    <div className="settings-details">
+                                        <div className="settings-details-left">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                            <p>Membership</p>
                                         </div>
 
-                                        <div className="settings-right settings-options">
-                                            <p>Enabled</p>
-                                        </div>                                        
+                                        <div className="settings-details-right settings-details-membership">
+                                            <div className="settings-right">
+                                                <p>Membership Status</p>
+                                            </div>
+
+                                            <div className="settings-right settings-options">
+                                                <p>Free Member</p>
+                                            </div>                                        
+                                        </div>
+                                    </div>
+
+                                    <div className="settings-details">
+                                        <div className="settings-details-left">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                            <p>Notifications</p>
+                                        </div>
+
+                                        <div className="settings-details-right settings-details-language">
+                                            <div className="settings-right">
+                                                <p>Login Notifications</p>
+                                            </div>
+
+                                            <div className="settings-right settings-options">
+                                                <p>Enabled</p>
+                                            </div>                                        
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Notifications</p>
-                                    </div>
-
-                                    <div className="settings-details-right settings-details-language">
-                                        <div className="settings-right">
-                                            <p>Email Notifications</p>
+                                <div className="settings-top-right2">
+                                    <div className="settings-details">
+                                        <div className="settings-details-left">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                            <p>Notifications</p>
                                         </div>
 
-                                        <div className="settings-right settings-options">
-                                            <p>Subscribed</p>
-                                        </div>                                        
-                                    </div>
-                                </div>
+                                        <div className="settings-details-right settings-details-language">
+                                            <div className="settings-right">
+                                                <p>Email Notifications</p>
+                                            </div>
 
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Membership</p>
+                                            <div className="settings-right settings-options">
+                                                <p>Subscribed</p>
+                                            </div>                                        
+                                        </div>
                                     </div>
 
-                                    <div className="settings-details-right settings-details-language">
-                                        <div className="settings-right">
-                                            <p>Membership Status</p>
+                                    <div className="settings-details">
+                                        <div className="settings-details-left">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                            <p>Dashboard</p>
                                         </div>
 
-                                        <div className="settings-right settings-options">
-                                            <p>Free Member</p>
-                                        </div>                                        
+                                        <div className="settings-details-right settings-details-language">
+                                            <div className="settings-right">
+                                                <p>Default Dashboard View</p>
+                                            </div>
+
+                                            <div className="settings-right settings-options">
+                                                <p>Compact</p>
+                                            </div>                                        
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="settings">
-                            <div className="settings-headers">
-                                <p className="settings-headers-text">
-                                    Preferences
-                                </p>
-                            </div>
+                        <div className="settings-bottom"> 
+                            <div className="settings-details">
+                                <div className="settings-details-left">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                    <p>Appearance</p>
+                                </div>
 
-                            <div className="settings-details-wrapper">
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Language</p>
+                                <div className="settings-details-right settings-details-appearance">
+                                    <div className="settings-right">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19h18M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/></svg>
+                                        <p>System</p>
                                     </div>
 
-                                    <div className="settings-details-right settings-details-language">
-                                        <div className="settings-right">
-                                            <p>English</p>
-                                        </div>
+                                    <div className="settings-right settings-options">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7"/></svg>
+                                        <p>Light</p>
+                                    </div>
 
-                                        <div className="settings-right settings-options">
-                                            <p>Enabled</p>
-                                        </div>                                        
+                                    <div className="settings-right">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg settings-dark-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></svg>
+                                        <p>Dark</p>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div className="settings-details">
+                                <div className="settings-details-left">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                    <p>Language</p>
+                                </div>
+
+                                <div className="settings-details-right settings-details-language">
+                                    <div className="settings-right">
+                                        <p>English</p>
+                                    </div>
+
+                                    <div className="settings-right settings-options">
+                                        <p>Enabled</p>
+                                    </div>                                        
+                                </div>
+                            </div>
                                 
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Spellchecker</p>
-                                    </div>
-
-                                    <div className="settings-details-right settings-details-language">
-                                        <div className="settings-right">
-                                            <p>American English</p>
-                                        </div>
-
-                                        <div className="settings-right settings-options">
-                                            <p>Enabled</p>
-                                        </div>                                        
-                                    </div>
+                            <div className="settings-details">
+                                <div className="settings-details-left">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                    <p>Spellchecker</p>
                                 </div>
 
-                                <div className="settings-details">
-                                    <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Timezone</p>
+                                <div className="settings-details-right settings-details-language">
+                                    <div className="settings-right">
+                                        <p>American English</p>
                                     </div>
 
-                                    <div className="settings-details-right settings-details-timezone">
-                                        <div className="settings-right">
-                                            <p>(GMT +1:00) Lagos</p>
-                                        </div>
+                                    <div className="settings-right settings-options">
+                                        <p>Enabled</p>
+                                    </div>                                        
+                                </div>
+                            </div>
 
-                                        <div className="settings-right settings-options">
-                                            <p>Enabled</p>
-                                        </div>                                        
+                            <div className="settings-details">
+                                <div className="settings-details-left">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                    <p>Timezone</p>
+                                </div>
+
+                                <div className="settings-details-right settings-details-timezone">
+                                    <div className="settings-right">
+                                        <p>(GMT +1:00) Lagos</p>
                                     </div>
+
+                                    <div className="settings-right settings-options">
+                                        <p>Enabled</p>
+                                    </div>                                        
                                 </div>
                             </div>
                         </div>
