@@ -80,20 +80,19 @@
 
 /* Settings body */
 .settings-body {
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
-  max-width: 100vw;
+  max-width: 85vw;
   margin-top: 5px;
 }
 
 .settings-main {
   display: flex;
-  width: 95%;
-  margin: 0 auto;
   flex-direction: column;
   gap: 15px;
 }
 
+/* Settings top */
 .settings-top {
   display: flex;
   justify-content: space-between;
@@ -101,7 +100,7 @@
 }
 
 .settings-top-left {
-  flex: 1;
+  flex: 0.95;
   display: flex;
   justify-content: flex-start;
   gap: 40px;
@@ -111,6 +110,7 @@
   padding: 20px 25px 20px 20px;
 }
 
+/* Settings user */
 .settings-user-wrapper {
   display: flex;
   height: 410px;
@@ -134,13 +134,14 @@
   border-radius: 0.5rem;
 }
 
-.settings-details-wrapper {
+/* Settings line wrapper */
+.settings-line-wrapper {
   display: flex;
   flex: 1;
   flex-direction: column-reverse;
 }
 
-.settings-line-wrapper {
+.settings-line-main {
   display: flex;
   flex-direction: column-reverse;
   position: relative;
@@ -183,13 +184,13 @@
 }
 
 .settings-line-icon::before {
-  top: -32px;
-  height: 32px;
+  top: -24px;
+  height: 24px;
 }
 
 .settings-line-icon::after {
-  bottom: -32px;
-  height: 32px;
+  bottom: -24px;
+  height: 24px;
 }
 
 .settings-line:last-child .settings-line-icon::before,
@@ -247,6 +248,7 @@
 }
 
 .settings-top-right {
+  flex: 0.324;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -259,17 +261,26 @@
   gap: 10px;
 }
 
+/* Settings bottom */
 .settings-bottom {
   display: flex;
   gap: 15px;
 }
 
+.settings-bottom-left,
+.settings-bottom-right {
+  display: flex;
+  gap: 15px;
+  flex: 1;
+}
+
+/* Settings details wrappper */
 .settings-details {
+  width: 100%;
   display: flex;
   flex-direction: column;
   letter-spacing: 0.6px;
   color: var(--color-surface-accent);
-  width: 248px;
   background-color: var(--color-sidebar-bg);
   border: 0.5px solid var(--color-border);
   border-radius: 0.5rem;
@@ -301,11 +312,11 @@
   background-color: var(--color-surface-primary);
   border-radius: 0.5rem;
   border: 0.5px solid var(--color-border);
-  padding: 6px 12px;
+  padding: 6px 10px;
 }
 
-.settings-details-language {
-  padding: 7.5px 12px;
+.settings-details-right-options {
+  padding: 7.5px 10px;
 }
 
 .settings-right {
@@ -333,6 +344,59 @@
   cursor: pointer;
 }
 
+@media (max-width: 480px) {
+  /* Settings body */
+  .settings-top-right1,
+  .settings-top-right2,
+  .settings-bottom-left,
+  .settings-bottom-right {
+    flex-direction: column;
+  }
+
+  .settings-user-wrapper {
+    margin-bottom: -40px;
+  }
+
+  .settings-user {
+    width: 400px;
+    height: 380px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 600px) {
+  /* Settings body */
+  .settings-user-wrapper {
+    margin-bottom: 90px;
+  }
+
+  .settings-user {
+    width: 480px;
+    height: 500px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  /* Settings body */
+  .settings-user-wrapper {
+    margin-bottom: 200px;
+  }
+
+  .settings-user {
+    width: 660px;
+    height: 600px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  /* Settings body */
+  .settings-top-right1,
+  .settings-top-right2,
+  .settings-bottom-left,
+  .settings-bottom-right {
+    flex-direction: row;
+  }
+}
+
 @media (max-width: 768px) {
   /* Settings header */
   .settings-header {
@@ -343,20 +407,24 @@
   }
 
   /* Settings body */
-  .settings {
-    width: 100%;
+  .settings-body {
+    max-width: 100vw;
   }
 
-  /* Settings main */
-  .settings-main {
-    gap: 30px;
-    width: 90%;
-    margin-top: 40px;
-  }
-
-  .settings-main-wrapper {
-    gap: 15px;
+  .settings-top-left {
     flex-direction: column;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  /* Settings body */
+  .settings-user {
+    width: 250px;
+    height: 410px;
+  }
+
+  .settings-top-left {
+    gap: 25px;
   }
 }
 
@@ -367,8 +435,13 @@
   }
 
   /* Settings body */
-  .settings {
-    width: 100%;
+  .settings-body {
+    max-width: 80vw;
+  }
+
+  .settings-top-right1,
+  .settings-top-right2 {
+    flex-direction: row;
   }
 }
 
@@ -382,11 +455,30 @@
   .settings-body {
     width: 90%;
   }
+
+  .settings-top {
+    flex-direction: column;
+  }
+
+  .settings-top-right,
+  .settings-top-right1,
+  .settings-top-right2 {
+    gap: 15px;
+  }
+
+  .settings-bottom {
+    flex-direction: column;
+  }
 }
 
 @media (min-width: 1025px) and (max-width: 1200px) {
   /* Settings header */
   .settings-header {
     width: 83vw;
+  }
+
+  /* Settings body */
+  .settings-body {
+    max-width: 83vw;
   }
 }
