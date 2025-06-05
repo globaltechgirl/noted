@@ -351,6 +351,17 @@ function Settings() {
                                                         <p
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
+                                                                setDashboardView("List");
+                                                                setActiveGrid("list");
+                                                                localStorage.setItem("dashboardView", "list");
+                                                                setShowDashboardDropdown(false);
+                                                            }}
+                                                        >
+                                                            List
+                                                        </p>
+                                                        <p
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
                                                                 setDashboardView("Layout");
                                                                 setActiveGrid("layout");
                                                                 localStorage.setItem("dashboardView", "layout");
@@ -369,17 +380,6 @@ function Settings() {
                                                             }}
                                                         >
                                                             Compact
-                                                        </p>
-                                                        <p
-                                                            onClick={(e) => {
-                                                                e.stopPropagation();
-                                                                setDashboardView("List");
-                                                                setActiveGrid("list");
-                                                                localStorage.setItem("dashboardView", "list");
-                                                                setShowDashboardDropdown(false);
-                                                            }}
-                                                        >
-                                                            List
                                                         </p>
                                                     </div>
                                                 )}
