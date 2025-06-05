@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import Folder from "../Folder";
 
 function OneFolder({ folderName }) {
-
-    const [activeGrid, setActiveGrid] = useState("layout");
+    const [activeGrid, setActiveGrid] = useState(() => {
+        return localStorage.getItem("dashboardView") || "layout";
+    });
 
     const [positions, setPositions] = useState({
         list: 1.5,

@@ -3,8 +3,9 @@ import Folder from "../Folder";
 import img1 from '../../../assets/images/img1.jpg';
 
 function MediaFolder() {
-
-    const [activeGrid, setActiveGrid] = useState("layout");
+    const [activeGrid, setActiveGrid] = useState(() => {
+        return localStorage.getItem("dashboardView") || "layout";
+    });
 
     const [positions, setPositions] = useState({
         list: 1.5,

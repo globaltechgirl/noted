@@ -41,6 +41,24 @@ function Settings() {
         };
     }, []);
 
+    const [dashboardView, setDashboardView] = useState("Compact");
+    const [showDashboardDropdown, setShowDashboardDropdown] = useState(false);
+    const dashboardDropdownRef = useRef(null);
+    const [activeGrid, setActiveGrid] = useState("layout"); // assuming you already have this
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dashboardDropdownRef.current && !dashboardDropdownRef.current.contains(event.target)) {
+                setShowDashboardDropdown(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     return (
         <div className="settings-container">
             <div className="settings-wrapper">
@@ -320,8 +338,51 @@ function Settings() {
                                                 <p>Dashboard View</p>
                                             </div>
 
-                                            <div className="settings-right settings-options">
-                                                <p>Compact</p>
+                                            <div
+                                                className="settings-right settings-options"
+                                                onClick={() => setShowDashboardDropdown((prev) => !prev)}
+                                                ref={dashboardDropdownRef}
+                                                style={{ position: "relative", cursor: "pointer" }}
+                                            >
+                                                <p>{dashboardView}</p>
+
+                                                {showDashboardDropdown && (
+                                                    <div className="dropdown-options">
+                                                        <p
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setDashboardView("Layout");
+                                                                setActiveGrid("layout");
+                                                                localStorage.setItem("dashboardView", "layout");
+                                                                setShowDashboardDropdown(false);
+                                                            }}
+                                                        >
+                                                            Layout
+                                                        </p>
+                                                        <p
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setDashboardView("Compact");
+                                                                setActiveGrid("compact");
+                                                                localStorage.setItem("dashboardView", "compact");
+                                                                setShowDashboardDropdown(false);
+                                                            }}
+                                                        >
+                                                            Compact
+                                                        </p>
+                                                        <p
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setDashboardView("List");
+                                                                setActiveGrid("list");
+                                                                localStorage.setItem("dashboardView", "list");
+                                                                setShowDashboardDropdown(false);
+                                                            }}
+                                                        >
+                                                            List
+                                                        </p>
+                                                    </div>
+                                                )}
                                             </div>                                        
                                         </div>
                                     </div>
