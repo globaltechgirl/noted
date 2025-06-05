@@ -47,27 +47,6 @@ function MediaFolder() {
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
             date: "15.05.25"
-        },
-        {
-            icon: null,
-            image: img1,
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25"
-        },
-        {
-            icon: null,
-            image: img1,
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25"
-        },
-        {
-            icon: null,
-            image: img1,
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25"
         }
     ];
 

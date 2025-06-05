@@ -59,18 +59,6 @@ function LinkFolder({ folderName }) {
             filesize: "2.3 MB",
             date: "15.05.25",
             link: "https://example.com/waterfall-licence-1"
-        },
-        {
-            title: "Licence",
-            filesize: "2.3 MB",
-            date: "15.05.25",
-            link: "https://example.com/waterfall-licence-1"
-        },
-        {
-            title: "Licence",
-            filesize: "2.3 MB",
-            date: "15.05.25",
-            link: "https://example.com/waterfall-licence-1"
         }
     ];
 

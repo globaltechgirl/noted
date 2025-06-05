@@ -41,27 +41,9 @@ function OneFolder({ folderName }) {
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
             date: "15.05.25"
-        },
-        {
-            icon: "F",
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25"
-        },
-        {
-            icon: "F",
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25"
-        },
-        {
-            icon: "F",
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25"
         }
-    ];
-
+    ]
+    
     return (
         <div className="folder-container">
             <div className="folder-wrapper">
