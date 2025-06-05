@@ -344,6 +344,32 @@
   cursor: pointer;
 }
 
+/* Dropdown options */
+.dropdown-options {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  z-index: 100;
+  width: max-content;
+  background-color: var(--color-sidebar-bg);
+  border: 0.5px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 5px;
+}
+
+.dropdown-options p {
+  margin: 0;
+  padding: 3px 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dropdown-options p:hover {
+  background-color: var(--color-surface-primary);
+  border-radius: 0.3rem;
+  border: 0.5px solid var(--color-border);
+}
+
 @media (max-width: 480px) {
   /* Settings body */
   .settings-top-right1,

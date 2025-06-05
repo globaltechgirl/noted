@@ -4,54 +4,43 @@ import './Setting.css';
 function Settings() {
     const [username, setUsername] = useState("username");
 
-    const [editingField, setEditingField] = useState(null);
+    const [loginNotification, setLoginNotification] = useState("Enabled");
+    const [showLoginDropdown, setShowLoginDropdown] = useState(false);
+    const loginDropdownRef = useRef(null);
 
-    // Hide input editing field on outside click
     useEffect(() => {
-        function handleClickOutsideField(event) {
+        function handleClickOutsideDropdown(event) {
             if (
-                editingField === "fullName" &&
-                fullNameRef.current &&
-                !fullNameRef.current.contains(event.target)
+                loginDropdownRef.current &&
+                !loginDropdownRef.current.contains(event.target)
             ) {
-                setEditingField(null);
+                setShowLoginDropdown(false);
             }
         }
 
-        document.addEventListener("mousedown", handleClickOutsideField);
+        document.addEventListener("mousedown", handleClickOutsideDropdown);
         return () => {
-            document.removeEventListener("mousedown", handleClickOutsideField);
+            document.removeEventListener("mousedown", handleClickOutsideDropdown);
         };
-    }, [editingField]);
+    }, []);
 
-    // Edit icon component
-    function EditIcon({ field }) {
-        return (
-            <div
-                className="profile-details-edit"
-                onClick={() => setEditingField(field)}
-                title="Edit"
-                style={{ cursor: "pointer" }}
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" className="profile-edit-svg" viewBox="0 0 24 24">
-                    <path
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6"
-                    />
-                </svg>
-            </div>
-        );
-    }
+    const [emailSubscription, setEmailSubscription] = useState("Subscribed");
+    const [showEmailDropdown, setShowEmailDropdown] = useState(false);
+    const emailDropdownRef = useRef(null);
 
-    // Save field and close editing
-    const handleSave = (field) => {
-        setEditingField(null);
-    };
-    
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (emailDropdownRef.current && !emailDropdownRef.current.contains(event.target)) {
+                setShowEmailDropdown(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     return (
         <div className="settings-container">
             <div className="settings-wrapper">
@@ -239,9 +228,37 @@ function Settings() {
                                                 <p>Login Notifications</p>
                                             </div>
 
-                                            <div className="settings-right settings-options">
-                                                <p>Enabled</p>
-                                            </div>                                        
+                                            <div
+                                                className="settings-right settings-options"
+                                                onClick={() => setShowLoginDropdown((prev) => !prev)}
+                                                ref={loginDropdownRef}
+                                                style={{ position: "relative", cursor: "pointer" }}
+                                            >
+                                                <p>{loginNotification}</p>
+
+                                                {showLoginDropdown && (
+                                                    <div className="dropdown-options">
+                                                        <p
+                                                            onClick={(e) => {
+                                                                e.stopPropagation(); // prevents re-opening the dropdown
+                                                                setLoginNotification("Enabled");
+                                                                setShowLoginDropdown(false);
+                                                            }}
+                                                        >
+                                                            Enabled
+                                                        </p>
+                                                        <p
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setLoginNotification("Not Enabled");
+                                                                setShowLoginDropdown(false);
+                                                            }}
+                                                        >
+                                                            Not Enabled
+                                                        </p>
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -258,8 +275,36 @@ function Settings() {
                                                 <p>Email Notifications</p>
                                             </div>
 
-                                            <div className="settings-right settings-options">
-                                                <p>Subscribed</p>
+                                            <div
+                                                className="settings-right settings-options"
+                                                onClick={() => setShowEmailDropdown((prev) => !prev)}
+                                                ref={emailDropdownRef}
+                                                style={{ position: "relative", cursor: "pointer" }}
+                                            >
+                                                <p>{emailSubscription}</p>
+
+                                                {showEmailDropdown && (
+                                                    <div className="dropdown-options">
+                                                        <p
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setEmailSubscription("Subscribed");
+                                                                setShowEmailDropdown(false);
+                                                            }}
+                                                        >
+                                                            Subscribed
+                                                        </p>
+                                                        <p
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setEmailSubscription("Not Subscribed");
+                                                                setShowEmailDropdown(false);
+                                                            }}
+                                                        >
+                                                            Not Subscribed
+                                                        </p>
+                                                    </div>
+                                                )}
                                             </div>                                        
                                         </div>
                                     </div>
