@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import './Setting.css';
+import { useLanguage } from "../../../Context/LanguageContext.jsx";
 
 function Settings() {
     const [username, setUsername] = useState("username");
@@ -41,15 +42,31 @@ function Settings() {
         };
     }, []);
 
-    const [dashboardView, setDashboardView] = useState("Compact");
+    const [dashboardView, setDashboardView] = useState("Layout");
     const [showDashboardDropdown, setShowDashboardDropdown] = useState(false);
     const dashboardDropdownRef = useRef(null);
-    const [activeGrid, setActiveGrid] = useState("layout"); // assuming you already have this
 
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dashboardDropdownRef.current && !dashboardDropdownRef.current.contains(event.target)) {
                 setShowDashboardDropdown(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+    const { selectedLanguage, setSelectedLanguage, languages } = useLanguage();
+    const languageDropdownRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (languageDropdownRef.current && !languageDropdownRef.current.contains(event.target)) {
+                setShowLanguageDropdown(false);
             }
         };
 
@@ -256,7 +273,7 @@ function Settings() {
 
                                                 {showLoginDropdown && (
                                                     <div className="dropdown-options">
-                                                        <p
+                                                        <div
                                                             onClick={(e) => {
                                                                 e.stopPropagation(); // prevents re-opening the dropdown
                                                                 setLoginNotification("Enabled");
@@ -264,8 +281,8 @@ function Settings() {
                                                             }}
                                                         >
                                                             Enabled
-                                                        </p>
-                                                        <p
+                                                        </div>
+                                                        <div
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 setLoginNotification("Not Enabled");
@@ -273,7 +290,7 @@ function Settings() {
                                                             }}
                                                         >
                                                             Not Enabled
-                                                        </p>
+                                                        </div>
                                                     </div>
                                                 )}
                                             </div>
@@ -303,7 +320,7 @@ function Settings() {
 
                                                 {showEmailDropdown && (
                                                     <div className="dropdown-options">
-                                                        <p
+                                                        <div
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 setEmailSubscription("Subscribed");
@@ -311,8 +328,8 @@ function Settings() {
                                                             }}
                                                         >
                                                             Subscribed
-                                                        </p>
-                                                        <p
+                                                        </div>
+                                                        <div
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 setEmailSubscription("Not Subscribed");
@@ -320,7 +337,7 @@ function Settings() {
                                                             }}
                                                         >
                                                             Not Subscribed
-                                                        </p>
+                                                        </div>
                                                     </div>
                                                 )}
                                             </div>                                        
@@ -348,7 +365,7 @@ function Settings() {
 
                                                 {showDashboardDropdown && (
                                                     <div className="dropdown-options">
-                                                        <p
+                                                        <div
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 setDashboardView("List");
@@ -358,8 +375,8 @@ function Settings() {
                                                             }}
                                                         >
                                                             List
-                                                        </p>
-                                                        <p
+                                                        </div>
+                                                        <div
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 setDashboardView("Layout");
@@ -369,8 +386,8 @@ function Settings() {
                                                             }}
                                                         >
                                                             Layout
-                                                        </p>
-                                                        <p
+                                                        </div>
+                                                        <div
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 setDashboardView("Compact");
@@ -380,7 +397,7 @@ function Settings() {
                                                             }}
                                                         >
                                                             Compact
-                                                        </p>
+                                                        </div>
                                                     </div>
                                                 )}
                                             </div>                                        
@@ -424,12 +441,47 @@ function Settings() {
 
                                     <div className="settings-details-right settings-details-right-options settings-details-language">
                                         <div className="settings-right">
-                                            <p>English</p>
+                                            <p>{languages.find(lang => lang.code === selectedLanguage)?.label || selectedLanguage}</p>
                                         </div>
 
-                                        <div className="settings-right settings-options">
+                                        <div
+                                            className="settings-right settings-options"
+                                            onClick={() => setShowLanguageDropdown((prev) => !prev)}
+                                            ref={languageDropdownRef}
+                                            style={{ position: "relative", cursor: "pointer" }}
+                                            role="button"
+                                            tabIndex={0}
+                                            onKeyDown={e => {
+                                                if (e.key === "Enter" || e.key === " ") setShowLanguageDropdown(prev => !prev);
+                                            }}
+                                        >
                                             <p>Enabled</p>
-                                        </div>                                        
+
+                                            {showLanguageDropdown && (
+                                                <div className="dropdown-options">
+                                                    {languages.map((lang) => (
+                                                        <div
+                                                            key={lang}
+                                                            onClick={() => {
+                                                                setSelectedLanguage(lang.code);
+                                                                setShowLanguageDropdown(false);
+                                                            }}
+                                                            role="button"
+                                                            tabIndex={0}
+                                                            onKeyDown={e => {
+                                                                if (e.key === "Enter" || e.key === " ") {
+                                                                    setSelectedLanguage(lang.code);
+                                                                    setShowLanguageDropdown(false);
+                                                                }
+                                                            }}
+                                                            className={lang.code === selectedLanguage ? "selected" : ""}
+                                                        >
+                                                            {lang.label}
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

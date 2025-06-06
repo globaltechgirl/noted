@@ -1,0 +1,86 @@
+export const translations = {
+    en: {
+        side: {
+        home: "Home",
+        allNotes: "All Notes",
+        daily: "Daily",
+        personal: "Personal",
+        work: "Work",
+        media: "Media",
+        links: "Links",
+        settings: "Settings",
+        },
+    },
+    es: {
+        side: {
+        home: "Inicio",
+        allNotes: "Todas las Notas",
+        daily: "Diario",
+        personal: "Personal",
+        work: "Trabajo",
+        media: "Medios",
+        links: "Enlaces",
+        settings: "Configuraciones",
+        },
+    },
+    ko: {
+        side: {
+            home: "홈",
+            allNotes: "전체 노트",
+            daily: "일일",
+            personal: "개인",
+            work: "업무",
+            media: "미디어",
+            links: "링크",
+            settings: "설정",
+        },
+    },
+    ja: {
+        side: {
+        home: "ホーム",
+        allNotes: "すべてのノート",
+        daily: "日次",
+        personal: "個人",
+        work: "仕事",
+        media: "メディア",
+        links: "リンク",
+        settings: "設定",
+        },
+    },
+    fr: {
+        side: {
+        home: "Accueil",
+        allNotes: "Toutes les notes",
+        daily: "Quotidien",
+        personal: "Personnel",
+        work: "Travail",
+        media: "Médias",
+        links: "Liens",
+        settings: "Paramètres",
+        },
+    },
+    de: {
+        side: {
+        home: "Startseite",
+        allNotes: "Alle Notizen",
+        daily: "Täglich",
+        personal: "Persönlich",
+        work: "Arbeit",
+        media: "Medien",
+        links: "Links",
+        settings: "Einstellungen",
+        },
+    },
+    pt: {
+        side: {
+        home: "Início",
+        allNotes: "Todas as Notas",
+        daily: "Diário",
+        personal: "Pessoal",
+        work: "Trabalho",
+        media: "Mídia",
+        links: "Links",
+        settings: "Configurações",
+        },
+    },
+    };

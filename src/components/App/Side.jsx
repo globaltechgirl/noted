@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import { useLanguage } from "../../Context/LanguageContext";
+import { translations } from  "../../Context/translations";
 
 function Side({ onSectionClick }) {
     const [activeSection, setActiveSection] = useState("note");
+    const { selectedLanguage } = useLanguage();
+
+    const t = translations[selectedLanguage]?.side || {};
 
     const handleClick = (sectionName) => {
         setActiveSection(sectionName);
@@ -11,7 +16,7 @@ function Side({ onSectionClick }) {
     const menuItems = [
         {
             key: "note",
-            label: "Home",
+            label: t.home || "Home",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
                     <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
@@ -23,7 +28,7 @@ function Side({ onSectionClick }) {
         },
         {
             key: "all-notes",
-            label: "All Notes",
+            label: t.allNotes || "All Notes",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
                     <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -63,7 +68,7 @@ function Side({ onSectionClick }) {
         },
         {
             key: "media-folder",
-            label: "Media",
+            label: t.media || "Media",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
                     <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
@@ -76,7 +81,7 @@ function Side({ onSectionClick }) {
         },
         {
             key: "link-folder",
-            label: "Links",
+            label: t.links || "Links",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
                     <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -86,7 +91,7 @@ function Side({ onSectionClick }) {
         },
         {
             key: "settings",
-            label: "Settings",
+            label: t.settings || "Settings",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
                     <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">

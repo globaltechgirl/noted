@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Side from "./App/Side";
 import Main from "./App/Main";
+import { LanguageProvider } from "../Context/LanguageContext.jsx";
 
 function App() {
     const [view, setView] = useState("home");
@@ -33,16 +34,18 @@ function App() {
     };
 
     return (
-        <div className="app-container">
-            <Side onSectionClick={handleSectionOrFolderClick} />
+        <LanguageProvider>
+            <div className="app-container">
+                <Side onSectionClick={handleSectionOrFolderClick} />
 
-            <Main
-                view={view}
-                activeFolder={activeFolder}
-                onFolderClick={handleSectionOrFolderClick}
-                onBack={() => setView("home")}
-            />
-        </div>
+                <Main
+                    view={view}
+                    activeFolder={activeFolder}
+                    onFolderClick={handleSectionOrFolderClick}
+                    onBack={() => setView("home")}
+                />
+            </div>
+        </LanguageProvider>
     );
 }
 
