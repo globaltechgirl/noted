@@ -9,8 +9,22 @@ export const folderKeyMap = {
     "Locked": "locked",
 };
 
+export const settingsKeyMap = {
+    "Saving Changes": "savingChanges",
+    "Profile": "profile",
+    "Display Name": "displayName",
+    "Account": "account",
+    "Account Created": "accountCreated",
+    "Login Info": "loginInfo",
+    "Last Login": "lastLogin",
+    "Password": "password",
+    "Password Updated": "passwordUpdated",
+    "Memory": "memory",
+    "Memory Usage": "memoryUsage",
+};
+
 export const translations = {
-    en: {
+    "en-US": {
         side: {
             home: "Home",
             allNotes: "All Notes",
@@ -28,8 +42,21 @@ export const translations = {
             files: "files",
             locked: "Locked",
         },
+        settings: {
+            savingChanges: "Saving Changes",
+            profile: "Profile",
+            displayName: "Display Name",
+            account: "Account",
+            accountCreated: "Account Created",
+            loginInfo: "Login Info",
+            lastLogin: "Last Login",
+            password: "Password",
+            passwordUpdated: "Password Updated",
+            memory: "Memory",
+            memoryUsage: "Memory Usage",
+        },
     },
-    es: {
+    "es-ES": {
         side: {
             home: "Inicio",
             allNotes: "Todas las Notas",
@@ -47,8 +74,21 @@ export const translations = {
             files: "archivos",
             locked: "Bloqueado",
         },
+        settings: {
+            savingChanges: "Guardando cambios",
+            profile: "Perfil",
+            displayName: "Nombre para mostrar",
+            account: "Cuenta",
+            accountCreated: "Cuenta creada",
+            loginInfo: "Información de inicio de sesión",
+            lastLogin: "Último inicio de sesión",
+            password: "Contraseña",
+            passwordUpdated: "Contraseña actualizada",
+            memory: "Memoria",
+            memoryUsage: "Uso de memoria",
+        },
     },
-    ko: {
+    "ko": {
         side: {
             home: "홈",
             allNotes: "전체 노트",
@@ -66,8 +106,21 @@ export const translations = {
             files: "파일",
             locked: "잠금",
         },
+        settings: {
+            savingChanges: "변경 사항 저장 중",
+            profile: "프로필",
+            displayName: "표시 이름",
+            account: "계정",
+            accountCreated: "계정 생성됨",
+            loginInfo: "로그인 정보",
+            lastLogin: "마지막 로그인",
+            password: "비밀번호",
+            passwordUpdated: "비밀번호 업데이트됨",
+            memory: "메모리",
+            memoryUsage: "메모리 사용량",
+        },
     },
-    ja: {
+    "ja": {
         side: {
             home: "ホーム",
             allNotes: "すべてのノート",
@@ -85,8 +138,21 @@ export const translations = {
             files: "ファイル",
             locked: "ロック済み",
         },
+        settings: {
+            savingChanges: "変更を保存中",
+            profile: "プロフィール",
+            displayName: "表示名",
+            account: "アカウント",
+            accountCreated: "アカウント作成日",
+            loginInfo: "ログイン情報",
+            lastLogin: "最終ログイン",
+            password: "パスワード",
+            passwordUpdated: "パスワード更新日",
+            memory: "メモリ",
+            memoryUsage: "メモリ使用量",
+        },
     },
-    fr: {
+    "fr-FR": {
         side: {
             home: "Accueil",
             allNotes: "Toutes les notes",
@@ -104,8 +170,21 @@ export const translations = {
             files: "fichiers",
             locked: "Verrouillé",
         },
+        settings: {
+            savingChanges: "Enregistrement des modifications",
+            profile: "Profil",
+            displayName: "Nom affiché",
+            account: "Compte",
+            accountCreated: "Compte créé",
+            loginInfo: "Informations de connexion",
+            lastLogin: "Dernière connexion",
+            password: "Mot de passe",
+            passwordUpdated: "Mot de passe mis à jour",
+            memory: "Mémoire",
+            memoryUsage: "Utilisation de la mémoire",
+        },
     },
-    de: {
+    "de-DE": {
         side: {
             home: "Startseite",
             allNotes: "Alle Notizen",
@@ -123,8 +202,21 @@ export const translations = {
             files: "Dateien",
             locked: "Gesperrt",
         },
+        settings: {
+            savingChanges: "Änderungen werden gespeichert",
+            profile: "Profil",
+            displayName: "Anzeigename",
+            account: "Konto",
+            accountCreated: "Konto erstellt",
+            loginInfo: "Anmeldeinformationen",
+            lastLogin: "Letzte Anmeldung",
+            password: "Passwort",
+            passwordUpdated: "Passwort aktualisiert",
+            memory: "Speicher",
+            memoryUsage: "Speichernutzung",
+        },
     },
-    pt: {
+    "pt-BR": {
         side: {
             home: "Início",
             allNotes: "Todas as Notas",
@@ -141,6 +233,19 @@ export const translations = {
             documents: "Documentos",
             files: "arquivos",        
             locked: "Bloqueado",
+        },
+        settings: {
+            savingChanges: "Salvando alterações",
+            profile: "Perfil",
+            displayName: "Nome de exibição",
+            account: "Conta",
+            accountCreated: "Conta criada",
+            loginInfo: "Informações de login",
+            lastLogin: "Último login",
+            password: "Senha",
+            passwordUpdated: "Senha atualizada",
+            memory: "Memória",
+            memoryUsage: "Uso de memória",
         },
     },
 };

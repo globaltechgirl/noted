@@ -4,9 +4,10 @@ import { useLanguage } from "../../../Context//LanguageContext";
 import { folderKeyMap, translations } from  "../../../Context/translations";
 
 function Settings() {
-    
+    // --- Username ---
     const [username, setUsername] = useState("username");
 
+    // --- Login Notification ---
     const [loginNotification, setLoginNotification] = useState("Enabled");
     const [showLoginDropdown, setShowLoginDropdown] = useState(false);
     const loginDropdownRef = useRef(null);
@@ -27,13 +28,17 @@ function Settings() {
         };
     }, []);
 
+    // --- Email Subscription ---
     const [emailSubscription, setEmailSubscription] = useState("Subscribed");
     const [showEmailDropdown, setShowEmailDropdown] = useState(false);
     const emailDropdownRef = useRef(null);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (emailDropdownRef.current && !emailDropdownRef.current.contains(event.target)) {
+            if (
+                emailDropdownRef.current &&
+                !emailDropdownRef.current.contains(event.target)
+            ) {
                 setShowEmailDropdown(false);
             }
         };
@@ -44,13 +49,17 @@ function Settings() {
         };
     }, []);
 
+    // --- Dashboard View ---
     const [dashboardView, setDashboardView] = useState("Layout");
     const [showDashboardDropdown, setShowDashboardDropdown] = useState(false);
     const dashboardDropdownRef = useRef(null);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (dashboardDropdownRef.current && !dashboardDropdownRef.current.contains(event.target)) {
+            if (
+                dashboardDropdownRef.current &&
+                !dashboardDropdownRef.current.contains(event.target)
+            ) {
                 setShowDashboardDropdown(false);
             }
         };
@@ -61,15 +70,18 @@ function Settings() {
         };
     }, []);
 
+    // --- Language Selection ---
     const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
     const { selectedLanguage, setSelectedLanguage, languages } = useLanguage();
     const languageDropdownRef = useRef(null);
-    const t = translations[selectedLanguage]?.folders || {};
-
+    const t = translations[selectedLanguage]?.settings || {};
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (languageDropdownRef.current && !languageDropdownRef.current.contains(event.target)) {
+            if (
+                languageDropdownRef.current &&
+                !languageDropdownRef.current.contains(event.target)
+            ) {
                 setShowLanguageDropdown(false);
             }
         };

@@ -19,29 +19,29 @@ function AllFolders() {
     const t = translations[selectedLanguage]?.folders || {};
 
     const allFolderData = [
-        { 
-            icon: "F", 
-            title: t.documents || "Documents",
+        {
+            icon: "F",
+            title: t[folderKeyMap["Documents"]] || "Documents",
             count: 24,
-            fileType: t.files || "files"
+            fileType: t[folderKeyMap["Files"]] || "files",
         },
-        { 
-            icon: "F", 
-            title: t.media || "Media",
+        {
+            icon: "F",
+            title: t[folderKeyMap["Media"]] || "Media",
             count: 908,
-            fileType: t.media || "media"
+            fileType: t[folderKeyMap["Media"]] || "media",
         },
-        { 
-            icon: "F", 
-            title: t.links || "Links",
+        {
+            icon: "F",
+            title: t[folderKeyMap["Links"]] || "Links",
             count: 97,
-            fileType: t.links || "links"
+            fileType: t[folderKeyMap["Links"]] || "links",
         },
-        { 
-            icon: "F", 
-            title: t.locked || "Locked",
+        {
+            icon: "F",
+            title: t[folderKeyMap["Locked"]] || "Locked",
             count: 19,
-            fileType: t.locked || "locked"
+            fileType: t[folderKeyMap["Locked"]] || "locked",
         },
     ];
 

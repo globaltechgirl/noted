@@ -3,13 +3,13 @@ import React, { createContext, useContext, useState } from "react";
 const LanguageContext = createContext();
 
 export const languages = [
-  { code: "en", label: "English (US)" },
-  { code: "ko", label: "Korean" },
-  { code: "ja", label: "Japanese" },
-  { code: "fr", label: "Français (France)" },
-  { code: "de", label: "Deutsch" },
-  { code: "es", label: "Español (España)" },
-  { code: "pt", label: "Português (Brasil)" },
+  { code: "en-US", label: "English (US)" },
+  { code: "ko", label: "한국어 (Korean)" },
+  { code: "ja", label: "日本語 (Japanese)" },
+  { code: "fr-FR", label: "Français (France)" },
+  { code: "de-DE", label: "Deutsch (German)" },
+  { code: "es-ES", label: "Español (España)" },
+  { code: "pt-BR", label: "Português (Brasil)" },
 ];
 
 export const LanguageProvider = ({ children }) => {
