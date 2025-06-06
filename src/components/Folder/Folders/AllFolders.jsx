@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Folder from "../Folder";
 import "./AllFolders.css";
+import { useLanguage } from "../../../Context/LanguageContext";
+import { folderKeyMap, translations } from  "../../../Context/translations";
 
 function AllFolders() {
     const [activeGrid, setActiveGrid] = useState(() => {
@@ -13,30 +15,33 @@ function AllFolders() {
         compact: 53.5,
     });
 
+    const { selectedLanguage } = useLanguage();
+    const t = translations[selectedLanguage]?.folders || {};
+
     const allFolderData = [
         { 
             icon: "F", 
-            title: "Documents",
+            title: t.documents || "Documents",
             count: 24,
-            fileType: "files"
+            fileType: t.files || "files"
         },
         { 
             icon: "F", 
-            title: "Media",
+            title: t.media || "Media",
             count: 908,
-            fileType: "media"
+            fileType: t.media || "media"
         },
         { 
             icon: "F", 
-            title: "Links",
+            title: t.links || "Links",
             count: 97,
-            fileType: "links"
+            fileType: t.links || "links"
         },
         { 
             icon: "F", 
-            title: "Locked",
+            title: t.locked || "Locked",
             count: 19,
-            fileType: "locked"
+            fileType: t.locked || "locked"
         },
     ];
 
@@ -83,7 +88,7 @@ function AllFolders() {
                                 <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M7 3.34a10 10 0 1 1-4.995 8.984L2 12l.005-.324A10 10 0 0 1 7 3.34"/></svg>
                             </p>
 
-                            <p>All Notes</p>
+                            <p>{t[folderKeyMap["All Notes"]] || "All Notes"}</p>
                         </div>
 
                         <div className="folder-icons">

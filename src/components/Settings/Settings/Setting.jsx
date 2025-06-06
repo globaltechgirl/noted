@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import './Setting.css';
-import { useLanguage } from "../../../Context/LanguageContext.jsx";
+import { useLanguage } from "../../../Context//LanguageContext";
+import { folderKeyMap, translations } from  "../../../Context/translations";
 
 function Settings() {
+    
     const [username, setUsername] = useState("username");
 
     const [loginNotification, setLoginNotification] = useState("Enabled");
@@ -62,6 +64,8 @@ function Settings() {
     const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
     const { selectedLanguage, setSelectedLanguage, languages } = useLanguage();
     const languageDropdownRef = useRef(null);
+    const t = translations[selectedLanguage]?.folders || {};
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -86,7 +90,7 @@ function Settings() {
                                  <svg xmlns="http://www.w3.org/2000/svg" className="settings-header-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M7 3.34a10 10 0 1 1-4.995 8.984L2 12l.005-.324A10 10 0 0 1 7 3.34"/></svg>
                             </p>
 
-                            <p>settings</p>
+                            <p>{t[folderKeyMap["Settings"]] || "Settings"}</p>
                         </div>
 
                         <div className="settings-icons">

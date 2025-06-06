@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Folder from "../Folder";
+import { useLanguage } from "../../../Context/LanguageContext";
+import { folderKeyMap, translations } from  "../../../Context/translations";
 
 function LinkFolder({ folderName }) {
     const [activeGrid, setActiveGrid] = useState(() => {
@@ -11,6 +13,9 @@ function LinkFolder({ folderName }) {
         layout: 28,
         compact: 53.5,
     });
+
+    const { selectedLanguage } = useLanguage();
+    const t = translations[selectedLanguage]?.folders || {};
 
     const folderData = [
         {
@@ -73,7 +78,11 @@ function LinkFolder({ folderName }) {
                                 <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M7 3.34a10 10 0 1 1-4.995 8.984L2 12l.005-.324A10 10 0 0 1 7 3.34"/></svg>
                             </p>
 
-                            <p>{folderName || "Note"}</p>
+                            <p>
+                                {folderName
+                                    ? t[folderKeyMap[folderName] || folderName.toLowerCase()] || folderName
+                                    : t.note || "Note"}
+                            </p>
                         </div>
 
                         <div className="folder-icons">

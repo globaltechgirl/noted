@@ -1,7 +1,12 @@
 import React from "react";
 import './Note.css';
+import { useLanguage } from "../../Context//LanguageContext";
+import { folderKeyMap, translations } from  "../../Context/translations";
 
 function Note({ onFolderClick }) {
+    const { selectedLanguage } = useLanguage();
+    const t = translations[selectedLanguage]?.folders || {};
+
     return (
         <div className="note-container">
             <div className="note-wrapper">
@@ -12,7 +17,7 @@ function Note({ onFolderClick }) {
                                 <svg xmlns="http://www.w3.org/2000/svg" className="note-header-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M7 3.34a10 10 0 1 1-4.995 8.984L2 12l.005-.324A10 10 0 0 1 7 3.34"/></svg>
                             </p>
 
-                            <p>Home</p>
+                            <p>{t[folderKeyMap["Home"]] || "Home"}</p>
                         </div>
 
                         <div className="note-icons">
