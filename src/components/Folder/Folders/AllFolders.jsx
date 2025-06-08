@@ -15,6 +15,7 @@ function AllFolders() {
         compact: 53.5,
     });
 
+    // --- Language Selection ---
     const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.folders || {};
 
