@@ -32,7 +32,7 @@ function Profile() {
     const [showBackgroundPopup, setShowBackgroundPopup] = useState(false);
     const popupRef = useRef(null);
 
-    // Hide background popup when clicking outside
+    // Hide background popup on outside click
     useEffect(() => {
         function handleClickOutsidePopup(event) {
             if (popupRef.current && !popupRef.current.contains(event.target)) {
