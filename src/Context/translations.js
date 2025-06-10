@@ -12,6 +12,7 @@ export const folderKeyMap = {
 
 // --- Settings Key Mapping ---
 export const settingsKeyMap = {
+    "Settings": "settings",
     "Saving Changes": "savingChanges",
     "Profile": "profile",
     "Display Name": "displayName",
@@ -69,6 +70,7 @@ export const translations = {
             locked: "Locked",
         },
         settings: {
+            settings: "Settings",
             savingChanges: "Saving Changes",
             profile: "Profile",
             displayName: "Display Name",
@@ -124,6 +126,7 @@ export const translations = {
             locked: "Bloqueado",
         },
         settings: {
+            settings: "Configuraciones",
             savingChanges: "Guardando cambios",
             profile: "Perfil",
             displayName: "Nombre para mostrar",
@@ -179,6 +182,7 @@ export const translations = {
             locked: "잠금",
         },
         settings: {
+            settings: "설정",
             savingChanges: "변경 사항 저장 중",            
             profile: "프로필",                          
             displayName: "표시 이름",                    
@@ -234,6 +238,7 @@ export const translations = {
             locked: "ロック済み",
         },
         settings: {
+            settings: "設定",
             savingChanges: "変更を保存中",                     
             profile: "プロフィール",                           
             displayName: "表示名",                             
@@ -289,6 +294,7 @@ export const translations = {
             locked: "Verrouillé",
         },
         settings: {
+            settings: "Paramètres",
             savingChanges: "Enregistrement des modifications",            
             profile: "Profil",                                            
             displayName: "Nom affiché",                                   
@@ -344,6 +350,7 @@ export const translations = {
             locked: "Gesperrt",
         },
         settings: {
+            settings: "Einstellungen",
             savingChanges: "Änderungen werden gespeichert",    
             profile: "Profil",                                 
             displayName: "Anzeigename",                        
@@ -399,6 +406,7 @@ export const translations = {
             locked: "Bloqueado",
         },
         settings: {
+            settings: "Configurações",
             savingChanges: "Salvando alterações",               
             profile: "Perfil",                                  
             displayName: "Nome de exibição",                    

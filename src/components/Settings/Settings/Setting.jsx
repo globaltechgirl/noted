@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import './Setting.css';
 import { useLanguage } from "../../../Context//LanguageContext";
-import { folderKeyMap, translations } from  "../../../Context/translations";
+import { settingsKeyMap, translations } from  "../../../Context/translations";
 
 function Settings() {
     // --- Username ---
@@ -102,7 +102,7 @@ function Settings() {
                                  <svg xmlns="http://www.w3.org/2000/svg" className="settings-header-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M7 3.34a10 10 0 1 1-4.995 8.984L2 12l.005-.324A10 10 0 0 1 7 3.34"/></svg>
                             </p>
 
-                            <p>{t[folderKeyMap["Settings"]] || "Settings"}</p>
+                            <p>{t[settingsKeyMap["Settings"]] || "Settings"}</p>
                         </div>
 
                         <div className="settings-icons">
@@ -132,12 +132,12 @@ function Settings() {
 
                                             <div className="settings-line-details">
                                                 <div className="settings-line-header">
-                                                    <p>Memory</p>
+                                                    <p>{t[settingsKeyMap["Memory"]] || "Memory"}</p>
                                                 </div>
 
                                                 <div className="settings-line-body">
                                                     <div className="settings-line-body-left">
-                                                        <p>Memory Usage</p>
+                                                        <p>{t[settingsKeyMap["Memory Usage"]] || "Memory Usage"}</p>
                                                     </div>
 
                                                     <div className="settings-line-body-right">
@@ -154,12 +154,12 @@ function Settings() {
 
                                             <div className="settings-line-details">
                                                 <div className="settings-line-header">
-                                                    <p>Password</p>
+                                                    <p>{t[settingsKeyMap["Password"]] || "Password"}</p>
                                                 </div>
 
                                                 <div className="settings-line-body">
                                                     <div className="settings-line-body-left">
-                                                        <p>Password Updated</p>
+                                                        <p>{t[settingsKeyMap["Password Updated"]] || "Password Updated"}</p>
                                                     </div>
 
                                                     <div className="settings-line-body-right">
@@ -176,12 +176,12 @@ function Settings() {
 
                                             <div className="settings-line-details">
                                                 <div className="settings-line-header">
-                                                    <p>Login Info</p>
+                                                    <p>{t[settingsKeyMap["Login Info"]] || "Login Info"}</p>
                                                 </div>
 
                                                 <div className="settings-line-body">
                                                     <div className="settings-line-body-left">
-                                                        <p>Last Login</p>
+                                                        <p>{t[settingsKeyMap["Last Login"]] || "Last Login"}</p>
                                                     </div>
 
                                                     <div className="settings-line-body-right">
@@ -198,12 +198,12 @@ function Settings() {
 
                                             <div className="settings-line-details">
                                                 <div className="settings-line-header">
-                                                    <p>Account</p>
+                                                    <p>{t[settingsKeyMap["Account"]] || "Account"}</p>
                                                 </div>
 
                                                 <div className="settings-line-body">
                                                     <div className="settings-line-body-left">
-                                                        <p>Account Created</p>
+                                                        <p>{t[settingsKeyMap["Account Created"]] || "Account Created"}</p>
                                                     </div>
 
                                                     <div className="settings-line-body-right">
@@ -220,12 +220,12 @@ function Settings() {
 
                                             <div className="settings-line-details">
                                                 <div className="settings-line-header">
-                                                    <p>Profile</p>
+                                                    <p>{t[settingsKeyMap["Profile"]] || "Profile"}</p>
                                                 </div>
 
                                                 <div className="settings-line-body">
                                                     <div className="settings-line-body-left">
-                                                        <p>Display Name</p>
+                                                        <p>{t[settingsKeyMap["Display Name"]] || "Display Name"}</p>
                                                     </div>
 
                                                     <div className="settings-line-body-right">
@@ -244,7 +244,7 @@ function Settings() {
                                             </g>
                                         </svg>
 
-                                        <p>saving changes</p>
+                                        <p>{t[settingsKeyMap["Saving Changes"]] || "Saving Changes"}</p>
                                     </div>
                                 </div>
                             </div>
@@ -254,16 +254,16 @@ function Settings() {
                                     <div className="settings-details">
                                         <div className="settings-details-left">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                            <p>Membership</p>
+                                            <p>{t[settingsKeyMap["Membership"]] || "Membership"}</p>
                                         </div>
 
                                         <div className="settings-details-right settings-details-right-options settings-details-membership">
                                             <div className="settings-right">
-                                                <p>Membership Status</p>
+                                                <p>{t[settingsKeyMap["Membership Status"]] || "Membership Status"}</p>
                                             </div>
 
                                             <div className="settings-right settings-options">
-                                                <p>Free Member</p>
+                                                <p>{t[settingsKeyMap["Free Member"]] || "Free Member"}</p>
                                             </div>                                        
                                         </div>
                                     </div>
@@ -271,12 +271,12 @@ function Settings() {
                                     <div className="settings-details">
                                         <div className="settings-details-left">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                            <p>Notifications</p>
+                                            <p>{t[settingsKeyMap["Notifications"]] || "Notifications"}</p>
                                         </div>
 
                                         <div className="settings-details-right settings-details-right-options settings-details-login">
                                             <div className="settings-right">
-                                                <p>Login Notifications</p>
+                                                <p>{t[settingsKeyMap["Login Notifications"]] || "Login Notifications"}</p>
                                             </div>
 
                                             <div
@@ -285,18 +285,18 @@ function Settings() {
                                                 ref={loginDropdownRef}
                                                 style={{ position: "relative", cursor: "pointer" }}
                                             >
-                                                <p>{loginNotification}</p>
+                                                <p>{t[settingsKeyMap[loginNotification]] || loginNotification}</p>
 
                                                 {showLoginDropdown && (
                                                     <div className="dropdown-options">
                                                         <div
                                                             onClick={(e) => {
-                                                                e.stopPropagation(); // prevents re-opening the dropdown
+                                                                e.stopPropagation(); 
                                                                 setLoginNotification("Enabled");
                                                                 setShowLoginDropdown(false);
                                                             }}
                                                         >
-                                                            Enabled
+                                                            {t[settingsKeyMap["Enabled"]] || "Enabled"}
                                                         </div>
                                                         <div
                                                             onClick={(e) => {
@@ -305,7 +305,7 @@ function Settings() {
                                                                 setShowLoginDropdown(false);
                                                             }}
                                                         >
-                                                            Not Enabled
+                                                            {t[settingsKeyMap["Not Enabled"]] || "Not Enabled"}
                                                         </div>
                                                     </div>
                                                 )}
@@ -318,12 +318,12 @@ function Settings() {
                                     <div className="settings-details">
                                         <div className="settings-details-left">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                            <p>Notifications</p>
+                                            <p>{t[settingsKeyMap["Notifications"]] || "Notifications"}</p>
                                         </div>
 
                                         <div className="settings-details-right settings-details-right-options settings-details-email">
                                             <div className="settings-right">
-                                                <p>Email Notifications</p>
+                                                <p>{t[settingsKeyMap["Email Notifications"]] || "Email Notifications"}</p>
                                             </div>
 
                                             <div
@@ -332,7 +332,7 @@ function Settings() {
                                                 ref={emailDropdownRef}
                                                 style={{ position: "relative", cursor: "pointer" }}
                                             >
-                                                <p>{emailSubscription}</p>
+                                                <p>{t[settingsKeyMap[emailSubscription]] || emailSubscription}</p>
 
                                                 {showEmailDropdown && (
                                                     <div className="dropdown-options">
@@ -343,7 +343,7 @@ function Settings() {
                                                                 setShowEmailDropdown(false);
                                                             }}
                                                         >
-                                                            Subscribed
+                                                            {t[settingsKeyMap["Subscribed"]] || "Subscribed"}
                                                         </div>
                                                         <div
                                                             onClick={(e) => {
@@ -352,7 +352,7 @@ function Settings() {
                                                                 setShowEmailDropdown(false);
                                                             }}
                                                         >
-                                                            Not Subscribed
+                                                            {t[settingsKeyMap["Not Subscribed"]] || "Not Subscribed"}
                                                         </div>
                                                     </div>
                                                 )}
@@ -363,12 +363,12 @@ function Settings() {
                                     <div className="settings-details">
                                         <div className="settings-details-left">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                            <p>Dashboard</p>
+                                            <p>{t[settingsKeyMap["Dashboard"]] || "Dashboard"}</p>
                                         </div>
 
                                         <div className="settings-details-right settings-details-right-options settings-details-dashboard">
                                             <div className="settings-right">
-                                                <p>Dashboard View</p>
+                                                <p>{t[settingsKeyMap["Dashboard View"]] || "Dashboard View"}</p>
                                             </div>
 
                                             <div
@@ -377,7 +377,7 @@ function Settings() {
                                                 ref={dashboardDropdownRef}
                                                 style={{ position: "relative", cursor: "pointer" }}
                                             >
-                                                <p>{dashboardView}</p>
+                                                <p>{t[settingsKeyMap[dashboardView]] || dashboardView}</p>
 
                                                 {showDashboardDropdown && (
                                                     <div className="dropdown-options">
@@ -390,7 +390,7 @@ function Settings() {
                                                                 setShowDashboardDropdown(false);
                                                             }}
                                                         >
-                                                            List
+                                                            {t[settingsKeyMap["List"]] || "List"}
                                                         </div>
                                                         <div
                                                             onClick={(e) => {
@@ -401,7 +401,7 @@ function Settings() {
                                                                 setShowDashboardDropdown(false);
                                                             }}
                                                         >
-                                                            Layout
+                                                            {t[settingsKeyMap["Layout"]] || "Layout"}
                                                         </div>
                                                         <div
                                                             onClick={(e) => {
@@ -412,7 +412,7 @@ function Settings() {
                                                                 setShowDashboardDropdown(false);
                                                             }}
                                                         >
-                                                            Compact
+                                                            {t[settingsKeyMap["Compact"]] || "Compact"}
                                                         </div>
                                                     </div>
                                                 )}
@@ -428,23 +428,23 @@ function Settings() {
                                 <div className="settings-details">
                                     <div className="settings-details-left">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Appearance</p>
+                                        <p>{t[settingsKeyMap["Appearance"]] || "Appearance"}</p>
                                     </div>
 
                                     <div className="settings-details-right settings-details-appearance">
                                         <div className="settings-right">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19h18M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/></svg>
-                                            <p>System</p>
+                                            <p>{t[settingsKeyMap["System"]] || "System"}</p>
                                         </div>
 
                                         <div className="settings-right settings-options">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7"/></svg>
-                                            <p>Light</p>
+                                            <p>{t[settingsKeyMap["Light"]] || "Light"}</p>
                                         </div>
 
                                         <div className="settings-right">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg settings-dark-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></svg>
-                                            <p>Dark</p>
+                                            <p>{t[settingsKeyMap["Dark"]] || "Dark"}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -452,7 +452,7 @@ function Settings() {
                                 <div className="settings-details">
                                     <div className="settings-details-left">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Language</p>
+                                        <p>{t[settingsKeyMap["Language"]] || "Language"}</p>
                                     </div>
 
                                     <div className="settings-details-right settings-details-right-options settings-details-language">
@@ -471,7 +471,7 @@ function Settings() {
                                                 if (e.key === "Enter" || e.key === " ") setShowLanguageDropdown(prev => !prev);
                                             }}
                                         >
-                                            <p>Enabled</p>
+                                            <p>{t[settingsKeyMap["Enabled"]] || "Enabled"}</p>
 
                                             {showLanguageDropdown && (
                                                 <div className="dropdown-options">
@@ -506,7 +506,7 @@ function Settings() {
                                 <div className="settings-details">
                                     <div className="settings-details-left">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Spellchecker</p>
+                                        <p>{t[settingsKeyMap["Spellchecker"]] || "Spellchecker"}</p>
                                     </div>
 
                                     <div className="settings-details-right settings-details-right-options settings-details-spellchecker">
@@ -515,7 +515,7 @@ function Settings() {
                                         </div>
 
                                         <div className="settings-right settings-options">
-                                            <p>Enabled</p>
+                                            <p>{t[settingsKeyMap["Enabled"]] || "Enabled"}</p>
                                         </div>                                        
                                     </div>
                                 </div>
@@ -523,7 +523,7 @@ function Settings() {
                                 <div className="settings-details">
                                     <div className="settings-details-left">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
-                                        <p>Timezone</p>
+                                        <p>{t[settingsKeyMap["Timezone"]] || "Timezone"}</p>
                                     </div>
 
                                     <div className="settings-details-right settings-details-right-options settings-details-timezone">
@@ -532,7 +532,7 @@ function Settings() {
                                         </div>
 
                                         <div className="settings-right settings-options">
-                                            <p>Enabled</p>
+                                            <p>{t[settingsKeyMap["Enabled"]] || "Enabled"}</p>
                                         </div>                                        
                                     </div>
                                 </div>

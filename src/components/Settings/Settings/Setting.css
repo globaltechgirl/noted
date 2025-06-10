@@ -245,6 +245,7 @@
   font-size: 0.58rem;
   letter-spacing: 0.6px;
   color: var(--color-surface-accent);
+  text-transform: lowercase;
 }
 
 .settings-top-right {
