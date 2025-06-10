@@ -3,36 +3,43 @@ import './Profile.css';
 import { allCountries } from "country-telephone-data";
 
 function Profile() {
+   // --- Profile Information State ---
     const [fullName, setFullName] = useState("First Last");
     const [username, setUsername] = useState("username");
     const [email, setEmail] = useState("name@gmail.com");
     const [password, setPassword] = useState("password");
     const [showPassword, setShowPassword] = useState(false);
     const [birthday, setBirthday] = useState("Month 00, Year");
+
+    // --- Social Media Handles ---
     const [instagramHandle, setInstagramHandle] = useState("username_ig");
     const [tiktokHandle, setTiktokHandle] = useState("username_tt");
     const [twitterHandle, setTwitterHandle] = useState("username_tw");
+
+    // --- Phone Information ---
     const [phonePrefix, setPhonePrefix] = useState("+234");
     const [phoneNumber, setPhoneNumber] = useState("913625175");
 
+    // --- Editing Field State ---
     const [editingField, setEditingField] = useState(null);
     const fullNameRef = useRef(null);
 
-    // Profile image
+    // --- Profile Image State ---
     const [profileImage, setProfileImage] = useState("/src/assets/images/user2.png");
     const fileInputRef = useRef(null);
 
-    // Background image/color
+    // --- Background Customization State ---
     const [backgroundImage, setBackgroundImage] = useState("/src/assets/images/background.png");
     const [backgroundType, setBackgroundType] = useState("image");
     const [backgroundColor, setBackgroundColor] = useState("#fcd5ce");
     const backgroundInputRef = useRef(null);
 
+    // --- UI Tab & Popup State ---
     const [activeTab, setActiveTab] = useState("gallery");
     const [showBackgroundPopup, setShowBackgroundPopup] = useState(false);
     const popupRef = useRef(null);
 
-    // Hide background popup on outside click
+    // --- Handle Outside Click: Close Background Popup ---
     useEffect(() => {
         function handleClickOutsidePopup(event) {
             if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -49,7 +56,7 @@ function Profile() {
         };
     }, [showBackgroundPopup]);
 
-    // Hide input editing field on outside click
+    // --- Handle Outside Click: Close Input Field Editing ---
     useEffect(() => {
         function handleClickOutsideField(event) {
             if (
@@ -67,7 +74,7 @@ function Profile() {
         };
     }, [editingField]);
 
-    // Edit icon component
+    // --- Edit Icon Component ---
     function EditIcon({ field }) {
         return (
             <div
@@ -90,12 +97,12 @@ function Profile() {
         );
     }
 
-    // Save field and close editing
+    // --- Save Edited Field ---
     const handleSave = (field) => {
         setEditingField(null);
     };
 
-    // Profile picture change
+    // --- Handle Profile Image Change ---
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -104,7 +111,7 @@ function Profile() {
         }
     };
 
-    // Background image change
+    // --- Handle Background Image Change ---
     const handleBackgroundChange = (e) => {
         const file = e.target.files[0];
         if (file) {

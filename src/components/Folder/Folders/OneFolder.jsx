@@ -2,16 +2,19 @@ import React, { useState, useEffect } from "react";
 import Folder from "../Folder";
 
 function OneFolder({ folderName }) {
+    // --- React State Initialization ---
     const [activeGrid, setActiveGrid] = useState(() => {
         return localStorage.getItem("dashboardView") || "layout";
     });
 
+    // --- Grid Position Values ---
     const [positions, setPositions] = useState({
         list: 1.5,
         layout: 28,
         compact: 53.5,
     });
 
+    // --- Folder Data ---
     const folderData = [
         {
             icon: "F",

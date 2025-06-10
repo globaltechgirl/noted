@@ -1,7 +1,9 @@
 import React, { createContext, useContext, useState } from "react";
 
+// Create Language Context
 const LanguageContext = createContext();
 
+// Supported Languages
 export const languages = [
     { code: "en-US", label: "English (US)" },
     { code: "ko", label: "한국어 (Korean)" },
@@ -12,6 +14,7 @@ export const languages = [
     { code: "pt-BR", label: "Português (Brasil)" },
 ];
 
+// Language Context Provider
 export const LanguageProvider = ({ children }) => {
     const [selectedLanguage, setSelectedLanguage] = useState("en"); 
 

@@ -3,16 +3,20 @@ import { useLanguage } from "../../Context/LanguageContext";
 import { translations } from  "../../Context/translations";
 
 function Side({ onSectionClick }) {
+    // Active Section State
     const [activeSection, setActiveSection] = useState("note");
-    const { selectedLanguage } = useLanguage();
 
+    // --- Language Selection ---
+    const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.side || {};
 
+    // Menu Item Click
     const handleClick = (sectionName) => {
         setActiveSection(sectionName);
         if (onSectionClick) onSectionClick(sectionName); 
     };
 
+    // Side Menu Items
     const menuItems = [
         {
             key: "note",
@@ -103,6 +107,7 @@ function Side({ onSectionClick }) {
         },
     ];
 
+    // Arrow Icon Indicator
     const arrowIcon = (
         <svg xmlns="http://www.w3.org/2000/svg" className="side-active-arrow" viewBox="0 0 24 24">
             <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"

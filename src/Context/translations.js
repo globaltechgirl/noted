@@ -1,3 +1,4 @@
+// --- Folder Key Mapping ---
 export const folderKeyMap = {
     "Home": "home",
     "All Notes": "allNotes",
@@ -9,6 +10,7 @@ export const folderKeyMap = {
     "Locked": "locked",
 };
 
+// --- Settings Key Mapping ---
 export const settingsKeyMap = {
     "Saving Changes": "savingChanges",
     "Profile": "profile",
@@ -23,6 +25,7 @@ export const settingsKeyMap = {
     "Memory Usage": "memoryUsage",
 };
 
+// --- Translation Dictionary ---
 export const translations = {
     "en-US": {
         side: {

@@ -5,10 +5,12 @@ import { useLanguage } from "../../../Context/LanguageContext";
 import { folderKeyMap, translations } from  "../../../Context/translations";
 
 function AllFolders() {
+    // --- React State Initialization ---
     const [activeGrid, setActiveGrid] = useState(() => {
         return localStorage.getItem("dashboardView") || "layout";
     });
 
+    // --- Grid Position Values ---
     const [positions, setPositions] = useState({
         list: 1.5,
         layout: 28,
@@ -19,6 +21,7 @@ function AllFolders() {
     const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.folders || {};
 
+    // --- Folder Data ---
     const allFolderData = [
         {
             icon: "F",

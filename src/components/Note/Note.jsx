@@ -4,6 +4,7 @@ import { useLanguage } from "../../Context//LanguageContext";
 import { folderKeyMap, translations } from  "../../Context/translations";
 
 function Note({ onFolderClick }) {
+    // --- Language Selection ---
     const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.folders || {};
 

@@ -9,6 +9,7 @@ import Profile from "../Settings/Profile/Profile";
 import Settings from "../Settings/Settings/Setting"
 
 function Main({ view, activeFolder, onFolderClick, onBack }) {
+    // Render content based on current view
     const renderContent = () => {
         switch (view) {
             case "all-notes":
