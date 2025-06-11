@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import './Setting.css';
 import { useLanguage } from "../../../Context//LanguageContext";
 import { settingsKeyMap, translations } from  "../../../Context/translations";
+import { useDashboardView } from "../../Folder/GridControls/DashboardViewContext.jsx";
 
 function Settings() {
     // --- Username ---
