@@ -184,13 +184,13 @@
 }
 
 .settings-line-icon::before {
-  top: -24px;
-  height: 24px;
+  top: -28px;
+  height: 28px;
 }
 
 .settings-line-icon::after {
-  bottom: -24px;
-  height: 24px;
+  bottom: -28px;
+  height: 28px;
 }
 
 .settings-line:last-child .settings-line-icon::before,

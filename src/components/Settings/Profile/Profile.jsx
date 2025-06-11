@@ -25,7 +25,7 @@ function Profile() {
     const fullNameRef = useRef(null);
 
     // --- Profile Image State ---
-    const [profileImage, setProfileImage] = useState("/src/assets/images/user2.png");
+    const [profileImage, setProfileImage] = useState("/src/assets/images/user.png");
     const fileInputRef = useRef(null);
 
     // --- Background Customization State ---

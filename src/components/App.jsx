@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Side from "./App/Side";
 import Main from "./App/Main";
 import { LanguageProvider } from "../Context/LanguageContext.jsx";
+import { DashboardViewProvider } from "./Folder/GridControls/DashboardViewContext.jsx";
 
 function App() {
     const [view, setView] = useState("home");
-
     const [activeFolder, setActiveFolder] = useState(null);
 
     const handleSectionOrFolderClick = (section) => {
@@ -35,16 +35,18 @@ function App() {
 
     return (
         <LanguageProvider>
-            <div className="app-container">
-                <Side onSectionClick={handleSectionOrFolderClick} />
+            <DashboardViewProvider>
+                <div className="app-container">
+                    <Side onSectionClick={handleSectionOrFolderClick} />
 
-                <Main
-                    view={view}
-                    activeFolder={activeFolder}
-                    onFolderClick={handleSectionOrFolderClick}
-                    onBack={() => setView("home")}
-                />
-            </div>
+                    <Main
+                        view={view}
+                        activeFolder={activeFolder}
+                        onFolderClick={handleSectionOrFolderClick}
+                        onBack={() => setView("home")}
+                    />
+                </div>
+            </DashboardViewProvider>
         </LanguageProvider>
     );
 }

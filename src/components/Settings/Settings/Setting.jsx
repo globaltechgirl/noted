@@ -50,7 +50,7 @@ function Settings() {
     }, []);
 
     // --- Dashboard View ---
-    const [dashboardView, setDashboardView] = useState("Layout");
+    const { dashboardView, setDashboardView } = useDashboardView();
     const [showDashboardDropdown, setShowDashboardDropdown] = useState(false);
     const dashboardDropdownRef = useRef(null);
 
@@ -373,7 +373,7 @@ function Settings() {
 
                                             <div
                                                 className="settings-right settings-options"
-                                                onClick={() => setShowDashboardDropdown((prev) => !prev)}
+                                                onClick={() => setShowDashboardDropdown(prev => !prev)}
                                                 ref={dashboardDropdownRef}
                                                 style={{ position: "relative", cursor: "pointer" }}
                                             >
@@ -385,8 +385,6 @@ function Settings() {
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 setDashboardView("List");
-                                                                setActiveGrid("list");
-                                                                localStorage.setItem("dashboardView", "list");
                                                                 setShowDashboardDropdown(false);
                                                             }}
                                                         >
@@ -396,8 +394,6 @@ function Settings() {
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 setDashboardView("Layout");
-                                                                setActiveGrid("layout");
-                                                                localStorage.setItem("dashboardView", "layout");
                                                                 setShowDashboardDropdown(false);
                                                             }}
                                                         >
@@ -407,8 +403,6 @@ function Settings() {
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 setDashboardView("Compact");
-                                                                setActiveGrid("compact");
-                                                                localStorage.setItem("dashboardView", "compact");
                                                                 setShowDashboardDropdown(false);
                                                             }}
                                                         >
@@ -478,7 +472,8 @@ function Settings() {
                                                     {languages.map((lang) => (
                                                         <div
                                                             key={lang}
-                                                            onClick={() => {
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
                                                                 setSelectedLanguage(lang.code);
                                                                 setShowLanguageDropdown(false);
                                                             }}
@@ -486,6 +481,7 @@ function Settings() {
                                                             tabIndex={0}
                                                             onKeyDown={e => {
                                                                 if (e.key === "Enter" || e.key === " ") {
+                                                                    e.stopPropagation();
                                                                     setSelectedLanguage(lang.code);
                                                                     setShowLanguageDropdown(false);
                                                                 }

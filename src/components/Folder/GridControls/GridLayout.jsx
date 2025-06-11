@@ -1,5 +1,6 @@
 import React from "react";
 import "./GridLayout.css"; 
+import { useDashboardView } from "../GridControls/DashboardViewContext.jsx";
 
 function GridLayout ({ data = [] }) {
     return (
