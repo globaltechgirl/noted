@@ -170,11 +170,11 @@
 
 .folder-layout-main .folder-link-body {
   flex: 1;
-  padding: 15px 0 0 15px;
+  padding: 15px 15px 0 15px;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-start;
+  gap: 13px;
 }
 
 .folder-layout-main .folder-link-left .folder-link-left-svg {
@@ -189,19 +189,17 @@
 }
 
 .folder-layout-main .folder-link-right a {
-  font-size: 0.62rem;
+  display: block;
+  padding-top: 5px;
+  font-size: 0.6rem;
   font-weight: 500;
   letter-spacing: 0.6px;
   line-height: 2;
   color: var(--color-text-primary);
   text-decoration: none;
-}
-
-.folder-layout-main .folder-link-side {
-  margin-top: -35px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Folder regular */
@@ -229,22 +227,8 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .folder-layout-main .folder-link-wrapper {
-    padding: 0 0 12px 0;
-  }
-
-  .folder-layout-main .folder-link-body {
-    padding: 12px 0 0 12px;
-  }
-
-  .folder-layout-main .folder-link-left .folder-link-left-svg {
-    width: 23px;
-    height: 25px;
-    padding: 4px;
-  }
-
   .folder-layout-main .folder-link-right a {
-    font-size: 0.6rem;
+    padding-top: 2px;
   }
 }
 
