@@ -1,17 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./GridLayout.css"; 
 
-function GridLayout ({ data = [] }) {
-    // --- Star Toggle State ---
-    const [starred, setStarred] = useState({}); 
-
-    const toggleStar = (index) => {
-        setStarred(prev => ({
-            ...prev,
-            [index]: !prev[index]
-        }));
-    };
-
+function GridLayout ({ data = [], toggleStar }) {
     return (
         <div className="folder-container">
             <div className="folder-wrapper">
@@ -19,8 +9,6 @@ function GridLayout ({ data = [] }) {
                     <div className="folder-layout-wrapper">
                         <div className="folder-layout-main">
                             {data.map((folder, index) => {
-                                const isStarred = starred[index];
-
                                 return (
                                     <div key={index} className={`folder ${folder.link ? "folder-link-wrapper" : "folder-layout-regular"}`}>
                                         {folder.link ? (
@@ -41,8 +29,8 @@ function GridLayout ({ data = [] }) {
                                         <>
                                             <div className="folder-image-wrapper">
                                                 <div className="folder-layout-top">
-                                                    <div className="folder-top-star" onClick={() => toggleStar(index)}>
-                                                        {isStarred ? (
+                                                    <div className="folder-top-star" onClick={() => toggleStar(folder.id)}>
+                                                        {folder.starred ? (
                                                             <svg xmlns="http://www.w3.org/2000/svg" className="folder-top-star-svg" viewBox="0 0 24 24">
                                                                 <path fill="currentColor" d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"/>
                                                             </svg>

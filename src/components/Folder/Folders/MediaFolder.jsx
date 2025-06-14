@@ -6,24 +6,28 @@ import { folderKeyMap, translations } from  "../../../Context/translations";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
 
 function MediaFolder({ folderName }) {
-    // --- Grid View Initialization ---
+    // --- Language Setup ---
+    const { selectedLanguage } = useLanguage();
+    const t = translations[selectedLanguage]?.folders || {};
+
+    // --- Dashboard View ---
     const { dashboardView: defaultView } = useDashboardView(); 
     const [localView, setLocalView] = useState(defaultView); 
 
-    // --- Grid Position Values ---
+    // View toggle positions ---
     const [positions, setPositions] = useState({
         List: 1.5,
         Layout: 28,
         Compact: 53.5,
     });
 
-    // --- Language Selection ---
-    const { selectedLanguage } = useLanguage();    
-    const t = translations[selectedLanguage]?.folders || {};
+    // --- Star Filter Toggle ---
+    const [starredOnly, setStarredOnly] = useState(false);
 
     // --- Folder Data ---
-    const folderData = [
+    const [folderData, setFolderData] = useState([
         {
+            id: 1,
             icon: null,
             image: img1,
             title: "Licence Agreement on Waterfall INC",
@@ -31,6 +35,7 @@ function MediaFolder({ folderName }) {
             date: "15.05.25"
         },
         {
+            id: 2,
             icon: null,
             image: img1,
             title: "Licence Agreement on Waterfall INC",
@@ -38,6 +43,7 @@ function MediaFolder({ folderName }) {
             date: "15.05.25"
         },
         {
+            id: 3,
             icon: null,
             image: img1,
             title: "Licence Agreement on Waterfall INC",
@@ -45,20 +51,36 @@ function MediaFolder({ folderName }) {
             date: "15.05.25"
         },
         {
+            id: 4,
             icon: null,
             image: img1,
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
             date: "15.05.25"
         },
-                {
+        {
+            id: 5,
             icon: null,
             image: img1,
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
             date: "15.05.25"
         }
-    ];
+    ]);
+
+    // --- Star Toggle Handler ---
+    const toggleStar = (id) => {
+        setFolderData(prev =>
+            prev.map((item) =>
+                item.id === id ? { ...item, starred: !item.starred } : item
+            )
+        );
+    };
+
+    // Starred filter
+    const filteredData = starredOnly
+        ? folderData.filter((item) => item.starred)
+        : folderData;
 
     return (
         <div className="folder-container">
@@ -86,8 +108,24 @@ function MediaFolder({ folderName }) {
                                 <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/></svg>
                             </div>
 
-                            <div className="folder-star">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"/></svg>
+                            <div 
+                                className={`folder-star ${starredOnly ? "active-star" : ""}`}
+                                onClick={() => setStarredOnly((prev) => !prev)}
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="folder-header-svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        fill={starredOnly ? "currentColor" : "none"}
+                                        stroke="currentColor"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                    />
+                                </svg>
                             </div>
                         </div>
                     </div>
@@ -135,7 +173,7 @@ function MediaFolder({ folderName }) {
                     </div>
                 </div>
                 
-                <Folder view={localView.toLowerCase()} data={folderData} />
+                <Folder view={localView.toLowerCase()} data={filteredData} toggleStar={toggleStar} />
             </div>
         </div>
     );

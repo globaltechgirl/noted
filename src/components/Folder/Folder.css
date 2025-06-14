@@ -92,6 +92,7 @@
 .folder-icons .folder-header-svg {
   width: 13px;
   height: 13px;
+  cursor: pointer;
 }
 
 /* Folder body */
