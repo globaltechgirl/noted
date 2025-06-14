@@ -6,8 +6,9 @@ import { folderKeyMap, translations } from  "../../../Context/translations";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
 
 function AllFolders() {
-    // --- React State Initialization ---
-    const { dashboardView, setDashboardView } = useDashboardView();
+    // --- Grid View Initialization ---
+    const { dashboardView: defaultView } = useDashboardView(); 
+    const [localView, setLocalView] = useState(defaultView); 
 
     // --- Grid Position Values ---
     const [positions, setPositions] = useState({
@@ -158,22 +159,22 @@ function AllFolders() {
                         <div className="folder-right">
                             <div className="folder-grid-wrapper">
                                 <div  
-                                className={`folder-grid grid-list ${dashboardView === "List" ? "grid-active" : ""}`}
-                                onClick={() => setDashboardView("List")}
+                                className={`folder-grid grid-list ${localView === "List" ? "grid-active" : ""}`}
+                                onClick={() => setLocalView("List")}
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="grid-list-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm0 10a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg>
                                 </div>
 
                                 <div 
-                                className={`folder-grid grid-layout ${dashboardView === "Layout" ? "grid-active" : ""}`}
-                                onClick={() => setDashboardView("Layout")}
+                                className={`folder-grid grid-layout ${localView === "Layout" ? "grid-active" : ""}`}
+                                onClick={() => setLocalView("Layout")}
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="grid-layout-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zM4 15a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z"/></svg>
                                 </div>
 
                                 <div 
-                                className={`folder-grid grid-compact ${dashboardView === "Compact" ? "grid-active" : ""}`}
-                                onClick={() => setDashboardView("Compact")}
+                                className={`folder-grid grid-compact ${localView === "Compact" ? "grid-active" : ""}`}
+                                onClick={() => setLocalView("Compact")}
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" className="grid-compact-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0M4 19a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"/></svg>
                                 </div>
@@ -182,14 +183,14 @@ function AllFolders() {
                             <div className="slider">
                                 <div
                                     className="ball"
-                                    style={{ left: positions[dashboardView] + "px" }}
+                                    style={{ left: positions[localView] + "px" }}
                                 ></div>
                             </div>
                         </div>
                     </div>
                 </div> 
 
-                <Folder view={dashboardView.toLowerCase()} data={folderData} />
+                <Folder view={localView.toLowerCase()} data={folderData} />
             </div>
         </div>
     );
