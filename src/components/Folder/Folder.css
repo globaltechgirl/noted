@@ -150,6 +150,10 @@
   letter-spacing: 0.6px;
 }
 
+.folder-right {
+  position: relative;
+}
+
 .folder-right .folder-grid-wrapper {
   display: flex;
   position: relative;
@@ -163,13 +167,13 @@
 }
 
 .folder-right .slider {
-  position: relative;
-  width: 69px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
   pointer-events: none;
+  z-index: 1;
 }
 
 .folder-right .slider .ball {
