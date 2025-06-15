@@ -32,7 +32,8 @@ function MediaFolder({ folderName }) {
             image: img1,
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
-            date: "15.05.25"
+            date: "15.05.25",
+            starred: false
         },
         {
             id: 2,
@@ -40,7 +41,8 @@ function MediaFolder({ folderName }) {
             image: img1,
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
-            date: "15.05.25"
+            date: "15.05.25",
+            starred: false
         },
         {
             id: 3,
@@ -48,7 +50,8 @@ function MediaFolder({ folderName }) {
             image: img1,
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
-            date: "15.05.25"
+            date: "15.05.25",
+            starred: false
         },
         {
             id: 4,
@@ -56,7 +59,8 @@ function MediaFolder({ folderName }) {
             image: img1,
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
-            date: "15.05.25"
+            date: "15.05.25",
+            starred: false
         },
         {
             id: 5,
@@ -64,7 +68,8 @@ function MediaFolder({ folderName }) {
             image: img1,
             title: "Licence Agreement on Waterfall INC",
             filesize: "2.3 MB",
-            date: "15.05.25"
+            date: "15.05.25",
+            starred: false
         }
     ]);
 
