@@ -178,8 +178,137 @@ function AllFolders() {
                                             />
                                         </div>
                                     </div>
+
+                                    <div className="search-top-right">
+                                        <button onClick={() => setShowSearchPopup(false)} className="close-button">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="close-icon"
+                                                viewBox="0 0 24 24"
+                                                width="20"
+                                                height="20"
+                                            >
+                                                <path
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="2"
+                                                    d="M18 6L6 18M6 6l12 12"
+                                                />
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
-                                <button onClick={() => setShowSearchPopup(false)} className="close-button">Close</button>
+
+                                <div className="search-popup-recent">
+                                    <div className="search-recent-header">
+                                        <p>Recent</p>
+                                    </div>
+
+                                    <div className="search-recent-body">
+                                        <div className="search-recent-main">
+                                            <div className="recent-main-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="recent-main-icon-svg" viewBox="0 0 24 24">
+                                                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                                        d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
+                                                </svg>
+                                            </div>
+
+                                            <div className="recent-main-wrapper">
+                                                <div className="recent-main-header">
+                                                    <p>Licence Agreement on Waterfall INC</p>
+                                                </div>
+
+                                                <div className="recent-main-text">
+                                                    <p>License information</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="search-recent-main">
+                                            <div className="recent-main-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="recent-main-icon-svg" viewBox="0 0 24 24">
+                                                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                                        d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
+                                                </svg>
+                                            </div>
+
+                                            <div className="recent-main-wrapper">
+                                                <div className="recent-main-header">
+                                                    <p>Licence Agreement on Waterfall INC</p>
+                                                </div>
+
+                                                <div className="recent-main-text">
+                                                    <p>License information</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="search-recent-main">
+                                            <div className="recent-main-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="recent-main-icon-svg" viewBox="0 0 24 24">
+                                                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                                        d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
+                                                </svg>
+                                            </div>
+
+                                            <div className="recent-main-wrapper">
+                                                <div className="recent-main-header">
+                                                    <p>Licence Agreement on Waterfall INC</p>
+                                                </div>
+
+                                                <div className="recent-main-text">
+                                                    <p>License information</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="search-popup-common">
+                                    <div className="search-common-header">
+                                        <p>Common actions</p>
+                                    </div>
+
+                                    <div className="search-common-body">
+                                        <div className="search-common-main">
+                                            <div className="common-main-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="common-main-icon-svg" viewBox="0 0 24 24">
+                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M16 19h6m-3-3v6"/>
+                                                </svg>
+                                            </div>
+
+                                            <div className="common-main-wrapper">
+                                                <div className="common-main-header">
+                                                    <p>New document</p>
+                                                </div>
+
+                                                <div className="common-main-text">
+                                                    <p>Create a new blank document</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="search-common-main">
+                                            <div className="common-main-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="common-main-icon-svg" viewBox="0 0 24 24">
+                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M19 22v-6m3 3l-3-3l-3 3"/>
+                                                </svg>
+                                            </div>
+
+                                            <div className="common-main-wrapper">
+                                                <div className="common-main-header">
+                                                    <p>View documents</p>
+                                                </div>
+
+                                                <div className="common-main-text">
+                                                    <p>View all documents</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )}
