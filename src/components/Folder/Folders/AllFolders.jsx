@@ -24,6 +24,8 @@ function AllFolders() {
     // --- Star Filter Toggle ---
     const [starredOnly, setStarredOnly] = useState(false);
 
+    const [showSearchPopup, setShowSearchPopup] = useState(false);
+
     // --- Folder Summary Data ---
     const allFolderData = [
         {
@@ -128,8 +130,10 @@ function AllFolders() {
                                 <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
                             </div>
 
-                            <div className="folder-search">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/></svg>
+                            <div className="folder-search" onClick={() => setShowSearchPopup(true)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/>
+                                </svg>
                             </div>
 
                             <div 
@@ -153,6 +157,32 @@ function AllFolders() {
                             </div>
                         </div>
                     </div>
+
+                    {showSearchPopup && (
+                        <div className="search-popup-overlay" onClick={() => setShowSearchPopup(false)}>
+                            <div className="search-popup" onClick={(e) => e.stopPropagation()}>
+                                <div className="search-popup-top">
+                                    <div className="search-top-left">
+                                        <div className="search-top-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24">
+                                                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/>
+                                            </svg>
+                                        </div>
+
+                                        <div className="search-top-input">
+                                            <input
+                                                type="text"
+                                                placeholder="Search"
+                                                className="search-input"
+                                                autoFocus
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <button onClick={() => setShowSearchPopup(false)} className="close-button">Close</button>
+                            </div>
+                        </div>
+                    )}
                 </div>
                 
                 <div className="all-folders-wrapper">
