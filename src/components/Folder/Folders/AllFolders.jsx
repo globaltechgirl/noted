@@ -24,7 +24,11 @@ function AllFolders() {
     // --- Star Filter Toggle ---
     const [starredOnly, setStarredOnly] = useState(false);
 
+    // --- Search Popup State ---
     const [showSearchPopup, setShowSearchPopup] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [recentSearches, setRecentSearches] = useState([]);
 
     // --- Folder Summary Data ---
     const allFolderData = [
@@ -59,40 +63,45 @@ function AllFolders() {
         {
             id: 1,
             icon: "F",
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25",
+            title: "Q2 Budget Review for International Holdings Ltd",
+            subtitle: "Finance department internal audit summary",
+            filesize: "1.8 MB",
+            date: "12.04.25",
             starred: false
         },
         {
             id: 2,
             icon: "F",
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25",
+            title: "UX Research Notes from Multi-Country Study Phase",
+            subtitle: "User testing insights from April rollout",
+            filesize: "3.1 MB",
+            date: "10.05.25",
             starred: false
         },
         {
             id: 3,
             icon: "F",
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25",
+            title: "Project Neon Proposal for Long-Term Infrastructure",
+            subtitle: "Initial pitch deck and scope documentation",
+            filesize: "2.5 MB",
+            date: "08.05.25",
             starred: false
         },
         {
             id: 4,
             icon: "F",
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25",
+            title: "Brand Guideline 2025 – Visual Identity Expansion",
+            subtitle: "Updated brand colors, typography, and icons",
+            filesize: "4.7 MB",
+            date: "01.05.25",
             starred: false
         },
         {
             id: 5,
             icon: "F",
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
+            title: "Confidential Agreement For NovaTech CeloCorp",
+            subtitle: "Signed legal documentation with NDAs enclosed",
+            filesize: "2.2 MB",
             date: "15.05.25",
             starred: false
         }
@@ -105,6 +114,14 @@ function AllFolders() {
                 item.id === id ? { ...item, starred: !item.starred } : item
             )
         );
+    };
+
+    // Update recent searches
+    const addToRecentSearches = (doc) => {
+        setRecentSearches((prev) => {
+            const updated = [doc, ...prev.filter(item => item.id !== doc.id)];
+            return updated.slice(0, 3); 
+        });
     };
 
     // Starred filter
@@ -175,6 +192,22 @@ function AllFolders() {
                                                 placeholder="Search"
                                                 className="search-input"
                                                 autoFocus
+                                                value={searchQuery}
+                                                onChange={(e) => {
+                                                    const query = e.target.value;
+                                                    setSearchQuery(query);
+
+                                                    if (query.trim() === "") {
+                                                        setSearchResults([]);
+                                                    } else {
+                                                        const filtered = folderData.filter((doc) =>
+                                                            doc.title.toLowerCase().includes(query.toLowerCase())
+                                                        )
+                                                        .slice(0, 3);
+
+                                                        setSearchResults(filtered);
+                                                    }
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -203,66 +236,53 @@ function AllFolders() {
 
                                 <div className="search-popup-recent">
                                     <div className="search-recent-header">
-                                        <p>Recent</p>
+                                        <p>{searchQuery.trim() ? "Search results" : "Recent"}</p>
                                     </div>
 
                                     <div className="search-recent-body">
-                                        <div className="search-recent-main">
-                                            <div className="recent-main-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="recent-main-icon-svg" viewBox="0 0 24 24">
-                                                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                                        d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
-                                                </svg>
-                                            </div>
+                                        {(searchQuery.trim() ? searchResults : recentSearches).length === 0 ? (
+                                            <p className="search-recent-empty">
+                                                {searchQuery.trim() ? "No results found" : "No recent searches"}
+                                            </p>
+                                        ) : (
+                                            (searchQuery.trim() ? searchResults : recentSearches).map((doc) => (
+                                                <div
+                                                    className="search-recent-main"
+                                                    key={doc.id}
+                                                    onClick={() => {
+                                                        addToRecentSearches(doc);
+                                                        setShowSearchPopup(false);
+                                                    }}
+                                                >
+                                                    <div className="recent-main-icon">
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            className="recent-main-icon-svg"
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth="2"
+                                                                d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"
+                                                            />
+                                                        </svg>
+                                                    </div>
 
-                                            <div className="recent-main-wrapper">
-                                                <div className="recent-main-header">
-                                                    <p>Licence Agreement on Waterfall INC</p>
+                                                    <div className="recent-main-wrapper">
+                                                        <div className="recent-main-header">
+                                                            <p>{doc.title}</p>
+                                                        </div>
+
+                                                        <div className="recent-main-text">
+                                                            <p>{doc.subtitle}</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-
-                                                <div className="recent-main-text">
-                                                    <p>License information</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="search-recent-main">
-                                            <div className="recent-main-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="recent-main-icon-svg" viewBox="0 0 24 24">
-                                                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                                        d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
-                                                </svg>
-                                            </div>
-
-                                            <div className="recent-main-wrapper">
-                                                <div className="recent-main-header">
-                                                    <p>Licence Agreement on Waterfall INC</p>
-                                                </div>
-
-                                                <div className="recent-main-text">
-                                                    <p>License information</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="search-recent-main">
-                                            <div className="recent-main-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="recent-main-icon-svg" viewBox="0 0 24 24">
-                                                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                                        d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
-                                                </svg>
-                                            </div>
-
-                                            <div className="recent-main-wrapper">
-                                                <div className="recent-main-header">
-                                                    <p>Licence Agreement on Waterfall INC</p>
-                                                </div>
-
-                                                <div className="recent-main-text">
-                                                    <p>License information</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            ))
+                                        )}
                                     </div>
                                 </div>
 

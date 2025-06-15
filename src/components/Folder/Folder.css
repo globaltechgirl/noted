@@ -109,7 +109,7 @@
 
 .search-popup {
   background: rgba(255, 255, 255, 0.15);
-  padding: 5px 0 15px 0;
+  padding: 2px 0 15px 0;
   border-radius: 0.5rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(12px);
@@ -128,7 +128,7 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--color-border);
-  padding: 0 15px 10px 15px;
+  padding: 0 15px 12px 15px;
 }
 
 .search-top-left {
@@ -140,20 +140,21 @@
 .search-top-icon,
 .close-icon {
   color: var(--color-surface-accent);
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
 }
 
 .search-input {
   width: 100%;
-  padding: 10px;
+  padding: 13px 0 0 10px;
   border-radius: 0;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
+  font-weight: 450;
+  letter-spacing: 0.6px;
   color: var(--color-surface-accent);
   border: none;
   background: none;
   outline: none;
-  padding-bottom: 0;
 }
 
 .close-button {
@@ -168,8 +169,8 @@
 .search-popup-common {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 2px 15px 0 15px;
+  gap: 15px;
+  padding: 0 15px 0 15px;
 }
 
 .search-popup-common {
@@ -178,7 +179,7 @@
 
 .search-recent-header,
 .search-common-header {
-  font-size: 0.56rem;
+  font-size: 0.54rem;
   font-weight: 450;
   letter-spacing: 0.6px;
   color: var(--color-surface-accent);
@@ -222,7 +223,7 @@
   letter-spacing: 0.6px;
   color: var(--color-text-primary);
   opacity: 0.8;
-  margin-bottom: 4.2px;
+  margin-bottom: 4.3px;
 }
 
 .recent-main-text,
@@ -231,6 +232,14 @@
   font-weight: 450;
   letter-spacing: 0.6px;
   color: var(--color-surface-accent);
+}
+
+.search-recent-empty {
+  font-size: 0.52rem;
+  font-weight: 400;
+  letter-spacing: 0.6px;
+  color: var(--color-text-primary);
+  opacity: 0.8;
 }
 
 /* Folder body */
