@@ -305,7 +305,7 @@ function AllFolders() {
                                                 </div>
 
                                                 <div className="common-main-text">
-                                                    <p>Create a new blank document</p>
+                                                    <p>Create a new document</p>
                                                 </div>
                                             </div>
                                         </div>

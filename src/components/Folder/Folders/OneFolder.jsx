@@ -17,45 +17,56 @@ function OneFolder({ folderName }) {
     // --- Star Filter Toggle ---
     const [starredOnly, setStarredOnly] = useState(false);
 
+    // --- Search Popup State ---
+    const [showSearchPopup, setShowSearchPopup] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [recentSearches, setRecentSearches] = useState([]);
+
     // --- Folder Data ---
     const [folderData, setFolderData] = useState([
         {
             id: 1,
             icon: "F",
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25",
+            title: "Q2 Budget Review for International Holdings Ltd",
+            subtitle: "Finance department internal audit summary",
+            filesize: "1.8 MB",
+            date: "12.04.25",
             starred: false
         },
         {
             id: 2,
             icon: "F",
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25",
+            title: "UX Research Notes from Multi-Country Study Phase",
+            subtitle: "User testing insights from April rollout",
+            filesize: "3.1 MB",
+            date: "10.05.25",
             starred: false
         },
         {
             id: 3,
             icon: "F",
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25",
+            title: "Project Neon Proposal for Long-Term Infrastructure",
+            subtitle: "Initial pitch deck and scope documentation",
+            filesize: "2.5 MB",
+            date: "08.05.25",
             starred: false
         },
         {
             id: 4,
             icon: "F",
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25",
+            title: "Brand Guideline 2025 – Visual Identity Expansion",
+            subtitle: "Updated brand colors, typography, and icons",
+            filesize: "4.7 MB",
+            date: "01.05.25",
             starred: false
         },
         {
             id: 5,
             icon: "F",
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
+            title: "Confidential Agreement For NovaTech CeloCorp",
+            subtitle: "Signed legal documentation with NDAs enclosed",
+            filesize: "2.2 MB",
             date: "15.05.25",
             starred: false
         }
@@ -68,6 +79,14 @@ function OneFolder({ folderName }) {
                 item.id === id ? { ...item, starred: !item.starred } : item
             )
         );
+    };
+
+    // Update recent searches
+    const addToRecentSearches = (doc) => {
+        setRecentSearches((prev) => {
+            const updated = [doc, ...prev.filter(item => item.id !== doc.id)];
+            return updated.slice(0, 3); 
+        });
     };
 
     // Starred filter
@@ -93,8 +112,10 @@ function OneFolder({ folderName }) {
                                 <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
                             </div>
 
-                            <div className="folder-search">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/></svg>
+                            <div className="folder-search" onClick={() => setShowSearchPopup(true)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/>
+                                </svg>
                             </div>
 
                             <div 
@@ -118,6 +139,164 @@ function OneFolder({ folderName }) {
                             </div>
                         </div>
                     </div>
+
+                    {showSearchPopup && (
+                        <div className="search-popup-overlay" onClick={() => setShowSearchPopup(false)}>
+                            <div className="search-popup" onClick={(e) => e.stopPropagation()}>
+                                <div className="search-popup-top">
+                                    <div className="search-top-left">
+                                        <div className="search-top-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24">
+                                                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/>
+                                            </svg>
+                                        </div>
+
+                                        <div className="search-top-input">
+                                            <input
+                                                type="text"
+                                                placeholder="Search"
+                                                className="search-input"
+                                                autoFocus
+                                                value={searchQuery}
+                                                onChange={(e) => {
+                                                    const query = e.target.value;
+                                                    setSearchQuery(query);
+
+                                                    if (query.trim() === "") {
+                                                        setSearchResults([]);
+                                                    } else {
+                                                        const filtered = folderData.filter((doc) =>
+                                                            doc.title.toLowerCase().includes(query.toLowerCase())
+                                                        )
+                                                        .slice(0, 3);
+
+                                                        setSearchResults(filtered);
+                                                    }
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="search-top-right">
+                                        <button onClick={() => setShowSearchPopup(false)} className="close-button">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="close-icon"
+                                                viewBox="0 0 24 24"
+                                                width="20"
+                                                height="20"
+                                            >
+                                                <path
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="2"
+                                                    d="M18 6L6 18M6 6l12 12"
+                                                />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div className="search-popup-recent">
+                                    <div className="search-recent-header">
+                                        <p>{searchQuery.trim() ? "Search results" : "Recent"}</p>
+                                    </div>
+
+                                    <div className="search-recent-body">
+                                        {(searchQuery.trim() ? searchResults : recentSearches).length === 0 ? (
+                                            <p className="search-recent-empty">
+                                                {searchQuery.trim() ? "No results found" : "No recent searches"}
+                                            </p>
+                                        ) : (
+                                            (searchQuery.trim() ? searchResults : recentSearches).map((doc) => (
+                                                <div
+                                                    className="search-recent-main"
+                                                    key={doc.id}
+                                                    onClick={() => {
+                                                        addToRecentSearches(doc);
+                                                        setShowSearchPopup(false);
+                                                    }}
+                                                >
+                                                    <div className="recent-main-icon">
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            className="recent-main-icon-svg"
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth="2"
+                                                                d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"
+                                                            />
+                                                        </svg>
+                                                    </div>
+
+                                                    <div className="recent-main-wrapper">
+                                                        <div className="recent-main-header">
+                                                            <p>{doc.title}</p>
+                                                        </div>
+
+                                                        <div className="recent-main-text">
+                                                            <p>{doc.subtitle}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="search-popup-common">
+                                    <div className="search-common-header">
+                                        <p>Common actions</p>
+                                    </div>
+
+                                    <div className="search-common-body">
+                                        <div className="search-common-main">
+                                            <div className="common-main-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="common-main-icon-svg" viewBox="0 0 24 24">
+                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M16 19h6m-3-3v6"/>
+                                                </svg>
+                                            </div>
+
+                                            <div className="common-main-wrapper">
+                                                <div className="common-main-header">
+                                                    <p>New document</p>
+                                                </div>
+
+                                                <div className="common-main-text">
+                                                    <p>Create a new document</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="search-common-main">
+                                            <div className="common-main-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="common-main-icon-svg" viewBox="0 0 24 24">
+                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M19 22v-6m3 3l-3-3l-3 3"/>
+                                                </svg>
+                                            </div>
+
+                                            <div className="common-main-wrapper">
+                                                <div className="common-main-header">
+                                                    <p>View documents</p>
+                                                </div>
+
+                                                <div className="common-main-text">
+                                                    <p>View all documents</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 <div className="folder-body">

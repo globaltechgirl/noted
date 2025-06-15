@@ -169,16 +169,17 @@
 .search-popup-common {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding: 0 15px 0 15px;
+  gap: 7px;
+  padding: 0 15px 0 0;
 }
 
 .search-popup-common {
-  padding: 10px 15px 0 15px;
+  padding: 5px 0 0 0;
 }
 
 .search-recent-header,
 .search-common-header {
+  padding: 0 0 0 15px;
   font-size: 0.54rem;
   font-weight: 450;
   letter-spacing: 0.6px;
@@ -189,7 +190,6 @@
 .search-common-body {
   display: flex;
   flex-direction: column;
-  gap: 15px;
 }
 
 .search-recent-main,
@@ -198,6 +198,27 @@
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
+  padding: 8px;
+  margin: 0 0 0 7.5px;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.search-common-main {
+  margin: 0 0 0 7.5px;
+}
+
+.search-recent-main:hover,
+.search-common-main:hover {
+  padding: 8px;
+  margin: 0 -7px 0 6.8px;
+  background-color: var(--color-surface-primary);
+  border: 1px solid var(--color-border);
+}
+
+.search-common-main:hover {
+  margin: 0 7px 0 6.8px;
 }
 
 .recent-main-icon,
@@ -235,6 +256,7 @@
 }
 
 .search-recent-empty {
+  margin: 5px 0 0 15px;
   font-size: 0.52rem;
   font-weight: 400;
   letter-spacing: 0.6px;
