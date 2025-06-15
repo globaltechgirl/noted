@@ -286,43 +286,43 @@ function AllFolders() {
                                     </div>
                                 </div>
 
-                                <div className="search-popup-common">
-                                    <div className="search-common-header">
-                                        <p>Common actions</p>
+                                <div className="search-popup-quick">
+                                    <div className="search-quick-header">
+                                        <p>Quick actions</p>
                                     </div>
 
-                                    <div className="search-common-body">
-                                        <div className="search-common-main">
-                                            <div className="common-main-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="common-main-icon-svg" viewBox="0 0 24 24">
+                                    <div className="search-quick-body">
+                                        <div className="search-quick-main">
+                                            <div className="quick-main-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="quick-main-icon-svg" viewBox="0 0 24 24">
                                                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M16 19h6m-3-3v6"/>
                                                 </svg>
                                             </div>
 
-                                            <div className="common-main-wrapper">
-                                                <div className="common-main-header">
+                                            <div className="quick-main-wrapper">
+                                                <div className="quick-main-header">
                                                     <p>New document</p>
                                                 </div>
 
-                                                <div className="common-main-text">
+                                                <div className="quick-main-text">
                                                     <p>Create a new document</p>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="search-common-main">
-                                            <div className="common-main-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="common-main-icon-svg" viewBox="0 0 24 24">
+                                        <div className="search-quick-main">
+                                            <div className="quick-main-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="quick-main-icon-svg" viewBox="0 0 24 24">
                                                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M19 22v-6m3 3l-3-3l-3 3"/>
                                                 </svg>
                                             </div>
 
-                                            <div className="common-main-wrapper">
-                                                <div className="common-main-header">
+                                            <div className="quick-main-wrapper">
+                                                <div className="quick-main-header">
                                                     <p>View documents</p>
                                                 </div>
 
-                                                <div className="common-main-text">
+                                                <div className="quick-main-text">
                                                     <p>View all documents</p>
                                                 </div>
                                             </div>
