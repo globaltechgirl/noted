@@ -265,7 +265,7 @@ function AllFolders() {
 
                                             <div className="no-results-text">
                                                 <p>
-                                                    "{searchQuery}" did not match any notes. <br/> Please try again or create a new note.
+                                                    "{searchQuery}" did not match any notes. <br/> Please try again or <span>create a new note</span>.
                                                 </p>
                                             </div>
 

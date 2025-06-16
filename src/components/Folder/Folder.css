@@ -272,9 +272,9 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   text-align: center;
-  padding: 7px 0 12px 0;
+  padding: 9px 0 14px 0;
 }
 
 .no-results-icon {
@@ -282,7 +282,7 @@
   border-radius: 0.4rem;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 .no-results-icon-svg {
@@ -311,6 +311,12 @@
   color: var(--color-surface-accent);
 }
 
+.no-results-text span {
+  color: var(--color-text-primary);
+  opacity: 0.5;
+    cursor: pointer;
+}
+
 .no-results-clear button {
   all: unset;
   background: rgba(255, 255, 255, 0.1);
@@ -318,7 +324,7 @@
   color: var(--color-text-primary);
   opacity: 0.8;
   padding: 7px 12px;
-  margin-top: 7px;
+  margin-top: 9px;
   border-radius: 0.4rem;
   font-size: 0.5rem;
   font-weight: 450;
