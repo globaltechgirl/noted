@@ -20,57 +20,58 @@ function LinkFolder({ folderName }) {
         Compact: 53.5,
     });
 
+    // --- Search Popup State ---
+    const [showSearchPopup, setShowSearchPopup] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [recentSearches, setRecentSearches] = useState([]);
+    const noMatchFound = searchQuery.trim() !== "" && searchResults.length === 0;
+
     // --- Folder Data ---
-    const folderData = [
+    const [folderData, setFolderData] = useState([
         {
-            title: "Licences",
-            filesize: "2.3 MB",
-            date: "15.05.25",
-            link: "https://example.com/waterfall-licence-1"
+            id: 1,
+            title: "Q2 Budget Review Link",
+            website: "Instagram",
+            link: "https://example.com/waterfall-licence-1",
+            filesize: "1.8 MB",
+            date: "12.04.25",
         },
         {
-            title: "Licence",
-            filesize: "2.3 MB",
-            date: "15.05.25",
-            link: "https://example.com/waterfall-licence-1"
+            id: 2,
+            title: "UX Research Notes Link",
+            website: "Snapchat",
+            link: "https://example.com/waterfall-licence-1",
+            filesize: "1.8 MB",
+            date: "12.04.25",
         },
         {
-            title: "Licence",
-            filesize: "2.3 MB",
-            date: "15.05.25",
-            link: "https://example.com/waterfall-licence-1"
+            id: 3,
+            icon: "F",
+            title: "Project Neon Proposal Link",
+            website: "Figma",
+            link: "https://example.com/waterfall-licence-1",
+            filesize: "1.8 MB",
+            date: "12.04.25",
         },
         {
-            title: "Licence",
-            filesize: "2.3 MB",
-            date: "15.05.25",
-            link: "https://example.com/waterfall-licence-1"
-        },
-        {
-            title: "Licence",
-            filesize: "2.3 MB",
-            date: "15.05.25",
-            link: "https://example.com/waterfall-licence-1"
-        },
-        {
-            title: "Licence",
-            filesize: "2.3 MB",
-            date: "15.05.25",
-            link: "https://example.com/waterfall-licence-1"
-        },
-        {
-            title: "Licence",
-            filesize: "2.3 MB",
-            date: "15.05.25",
-            link: "https://example.com/waterfall-licence-1"
-        },
-        {
-            title: "Licence",
-            filesize: "2.3 MB",
-            date: "15.05.25",
-            link: "https://example.com/waterfall-licence-1"
+            id: 4,
+            icon: "F",
+            title: "Brand Guideline 2025 Link",
+            website: "Dribble",
+            link: "https://example.com/waterfall-licence-1",
+            filesize: "1.8 MB",
+            date: "12.04.25",
         }
-    ];
+    ]);
+
+    // Update recent searches
+    const addToRecentSearches = (doc) => {
+        setRecentSearches((prev) => {
+            const updated = [doc, ...prev.filter(item => item.id !== doc.id)];
+            return updated.slice(0, 3); 
+        });
+    };
 
     return (
         <div className="folder-container">
@@ -94,11 +95,259 @@ function LinkFolder({ folderName }) {
                                 <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
                             </div>
 
-                            <div className="folder-search">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/></svg>
+                            <div className="folder-search" onClick={() => setShowSearchPopup(true)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/>
+                                </svg>
                             </div>
                         </div>
                     </div>
+
+                    {showSearchPopup && (
+                        <div className="search-popup-overlay" onClick={() => setShowSearchPopup(false)}>
+                            <div className="search-popup" onClick={(e) => e.stopPropagation()}>
+                                <div className="search-popup-top">
+                                    <div className="search-top-left">
+                                        <div className="search-top-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24">
+                                                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/>
+                                            </svg>
+                                        </div>
+
+                                        <div className="search-top-input">
+                                            <input
+                                                type="text"
+                                                placeholder="Search"
+                                                className="search-input"
+                                                autoFocus
+                                                value={searchQuery}
+                                                onChange={(e) => {
+                                                    const query = e.target.value;
+                                                    setSearchQuery(query);
+
+                                                    if (query.trim() === "") {
+                                                        setSearchResults([]);
+                                                        setNoMatchFound(false); 
+                                                    } else {
+                                                        const filtered = folderData.filter((doc) =>
+                                                            doc.title.toLowerCase().includes(query.toLowerCase())
+                                                        )
+                                                        .slice(0, 3);
+
+                                                        setSearchResults(filtered);
+                                                        setNoMatchFound(filtered.length === 0);
+                                                    }
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="search-top-right">
+                                        <button onClick={() => setShowSearchPopup(false)} className="close-button">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="close-icon"
+                                                viewBox="0 0 24 24"
+                                                width="20"
+                                                height="20"
+                                            >
+                                                <path
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="2"
+                                                    d="M18 6L6 18M6 6l12 12"
+                                                />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {noMatchFound ? (
+                                    <div className="no-results-body">
+                                        <div className="no-results-main">
+                                            <div className="no-results-icon">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="no-results-icon-svg"
+                                                    viewBox="0 0 24 24"
+                                                    width="48"
+                                                    height="48"
+                                                >
+                                                    <path
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth="2"
+                                                        d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11"
+                                                    />
+                                                </svg>
+                                            </div>
+
+                                            <div className="no-results-header">
+                                                <p>No links found</p>
+                                            </div>
+
+                                            <div className="no-results-text">
+                                                <p>
+                                                    "{searchQuery}" did not match any links. <br/> Please try again or <span>create a new link</span>.
+                                                </p>
+                                            </div>
+
+                                            <div className="no-results-clear">
+                                                <button
+                                                    onClick={() => {
+                                                        setSearchQuery("");
+                                                        setSearchResults([]);
+                                                    }}
+                                                >
+                                                    Clear search
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    ) : (
+                                    <>
+                                        <div className="search-popup-recent">
+                                            <div className="search-recent-header">
+                                                <p>{searchQuery.trim() ? "Search results" : "Recent"}</p>
+                                            </div>
+
+                                            <div className="search-recent-body">
+                                                {(searchQuery.trim() ? searchResults : recentSearches).length === 0 ? (
+                                                    <p className="search-recent-empty">
+                                                        {searchQuery.trim() ? "No results found" : "No recent searches"}
+                                                    </p>
+                                                ) : (
+                                                    (searchQuery.trim() ? searchResults : recentSearches).map((doc) => (
+                                                        <div
+                                                            className="search-recent-main"
+                                                            key={doc.id}
+                                                            onClick={() => {
+                                                                addToRecentSearches(doc);
+                                                                setShowSearchPopup(false);
+                                                            }}
+                                                    >
+                                                            <div className="recent-main-icon">
+                                                                <svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    className="recent-main-icon-svg"
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path
+                                                                        fill="none"
+                                                                        stroke="currentColor"
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth="2"
+                                                                        d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11"
+                                                                    />
+                                                                </svg>
+                                                            </div>
+
+                                                            <div className="recent-main-wrapper">
+                                                                <div className="recent-main-header">
+                                                                    <p>{doc.title}</p>
+                                                                </div>
+
+                                                                <div className="recent-main-text">
+                                                                    <p>{doc.website}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        <div className="search-popup-quick">
+                                            <div className="search-quick-header">
+                                                <p>Quick actions</p>
+                                            </div>
+
+                                            <div className="search-quick-body">
+                                                <div className="search-quick-main">
+                                                    <div className="quick-main-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" 
+                                                            className="quick-main-icon-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path  
+                                                                fill="none" 
+                                                                stroke="currentColor" 
+                                                                stroke-linecap="round" 
+                                                                stroke-linejoin="round" 
+                                                                stroke-width="2" 
+                                                                d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.072 0a4.993 4.993 0 0 1-.001 7.072m-5.931 5.998a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11m10 8h6m-3-3v6"
+                                                            />
+                                                        </svg>
+                                                    </div>
+
+                                                    <div className="quick-main-wrapper">
+                                                        <div className="quick-main-header">
+                                                            <p>New link</p>
+                                                        </div>
+
+                                                        <div className="quick-main-text">
+                                                            <p>Create new link</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="search-quick-main">
+                                                    <div className="quick-main-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" 
+                                                            className="quick-main-icon-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path  
+                                                                fill="none" 
+                                                                stroke="currentColor" 
+                                                                stroke-linecap="round" 
+                                                                stroke-linejoin="round" 
+                                                                stroke-width="2" 
+                                                                d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11"
+                                                            />
+                                                            <g transform="translate(18.5, 18.5)">
+                                                                <line 
+                                                                    x1="0" 
+                                                                    y1="5" 
+                                                                    x2="0" y2="0" 
+                                                                    stroke="currentColor" 
+                                                                    strokeWidth="2" 
+                                                                    strokeLinecap="round"
+                                                                />
+                                                                <path 
+                                                                    d="M-3 1.5 L0 -1.5 L3 1.5" 
+                                                                    fill="none" 
+                                                                    stroke="currentColor" 
+                                                                    strokeWidth="2" 
+                                                                    strokeLinecap="round" 
+                                                                    strokeLinejoin="round" 
+                                                                />
+                                                            </g>
+                                                        </svg>
+                                                    </div>
+
+                                                    <div className="quick-main-wrapper">
+                                                        <div className="quick-main-header">
+                                                            <p>View links</p>
+                                                        </div>
+
+                                                        <div className="quick-main-text">
+                                                            <p>View all links</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>
+                                 )}
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 <div className="folder-body">

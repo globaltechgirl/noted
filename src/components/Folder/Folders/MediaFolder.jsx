@@ -24,50 +24,62 @@ function MediaFolder({ folderName }) {
     // --- Star Filter Toggle ---
     const [starredOnly, setStarredOnly] = useState(false);
 
+    // --- Search Popup State ---
+    const [showSearchPopup, setShowSearchPopup] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [recentSearches, setRecentSearches] = useState([]);
+    const noMatchFound = searchQuery.trim() !== "" && searchResults.length === 0;
+
     // --- Folder Data ---
     const [folderData, setFolderData] = useState([
         {
             id: 1,
             icon: null,
             image: img1,
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25",
+            title: "Q2 Budget Review Photo",
+            mediatype: "Photo",
+            filesize: "1.8 MB",
+            date: "12.04.25",
             starred: false
         },
         {
             id: 2,
             icon: null,
             image: img1,
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25",
+            title: "UX Research Notes Photo",
+            mediatype: "Photo",
+            filesize: "3.1 MB",
+            date: "10.05.25",
             starred: false
         },
         {
             id: 3,
             icon: null,
             image: img1,
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25",
+            title: "Project Neon Proposal Video",
+            mediatype: "Video",
+            filesize: "2.5 MB",
+            date: "08.05.25",
             starred: false
         },
         {
             id: 4,
             icon: null,
             image: img1,
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
-            date: "15.05.25",
+            title: "Brand Guideline 2025 Photo",
+            mediatype: "Photo",
+            filesize: "4.7 MB",
+            date: "01.05.25",
             starred: false
         },
         {
             id: 5,
             icon: null,
             image: img1,
-            title: "Licence Agreement on Waterfall INC",
-            filesize: "2.3 MB",
+            title: "Confidential Agreement Video",
+            mediatype: "Video",
+            filesize: "2.2 MB",
             date: "15.05.25",
             starred: false
         }
@@ -80,6 +92,14 @@ function MediaFolder({ folderName }) {
                 item.id === id ? { ...item, starred: !item.starred } : item
             )
         );
+    };
+
+    // Update recent searches
+    const addToRecentSearches = (doc) => {
+        setRecentSearches((prev) => {
+            const updated = [doc, ...prev.filter(item => item.id !== doc.id)];
+            return updated.slice(0, 3); 
+        });
     };
 
     // Starred filter
@@ -109,8 +129,10 @@ function MediaFolder({ folderName }) {
                                 <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
                             </div>
 
-                            <div className="folder-search">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/></svg>
+                            <div className="folder-search" onClick={() => setShowSearchPopup(true)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/>
+                                </svg>
                             </div>
 
                             <div 
@@ -134,6 +156,281 @@ function MediaFolder({ folderName }) {
                             </div>
                         </div>
                     </div>
+                    
+                    {showSearchPopup && (
+                        <div className="search-popup-overlay" onClick={() => setShowSearchPopup(false)}>
+                            <div className="search-popup" onClick={(e) => e.stopPropagation()}>
+                                <div className="search-popup-top">
+                                    <div className="search-top-left">
+                                        <div className="search-top-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24">
+                                                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/>
+                                            </svg>
+                                        </div>
+
+                                        <div className="search-top-input">
+                                            <input
+                                                type="text"
+                                                placeholder="Search"
+                                                className="search-input"
+                                                autoFocus
+                                                value={searchQuery}
+                                                onChange={(e) => {
+                                                    const query = e.target.value;
+                                                    setSearchQuery(query);
+
+                                                    if (query.trim() === "") {
+                                                        setSearchResults([]);
+                                                        setNoMatchFound(false); 
+                                                    } else {
+                                                        const filtered = folderData.filter((doc) =>
+                                                            doc.title.toLowerCase().includes(query.toLowerCase())
+                                                        )
+                                                        .slice(0, 3);
+
+                                                        setSearchResults(filtered);
+                                                        setNoMatchFound(filtered.length === 0);
+                                                    }
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="search-top-right">
+                                        <button onClick={() => setShowSearchPopup(false)} className="close-button">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="close-icon"
+                                                viewBox="0 0 24 24"
+                                                width="20"
+                                                height="20"
+                                            >
+                                                <path
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="2"
+                                                    d="M18 6L6 18M6 6l12 12"
+                                                />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {noMatchFound ? (
+                                    <div className="no-results-body">
+                                        <div className="no-results-main">
+                                            <div className="no-results-icon">
+                                                <svg 
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="no-results-icon-svg"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <g 
+                                                        fill="none" 
+                                                        stroke="currentColor" 
+                                                        stroke-linecap="round" 
+                                                        stroke-linejoin="round" 
+                                                        stroke-width="2"
+                                                    >
+                                                        <path 
+                                                            d="M15 8h.01M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"
+                                                        />
+                                                        <path 
+                                                            d="M3.5 15.5L8 11c.928-.893 2.072-.893 3 0l5 5"
+                                                        />
+                                                        <path 
+                                                            d="m14 14l1-1c.928-.893 2.072-.893 3 0l2.5 2.5"
+                                                        />
+                                                    </g>
+                                                </svg>
+                                            </div>
+
+                                            <div className="no-results-header">
+                                                <p>No media found</p>
+                                            </div>
+
+                                            <div className="no-results-text">
+                                                <p>
+                                                    "{searchQuery}" did not match any media. <br/> Please try again or <span>create a new media</span>.
+                                                </p>
+                                            </div>
+
+                                            <div className="no-results-clear">
+                                                <button
+                                                    onClick={() => {
+                                                        setSearchQuery("");
+                                                        setSearchResults([]);
+                                                    }}
+                                                >
+                                                    Clear search
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    ) : (
+                                    <>
+                                        <div className="search-popup-recent">
+                                            <div className="search-recent-header">
+                                                <p>{searchQuery.trim() ? "Search results" : "Recent"}</p>
+                                            </div>
+
+                                            <div className="search-recent-body">
+                                                {(searchQuery.trim() ? searchResults : recentSearches).length === 0 ? (
+                                                    <p className="search-recent-empty">
+                                                        {searchQuery.trim() ? "No results found" : "No recent searches"}
+                                                    </p>
+                                                ) : (
+                                                    (searchQuery.trim() ? searchResults : recentSearches).map((doc) => (
+                                                        <div
+                                                            className="search-recent-main"
+                                                            key={doc.id}
+                                                            onClick={() => {
+                                                                addToRecentSearches(doc);
+                                                                setShowSearchPopup(false);
+                                                            }}
+                                                    >
+                                                            <div className="recent-main-icon">
+                                                                <svg 
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    className="recent-main-icon-svg"
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <g 
+                                                                        fill="none" 
+                                                                        stroke="currentColor" 
+                                                                        stroke-linecap="round" 
+                                                                        stroke-linejoin="round" 
+                                                                        stroke-width="2"
+                                                                    >
+                                                                        <path 
+                                                                            d="M15 8h.01M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"
+                                                                        />
+                                                                        <path 
+                                                                            d="M3.5 15.5L8 11c.928-.893 2.072-.893 3 0l5 5"
+                                                                        />
+                                                                        <path 
+                                                                            d="m14 14l1-1c.928-.893 2.072-.893 3 0l2.5 2.5"
+                                                                        />
+                                                                    </g>
+                                                                </svg>
+                                                            </div>
+
+                                                            <div className="recent-main-wrapper">
+                                                                <div className="recent-main-header">
+                                                                    <p>{doc.title}</p>
+                                                                </div>
+
+                                                                <div className="recent-main-text">
+                                                                    <p>{doc.mediatype}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        <div className="search-popup-quick">
+                                            <div className="search-quick-header">
+                                                <p>Quick actions</p>
+                                            </div>
+
+                                            <div className="search-quick-body">
+                                                <div className="search-quick-main">
+                                                    <div className="quick-main-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" 
+                                                            className="quick-main-icon-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <g 
+                                                                fill="none" 
+                                                                stroke="currentColor" 
+                                                                stroke-linecap="round" 
+                                                                stroke-linejoin="round" 
+                                                                stroke-width="2"
+                                                            >
+                                                                <path 
+                                                                    d="M12 3c6.8 0 8.4 1.6 8.8 8.2M12 21c-7.2 0-9-1.8-9-9c0-7.2 1.8-9 9-9" 
+                                                                />
+                                                                <path 
+                                                                    d="M3.5 15.5L8 11c.928-.893 2.072-.893 3 0l4 4" 
+                                                                />
+                                                                <path 
+                                                                    d="m14 14l1-1c.67-.644 1.45-.824 2.182-.54" 
+                                                                />
+                                                                <path 
+                                                                    d="M16 19h6m-3-3v6" 
+                                                                />
+                                                                <path 
+                                                                    d="M15 8h.01" 
+                                                                />
+                                                            </g>
+                                                        </svg>
+                                                    </div>
+
+                                                    <div className="quick-main-wrapper">
+                                                        <div className="quick-main-header">
+                                                            <p>New media</p>
+                                                        </div>
+
+                                                        <div className="quick-main-text">
+                                                            <p>Create new media</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="search-quick-main">
+                                                    <div className="quick-main-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" 
+                                                            className="quick-main-icon-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <g 
+                                                                fill="none" 
+                                                                stroke="currentColor" 
+                                                                stroke-linecap="round" 
+                                                                stroke-linejoin="round" 
+                                                                stroke-width="2"
+                                                            >
+                                                                <path 
+                                                                    d="M12 3c6.8 0 8.4 1.6 8.8 8.2M12 21c-7.2 0-9-1.8-9-9c0-7.2 1.8-9 9-9" 
+                                                                />
+                                                                <path 
+                                                                    d="M3.5 15.5L8 11c.928-.893 2.072-.893 3 0l4 4" 
+                                                                />
+                                                                <path 
+                                                                    d="m14 14l1-1c.67-.644 1.45-.824 2.182-.54" 
+                                                                />
+                                                                <path 
+                                                                    d="m14 14l1-1c.679-.653 1.473-.829 2.214-.526M19 22v-6m3 3l-3-3l-3 3"
+                                                                />
+                                                                <path 
+                                                                    d="M15 8h.01" 
+                                                                />
+                                                                
+                                                            </g>
+                                                        </svg>
+                                                    </div>
+
+                                                    <div className="quick-main-wrapper">
+                                                        <div className="quick-main-header">
+                                                            <p>View media</p>
+                                                        </div>
+
+                                                        <div className="quick-main-text">
+                                                            <p>View all media</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>
+                                 )}
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 <div className="folder-body">

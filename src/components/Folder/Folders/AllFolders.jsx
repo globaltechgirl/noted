@@ -354,7 +354,7 @@ function AllFolders() {
                                                         </div>
 
                                                         <div className="quick-main-text">
-                                                            <p>Create a new note</p>
+                                                            <p>Create new note</p>
                                                         </div>
                                                     </div>
                                                 </div>
