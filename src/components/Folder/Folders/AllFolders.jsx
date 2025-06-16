@@ -29,6 +29,7 @@ function AllFolders() {
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [recentSearches, setRecentSearches] = useState([]);
+    const noMatchFound = searchQuery.trim() !== "" && searchResults.length === 0;
 
     // --- Folder Summary Data ---
     const allFolderData = [
@@ -199,6 +200,7 @@ function AllFolders() {
 
                                                     if (query.trim() === "") {
                                                         setSearchResults([]);
+                                                        setNoMatchFound(false); 
                                                     } else {
                                                         const filtered = folderData.filter((doc) =>
                                                             doc.title.toLowerCase().includes(query.toLowerCase())
@@ -206,6 +208,7 @@ function AllFolders() {
                                                         .slice(0, 3);
 
                                                         setSearchResults(filtered);
+                                                        setNoMatchFound(filtered.length === 0);
                                                     }
                                                 }}
                                             />
@@ -234,101 +237,149 @@ function AllFolders() {
                                     </div>
                                 </div>
 
-                                <div className="search-popup-recent">
-                                    <div className="search-recent-header">
-                                        <p>{searchQuery.trim() ? "Search results" : "Recent"}</p>
-                                    </div>
+                                {noMatchFound ? (
+                                    <div className="no-results-body">
+                                        <div className="no-results-main">
+                                            <div className="no-results-icon">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="no-results-icon-svg"
+                                                    viewBox="0 0 24 24"
+                                                    width="48"
+                                                    height="48"
+                                                >
+                                                    <path
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth="2"
+                                                        d="m5 19l2.757-7.351A1 1 0 0 1 8.693 11H21a1 1 0 0 1 .986 1.164l-.996 5.211A2 2 0 0 1 19.026 19za2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v2"
+                                                    />
+                                                </svg>
+                                            </div>
 
-                                    <div className="search-recent-body">
-                                        {(searchQuery.trim() ? searchResults : recentSearches).length === 0 ? (
-                                            <p className="search-recent-empty">
-                                                {searchQuery.trim() ? "No results found" : "No recent searches"}
-                                            </p>
-                                        ) : (
-                                            (searchQuery.trim() ? searchResults : recentSearches).map((doc) => (
-                                                <div
-                                                    className="search-recent-main"
-                                                    key={doc.id}
+                                            <div className="no-results-header">
+                                                <p>No notes found</p>
+                                            </div>
+
+                                            <div className="no-results-text">
+                                                <p>
+                                                    "{searchQuery}" did not match any notes. <br/> Please try again or create a new note.
+                                                </p>
+                                            </div>
+
+                                            <div className="no-results-clear">
+                                                <button
                                                     onClick={() => {
-                                                        addToRecentSearches(doc);
-                                                        setShowSearchPopup(false);
+                                                        setSearchQuery("");
+                                                        setSearchResults([]);
                                                     }}
                                                 >
-                                                    <div className="recent-main-icon">
-                                                        <svg
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            className="recent-main-icon-svg"
-                                                            viewBox="0 0 24 24"
-                                                        >
-                                                            <path
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth="2"
-                                                                d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"
-                                                            />
+                                                    Clear search
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    ) : (
+                                    <>
+                                        <div className="search-popup-recent">
+                                            <div className="search-recent-header">
+                                                <p>{searchQuery.trim() ? "Search results" : "Recent"}</p>
+                                            </div>
+
+                                            <div className="search-recent-body">
+                                                {(searchQuery.trim() ? searchResults : recentSearches).length === 0 ? (
+                                                    <p className="search-recent-empty">
+                                                        {searchQuery.trim() ? "No results found" : "No recent searches"}
+                                                    </p>
+                                                ) : (
+                                                    (searchQuery.trim() ? searchResults : recentSearches).map((doc) => (
+                                                        <div
+                                                            className="search-recent-main"
+                                                            key={doc.id}
+                                                            onClick={() => {
+                                                                addToRecentSearches(doc);
+                                                                setShowSearchPopup(false);
+                                                            }}
+                                                    >
+                                                            <div className="recent-main-icon">
+                                                                <svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    className="recent-main-icon-svg"
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path
+                                                                        fill="none"
+                                                                        stroke="currentColor"
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth="2"
+                                                                        d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"
+                                                                    />
+                                                                </svg>
+                                                            </div>
+
+                                                            <div className="recent-main-wrapper">
+                                                                <div className="recent-main-header">
+                                                                    <p>{doc.title}</p>
+                                                                </div>
+
+                                                                <div className="recent-main-text">
+                                                                    <p>{doc.subtitle}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        <div className="search-popup-quick">
+                                            <div className="search-quick-header">
+                                                <p>Quick actions</p>
+                                            </div>
+
+                                            <div className="search-quick-body">
+                                                <div className="search-quick-main">
+                                                    <div className="quick-main-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="quick-main-icon-svg" viewBox="0 0 24 24">
+                                                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M16 19h6m-3-3v6"/>
                                                         </svg>
                                                     </div>
 
-                                                    <div className="recent-main-wrapper">
-                                                        <div className="recent-main-header">
-                                                            <p>{doc.title}</p>
+                                                    <div className="quick-main-wrapper">
+                                                        <div className="quick-main-header">
+                                                            <p>New note</p>
                                                         </div>
 
-                                                        <div className="recent-main-text">
-                                                            <p>{doc.subtitle}</p>
+                                                        <div className="quick-main-text">
+                                                            <p>Create a new note</p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            ))
-                                        )}
-                                    </div>
-                                </div>
 
-                                <div className="search-popup-quick">
-                                    <div className="search-quick-header">
-                                        <p>Quick actions</p>
-                                    </div>
+                                                <div className="search-quick-main">
+                                                    <div className="quick-main-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="quick-main-icon-svg" viewBox="0 0 24 24">
+                                                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M19 22v-6m3 3l-3-3l-3 3"/>
+                                                        </svg>
+                                                    </div>
 
-                                    <div className="search-quick-body">
-                                        <div className="search-quick-main">
-                                            <div className="quick-main-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="quick-main-icon-svg" viewBox="0 0 24 24">
-                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M16 19h6m-3-3v6"/>
-                                                </svg>
-                                            </div>
+                                                    <div className="quick-main-wrapper">
+                                                        <div className="quick-main-header">
+                                                            <p>View notes</p>
+                                                        </div>
 
-                                            <div className="quick-main-wrapper">
-                                                <div className="quick-main-header">
-                                                    <p>New document</p>
-                                                </div>
-
-                                                <div className="quick-main-text">
-                                                    <p>Create a new document</p>
+                                                        <div className="quick-main-text">
+                                                            <p>View all notes</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div className="search-quick-main">
-                                            <div className="quick-main-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="quick-main-icon-svg" viewBox="0 0 24 24">
-                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M19 22v-6m3 3l-3-3l-3 3"/>
-                                                </svg>
-                                            </div>
-
-                                            <div className="quick-main-wrapper">
-                                                <div className="quick-main-header">
-                                                    <p>View documents</p>
-                                                </div>
-
-                                                <div className="quick-main-text">
-                                                    <p>View all documents</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </>
+                                 )}
                             </div>
                         </div>
                     )}
