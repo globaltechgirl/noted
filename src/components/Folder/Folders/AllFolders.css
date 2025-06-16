@@ -42,7 +42,7 @@
 }
 
 .all-folder .all-folder-text {
-  color: var(--color-surface-accent);
+  color: var(--color-text-accent);
   font-size: 0.55rem;
   font-weight: 500;
 }
