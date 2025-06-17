@@ -197,7 +197,7 @@ body::-webkit-scrollbar-track:hover {
 
 .arrow-wrapper {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 
 .side-active-arrow,

@@ -112,7 +112,7 @@ function Side({ onSectionClick }) {
         <div className="arrow-wrapper">
             <svg 
                 xmlns="http://www.w3.org/2000/svg" 
-                className="side-active-arrow" 
+                className="side-active-lock" 
                 viewBox="0 0 24 24">
                 <g
                     fill="none"
@@ -132,7 +132,7 @@ function Side({ onSectionClick }) {
 
             <svg 
                 xmlns="http://www.w3.org/2000/svg" 
-                className="side-active-lock" 
+                className="side-active-arrow" 
                 viewBox="0 0 24 24">
                 <g
                     fill="none"

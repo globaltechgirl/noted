@@ -398,19 +398,27 @@ function AllFolders() {
 
                     <div className="all-folders">
                         {allFolderData.map((item, index) => (
-                            <div className="all-folder" key={index}>
-                                <div className="all-folder-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="all-folder-svg" viewBox="0 0 24 24">
-                                    <path fill="currentColor" d="M9 3a1 1 0 0 1 .608.206l.1.087L12.414 6H19a3 3 0 0 1 2.995 2.824L22 9v8a3 3 0 0 1-2.824 2.995L19 20H5a3 3 0 0 1-2.995-2.824L2 17V6a3 3 0 0 1 2.824-2.995L5 3z"/>
-                                    </svg>
-                                </div>
+                            <div className="all-folder-wrapper">
+                                <div className="all-folder-base"></div>
 
-                                <div className="all-folder-name">
-                                    <p>{item.title}</p>
-                                </div>
+                                <div className="all-folder-paper paper-1"></div>
+                                <div className="all-folder-paper paper-2"></div>
+                                <div className="all-folder-paper paper-3"></div>
 
-                                <div className="all-folder-text">
-                                    <p>{item.count} {item.fileType}</p>
+                                <div className="all-folder" key={index}>
+                                    <div className="all-folder-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="all-folder-svg" viewBox="0 0 24 24">
+                                            <path fill="currentColor" d="M9 3a1 1 0 0 1 .608.206l.1.087L12.414 6H19a3 3 0 0 1 2.995 2.824L22 9v8a3 3 0 0 1-2.824 2.995L19 20H5a3 3 0 0 1-2.995-2.824L2 17V6a3 3 0 0 1 2.824-2.995L5 3z"/>
+                                        </svg>
+                                    </div>
+
+                                    <div className="all-folder-name">
+                                        <p>{item.title}</p>
+                                    </div>
+
+                                    <div className="all-folder-text">
+                                        <p>{item.count} {item.fileType}</p>
+                                    </div>
                                 </div>
                             </div>
                         ))}

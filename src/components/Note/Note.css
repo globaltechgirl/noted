@@ -102,11 +102,11 @@
 
 /* Note body */
 .note-body {
-  width: 95%;
+  width: 90%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 30px;
+  gap: 25px;
 }
 
 .note {

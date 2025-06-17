@@ -34,7 +34,6 @@
   background-color: var(--color-sidebar-bg);
   border-radius: 0.8rem;
   padding: 6px 6.5px;
-  box-shadow: 0 0 5px var(--color-background-dark);
 }
 
 .folder-logo {
@@ -42,7 +41,7 @@
   align-items: center;
   color: var(--color-text-primary);
   gap: 0.4rem;
-  background-color: var(--color-surface-secondary);
+  background-color: var(--color-icon-primary);
   padding: 8px 10px;
   border-radius: 0.5rem;
 }
@@ -93,7 +92,7 @@
 }
 
 .folder-icons > * {
-  background-color: var(--color-surface-secondary);
+    background-color: var(--color-icon-primary);
   padding: 3.5px 7px;
   border-radius: 0.5rem;
 }

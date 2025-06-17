@@ -139,6 +139,59 @@ function Note({ onFolderClick }) {
                                 <p className="note-overlay-p">Create Note</p>  
                             </div>
                         </div>
+                    </div>
+
+                    <div className="note note-black"  
+                    onClick={() => onFolderClick && onFolderClick("work")}
+                    style={{ cursor: "pointer" }}
+                    >
+                        <div className="note-img">
+                            <img src="/src/assets/images/note-black.png" />  
+
+                            <div className="note-overlay-text">
+                                <p className="note-overlay-p">65 Notes</p>  
+                            </div>
+                        </div>
+
+                        <div className="note-main">
+                            <p className="note-title">Work</p>
+                            <p className="note-text">2/06/25</p>
+                        </div>
+                    </div>
+
+                    <div className="note note-white"
+                    onClick={() => onFolderClick && onFolderClick("one-note")}
+                    style={{ cursor: "pointer" }}
+                    >
+                        <div className="note-img">
+                            <img src="/src/assets/images/note-white.png" />  
+
+                            <div className="note-overlay-text">
+                                <p className="note-overlay-p">128 Notes</p>  
+                            </div>
+                        </div>
+
+                        <div className="note-main">
+                            <p className="note-title">Randoms</p>
+                            <p className="note-text">Tuesday</p>
+                        </div>
+                    </div>
+
+                    <div className="note note-black note-overlay note-new"
+                    onClick={() => onFolderClick && onFolderClick("one-folder")}
+                    style={{ cursor: "pointer" }}
+                    >
+                        <div className="note-img">
+                            <img src="/src/assets/images/note-black.png" />  
+
+                            <div className="note-overlay-text">
+                                <p className="note-overlag-svg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                                </p>
+
+                                <p className="note-overlay-p">Create Note</p>  
+                            </div>
+                        </div>
                     </div>                
                 </div>
             </div>
