@@ -109,10 +109,53 @@ function Side({ onSectionClick }) {
 
     // Arrow Icon Indicator
     const arrowIcon = (
-        <svg xmlns="http://www.w3.org/2000/svg" className="side-active-arrow" viewBox="0 0 24 24">
-            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                d="M12 5v14m6-8l-6-6m-6 6l6-6"/>
-        </svg>
+        <div className="arrow-wrapper">
+            <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="side-active-arrow" 
+                viewBox="0 0 24 24">
+                <g
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                >
+                    <path 
+                        d="M5 13a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"
+                    />
+                    <path 
+                        d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0-2 0m-3-5V7a4 4 0 1 1 8 0v4"
+                    />
+                </g>
+            </svg>
+
+            <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="side-active-lock" 
+                viewBox="0 0 24 24">
+                <g
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                >
+                    <path 
+                        d="M15 11l7.8-7.6" 
+                    />
+                    <path 
+                        d="M23 4v4" 
+                    />
+                    <path 
+                        d="M22 3h-4" 
+                    />
+                    <path 
+                        d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8" 
+                    />
+                </g>
+            </svg>
+        </div>
     );
 
     return (
