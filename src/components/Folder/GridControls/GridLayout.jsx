@@ -50,30 +50,46 @@ function GridLayout ({ data = [], toggleStar }) {
                                                     {folder.image ? (
                                                         <img src={folder.image} alt={folder.title} />
                                                     ) : (
-                                                        <p>{folder.icon}</p>
+                                                        <div className="folder-layout-icon">
+                                                            <svg
+                                                                className="folder-layout-icon-svg"
+                                                                viewBox="0 0 100 100"
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                            >
+                                                                <path 
+                                                                    fill="#555555" 
+                                                                    stroke="rgba(255, 255, 255, 0.2)" 
+                                                                    stroke-linecap="round" 
+                                                                    stroke-linejoin="round" 
+                                                                    stroke-width="0.5" 
+                                                                    d="m13.163 2.168l8.021 5.828c.694.504.984 1.397.719 2.212l-3.064 9.43a1.98 1.98 0 0 1-1.881 1.367H7.042a1.98 1.98 0 0 1-1.881-1.367l-3.064-9.43a1.98 1.98 0 0 1 .719-2.212l8.021-5.828a1.98 1.98 0 0 1 2.326 0"
+                                                                />
+                                                                <text
+                                                                    x="12"
+                                                                    y="15"
+                                                                    textAnchor="middle"
+                                                                    alignmentBaseline="middle"
+                                                                    className="folder-layout-icon-text"
+                                                                >
+                                                                    {folder.icon}
+                                                                </text>
+                                                            </svg>
+                                                        </div>
                                                     )}
                                                 </div>
                                             </div>
 
-                                            <div className="folder-layout-middle">
-                                                <div className="middle-text">
-                                                    <p>{folder.title}</p>
+                                            <div className="folder-layout-div">
+                                                <div className="folder-layout-middle">
+                                                    <div className="middle-text">
+                                                        <p>{folder.title}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div className="folder-layout-body-hr">
-                                                <i className="bi bi-plus"></i>
-                                                <div className="line"></div>
-                                                <i className="bi bi-plus"></i>
-                                            </div>
-
-                                            <div className="folder-layout-bottom">
-                                                <div className="bottom-title">
-                                                    <p>Filesize</p>
-                                                </div>
-                                                
-                                                <div className="bottom-text">
-                                                    <p>{folder.filesize}</p>
+                                                <div className="folder-layout-bottom">                                                
+                                                    <div className="bottom-text">
+                                                        <p>{folder.filesize}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </>
