@@ -1,16 +1,18 @@
+/* All folders */
 .all-folders {
-  width: 90%;
+  width: 93%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 20px;
-  margin-top: 100px;
+  margin-top: 75px;
   margin-bottom: 35px;
 }
 
+/* All folders wrapper */
 .all-folder-wrapper {
   position: relative;
-  width: 180px;
+  width: 170px;
   height: auto;
   display: flex;
   align-items: center;
@@ -18,12 +20,13 @@
   z-index: 0;
 }
 
+/* All folders base */
 .all-folder-base {
   position: absolute;
-  top: -40%;
+  top: -70%;
   left: 0;
   width: 100%;
-  height: 120%;
+  height: 165%;
   border-radius: 0.6rem;
   background: linear-gradient(
     135deg,
@@ -33,8 +36,6 @@
   border: 1px solid var(--color-icon-border);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.015),
-    0 0 8px rgba(0, 0, 0, 0.25);
   z-index: 0;
   overflow: hidden;
 }
@@ -70,41 +71,43 @@
   z-index: 1;
 }
 
+/* All folders paper */
 .all-folder-paper {
   position: absolute;
   width: 80%;
-  height: 90%;
+  height: 125%;
   margin: 0 auto;
   border-radius: 0.4rem;
-  background-color: var(--color-text-accent);
+  background-color: var(--color-text-primary);
   z-index: 1;
   transform-origin: top left;
 }
 
 .paper-1 {
-  top: -28%;
+  top: -50%;
   left: 24px;
   z-index: 1;
 }
 
 .paper-2 {
-  top: -23%;
+  top: -45%;
   left: 18px;
   z-index: 2;
 }
 
 .paper-3 {
-  top: -17%;
+  top: -39%;
   left: 14px;
   z-index: 3;
 }
 
+/* All folder */
 .all-folder {
   position: relative;
   z-index: 4;
   width: 100%;
-  height: 75%;
-  padding: 15px;
+  height: 95%;
+  padding: 12px 15px;
   display: flex;
   flex-direction: column;
   letter-spacing: 0.6px;
@@ -117,8 +120,6 @@
   border-radius: 0.5rem;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.03),
-    0 0 10px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 
@@ -126,7 +127,7 @@
   content: "";
   position: absolute;
   top: -40%;
-  left: -30%;
+  left: -40%;
   width: 200%;
   height: 200%;
   background: linear-gradient(
@@ -153,28 +154,14 @@
   pointer-events: none;
 }
 
-.all-folder:hover {
-  background-color: var(--color-surface-primary);
-  border: 0.5px solid var(--color-border);
-  cursor: pointer;
-}
-
-.all-folder .all-folder-icon {
-  padding: 2px;
-  width: fit-content;
-  margin-bottom: 20px;
-  color: var(--color-text-accent);
-  border-radius: 0.55rem;
-  background: var(--color-icon-secondary);
-  border: 1px solid var(--color-icon-border);
-}
-
 .all-folder .all-folder-svg {
-  width: 30px;
-  height: 30px;
-  padding: 4px;
+  width: 15px;
+  height: 15px;
+  padding: 2px;
   display: block;
-  border-radius: 0.4rem;
+  margin-bottom: 11px;
+  color: var(--color-text-accent);
+  border-radius: 0.25rem;
   background: var(--color-icon-secondary);
   border: 1px solid var(--color-icon-border);
   box-shadow: 0 1px 1px var(--color-background-dark),
@@ -184,41 +171,41 @@
 }
 
 .all-folder .all-folder-name {
-  font-size: 0.65rem;
-  font-weight: 550;
+  font-size: 0.55rem;
+  font-weight: 500;
   color: var(--color-text-primary);
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .all-folder .all-folder-text {
   color: var(--color-text-accent);
-  font-size: 0.55rem;
+  font-size: 0.49rem;
   font-weight: 500;
 }
 
 @media (max-width: 480px) {
-  /* All Folders */
+  /* All folders */
   .all-folders {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  /* All Folders */
+  /* All folders */
   .all-folders {
     gap: 15px;
   }
 }
 
 @media (min-width: 481px) and (max-width: 1024px) {
-  /* All Folders */
+  /* All folders */
   .all-folders {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (max-width: 1024px) {
-  /* All Folders */
+  /* All folders */
   .all-folders {
     width: 90%;
   }
