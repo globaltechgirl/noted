@@ -57,7 +57,7 @@ function GridLayout ({ data = [], toggleStar }) {
                                                                 xmlns="http://www.w3.org/2000/svg"
                                                             >
                                                                 <path 
-                                                                    fill="#555555" 
+                                                                    fill="#2c2c31" 
                                                                     stroke="rgba(255, 255, 255, 0.2)" 
                                                                     stroke-linecap="round" 
                                                                     stroke-linejoin="round" 
@@ -66,7 +66,7 @@ function GridLayout ({ data = [], toggleStar }) {
                                                                 />
                                                                 <text
                                                                     x="12"
-                                                                    y="15"
+                                                                    y="13.5"
                                                                     textAnchor="middle"
                                                                     alignmentBaseline="middle"
                                                                     className="folder-layout-icon-text"

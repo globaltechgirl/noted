@@ -1,6 +1,6 @@
 /* Folder main */
 .folder-layout-main {
-  width: 94%;
+  width: 93%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -15,9 +15,48 @@
   height: auto;
   gap: 10px;
   padding: 0 0 5px 0;
-  background: var(--color-icon-secondary);
-  border: 1px solid var(--color-icon-border);
   border-radius: 0.6rem;
+  background: linear-gradient(
+    135deg,
+    rgba(38, 38, 42, 0.9),
+    rgba(38, 38, 42, 0.8)
+  );
+  border: 1px solid var(--color-icon-border);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 0;
+  overflow: hidden;
+}
+
+.folder-layout-regular::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -30%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.02) 0%,
+    rgba(255, 255, 255, 0.08) 45%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.folder-layout-regular::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill-opacity='0.03'%3E%3Ccircle cx='25' cy='25' r='1' fill='white'/%3E%3Ccircle cx='75' cy='75' r='1' fill='white'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 20px 20px;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .folder-image-wrapper {
@@ -73,7 +112,7 @@
 .folder-layout-icon {
   position: absolute;
   top: 40px;
-  left: 100%;
+  left: 98%;
   transform: translateX(-50%);
   z-index: 2;
 }
@@ -84,8 +123,8 @@
 }
 
 .folder-layout-icon-text {
-  fill: var(--color-surface-secondary);
-  font-size: 0.7rem;
+  fill: var(--color-text-accent);
+  font-size: 0.65rem;
   font-weight: bold;
 }
 
@@ -96,14 +135,50 @@
   margin: 0 auto;
   margin-top: 50px;
   gap: 10px;
-  padding: 10px;
-  background: var(--color-icon-secondary);
+  padding: 10px 10px 15px 10px;
+  background: linear-gradient(
+    135deg,
+    rgba(38, 38, 42, 0.95) 0%,
+    rgba(38, 38, 42, 0.85) 100%
+  );
   border: 1px solid var(--color-icon-border);
-  box-shadow: 0 1px 1px var(--color-background-dark),
-    0 -0.5px 1px var(--color-icon-secondary),
-    0.5px 0 1px var(--color-background-dark),
-    -0.5px 0 1px var(--color-background-dark);
-  border-radius: 0.6rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  overflow: hidden;
+  letter-spacing: 0.6px;
+  text-align: center;
+}
+
+.folder-layout-div::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.45;
+  z-index: 1;
+}
+
+.folder-layout-div::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill-opacity='0.035'%3E%3Ccircle cx='25' cy='25' r='1' fill='white'/%3E%3Ccircle cx='75' cy='75' r='1' fill='white'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 20px 20px;
+  z-index: 1;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
 }
 
 .folder-layout-middle {
@@ -115,29 +190,13 @@
 .folder-layout-middle .middle-text {
   font-size: 0.6rem;
   font-weight: 500;
-  letter-spacing: 0.6px;
   line-height: 2;
   color: var(--color-text-primary);
-  text-align: center;
-}
-
-.folder-layout-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  letter-spacing: 0.6px;
-  padding: 0 13px;
-}
-
-.folder-layout-bottom .bottom-title {
-  color: var(--color-text-primary);
-  font-size: 0.55rem;
-  font-weight: 500;
 }
 
 .folder-layout-bottom .bottom-text {
-  color: var(--color-surface-accent);
-  font-size: 0.53rem;
+  color: var(--color-text-secondary);
+  font-size: 0.55rem;
   font-weight: 450;
 }
 
