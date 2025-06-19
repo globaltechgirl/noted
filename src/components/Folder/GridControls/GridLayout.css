@@ -12,17 +12,17 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  height: auto;
   gap: 10px;
   padding: 0 0 5px 0;
   border-radius: 0.6rem;
-  background: rgba(38, 38, 42, 0.3);
-  border: 1px solid var(--color-icon-border);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  background: var(--color-folder-regular-bg); 
+  border: 1px solid var(--color-folder-border);
+  backdrop-filter: blur(8px); 
+  -webkit-backdrop-filter: blur(8px);
   z-index: 0;
   overflow: hidden;
 }
+
 
 .folder-layout-regular::before {
   content: "";
@@ -31,12 +31,13 @@
   left: -30%;
   width: 200%;
   height: 200%;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--color-folder-regular-glass-highlight);
   transform: rotate(25deg);
   pointer-events: none;
-  mix-blend-mode: screen;
+  mix-blend-mode: soft-light;  
   z-index: 1;
 }
+
 
 .folder-layout-div {
   display: flex;
@@ -46,29 +47,17 @@
   margin-top: 50px;
   gap: 10px;
   padding: 10px 10px 15px 10px;
-  background: rgba(38, 38, 42, 0.3);
-  border: 1px solid var(--color-icon-border);
+  background: var(--color-sidebar-bg); 
+  border: 1px solid var(--color-folder-border);
   border-radius: 0.5rem;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   overflow: hidden;
   letter-spacing: 0.6px;
   text-align: center;
-}
-
-.folder-layout-div::before {
-  content: "";
-  position: absolute;
-  top: -40%;
-  left: -40%;
-  width: 200%;
-  height: 200%;
-  background: rgba(255, 255, 255, 0.02);
-  transform: rotate(25deg);
-  pointer-events: none;
-  mix-blend-mode: screen;
   z-index: 1;
 }
+
 
 .folder-image-wrapper {
   position: relative;

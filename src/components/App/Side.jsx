@@ -166,13 +166,45 @@ function Side({ onSectionClick }) {
                         <img src="/src/assets/images/logo.png" />
                     </div>
 
-                    <div className="side-user-max" onClick={() => handleClick("profile")} style={{ cursor: "pointer" }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="side-user-max-svg" viewBox="0 0 24 24">
-                            <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
-                                <path d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0-6 0m-2.832 8.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"/>
-                            </g>
-                        </svg>
+                    <div className="side-logo-svgs">
+                        <div className="side-bar-max" onClick={() => handleClick("profile")} style={{ cursor: "pointer" }}>
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                className="side-bar-max-svg" 
+                                viewBox="0 0 24 24"
+                            >       
+                                <path 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round" 
+                                    strokeWidth={2} 
+                                    d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm11-2v16">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <div className="side-user-max" onClick={() => handleClick("profile")} style={{ cursor: "pointer" }}>
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                className="side-user-max-svg" 
+                                viewBox="0 0 24 24">
+                                <g 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    strokeLinecap="round" 
+                                    strokeLinejoin="round" 
+                                    strokeWidth="2"
+                                >
+                                    <path 
+                                        d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"
+                                    />
+                                    <path 
+                                        d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0-6 0m-2.832 8.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"
+                                    />
+                                </g>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>

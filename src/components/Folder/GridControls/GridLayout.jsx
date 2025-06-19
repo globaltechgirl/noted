@@ -57,8 +57,8 @@ function GridLayout ({ data = [], toggleStar }) {
                                                                 xmlns="http://www.w3.org/2000/svg"
                                                             >
                                                                 <path 
-                                                                    fill="#2c2c31" 
-                                                                    stroke="rgba(255, 255, 255, 0.2)" 
+                                                                    fill="#1f1f21" 
+                                                                    stroke="rgba(255, 255, 255, 0.05)" 
                                                                     stroke-linecap="round" 
                                                                     stroke-linejoin="round" 
                                                                     stroke-width="0.5" 

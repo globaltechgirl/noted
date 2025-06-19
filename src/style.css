@@ -10,9 +10,13 @@
   --color-active-bg: #39393f;
   --color-border: #3b3b40;
 
-  --color-surface-primary: #26262a;
-  --color-surface-secondary: #2d2d2f;
-  --color-surface-accent: #4a4a50;
+  --color-surface-primary: #232323;
+  --color-surface-secondary: #2a2a2a;
+  --color-surface-accent: #3a3a3a;
+
+  --color-folder-regular-bg: rgba(23, 23, 25, 0.35);
+  --color-folder-regular-glass-highlight: rgba(255, 255, 255, 0.015);
+  --color-folder-border: rgba(255, 255, 255, 0.05);
 
   --color-icon-primary: rgba(255, 255, 255, 0.05);
   --color-icon-secondary: rgba(255, 255, 255, 0.07);
@@ -111,7 +115,8 @@ body::-webkit-scrollbar-track:hover {
   width: 85%;
   margin: 0 auto;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .side-logo {
@@ -126,6 +131,12 @@ body::-webkit-scrollbar-track:hover {
   padding: 5px;
   background-color: var(--color-active-bg);
   border-radius: 0.5rem;
+}
+
+.side-bar-max-svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-secondary);
 }
 
 .side-user-max-svg {
