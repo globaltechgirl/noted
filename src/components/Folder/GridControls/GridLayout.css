@@ -15,14 +15,13 @@
   gap: 10px;
   padding: 0 0 5px 0;
   border-radius: 0.6rem;
-  background: var(--color-folder-regular-bg); 
+  background: var(--color-folder-regular-bg);
   border: 1px solid var(--color-folder-border);
-  backdrop-filter: blur(8px); 
+  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 0;
   overflow: hidden;
 }
-
 
 .folder-layout-regular::before {
   content: "";
@@ -34,30 +33,9 @@
   background: var(--color-folder-regular-glass-highlight);
   transform: rotate(25deg);
   pointer-events: none;
-  mix-blend-mode: soft-light;  
+  mix-blend-mode: soft-light;
   z-index: 1;
 }
-
-
-.folder-layout-div {
-  display: flex;
-  flex-direction: column;
-  width: 95%;
-  margin: 0 auto;
-  margin-top: 50px;
-  gap: 10px;
-  padding: 10px 10px 15px 10px;
-  background: var(--color-sidebar-bg); 
-  border: 1px solid var(--color-folder-border);
-  border-radius: 0.5rem;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  overflow: hidden;
-  letter-spacing: 0.6px;
-  text-align: center;
-  z-index: 1;
-}
-
 
 .folder-image-wrapper {
   position: relative;
@@ -123,9 +101,28 @@
 }
 
 .folder-layout-icon-text {
-  fill: var(--color-text-accent);
+  fill: var(--color-text-secondary);
   font-size: 0.65rem;
   font-weight: bold;
+}
+
+.folder-layout-div {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 50px;
+  gap: 10px;
+  padding: 10px 10px 15px 10px;
+  background: var(--color-sidebar-bg);
+  border: 1px solid var(--color-folder-border);
+  border-radius: 0.5rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  overflow: hidden;
+  letter-spacing: 0.6px;
+  text-align: center;
+  z-index: 1;
 }
 
 .folder-layout-middle {
