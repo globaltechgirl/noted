@@ -1,17 +1,17 @@
 /* Root variables */
 :root {
-  --color-background-dark: #1e1e20;
-  --color-sidebar-bg: #26262a;
+  --color-background-dark: #161618;
+  --color-sidebar-bg: #1f1f21;
 
-  --color-text-primary: #f2f2f3;
-  --color-text-secondary: #b5b5bb;
-  --color-text-accent: #8a8a93;
+  --color-text-primary: #efeff1;
+  --color-text-secondary: #98989a;
+  --color-text-accent: #68686a;
 
   --color-active-bg: #39393f;
   --color-border: #3b3b40;
 
   --color-surface-primary: #26262a;
-  --color-surface-secondary: #2c2c31;
+  --color-surface-secondary: #2d2d2f;
   --color-surface-accent: #4a4a50;
 
   --color-icon-primary: rgba(255, 255, 255, 0.05);
@@ -51,7 +51,7 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   font-family: "Inter", sans-serif;
-  background: var(--color-background-dark);
+  background-color: var(--color-background-dark);
 }
 
 body::-webkit-scrollbar {
@@ -82,17 +82,15 @@ body::-webkit-scrollbar-track:hover {
   display: flex;
   flex-direction: row;
   min-height: 100vh;
-  padding-left: 10px;
-  background-color: var(--color-background-dark);
+  padding-left: 5px;
 }
 
 /* Side container */
 .side {
   position: fixed;
   top: 50%;
-  left: 10px;
   transform: translateY(-50%);
-  height: 96vh;
+  height: 98vh;
   width: 15%;
   display: flex;
   flex-direction: column;
@@ -110,7 +108,7 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-header-wrapper {
-  width: 80%;
+  width: 85%;
   margin: 0 auto;
   display: flex;
   justify-content: flex-start;
@@ -143,8 +141,8 @@ body::-webkit-scrollbar-track:hover {
   -ms-overflow-style: none;
   width: 85%;
   margin: 0 auto;
-  color: var(--color-text-accent);
-  margin-bottom: 40px;
+  color: var(--color-text-secondary);
+  margin-bottom: 30px;
 }
 
 .side-body-wrapper::-webkit-scrollbar {
@@ -175,7 +173,7 @@ body::-webkit-scrollbar-track:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--color-surface-secondary);
+  background-color: var(--color-icon-primary);
   border-radius: 0.5rem;
   padding: 6px 12px 6px 6.5px;
   margin-left: 0;
@@ -192,7 +190,7 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-body ul li.active .side-body-svg {
-  background-color: var(--color-active-bg);
+  background-color: var(--color-icon-primary);
 }
 
 .arrow-wrapper {
@@ -221,7 +219,7 @@ body::-webkit-scrollbar-track:hover {
   justify-content: space-between;
   align-items: center;
   padding: 8px 9px;
-  background-color: var(--color-surface-secondary);
+  background-color: var(--color-icon-primary);
   border: 0.5px solid var(--color-border);
   border-radius: 0.5rem;
   cursor: pointer;
@@ -288,7 +286,6 @@ body::-webkit-scrollbar-track:hover {
   height: auto;
   padding-bottom: 35px;
   margin-left: 15%;
-  background-color: var(--color-background-dark);
 }
 
 @media (max-width: 480px) {
