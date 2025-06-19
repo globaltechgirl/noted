@@ -28,27 +28,39 @@ function GridLayout ({ data = [], toggleStar }) {
                                         ) : (
                                         <>
                                             <div className="folder-image-wrapper">
-                                                <div className="folder-layout-top">
-                                                    <div className="folder-top-star" onClick={() => toggleStar(folder.id)}>
-                                                        {folder.starred ? (
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="folder-top-star-svg" viewBox="0 0 24 24">
-                                                                <path fill="currentColor" d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"/>
-                                                            </svg>
-                                                        ) : (
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="folder-top-star-svg" viewBox="0 0 24 24">
-                                                                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"/>
-                                                            </svg>
-                                                        )}
-                                                    </div>
+                                                <div className="folder-layout-dots">
+                                                    <p className="folder-layout-dot">
+                                                        <svg 
+                                                            xmlns="http://www.w3.org/2000/svg" 
+                                                            className="folder-layout-dot-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path 
+                                                                fill="currentColor" 
+                                                                d="M7 3.34a10 10 0 1 1-4.995 8.984L2 12l.005-.324A10 10 0 0 1 7 3.34"
+                                                            />
+                                                        </svg>
+                                                    </p>
 
-                                                    <div className="folder-top-menu">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="folder-top-menu-svg" viewBox="0 0 32 32"><circle cx="16" cy="8" r="2" fill="currentColor"/><circle cx="16" cy="16" r="2" fill="currentColor"/><circle cx="16" cy="24" r="2" fill="currentColor"/></svg>
-                                                    </div>
+                                                    <p className="folder-layout-dot">
+                                                        <svg 
+                                                            xmlns="http://www.w3.org/2000/svg" 
+                                                            className="folder-layout-dot-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path 
+                                                                fill="currentColor" 
+                                                                d="M7 3.34a10 10 0 1 1-4.995 8.984L2 12l.005-.324A10 10 0 0 1 7 3.34"
+                                                            />
+                                                        </svg>
+                                                    </p>
                                                 </div>
 
                                                 <div className="folder-layout-image">
                                                     {folder.image ? (
-                                                        <img src={folder.image} alt={folder.title} />
+                                                        <div className="folder-layout-img">
+                                                            <img src={folder.image} alt={folder.title} />
+                                                        </div>
                                                     ) : (
                                                         <div className="folder-layout-icon">
                                                             <svg
@@ -79,7 +91,7 @@ function GridLayout ({ data = [], toggleStar }) {
                                                 </div>
                                             </div>
 
-                                            <div className="folder-layout-div">
+                                            <div className={`folder-layout-div ${folder.image ? 'has-image' : ''}`}>
                                                 <div className="folder-layout-middle">
                                                     <div className="middle-text">
                                                         <p>{folder.title}</p>
@@ -89,6 +101,24 @@ function GridLayout ({ data = [], toggleStar }) {
                                                 <div className="folder-layout-bottom">                                                
                                                     <div className="bottom-text">
                                                         <p>{folder.filesize}</p>
+                                                    </div>
+                                                </div>
+
+                                                <div className="folder-layout-top">
+                                                    <div className="folder-top-star" onClick={() => toggleStar(folder.id)}>
+                                                        {folder.starred ? (
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="folder-top-star-svg" viewBox="0 0 24 24">
+                                                                <path fill="currentColor" d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"/>
+                                                            </svg>
+                                                        ) : (
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="folder-top-star-svg" viewBox="0 0 24 24">
+                                                                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"/>
+                                                            </svg>
+                                                        )}
+                                                    </div>
+
+                                                    <div className="folder-top-menu">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="folder-top-menu-svg" viewBox="0 0 32 32"><circle cx="16" cy="8" r="2" fill="currentColor"/><circle cx="16" cy="16" r="2" fill="currentColor"/><circle cx="16" cy="24" r="2" fill="currentColor"/></svg>
                                                     </div>
                                                 </div>
                                             </div>
