@@ -401,14 +401,32 @@
 
 .folder-right .folder-grid-wrapper {
   display: flex;
+  align-items: center;
   position: relative;
   height: 28px;
-  color: var(--color-surface-accent);
-  background-color: var(--color-surface-secondary);
-  border-radius: 0.5rem;
-  padding: 7px 6px;
-  gap: 0.7rem;
+  color: var(--color-text-primary);
+  gap: 0.2rem;
+  padding: 15px 4px;
+  background-color: var(--color-sidebar-bg);
+  border-radius: 0.4rem;
+}
+
+.folder-grid {
+  display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 5px;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.folder-grid-name {
+  font-size: 0.55rem;
+  font-weight: 550;
+  letter-spacing: 0.6px;
+  text-transform: capitalize;
+  color: var(--color-text-primary);
 }
 
 .folder-right .slider {
@@ -425,27 +443,35 @@
   position: absolute;
   bottom: 1.5px;
   left: 0;
-  width: 25px;
-  height: 25px;
+  width: 42px;
+  height: 22.5px;
+  margin-bottom: 2px;
   transition: left 0.3s ease;
   z-index: 1;
-  background-color: var(--color-surface-primary);
-  border-radius: 0.5rem;
+  background-color: var(--color-icon-primary);
+  border: 0.5px solid var(--color-folder-border);
+  border-radius: 0.3rem;
 }
 
-.folder-grid .grid-list-svg,
-.folder-grid .grid-layout-svg,
-.folder-grid .grid-compact-svg {
-  width: 15px;
-  height: 15px;
+.folder-right .slider .ball.ball-list {
+  width: 43.5px;
+}
+
+.folder-right .slider .ball.ball-layout {
+  width: 58.5px;
+}
+
+.folder-right .slider .ball.ball-compact {
+  width: 68.5px;
+}
+
+.folder-grid-svg {
+  width: 11px;
+  height: 11px;
   display: block;
   cursor: pointer;
   position: relative;
   z-index: 2;
-}
-
-.folder-grid.grid-active svg {
-  color: var(--color-text-primary);
 }
 
 @media (max-width: 768px) {

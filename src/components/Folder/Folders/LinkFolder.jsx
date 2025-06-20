@@ -14,10 +14,10 @@ function LinkFolder({ folderName }) {
     const [localView, setLocalView] = useState(defaultView); 
 
     // View toggle positions ---
-    const [positions, setPositions] = useState({
-        List: 1.5,
-        Layout: 28,
-        Compact: 53.5,
+    const [positions] = useState({
+        List: 4.5,
+        Layout: 50.5,
+        Compact: 112,
     });
 
     // --- Search Popup State ---
@@ -344,39 +344,78 @@ function LinkFolder({ folderName }) {
 
                 <div className="folder-body">
                     <div className="folder-body-header">
-                        <div className="folder-left">
-                            <div className="folder-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-icon-svg" viewBox="0 0 24 24"><path fill="currentColor" d="M9 3a1 1 0 0 1 .608.206l.1.087L12.414 6H19a3 3 0 0 1 2.995 2.824L22 9v8a3 3 0 0 1-2.824 2.995L19 20H5a3 3 0 0 1-2.995-2.824L2 17V6a3 3 0 0 1 2.824-2.995L5 3z"/></svg>
-                            </div>
-                        </div>
-
                         <div className="folder-right">
                             <div className="folder-grid-wrapper">
                                 <div  
                                 className={`folder-grid grid-list ${localView === "List" ? "grid-active" : ""}`}
                                 onClick={() => setLocalView("List")}
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="grid-list-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm0 10a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg>
+                                    <svg 
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        className="folder-grid-svg" 
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path 
+                                            fill="none" 
+                                            stroke="currentColor" 
+                                            stroke-linecap="round" 
+                                            stroke-linejoin="round" 
+                                            stroke-width="2" 
+                                            d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm0 10a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"
+                                        />
+                                    </svg>
+
+                                    <p className="folder-grid-name">List</p>
                                 </div>
 
                                 <div 
                                 className={`folder-grid grid-layout ${localView === "Layout" ? "grid-active" : ""}`}
                                 onClick={() => setLocalView("Layout")}
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="grid-layout-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zM4 15a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z"/></svg>
+                                    <svg 
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        className="folder-grid-svg" 
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path 
+                                            fill="none" 
+                                            stroke="currentColor" 
+                                            stroke-linecap="round" 
+                                            stroke-linejoin="round" 
+                                            stroke-width="2" 
+                                            d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zM4 15a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z"
+                                        />
+                                    </svg>
+
+                                    <p className="folder-grid-name">Layout</p>
                                 </div>
 
                                 <div 
                                 className={`folder-grid grid-compact ${localView === "Compact" ? "grid-active" : ""}`}
                                 onClick={() => setLocalView("Compact")}
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="grid-compact-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0M4 19a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"/></svg>
+                                    <svg 
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        className="folder-grid-svg" 
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path 
+                                            fill="none" 
+                                            stroke="currentColor" 
+                                            stroke-linecap="round" 
+                                            stroke-linejoin="round" 
+                                            stroke-width="2" 
+                                            d="M4 5a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0M4 19a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
+                                        />
+                                    </svg>
+
+                                    <p className="folder-grid-name">Compact</p>
                                 </div>
                             </div>
 
                             <div className="slider">
                                 <div
-                                    className="ball"
+                                    className={`ball ball-${localView.toLowerCase()}`}
                                     style={{ left: positions[localView] + "px" }}
                                 ></div>
                             </div>
