@@ -12,91 +12,145 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  height: auto;
   gap: 10px;
-  padding: 0 0 13px 0;
-  background-color: var(--color-surface-secondary);
-  border-radius: 0.5rem;
+  padding: 0 0 5px 0;
+  border-radius: 0.6rem;
+  background: var(--color-folder-regular-bg);
+  border: 1px solid var(--color-folder-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 0;
+  overflow: hidden;
+  height: 100%;
 }
 
-.folder-compact-regular:hover {
-  background-color: var(--color-surface-primary);
-  border: 0.5px solid var(--color-border);
-  cursor: pointer;
+.folder-compact-regular::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -30%;
+  width: 200%;
+  height: 200%;
+  background: var(--color-folder-regular-glass-highlight);
+  transform: rotate(25deg);
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  z-index: 1;
 }
 
 .folder-image-wrapper {
   position: relative;
 }
 
-.folder-compact-top {
+.folder-compact-dots {
   position: absolute;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 13px;
+  padding: 13px;
   z-index: 2;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
-.folder-compact-top .folder-top-star .folder-top-star-svg,
-.folder-compact-top .folder-top-menu .folder-top-menu-svg {
-  width: 13px;
-  height: 13px;
+.folder-compact-dot-svg {
+  width: 9px;
+  height: 9px;
   display: block;
-  color: var(--color-surface-accent);
+  color: var(--color-text-accent);
+  opacity: 0.8;
+  border: 0.5px solid var(--color-folder-border);
+  border-radius: 50%;
+  padding: 0.5px;
 }
 
 .folder-compact-image {
+  position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
   padding: 0;
   display: flex;
   justify-content: center;
+  margin-bottom: 2px;
   align-items: center;
 }
 
-.folder-compact-image img {
+.folder-compact-img {
+  position: absolute;
+  top: 43.5px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  width: 5vw;
+  aspect-ratio: 12 / 9;
+}
+
+.folder-compact-img img {
   width: 100%;
-  max-height: 100px;
-  border-radius: 0.5rem 0.5rem 0 0;
-  display: block;
+  height: 100%;
   object-fit: cover;
-  position: relative;
-  z-index: 1;
+  object-position: center;
+  display: block;
+  border-radius: 0.8rem;
+  border: 2px solid var(--color-surface-accent);
 }
 
-.folder-compact-image p {
-  position: relative;
-  margin-top: 35px;
-  width: 20px;
-  height: 30px;
-  background-color: var(--color-surface-accent);
-  color: var(--color-surface-primary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0.5rem;
-  font-size: 1.1rem;
+.folder-compact-icon {
+  position: absolute;
+  top: 41px;
+  left: 104%;
+  transform: translateX(-50%);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.folder-compact-icon-svg {
+  width: 14rem;
+  height: 14rem;
+}
+
+.folder-compact-icon-text {
+  fill: var(--color-text-secondary);
+  font-size: 0.6rem;
   font-weight: bold;
-  padding: 20px 15px;
-  clip-path: polygon(0% 0%, 75% 0%, 100% 20%, 100% 100%, 0% 100%);
 }
 
-.folder-compact-middle {
+.folder-compact-div {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 50px;
+  gap: 15px;
+  padding: 10px;
+  background: var(--color-sidebar-bg);
+  border: 1px solid var(--color-folder-border);
+  border-radius: 0.5rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  letter-spacing: 0.6px;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+  overflow: visible;
+  height: 100%;
+}
+
+.folder-compact-top {
   display: flex;
   justify-content: center;
-  padding: 0 13px;
+  margin: 30px 0 3px 0;
 }
 
-.folder-compact-middle .middle-text {
+.folder-compact-div.has-image .folder-compact-top {
+  margin-top: 35.5px;
+}
+
+.folder-top-text {
   font-size: 0.6rem;
   font-weight: 500;
-  letter-spacing: 0.6px;
   line-height: 2;
   color: var(--color-text-primary);
-  text-align: center;
 }
 
 /* Folder link */
