@@ -32,8 +32,8 @@
   align-items: center;
   justify-content: space-between;
   background-color: var(--color-sidebar-bg);
-  border-radius: 0.8rem;
-  padding: 6px 6.5px;
+  border-radius: 0.6rem;
+  padding: 4.5px;
 }
 
 .note-logo {
@@ -41,7 +41,7 @@
   align-items: center;
   color: var(--color-text-primary);
   gap: 0.4rem;
-   background-color: var(--color-icon-primary);
+  background-color: var(--color-icon-primary);
   padding: 8px 10px;
   border-radius: 0.5rem;
 }
@@ -99,7 +99,7 @@
 .note-icons .note-header-svg {
   width: 12px;
   height: 12px;
-   color: var(--color-text-secondary);
+  color: var(--color-text-secondary);
   cursor: pointer;
 }
 
