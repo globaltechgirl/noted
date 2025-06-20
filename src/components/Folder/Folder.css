@@ -42,7 +42,7 @@
   color: var(--color-text-primary);
   gap: 0.4rem;
   background-color: var(--color-icon-primary);
-  padding: 8px 16px;
+  padding: 8px 14px;
   border-radius: 0.4rem;
 }
 
@@ -59,8 +59,8 @@
   z-index: 10;
   display: flex;
   gap: 0.15rem;
-  background-color: var(--color-icon-primary);
   padding: 2.5px 2.7px;
+  background-color: var(--color-icon-primary);
   border-radius: 0.4rem;
 }
 
@@ -69,11 +69,16 @@
   background: var(--color-folder-regular-bg);
   border: 1px solid var(--color-folder-border);
   border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.folder-icons > *:hover {
+  background-color: var(--color-sidebar-bg);
 }
 
 .folder-icons .folder-header-svg {
-  width: 9px;
-  height: 9px;
+  width: 9.5px;
+  height: 9.5px;
   display: block;
   color: var(--color-text-secondary);
   cursor: pointer;
