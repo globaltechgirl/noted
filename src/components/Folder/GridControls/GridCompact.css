@@ -92,7 +92,7 @@
   object-position: center;
   display: block;
   border-radius: 0.8rem;
-  border: 2px solid var(--color-surface-accent);
+  border: 2px solid var(--color-surface-secondary);
 }
 
 .folder-compact-icon {

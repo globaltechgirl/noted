@@ -92,7 +92,7 @@
   object-position: center;
   display: block;
   border-radius: 0.8rem;
-  border: 2px solid var(--color-surface-accent);
+  border: 2px solid var(--color-surface-secondary);
 }
 
 .folder-layout-icon {
@@ -212,40 +212,42 @@
   flex-direction: column;
   height: auto;
   gap: 10px;
-  padding: 0 0 15px 0;
-  background-color: var(--color-surface-secondary);
-  border-radius: 0.5rem;
-}
-
-.folder-layout-main .folder-link-wrapper:hover {
-  background-color: var(--color-surface-primary);
-  border: 0.5px solid var(--color-border);
-  cursor: pointer;
+  padding: 3px 3px 10px 3px;
+  border-radius: 0.7rem;
+  background: var(--color-folder-regular-bg);
+  border: 1px solid var(--color-folder-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .folder-layout-main .folder-link-body {
   flex: 1;
-  padding: 15px 15px 0 15px;
+  padding: 4px;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   gap: 13px;
+  background: var(--color-sidebar-bg);
+  border: 1px solid var(--color-folder-border);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 0.6rem;
+  margin-bottom: 10px;
 }
 
 .folder-layout-main .folder-link-left .folder-link-left-svg {
-  width: 25px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   display: block;
-  background-color: var(--color-surface-primary);
-  border: 0.5px solid var(--color-border);
-  border-radius: 0.5rem;
-  color: var(--color-surface-accent);
-  padding: 5px;
+  background-color: var(--color-sidebar-bg);
+  border: 0.5px solid var(--color-folder-border);
+  border-radius: 0.45rem;
+  color: var(--color-text-secondary);
+  padding: 6px;
 }
 
 .folder-layout-main .folder-link-right a {
   display: block;
-  padding-top: 5px;
   font-size: 0.6rem;
   font-weight: 500;
   letter-spacing: 0.6px;
@@ -255,6 +257,39 @@
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
+}
+
+.folder-link-bottom {
+  padding: 0px 5px;
+}
+
+.folder-link-bottom-star,
+.folder-link-bottom-copy {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  pointer-events: auto;
+  cursor: pointer;
+  gap: 0.4rem;
+  z-index: 99;
+  padding: 4px 6px;
+  background: var(--color-folder-regular-bg);
+  border: 1px solid var(--color-folder-border);
+  border-radius: 0.3rem;
+}
+
+.folder-bottom-copy-svg {
+  width: 9px;
+  height: 9px;
+  display: block;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.folder-bottom-copy-text {
+  color: var(--color-text-secondary);
+  font-size: 0.45rem;
+  font-weight: 450;
 }
 
 /* Folder regular */

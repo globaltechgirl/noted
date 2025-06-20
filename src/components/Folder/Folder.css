@@ -389,7 +389,7 @@
 .folder-icon i {
   font-size: 0.55rem;
   color: var(--color-text-secondary);
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .folder-left .folder-tag {
