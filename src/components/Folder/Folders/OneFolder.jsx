@@ -31,7 +31,6 @@ function OneFolder({ folderName }) {
             icon: "F",
             title: "Q2 Budget Review for International Holdings Ltd",
             subtitle: "Finance department internal audit summary",
-            filesize: "1.8 MB",
             date: "12.04.25",
             starred: false
         },
@@ -40,7 +39,6 @@ function OneFolder({ folderName }) {
             icon: "F",
             title: "UX Research Notes from Multi-Country Study Phase",
             subtitle: "User testing insights from April rollout",
-            filesize: "3.1 MB",
             date: "10.05.25",
             starred: false
         },
@@ -49,7 +47,6 @@ function OneFolder({ folderName }) {
             icon: "F",
             title: "Project Neon Proposal for Long-Term Infrastructure",
             subtitle: "Initial pitch deck and scope documentation",
-            filesize: "2.5 MB",
             date: "08.05.25",
             starred: false
         },
@@ -58,7 +55,6 @@ function OneFolder({ folderName }) {
             icon: "F",
             title: "Brand Guideline 2025 – Visual Identity Expansion",
             subtitle: "Updated brand colors, typography, and icons",
-            filesize: "4.7 MB",
             date: "01.05.25",
             starred: false
         },
@@ -67,7 +63,46 @@ function OneFolder({ folderName }) {
             icon: "F",
             title: "Confidential Agreement For NovaTech CeloCorp",
             subtitle: "Signed legal documentation with NDAs enclosed",
-            filesize: "2.2 MB",
+            date: "15.05.25",
+            starred: false
+        },
+        {
+            id: 6,
+            icon: "F",
+            title: "Q2 Budget Review for International Holdings Ltd",
+            subtitle: "Finance department internal audit summary",
+            date: "12.04.25",
+            starred: false
+        },
+        {
+            id: 7,
+            icon: "F",
+            title: "UX Research Notes from Multi-Country Study Phase",
+            subtitle: "User testing insights from April rollout",
+            date: "10.05.25",
+            starred: false
+        },
+        {
+            id: 8,
+            icon: "F",
+            title: "Project Neon Proposal for Long-Term Infrastructure",
+            subtitle: "Initial pitch deck and scope documentation",
+            date: "08.05.25",
+            starred: false
+        },
+        {
+            id: 9,
+            icon: "F",
+            title: "Brand Guideline 2025 – Visual Identity Expansion",
+            subtitle: "Updated brand colors, typography, and icons",
+            date: "01.05.25",
+            starred: false
+        },
+        {
+            id: 10,
+            icon: "F",
+            title: "Confidential Agreement For NovaTech CeloCorp",
+            subtitle: "Signed legal documentation with NDAs enclosed",
             date: "15.05.25",
             starred: false
         }

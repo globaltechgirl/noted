@@ -34,7 +34,6 @@ function LinkFolder({ folderName }) {
             title: "Q2 Budget Review Link",
             website: "Instagram",
             link: "https://example.com/waterfall-licence-1",
-            filesize: "1.8 MB",
             date: "12.04.25",
         },
         {
@@ -42,7 +41,6 @@ function LinkFolder({ folderName }) {
             title: "UX Research Notes Link",
             website: "Snapchat",
             link: "https://example.com/waterfall-licence-1",
-            filesize: "1.8 MB",
             date: "12.04.25",
         },
         {
@@ -51,7 +49,6 @@ function LinkFolder({ folderName }) {
             title: "Project Neon Proposal Link",
             website: "Figma",
             link: "https://example.com/waterfall-licence-1",
-            filesize: "1.8 MB",
             date: "12.04.25",
         },
         {
@@ -60,7 +57,6 @@ function LinkFolder({ folderName }) {
             title: "Brand Guideline 2025 Link",
             website: "Dribble",
             link: "https://example.com/waterfall-licence-1",
-            filesize: "1.8 MB",
             date: "12.04.25",
         }
     ]);

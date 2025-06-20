@@ -39,7 +39,6 @@ function MediaFolder({ folderName }) {
             image: img1,
             title: "Q2 Budget Review Photo",
             mediatype: "Photo",
-            filesize: "1.8 MB",
             date: "12.04.25",
             starred: false
         },
@@ -49,7 +48,6 @@ function MediaFolder({ folderName }) {
             image: img1,
             title: "UX Research Notes Photo",
             mediatype: "Photo",
-            filesize: "3.1 MB",
             date: "10.05.25",
             starred: false
         },
@@ -59,7 +57,6 @@ function MediaFolder({ folderName }) {
             image: img1,
             title: "Project Neon Proposal Video",
             mediatype: "Video",
-            filesize: "2.5 MB",
             date: "08.05.25",
             starred: false
         },
@@ -69,7 +66,6 @@ function MediaFolder({ folderName }) {
             image: img1,
             title: "Brand Guideline 2025 Photo",
             mediatype: "Photo",
-            filesize: "4.7 MB",
             date: "01.05.25",
             starred: false
         },
@@ -79,7 +75,6 @@ function MediaFolder({ folderName }) {
             image: img1,
             title: "Confidential Agreement Video",
             mediatype: "Video",
-            filesize: "2.2 MB",
             date: "15.05.25",
             starred: false
         }
