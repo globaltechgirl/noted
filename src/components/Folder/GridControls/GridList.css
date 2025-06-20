@@ -19,6 +19,7 @@
   background: var(--color-folder-regular-bg);
   border: 1px solid var(--color-folder-border);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 0;
   overflow: hidden;
 }

@@ -95,7 +95,7 @@ body::-webkit-scrollbar-track:hover {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  height: 100vh;
+  height: 98vh;
   width: 15%;
   display: flex;
   flex-direction: column;
@@ -113,7 +113,7 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-header-wrapper {
-  width: 85%;
+  width: 83%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -151,7 +151,7 @@ body::-webkit-scrollbar-track:hover {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  width: 85%;
+  width: 83%;
   margin: 0 auto;
   color: var(--color-text-secondary);
   margin-bottom: 30px;
@@ -176,7 +176,7 @@ body::-webkit-scrollbar-track:hover {
   text-transform: capitalize;
   display: flex;
   align-items: center;
-  margin-left: 6.5px;
+  margin-left: 7.5px;
 }
 
 .side-body ul li.active {
@@ -186,8 +186,8 @@ body::-webkit-scrollbar-track:hover {
   align-items: center;
   justify-content: space-between;
   background-color: var(--color-icon-primary);
-  border-radius: 0.5rem;
-  padding: 6px 12px 6px 6.5px;
+  border-radius: 0.45rem;
+  padding: 6px 9.5px 6px 7.5px;
   margin-left: 0;
   margin-bottom: 17px;
 }
@@ -225,7 +225,7 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-user-wrapper {
-  width: 85%;
+  width: 83%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -299,7 +299,7 @@ body::-webkit-scrollbar-track:hover {
   padding: 0 0 35px 0;
   margin-left: 15%;
   background-color: var(--color-background-dark);
-  border: 1px solid var(--color-border);
+  border: 0.5px solid var(--color-border);
   box-sizing: border-box;
   border-radius: 0.5rem;
   will-change: transform;

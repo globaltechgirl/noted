@@ -359,7 +359,7 @@
   justify-content: space-between;
   color: var(--color-text-primary);
   margin-top: -9px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .folder-left {
@@ -371,22 +371,25 @@
 .folder-left .folder-icon {
   display: flex;
   align-items: center;
-  color: var(--color-text-primary);
   padding: 5px 6px;
-  background-color: var(--color-surface-secondary);
-  border-radius: 0.5rem;
+  color: var(--color-text-accent);
+  border-radius: 0.45rem;
+  background-color: var(--color-icon-primary);
+  border: 0.5px solid var(--color-folder-border);
   gap: 0.2rem;
 }
 
 .folder-icon .folder-icon-svg {
   width: 15px;
   height: 15px;
-  color: var(--color-surface-accent);
+  color: var(--color-text-secondary);
+  opacity: 0.9;
 }
 
 .folder-icon i {
   font-size: 0.55rem;
-  color: var(--color-surface-accent);
+  color: var(--color-text-secondary);
+    opacity: 0.8;
 }
 
 .folder-left .folder-tag {
@@ -405,10 +408,11 @@
   position: relative;
   height: 28px;
   color: var(--color-text-primary);
+  opacity: 0.8;
   gap: 0.2rem;
   padding: 15px 4px;
   background-color: var(--color-sidebar-bg);
-  border-radius: 0.4rem;
+  border-radius: 0.5rem;
 }
 
 .folder-grid {
@@ -417,7 +421,6 @@
   justify-content: center;
   gap: 0.3rem;
   padding: 5px;
-  border-radius: 0.3rem;
   cursor: pointer;
 }
 
@@ -426,7 +429,6 @@
   font-weight: 550;
   letter-spacing: 0.6px;
   text-transform: capitalize;
-  color: var(--color-text-primary);
 }
 
 .folder-right .slider {
@@ -450,7 +452,7 @@
   z-index: 1;
   background-color: var(--color-icon-primary);
   border: 0.5px solid var(--color-folder-border);
-  border-radius: 0.3rem;
+  border-radius: 0.4rem;
 }
 
 .folder-right .slider .ball.ball-list {
