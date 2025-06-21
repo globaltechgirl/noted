@@ -213,6 +213,7 @@
 
 .folder-link-main {
   position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   height: auto;
@@ -309,50 +310,83 @@
 }
 
 .folder-edit-toggle-wrapper {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
   padding: 3px;
-  border-radius: 0.7rem;
-  background: var(--color-folder-regular-bg);
-  border: 1px solid var(--color-folder-border);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  margin-top: 10px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  transform: translateY(20px);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 100;
-}
-
-.folder-edit-toggle-wrapper.show {
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.folder-edit-toggle-main {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
   background: var(--color-sidebar-bg);
   border: 1px solid var(--color-folder-border);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border-radius: 0.6rem;
+  border-radius: 0.7rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  transform-origin: top;
+  transform: translateY(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  margin-top: -5px;
+}
+
+.folder-edit-toggle-wrapper.show {
+  transform: translateY(100%);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.folder-edit-toggle-main {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.folder-edit-toggle-save {
+  margin-left: auto;
+}
+
+.folder-edit-save-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 5px 8px;
+  width: fit-content;
+  margin-left: auto;
+  background: var(--color-folder-regular-bg);
+  border: 1px solid var(--color-folder-border);
+  border-radius: 0.3rem;
+  margin-bottom: 3px;
+}
+
+
+.folder-edit-save-svg {
+  width: 10px;
+  height: 10px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.folder-edit-save-text {
+  font-size: 0.5rem;
+  font-weight: 450;
+  color: var(--color-text-primary);
+  letter-spacing: 0.6px;
 }
 
 .folder-edit-toggle-group {
+  padding: 12px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: var(--color-folder-regular-bg);
+  border: 1px dashed var(--color-folder-border);
+  border-radius: 0.5rem;
 }
 
 .folder-edit-input,
 .folder-edit-label {
-  font-size: 0.59rem;
+  font-size: 0.5rem;
   font-weight: 450;
   color: var(--color-text-primary);
   letter-spacing: 0.6px;
@@ -361,14 +395,6 @@
   border: none;
   background: transparent;
   outline: none;
-}
-
-.folder-edit-save-svg,
-.folder-edit-edit-svg {
-  width: 12px;
-  height: 12px;
-  color: var(--color-text-primary);
-  cursor: pointer;
 }
 
 /* Folder regular */

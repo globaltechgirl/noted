@@ -18,6 +18,8 @@ function Folder({
     setEditingTitleId,
     editingLinkId,
     setEditingLinkId,
+    editingId,
+    setEditingId,
     handleSave,
 }) {
     return (
@@ -37,6 +39,8 @@ function Folder({
                         setEditingTitleId={setEditingTitleId}
                         editingLinkId={editingLinkId}
                         setEditingLinkId={setEditingLinkId}
+                        editingId={editingId}
+                        setEditingId={setEditingId}
                         handleSave={handleSave}
                     />
                 </div>
@@ -57,6 +61,8 @@ function Folder({
                         setEditingTitleId={setEditingTitleId}
                         editingLinkId={editingLinkId}
                         setEditingLinkId={setEditingLinkId}
+                        editingId={editingId}
+                        setEditingId={setEditingId}
                         handleSave={handleSave}
                     />
                 </div>
@@ -77,6 +83,8 @@ function Folder({
                         setEditingTitleId={setEditingTitleId}
                         editingLinkId={editingLinkId}
                         setEditingLinkId={setEditingLinkId}
+                        editingId={editingId}
+                        setEditingId={setEditingId}
                         handleSave={handleSave}
                     />
                 </div> 

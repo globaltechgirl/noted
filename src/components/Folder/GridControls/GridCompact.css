@@ -121,7 +121,6 @@
   width: 95%;
   margin: 0 auto;
   margin-top: 50px;
-  gap: 15px;
   padding: 10px;
   background: var(--color-sidebar-bg);
   border: 1px solid var(--color-folder-border);

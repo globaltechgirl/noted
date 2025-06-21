@@ -181,139 +181,67 @@ function GridLayout ({
                                                         </div>
                                                     </div>
 
-                                                    <div className={`folder-edit-toggle-wrapper${editingId === folder?.id ? " show" : ""}`}>
+                                                    <div className={`folder-edit-toggle-wrapper${editingId === folder.id ? " show" : ""}`}>
                                                         <div className="folder-edit-toggle-main">
-                                                            <div className="folder-edit-toggle-group">
-                                                                {editingTitleId === folder.id ? (
-                                                                    <>
-                                                                        <input
-                                                                            type="text"
-                                                                            value={editedTitle}
-                                                                            onChange={(e) => setEditedTitle(e.target.value)}
-                                                                            className="folder-edit-input"
-                                                                            placeholder="Folder title"
-                                                                            autoFocus
-                                                                        />
-                                                                        <div
-                                                                            className="folder-edit-icon"
-                                                                            title="Save Title"
-                                                                            onClick={() => {
-                                                                                handleSave(folder.id, editedTitle, editedLink);
-                                                                                setEditingTitleId(null);
-                                                                            }}
-                                                                        >
-                                                                            <svg 
-                                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                                className="folder-edit-save-svg" 
-                                                                                viewBox="0 0 24 24"
-                                                                            >
-                                                                                <g 
-                                                                                    fill="none" 
-                                                                                    stroke="currentColor" 
-                                                                                    strokeLinecap="round" 
-                                                                                    strokeLinejoin="round" 
-                                                                                    strokeWidth="2"
-                                                                                >
-                                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0" />
-                                                                                    <path d="m9 12l2 2l4-4" />
-                                                                                </g>
-                                                                            </svg>
-                                                                        </div>
-                                                                    </>
+                                                            <div className="folder-edit-toggle-save" onClick={() => {
+                                                                handleSave(folder.id, editedTitle, editedLink);
+                                                                setEditingId(null);
+                                                                setEditingTitleId(null);
+                                                                setEditingLinkId(null);
+                                                            }}>
+                                                                <div className="folder-edit-save-wrapper">
+                                                                                                                                    <svg 
+                                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                                    className="folder-edit-save-svg" 
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <g 
+                                                                        fill="none" 
+                                                                        stroke="currentColor" 
+                                                                        strokeLinecap="round" 
+                                                                        strokeLinejoin="round" 
+                                                                        strokeWidth="2"
+                                                                    >
+                                                                        <path d="M15 10v11l-5-3l-5 3V10a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3"></path>
+                                                                        <path d="M11 3h5a3 3 0 0 1 3 3v11"></path>
+                                                                    </g>
+                                                                </svg>
+
+                                                                <p className="folder-edit-save-text">Save</p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div className="folder-edit-toggle-group" onClick={() => {
+                                                                setEditedTitle(folder.title);
+                                                                setEditingId(folder.id);
+                                                            }}>
+                                                                {editingId === folder.id ? (
+                                                                    <input
+                                                                        type="text"
+                                                                        value={editedTitle}
+                                                                        onChange={(e) => setEditedTitle(e.target.value)}
+                                                                        className="folder-edit-input"
+                                                                        placeholder="Folder title"
+                                                                    />
                                                                 ) : (
-                                                                    <>
-                                                                        <p className="folder-edit-label">{folder.title}</p>
-                                                                        <div
-                                                                            className="folder-edit-icon"
-                                                                            title="Edit Title"
-                                                                            onClick={() => {
-                                                                                setEditedTitle(folder.title);
-                                                                                setEditingTitleId(folder.id);
-                                                                            }}
-                                                                        >
-                                                                            <svg 
-                                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                                className="folder-edit-edit-svg" 
-                                                                                viewBox="0 0 24 24"
-                                                                            >
-                                                                                <path 
-                                                                                    fill="none" 
-                                                                                    stroke="currentColor" 
-                                                                                    strokeLinecap="round" 
-                                                                                    strokeLinejoin="round" 
-                                                                                    strokeWidth="2"
-                                                                                    d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6" 
-                                                                                />
-                                                                            </svg>
-                                                                        </div>
-                                                                    </>
+                                                                    <p className="folder-edit-label">{folder.title}</p>
                                                                 )}
                                                             </div>
 
-                                                            <div className="folder-edit-toggle-group">
-                                                                {editingLinkId === folder.id ? (
-                                                                    <>
-                                                                        <input
-                                                                            type="text"
-                                                                            value={editedLink}
-                                                                            onChange={(e) => setEditedLink(e.target.value)}
-                                                                            className="folder-edit-input"
-                                                                            placeholder="Folder link"
-                                                                            autoFocus
-                                                                        />
-                                                                        <div
-                                                                            className="folder-edit-icon"
-                                                                            title="Save Link"
-                                                                            onClick={() => {
-                                                                                handleSave(folder.id, editedTitle, editedLink);
-                                                                                setEditingLinkId(null);
-                                                                            }}
-                                                                        >
-                                                                            <svg 
-                                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                                className="folder-edit-save-svg" 
-                                                                                viewBox="0 0 24 24"
-                                                                            >
-                                                                                <g 
-                                                                                    fill="none" 
-                                                                                    stroke="currentColor" 
-                                                                                    strokeLinecap="round" 
-                                                                                    strokeLinejoin="round" 
-                                                                                    strokeWidth="2"
-                                                                                >
-                                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0" />
-                                                                                    <path d="m9 12l2 2l4-4" />
-                                                                                </g>
-                                                                            </svg>
-                                                                        </div>
-                                                                    </>
+                                                            <div className="folder-edit-toggle-group" onClick={() => {
+                                                                setEditedLink(folder.link);
+                                                                setEditingId(folder.id);
+                                                            }}>
+                                                                {editingId === folder.id ? (
+                                                                    <input
+                                                                        type="text"
+                                                                        value={editedLink}
+                                                                        onChange={(e) => setEditedLink(e.target.value)}
+                                                                        className="folder-edit-input"
+                                                                        placeholder="Folder link"
+                                                                    />
                                                                 ) : (
-                                                                    <>
-                                                                        <p className="folder-edit-label">{folder.link}</p>
-                                                                        <div
-                                                                            className="folder-edit-icon"
-                                                                            title="Edit Link"
-                                                                            onClick={() => {
-                                                                                setEditedLink(folder.link);
-                                                                                setEditingLinkId(folder.id);
-                                                                            }}
-                                                                        >
-                                                                            <svg 
-                                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                                className="folder-edit-edit-svg" 
-                                                                                viewBox="0 0 24 24"
-                                                                            >
-                                                                                <path 
-                                                                                    fill="none" 
-                                                                                    stroke="currentColor" 
-                                                                                    strokeLinecap="round" 
-                                                                                    strokeLinejoin="round" 
-                                                                                    strokeWidth="2"
-                                                                                    d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6" 
-                                                                                />
-                                                                            </svg>
-                                                                        </div>
-                                                                    </>
+                                                                    <p className="folder-edit-label">{folder.link}</p>
                                                                 )}
                                                             </div>
                                                         </div>

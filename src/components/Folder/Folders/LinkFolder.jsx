@@ -38,6 +38,7 @@ function LinkFolder({ folderName }) {
     const [editedLink, setEditedLink] = useState(""); 
     const [editingTitleId, setEditingTitleId] = useState(null); 
     const [editingLinkId, setEditingLinkId] = useState(null); 
+    const [editingId, setEditingId] = useState(null)
 
     // --- Folder data ---
     const [folderData, setFolderData] = useState([
@@ -553,6 +554,8 @@ function LinkFolder({ folderName }) {
                     setEditingTitleId={setEditingTitleId}
                     editingLinkId={editingLinkId}
                     setEditingLinkId={setEditingLinkId}
+                    editingId={editingId}
+                    setEditingId={setEditingId}
                     handleSave={handleSave}
                 />
             </div>
