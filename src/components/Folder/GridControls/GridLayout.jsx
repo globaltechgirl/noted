@@ -17,6 +17,7 @@ function GridLayout ({
     editingId,
     setEditingId,
     handleSave,
+    handleDelete,
 }) {
     return (
         <div className="folder-container">
@@ -157,7 +158,7 @@ function GridLayout ({
                                                                 <p  className="folder-bottom-icon-text">Edit</p>
                                                             </div>
 
-                                                            <div className="folder-link-bottom-icon folder-link-bottom-delete" onClick={() => toggleStar(folder.id)}>
+                                                            <div className="folder-link-bottom-icon folder-link-bottom-delete" onClick={() => handleDelete(folder.id)}>
                                                                 <svg 
                                                                     xmlns="http://www.w3.org/2000/svg" 
                                                                     className="folder-bottom-icon-svg" 
@@ -183,31 +184,50 @@ function GridLayout ({
 
                                                     <div className={`folder-edit-toggle-wrapper${editingId === folder.id ? " show" : ""}`}>
                                                         <div className="folder-edit-toggle-main">
-                                                            <div className="folder-edit-toggle-save" onClick={() => {
-                                                                handleSave(folder.id, editedTitle, editedLink);
-                                                                setEditingId(null);
-                                                                setEditingTitleId(null);
-                                                                setEditingLinkId(null);
-                                                            }}>
-                                                                <div className="folder-edit-save-wrapper">
-                                                                                                                                    <svg 
-                                                                    xmlns="http://www.w3.org/2000/svg" 
-                                                                    className="folder-edit-save-svg" 
-                                                                    viewBox="0 0 24 24"
-                                                                >
-                                                                    <g 
-                                                                        fill="none" 
-                                                                        stroke="currentColor" 
-                                                                        strokeLinecap="round" 
-                                                                        strokeLinejoin="round" 
-                                                                        strokeWidth="2"
-                                                                    >
-                                                                        <path d="M15 10v11l-5-3l-5 3V10a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3"></path>
-                                                                        <path d="M11 3h5a3 3 0 0 1 3 3v11"></path>
-                                                                    </g>
-                                                                </svg>
+                                                            <div className="folder-edit-toggle-icons">
+                                                                <div className="folder-edit-toggle-save" onClick={() => {
+                                                                    setEditedTitle(folder.title);
+                                                                    setEditedLink(folder.link); 
+                                                                }}>
+                                                                    <div className="folder-edit-save-wrapper">
+                                                                        <svg 
+                                                                            xmlns="http://www.w3.org/2000/svg" 
+                                                                            className="folder-edit-save-svg" 
+                                                                            viewBox="0 0 24 24"
+                                                                        >
+                                                                            <path 
+                                                                                fill="currentColor" 
+                                                                                d="M12.207 2.293a1 1 0 0 1 0 1.414L10.914 5H12.5c4.652 0 8.5 3.848 8.5 8.5S17.152 22 12.5 22S4 18.152 4 13.5a1 1 0 1 1 2 0c0 3.548 2.952 6.5 6.5 6.5s6.5-2.952 6.5-6.5S16.048 7 12.5 7h-1.586l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 0"
+                                                                           >
+                                                                           </path>
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
 
-                                                                <p className="folder-edit-save-text">Save</p>
+                                                                <div className="folder-edit-toggle-save" onClick={() => {
+                                                                    handleSave(folder.id, editedTitle, editedLink);
+                                                                    setEditingId(null);
+                                                                    setEditingTitleId(null);
+                                                                    setEditingLinkId(null);
+                                                                }}>
+                                                                    <div className="folder-edit-save-wrapper">
+                                                                        <svg 
+                                                                            xmlns="http://www.w3.org/2000/svg" 
+                                                                            className="folder-edit-save-svg" 
+                                                                            viewBox="0 0 24 24"
+                                                                        >
+                                                                            <g 
+                                                                                fill="none" 
+                                                                                stroke="currentColor" 
+                                                                                strokeLinecap="round" 
+                                                                                strokeLinejoin="round" 
+                                                                                strokeWidth="2"
+                                                                            >
+                                                                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0" />
+                                                                                <path d="m9 12l2 2l4-4" />
+                                                                            </g>
+                                                                        </svg>
+                                                                    </div>
                                                                 </div>
                                                             </div>
 

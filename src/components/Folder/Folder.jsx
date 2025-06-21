@@ -21,6 +21,7 @@ function Folder({
     editingId,
     setEditingId,
     handleSave,
+    handleDelete,
 }) {
     return (
         <>
@@ -42,6 +43,7 @@ function Folder({
                         editingId={editingId}
                         setEditingId={setEditingId}
                         handleSave={handleSave}
+                        handleDelete={handleDelete}
                     />
                 </div>
             )}
@@ -64,6 +66,7 @@ function Folder({
                         editingId={editingId}
                         setEditingId={setEditingId}
                         handleSave={handleSave}
+                        handleDelete={handleDelete}
                     />
                 </div>
             )}
@@ -86,6 +89,7 @@ function Folder({
                         editingId={editingId}
                         setEditingId={setEditingId}
                         handleSave={handleSave}
+                        handleDelete={handleDelete}
                     />
                 </div> 
             )}

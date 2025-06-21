@@ -122,6 +122,12 @@ function LinkFolder({ folderName }) {
         setEditingLinkId(null);
     };
 
+    // --- Delete handler ---
+    const handleDelete = (id) => {
+        const updated = folderData.filter(folder => folder.id !== id); 
+        setFolderData(updated); 
+    };
+
     return (
         <div className="folder-container">
             <div className="folder-wrapper">
@@ -557,6 +563,7 @@ function LinkFolder({ folderName }) {
                     editingId={editingId}
                     setEditingId={setEditingId}
                     handleSave={handleSave}
+                    handleDelete={handleDelete}
                 />
             </div>
         </div>

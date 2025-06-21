@@ -310,12 +310,6 @@
 }
 
 .folder-edit-toggle-wrapper {
-  padding: 3px;
-  background: var(--color-sidebar-bg);
-  border: 1px solid var(--color-folder-border);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border-radius: 0.7rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -325,8 +319,11 @@
   transform: translateY(0);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  margin-top: -5px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  margin-top: -20px;
+  padding: 3px;
+  border: 1px solid var(--color-folder-border);
+  border-radius: 0.7rem;
 }
 
 .folder-edit-toggle-wrapper.show {
@@ -338,40 +335,40 @@
 .folder-edit-toggle-main {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 5px;
+  padding: 4px;
+  background: var(--color-sidebar-bg);
+  border: 1px dashed var(--color-folder-border);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 0.6rem;
 }
 
-.folder-edit-toggle-save {
+.folder-edit-toggle-icons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 0.3rem;
   margin-left: auto;
+  margin-bottom: 3px;
+  padding: 2px 3px 0 0;
 }
 
 .folder-edit-save-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.2rem;
-  padding: 5px 8px;
+  padding: 4px 5px;
   width: fit-content;
-  margin-left: auto;
   background: var(--color-folder-regular-bg);
-  border: 1px solid var(--color-folder-border);
+  border: 0.5px solid var(--color-folder-border);
   border-radius: 0.3rem;
-  margin-bottom: 3px;
 }
 
-
-.folder-edit-save-svg {
+.folder-edit-save-svg,
+.folder-edit-reverse-svg {
   width: 10px;
   height: 10px;
   color: var(--color-text-primary);
   cursor: pointer;
-}
-
-.folder-edit-save-text {
-  font-size: 0.5rem;
-  font-weight: 450;
-  color: var(--color-text-primary);
-  letter-spacing: 0.6px;
+  display: block;
 }
 
 .folder-edit-toggle-group {
@@ -380,7 +377,7 @@
   justify-content: space-between;
   align-items: center;
   background: var(--color-folder-regular-bg);
-  border: 1px dashed var(--color-folder-border);
+  border: 1px solid var(--color-folder-border);
   border-radius: 0.5rem;
 }
 
