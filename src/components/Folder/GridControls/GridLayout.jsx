@@ -1,7 +1,23 @@
 import React from "react";
 import "./GridLayout.css"; 
 
-function GridLayout ({ data = [], toggleStar }) {
+function GridLayout ({ 
+    data = [],
+    toggleStar,
+    handleCopy,
+    copiedId,
+    editedTitle,
+    setEditedTitle,
+    editedLink,
+    setEditedLink,
+    editingTitleId,
+    setEditingTitleId,
+    editingLinkId,
+    setEditingLinkId,
+    editingId,
+    setEditingId,
+    handleSave,
+}) {
     return (
         <div className="folder-container">
             <div className="folder-wrapper">
@@ -12,209 +28,298 @@ function GridLayout ({ data = [], toggleStar }) {
                                 return (
                                     <div key={index} className={`folder ${folder.link ? "folder-link-wrapper" : "folder-layout-regular"}`}>
                                         {folder.link ? (
-                                            <div className="folder-link-main">
-                                                <div className="folder-link-body">
-                                                    <div className="folder-link-left">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="folder-link-left-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11"/></svg>
+                                            <>
+                                                <div className="folder-link-container">
+                                                    <div className="folder-link-main">
+                                                        <div className="folder-link-body">
+                                                            <div className="folder-link-left">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-link-left-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11"/></svg>
+                                                            </div>
+
+                                                            <div className="folder-link-right">
+                                                                <p className="folder-link-title">{folder.title}</p>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="folder-layout-bottom folder-link-bottom">                                                
+                                                            <div className="folder-link-bottom-icon folder-link-bottom-star" onClick={() => toggleStar(folder.id)}>
+                                                                {folder.starred ? (
+                                                                    <svg 
+                                                                        xmlns="http://www.w3.org/2000/svg" 
+                                                                        className="folder-bottom-icon-svg" 
+                                                                        viewBox="0 0 24 24"
+                                                                    >
+                                                                        <path 
+                                                                            fill="currentColor" 
+                                                                            d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                                                        />
+                                                                    </svg>
+                                                                ) : (
+                                                                    <svg 
+                                                                        xmlns="http://www.w3.org/2000/svg" 
+                                                                        className="folder-bottom-icon-svg" 
+                                                                        viewBox="0 0 24 24"
+                                                                    >
+                                                                        <path 
+                                                                            fill="none" 
+                                                                            stroke="currentColor" 
+                                                                            strokeLinecap="round" 
+                                                                            strokeLinejoin="round" 
+                                                                            strokeWidth="2" 
+                                                                            d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                                                        />
+                                                                    </svg>
+                                                                )}
+
+                                                                <p  className="folder-bottom-icon-text">Star</p>
+                                                            </div>
+
+                                                            <div className="folder-link-bottom-icon folder-link-bottom-copy" onClick={() => handleCopy(folder.id, folder.link)}>
+                                                                {copiedId === folder.id ? (
+                                                                    <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        className="folder-bottom-icon-svg"
+                                                                        viewBox="0 0 24 24"
+                                                                    >
+                                                                        <g 
+                                                                            fill="none" 
+                                                                            stroke="currentColor" 
+                                                                            strokeLinecap="round" 
+                                                                            strokeLinejoin="round" 
+                                                                            strokeWidth={2}
+                                                                        >
+                                                                            <path 
+                                                                                d="M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z"
+                                                                            >
+                                                                            </path>
+                                                                            <path 
+                                                                                d="M4.012 16.737A2 2 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1M11 14l2 2l4-4"
+                                                                            >
+                                                                            </path>
+                                                                        </g>
+                                                                    </svg>
+                                                                ) : (
+                                                                    <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        className="folder-bottom-icon-svg"
+                                                                        viewBox="0 0 24 24"
+                                                                    >
+                                                                        <g
+                                                                            fill="none"
+                                                                            stroke="currentColor"
+                                                                            strokeLinecap="round"
+                                                                            strokeLinejoin="round"
+                                                                            strokeWidth={2}
+                                                                        >
+                                                                            <path 
+                                                                                d="M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z" 
+                                                                            />
+                                                                            <path 
+                                                                                d="M4.012 16.737A2 2 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1" 
+                                                                            />
+                                                                        </g>
+                                                                    </svg>
+                                                                )}
+
+                                                                <p className="folder-bottom-icon-text">
+                                                                    {copiedId === folder.id ? "Copied" : "Copy"}
+                                                                </p>
+                                                            </div>
+
+                                                            <div 
+                                                                className="folder-link-bottom-icon folder-link-bottom-edit"   
+                                                                onClick={() => {
+                                                                    if (editingId === folder.id) {
+                                                                        setEditingId(null);
+                                                                    } else {
+                                                                        setEditingId(folder.id);
+                                                                        setEditedTitle(folder.title || "");
+                                                                        setEditedLink(folder.link || "");
+                                                                    }
+                                                                }}
+                                                            >
+                                                                <svg 
+                                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                                    className="folder-bottom-icon-svg" 
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path 
+                                                                        fill="none" 
+                                                                        stroke="currentColor" 
+                                                                        strokeLinecap="round" 
+                                                                        strokeLinejoin="round" 
+                                                                        strokeWidth={2} 
+                                                                        d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6"
+                                                                    >
+                                                                    </path>
+                                                                </svg>
+
+                                                                <p  className="folder-bottom-icon-text">Edit</p>
+                                                            </div>
+
+                                                            <div className="folder-link-bottom-icon folder-link-bottom-delete" onClick={() => toggleStar(folder.id)}>
+                                                                <svg 
+                                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                                    className="folder-bottom-icon-svg" 
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <g 
+                                                                        fill="none"
+                                                                    >
+                                                                        <path 
+                                                                            d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"
+                                                                        />
+                                                                        <path 
+                                                                            fill="currentColor" 
+                                                                            d="M14.28 2a2 2 0 0 1 1.897 1.368L16.72 5H20a1 1 0 1 1 0 2l-.003.071l-.867 12.143A3 3 0 0 1 16.138 22H7.862a3 3 0 0 1-2.992-2.786L4.003 7.07L4 7a1 1 0 0 1 0-2h3.28l.543-1.632A2 2 0 0 1 9.721 2zm3.717 5H6.003l.862 12.071a1 1 0 0 0 .997.929h8.276a1 1 0 0 0 .997-.929zM10 10a1 1 0 0 1 .993.883L11 11v5a1 1 0 0 1-1.993.117L9 16v-5a1 1 0 0 1 1-1m4 0a1 1 0 0 1 1 1v5a1 1 0 1 1-2 0v-5a1 1 0 0 1 1-1m.28-6H9.72l-.333 1h5.226z"
+                                                                        />
+                                                                    </g>
+                                                                </svg>
+
+                                                                <p  className="folder-bottom-icon-text">Delete</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
-                                                    <div className="folder-link-right">
-                                                        <a href={folder.link} target="_blank">
-                                                            <p className="folder-link-title">{folder.title}</p>
-                                                        </a>
+                                                    <div className={`folder-edit-toggle-wrapper${editingId === folder?.id ? " show" : ""}`}>
+                                                        <div className="folder-edit-toggle-main">
+                                                            <div className="folder-edit-toggle-group">
+                                                                {editingTitleId === folder.id ? (
+                                                                    <>
+                                                                        <input
+                                                                            type="text"
+                                                                            value={editedTitle}
+                                                                            onChange={(e) => setEditedTitle(e.target.value)}
+                                                                            className="folder-edit-input"
+                                                                            placeholder="Folder title"
+                                                                            autoFocus
+                                                                        />
+                                                                        <div
+                                                                            className="folder-edit-icon"
+                                                                            title="Save Title"
+                                                                            onClick={() => {
+                                                                                handleSave(folder.id, editedTitle, editedLink);
+                                                                                setEditingTitleId(null);
+                                                                            }}
+                                                                        >
+                                                                            <svg 
+                                                                                xmlns="http://www.w3.org/2000/svg" 
+                                                                                className="folder-edit-save-svg" 
+                                                                                viewBox="0 0 24 24"
+                                                                            >
+                                                                                <g 
+                                                                                    fill="none" 
+                                                                                    stroke="currentColor" 
+                                                                                    strokeLinecap="round" 
+                                                                                    strokeLinejoin="round" 
+                                                                                    strokeWidth="2"
+                                                                                >
+                                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0" />
+                                                                                    <path d="m9 12l2 2l4-4" />
+                                                                                </g>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </>
+                                                                ) : (
+                                                                    <>
+                                                                        <p className="folder-edit-label">{folder.title}</p>
+                                                                        <div
+                                                                            className="folder-edit-icon"
+                                                                            title="Edit Title"
+                                                                            onClick={() => {
+                                                                                setEditedTitle(folder.title);
+                                                                                setEditingTitleId(folder.id);
+                                                                            }}
+                                                                        >
+                                                                            <svg 
+                                                                                xmlns="http://www.w3.org/2000/svg" 
+                                                                                className="folder-edit-edit-svg" 
+                                                                                viewBox="0 0 24 24"
+                                                                            >
+                                                                                <path 
+                                                                                    fill="none" 
+                                                                                    stroke="currentColor" 
+                                                                                    strokeLinecap="round" 
+                                                                                    strokeLinejoin="round" 
+                                                                                    strokeWidth="2"
+                                                                                    d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6" 
+                                                                                />
+                                                                            </svg>
+                                                                        </div>
+                                                                    </>
+                                                                )}
+                                                            </div>
+
+                                                            <div className="folder-edit-toggle-group">
+                                                                {editingLinkId === folder.id ? (
+                                                                    <>
+                                                                        <input
+                                                                            type="text"
+                                                                            value={editedLink}
+                                                                            onChange={(e) => setEditedLink(e.target.value)}
+                                                                            className="folder-edit-input"
+                                                                            placeholder="Folder link"
+                                                                            autoFocus
+                                                                        />
+                                                                        <div
+                                                                            className="folder-edit-icon"
+                                                                            title="Save Link"
+                                                                            onClick={() => {
+                                                                                handleSave(folder.id, editedTitle, editedLink);
+                                                                                setEditingLinkId(null);
+                                                                            }}
+                                                                        >
+                                                                            <svg 
+                                                                                xmlns="http://www.w3.org/2000/svg" 
+                                                                                className="folder-edit-save-svg" 
+                                                                                viewBox="0 0 24 24"
+                                                                            >
+                                                                                <g 
+                                                                                    fill="none" 
+                                                                                    stroke="currentColor" 
+                                                                                    strokeLinecap="round" 
+                                                                                    strokeLinejoin="round" 
+                                                                                    strokeWidth="2"
+                                                                                >
+                                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0" />
+                                                                                    <path d="m9 12l2 2l4-4" />
+                                                                                </g>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </>
+                                                                ) : (
+                                                                    <>
+                                                                        <p className="folder-edit-label">{folder.link}</p>
+                                                                        <div
+                                                                            className="folder-edit-icon"
+                                                                            title="Edit Link"
+                                                                            onClick={() => {
+                                                                                setEditedLink(folder.link);
+                                                                                setEditingLinkId(folder.id);
+                                                                            }}
+                                                                        >
+                                                                            <svg 
+                                                                                xmlns="http://www.w3.org/2000/svg" 
+                                                                                className="folder-edit-edit-svg" 
+                                                                                viewBox="0 0 24 24"
+                                                                            >
+                                                                                <path 
+                                                                                    fill="none" 
+                                                                                    stroke="currentColor" 
+                                                                                    strokeLinecap="round" 
+                                                                                    strokeLinejoin="round" 
+                                                                                    strokeWidth="2"
+                                                                                    d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6" 
+                                                                                />
+                                                                            </svg>
+                                                                        </div>
+                                                                    </>
+                                                                )}
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-
-                                                <div className="folder-layout-bottom folder-link-bottom">                                                
-                                                    <div className="folder-link-bottom-star" onClick={() => toggleStar(folder.id)}>
-                                                        {folder.starred ? (
-                                                            <svg 
-                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                className="folder-bottom-star-svg" 
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <path 
-                                                                    fill="currentColor" 
-                                                                    d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                                                />
-                                                            </svg>
-                                                        ) : (
-                                                            <svg 
-                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                className="folder-bottom-star-svg" 
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <path 
-                                                                    fill="none" 
-                                                                    stroke="currentColor" 
-                                                                    strokeLinecap="round" 
-                                                                    strokeLinejoin="round" 
-                                                                    strokeWidth="2" 
-                                                                    d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
-                                                                />
-                                                            </svg>
-                                                        )}
-
-                                                        <p  className="folder-bottom-copy-text">Star</p>
-                                                    </div>
-
-                                                    <div className="folder-link-bottom-copy" onClick={() => toggleStar(folder.id)}>
-                                                        {folder.starred ? (
-                                                            <svg 
-                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                className="folder-bottom-copy-svg" 
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <g 
-                                                                    fill="none" 
-                                                                    stroke="currentColor" 
-                                                                    strokeLinecap="round" 
-                                                                    strokeLinejoin="round" 
-                                                                    strokeWidth={2}
-                                                                >
-                                                                    <path 
-                                                                        d="M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z"
-                                                                    >
-                                                                    </path>
-                                                                    <path 
-                                                                        d="M4.012 16.737A2 2 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1"
-                                                                    >
-                                                                    </path>
-                                                                </g>
-                                                            </svg>
-                                                        ) : (
-                                                            <svg 
-                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                className="folder-bottom-copy-svg" 
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <g 
-                                                                    fill="none" 
-                                                                    stroke="currentColor" 
-                                                                    strokeLinecap="round" 
-                                                                    strokeLinejoin="round" 
-                                                                    strokeWidth={2}
-                                                                >
-                                                                    <path 
-                                                                        d="M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z"
-                                                                    >
-                                                                    </path>
-                                                                    <path 
-                                                                        d="M4.012 16.737A2 2 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1"
-                                                                    >
-                                                                    </path>
-                                                                </g>
-                                                            </svg>
-                                                        )}
-
-                                                        <p  className="folder-bottom-copy-text">Copy</p>
-                                                    </div>
-
-                                                    <div className="folder-link-bottom-copy" onClick={() => toggleStar(folder.id)}>
-                                                        {folder.starred ? (
-                                                            <svg 
-                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                className="folder-bottom-copy-svg" 
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <g 
-                                                                    fill="none" 
-                                                                    stroke="currentColor" 
-                                                                    strokeLinecap="round" 
-                                                                    strokeLinejoin="round" 
-                                                                    strokeWidth={2}
-                                                                >
-                                                                    <path 
-                                                                        d="M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z"
-                                                                    >
-                                                                    </path>
-                                                                    <path 
-                                                                        d="M4.012 16.737A2 2 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1"
-                                                                    >
-                                                                    </path>
-                                                                </g>
-                                                            </svg>
-                                                        ) : (
-                                                            <svg 
-                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                className="folder-bottom-copy-svg" 
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <g 
-                                                                    fill="none" 
-                                                                    stroke="currentColor" 
-                                                                    strokeLinecap="round" 
-                                                                    strokeLinejoin="round" 
-                                                                    strokeWidth={2}
-                                                                >
-                                                                    <path 
-                                                                        d="M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z"
-                                                                    >
-                                                                    </path>
-                                                                    <path 
-                                                                        d="M4.012 16.737A2 2 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1"
-                                                                    >
-                                                                    </path>
-                                                                </g>
-                                                            </svg>
-                                                        )}
-
-                                                        <p  className="folder-bottom-copy-text">Edit</p>
-                                                    </div>
-
-                                                    <div className="folder-link-bottom-copy" onClick={() => toggleStar(folder.id)}>
-                                                        {folder.starred ? (
-                                                            <svg 
-                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                className="folder-bottom-copy-svg" 
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <g 
-                                                                    fill="none" 
-                                                                    stroke="currentColor" 
-                                                                    strokeLinecap="round" 
-                                                                    strokeLinejoin="round" 
-                                                                    strokeWidth={2}
-                                                                >
-                                                                    <path 
-                                                                        d="M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z"
-                                                                    >
-                                                                    </path>
-                                                                    <path 
-                                                                        d="M4.012 16.737A2 2 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1"
-                                                                    >
-                                                                    </path>
-                                                                </g>
-                                                            </svg>
-                                                        ) : (
-                                                            <svg 
-                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                className="folder-bottom-copy-svg" 
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <g 
-                                                                    fill="none" 
-                                                                    stroke="currentColor" 
-                                                                    strokeLinecap="round" 
-                                                                    strokeLinejoin="round" 
-                                                                    strokeWidth={2}
-                                                                >
-                                                                    <path 
-                                                                        d="M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z"
-                                                                    >
-                                                                    </path>
-                                                                    <path 
-                                                                        d="M4.012 16.737A2 2 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1"
-                                                                    >
-                                                                    </path>
-                                                                </g>
-                                                            </svg>
-                                                        )}
-
-                                                        <p  className="folder-bottom-copy-text">Delete</p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </>
                                         ) : (
                                         <>
                                             <div className="folder-image-wrapper">

@@ -5,29 +5,41 @@ import { folderKeyMap, translations } from  "../../../Context/translations";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
 
 function LinkFolder({ folderName }) {
-    // --- Language Setup ---
+    // Language context
     const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.folders || {};
 
-    // --- Dashboard View ---
+    // --- Dashboard view ---
     const { dashboardView: defaultView } = useDashboardView(); 
     const [localView, setLocalView] = useState(defaultView); 
 
-    // View toggle positions ---
+    // View switcher positions ---
     const [positions] = useState({
         List: 4.5,
         Layout: 50.5,
         Compact: 112,
     });
 
-    // --- Search Popup State ---
+    // --- Starred filter toggle ---
+    const [starredOnly, setStarredOnly] = useState(false);
+
+    // --- Search popup state ---
     const [showSearchPopup, setShowSearchPopup] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [recentSearches, setRecentSearches] = useState([]);
     const noMatchFound = searchQuery.trim() !== "" && searchResults.length === 0;
 
-    // --- Folder Data ---
+    // Copied state
+    const [copiedId, setCopiedId] = useState(null);
+
+    // Edit states
+    const [editedTitle, setEditedTitle] = useState(""); 
+    const [editedLink, setEditedLink] = useState(""); 
+    const [editingTitleId, setEditingTitleId] = useState(null); 
+    const [editingLinkId, setEditingLinkId] = useState(null); 
+
+    // --- Folder data ---
     const [folderData, setFolderData] = useState([
         {
             id: 1,
@@ -61,12 +73,52 @@ function LinkFolder({ folderName }) {
         }
     ]);
 
-    // Update recent searches
+    // --- Star toggle handler ---
+    const toggleStar = (id) => {
+        setFolderData(prev =>
+            prev.map((item) =>
+                item.id === id ? { ...item, starred: !item.starred } : item
+            )
+        );
+    };
+
+    // Add to recent search
     const addToRecentSearches = (doc) => {
         setRecentSearches((prev) => {
             const updated = [doc, ...prev.filter(item => item.id !== doc.id)];
             return updated.slice(0, 3); 
         });
+    };
+
+    // Filtered folder data
+    const filteredData = starredOnly
+        ? folderData.filter((item) => item.starred)
+        : folderData;
+
+    // Copy link handler
+    const handleCopy = (id, link) => {
+        navigator.clipboard.writeText(link).then(() => {
+            setCopiedId(id);
+            setTimeout(() => {
+                setCopiedId(null);
+            }, 2000);
+        });
+    };
+
+    // Save title/link edits
+    const handleSave = (id, newTitle, newLink) => {
+        setFolderData(prev =>
+            prev.map(folder => {
+                if (folder.id !== id) return folder;
+                return {
+                    ...folder,
+                    title: newTitle || folder.title,
+                    link: newLink || folder.link,
+                };
+            })
+        );
+        setEditingTitleId(null);
+        setEditingLinkId(null);
     };
 
     return (
@@ -75,7 +127,7 @@ function LinkFolder({ folderName }) {
                 <div className="folder-header">
                     <div className="folder-header-wrapper">
                         <div className="folder-logo">
-                            <p>
+                           <p>
                                 {folderName
                                     ? t[folderKeyMap[folderName] || folderName.toLowerCase()] || folderName
                                     : t.note || "Note"}
@@ -92,9 +144,29 @@ function LinkFolder({ folderName }) {
                                     <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/>
                                 </svg>
                             </div>
+
+                            <div 
+                                className={`folder-star ${starredOnly ? "active-star" : ""}`}
+                                onClick={() => setStarredOnly((prev) => !prev)}
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="folder-header-svg"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        fill={starredOnly ? "currentColor" : "none"}
+                                        stroke="currentColor"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                                    />
+                                </svg>
+                            </div>
                         </div>
                     </div>
-
+                    
                     {showSearchPopup && (
                         <div className="search-popup-overlay" onClick={() => setShowSearchPopup(false)}>
                             <div className="search-popup" onClick={(e) => e.stopPropagation()}>
@@ -160,31 +232,38 @@ function LinkFolder({ folderName }) {
                                     <div className="no-results-body">
                                         <div className="no-results-main">
                                             <div className="no-results-icon">
-                                                <svg
+                                                <svg 
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     className="no-results-icon-svg"
                                                     viewBox="0 0 24 24"
-                                                    width="48"
-                                                    height="48"
                                                 >
-                                                    <path
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth="2"
-                                                        d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11"
-                                                    />
+                                                    <g 
+                                                        fill="none" 
+                                                        stroke="currentColor" 
+                                                        stroke-linecap="round" 
+                                                        stroke-linejoin="round" 
+                                                        stroke-width="2"
+                                                    >
+                                                        <path 
+                                                            d="M15 8h.01M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"
+                                                        />
+                                                        <path 
+                                                            d="M3.5 15.5L8 11c.928-.893 2.072-.893 3 0l5 5"
+                                                        />
+                                                        <path 
+                                                            d="m14 14l1-1c.928-.893 2.072-.893 3 0l2.5 2.5"
+                                                        />
+                                                    </g>
                                                 </svg>
                                             </div>
 
                                             <div className="no-results-header">
-                                                <p>No links found</p>
+                                                <p>No media found</p>
                                             </div>
 
                                             <div className="no-results-text">
                                                 <p>
-                                                    "{searchQuery}" did not match any links. <br/> Please try again or <span>create a new link</span>.
+                                                    "{searchQuery}" did not match any media. <br/> Please try again or <span>create a new media</span>.
                                                 </p>
                                             </div>
 
@@ -223,19 +302,28 @@ function LinkFolder({ folderName }) {
                                                             }}
                                                     >
                                                             <div className="recent-main-icon">
-                                                                <svg
+                                                                <svg 
                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                     className="recent-main-icon-svg"
                                                                     viewBox="0 0 24 24"
                                                                 >
-                                                                    <path
-                                                                        fill="none"
-                                                                        stroke="currentColor"
-                                                                        strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                        strokeWidth="2"
-                                                                        d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11"
-                                                                    />
+                                                                    <g 
+                                                                        fill="none" 
+                                                                        stroke="currentColor" 
+                                                                        stroke-linecap="round" 
+                                                                        stroke-linejoin="round" 
+                                                                        stroke-width="2"
+                                                                    >
+                                                                        <path 
+                                                                            d="M15 8h.01M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"
+                                                                        />
+                                                                        <path 
+                                                                            d="M3.5 15.5L8 11c.928-.893 2.072-.893 3 0l5 5"
+                                                                        />
+                                                                        <path 
+                                                                            d="m14 14l1-1c.928-.893 2.072-.893 3 0l2.5 2.5"
+                                                                        />
+                                                                    </g>
                                                                 </svg>
                                                             </div>
 
@@ -245,7 +333,7 @@ function LinkFolder({ folderName }) {
                                                                 </div>
 
                                                                 <div className="recent-main-text">
-                                                                    <p>{doc.website}</p>
+                                                                    <p>{doc.mediatype}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -266,24 +354,39 @@ function LinkFolder({ folderName }) {
                                                             className="quick-main-icon-svg" 
                                                             viewBox="0 0 24 24"
                                                         >
-                                                            <path  
+                                                            <g 
                                                                 fill="none" 
                                                                 stroke="currentColor" 
                                                                 stroke-linecap="round" 
                                                                 stroke-linejoin="round" 
-                                                                stroke-width="2" 
-                                                                d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.072 0a4.993 4.993 0 0 1-.001 7.072m-5.931 5.998a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11m10 8h6m-3-3v6"
-                                                            />
+                                                                stroke-width="2"
+                                                            >
+                                                                <path 
+                                                                    d="M12 3c6.8 0 8.4 1.6 8.8 8.2M12 21c-7.2 0-9-1.8-9-9c0-7.2 1.8-9 9-9" 
+                                                                />
+                                                                <path 
+                                                                    d="M3.5 15.5L8 11c.928-.893 2.072-.893 3 0l4 4" 
+                                                                />
+                                                                <path 
+                                                                    d="m14 14l1-1c.67-.644 1.45-.824 2.182-.54" 
+                                                                />
+                                                                <path 
+                                                                    d="M16 19h6m-3-3v6" 
+                                                                />
+                                                                <path 
+                                                                    d="M15 8h.01" 
+                                                                />
+                                                            </g>
                                                         </svg>
                                                     </div>
 
                                                     <div className="quick-main-wrapper">
                                                         <div className="quick-main-header">
-                                                            <p>New link</p>
+                                                            <p>New media</p>
                                                         </div>
 
                                                         <div className="quick-main-text">
-                                                            <p>Create new link</p>
+                                                            <p>Create new media</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -294,42 +397,40 @@ function LinkFolder({ folderName }) {
                                                             className="quick-main-icon-svg" 
                                                             viewBox="0 0 24 24"
                                                         >
-                                                            <path  
+                                                            <g 
                                                                 fill="none" 
                                                                 stroke="currentColor" 
                                                                 stroke-linecap="round" 
                                                                 stroke-linejoin="round" 
-                                                                stroke-width="2" 
-                                                                d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11"
-                                                            />
-                                                            <g transform="translate(18.5, 18.5)">
-                                                                <line 
-                                                                    x1="0" 
-                                                                    y1="5" 
-                                                                    x2="0" y2="0" 
-                                                                    stroke="currentColor" 
-                                                                    strokeWidth="2" 
-                                                                    strokeLinecap="round"
+                                                                stroke-width="2"
+                                                            >
+                                                                <path 
+                                                                    d="M12 3c6.8 0 8.4 1.6 8.8 8.2M12 21c-7.2 0-9-1.8-9-9c0-7.2 1.8-9 9-9" 
                                                                 />
                                                                 <path 
-                                                                    d="M-3 1.5 L0 -1.5 L3 1.5" 
-                                                                    fill="none" 
-                                                                    stroke="currentColor" 
-                                                                    strokeWidth="2" 
-                                                                    strokeLinecap="round" 
-                                                                    strokeLinejoin="round" 
+                                                                    d="M3.5 15.5L8 11c.928-.893 2.072-.893 3 0l4 4" 
                                                                 />
+                                                                <path 
+                                                                    d="m14 14l1-1c.67-.644 1.45-.824 2.182-.54" 
+                                                                />
+                                                                <path 
+                                                                    d="m14 14l1-1c.679-.653 1.473-.829 2.214-.526M19 22v-6m3 3l-3-3l-3 3"
+                                                                />
+                                                                <path 
+                                                                    d="M15 8h.01" 
+                                                                />
+                                                                
                                                             </g>
                                                         </svg>
                                                     </div>
 
                                                     <div className="quick-main-wrapper">
                                                         <div className="quick-main-header">
-                                                            <p>View links</p>
+                                                            <p>View media</p>
                                                         </div>
 
                                                         <div className="quick-main-text">
-                                                            <p>View all links</p>
+                                                            <p>View all media</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -438,7 +539,22 @@ function LinkFolder({ folderName }) {
                     </div>
                 </div> 
 
-                <Folder view={localView.toLowerCase()} data={folderData} />
+                <Folder 
+                    view={localView.toLowerCase()} 
+                    data={filteredData} 
+                    toggleStar={toggleStar}
+                    handleCopy={handleCopy}
+                    copiedId={copiedId}
+                    editedTitle={editedTitle}
+                    setEditedTitle={setEditedTitle}
+                    editedLink={editedLink}
+                    setEditedLink={setEditedLink}
+                    editingTitleId={editingTitleId}
+                    setEditingTitleId={setEditingTitleId}
+                    editingLinkId={editingLinkId}
+                    setEditingLinkId={setEditingLinkId}
+                    handleSave={handleSave}
+                />
             </div>
         </div>
     );

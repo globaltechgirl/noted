@@ -121,7 +121,7 @@
   width: 95%;
   margin: 0 auto;
   margin-top: 50px;
-  gap: 10px;
+  gap: 8px;
   padding: 10px;
   background: var(--color-sidebar-bg);
   border: 1px solid var(--color-folder-border);
@@ -206,13 +206,17 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
-.folder-layout-main .folder-link-wrapper {
+.folder-link-container {
+  position: relative;
+  overflow: visible;
+}
+
+.folder-link-main {
   position: relative;
   display: flex;
   flex-direction: column;
   height: auto;
-  gap: 10px;
-  padding: 3px 3px 10px 3px;
+  padding: 3px 3px 8px 3px;
   border-radius: 0.7rem;
   background: var(--color-folder-regular-bg);
   border: 1px solid var(--color-folder-border);
@@ -239,21 +243,31 @@
   width: 40px;
   height: 40px;
   display: block;
-  background-color: var(--color-sidebar-bg);
-  border: 0.5px solid var(--color-folder-border);
+  background: var(--color-folder-regular-bg);
+  border: 1px solid var(--color-folder-border);
   border-radius: 0.45rem;
   color: var(--color-text-secondary);
-  padding: 6px;
+  padding: 7px;
 }
 
-.folder-layout-main .folder-link-right a {
+.folder-layout-main .folder-link-title {
   display: block;
   font-size: 0.6rem;
   font-weight: 500;
   letter-spacing: 0.6px;
   line-height: 2;
   color: var(--color-text-primary);
-  text-decoration: none;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.folder-edit-link {
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  line-height: 2;
+  color: var(--color-text-primary);
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
@@ -263,22 +277,24 @@
   padding: 0px 5px;
 }
 
-.folder-link-bottom-star,
-.folder-link-bottom-copy {
+.folder-link-bottom-icon {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   pointer-events: auto;
   cursor: pointer;
   gap: 0.4rem;
-  z-index: 99;
   padding: 4px 6px;
   background: var(--color-folder-regular-bg);
   border: 1px solid var(--color-folder-border);
   border-radius: 0.3rem;
 }
 
-.folder-bottom-copy-svg {
+.folder-link-bottom-icon:hover {
+  background: var(--color-sidebar-bg);
+}
+
+.folder-bottom-icon-svg {
   width: 9px;
   height: 9px;
   display: block;
@@ -286,10 +302,73 @@
   cursor: pointer;
 }
 
-.folder-bottom-copy-text {
+.folder-bottom-icon-text {
   color: var(--color-text-secondary);
   font-size: 0.45rem;
   font-weight: 450;
+}
+
+.folder-edit-toggle-wrapper {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 3px;
+  border-radius: 0.7rem;
+  background: var(--color-folder-regular-bg);
+  border: 1px solid var(--color-folder-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  margin-top: 10px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.folder-edit-toggle-wrapper.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.folder-edit-toggle-main {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-sidebar-bg);
+  border: 1px solid var(--color-folder-border);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 0.6rem;
+}
+
+.folder-edit-toggle-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.folder-edit-input,
+.folder-edit-label {
+  font-size: 0.59rem;
+  font-weight: 450;
+  color: var(--color-text-primary);
+  letter-spacing: 0.6px;
+  width: 100%;
+  display: block;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.folder-edit-save-svg,
+.folder-edit-edit-svg {
+  width: 12px;
+  height: 12px;
+  color: var(--color-text-primary);
+  cursor: pointer;
 }
 
 /* Folder regular */

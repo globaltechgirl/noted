@@ -3,28 +3,28 @@ import Folder from "../Folder";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
 
 function OneFolder({ folderName }) {
-    // --- Dashboard View ---
+    // --- Dashboard view ---
     const { dashboardView: defaultView } = useDashboardView(); 
     const [localView, setLocalView] = useState(defaultView); 
 
-    // View toggle positions ---
+    // View switcher positions ---
     const [positions] = useState({
         List: 4.5,
         Layout: 50.5,
         Compact: 112,
     });
 
-    // --- Star Filter Toggle ---
+    // --- Starred filter toggle ---
     const [starredOnly, setStarredOnly] = useState(false);
 
-    // --- Search Popup State ---
+    // --- Search popup state ---
     const [showSearchPopup, setShowSearchPopup] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [recentSearches, setRecentSearches] = useState([]);
     const noMatchFound = searchQuery.trim() !== "" && searchResults.length === 0;
 
-    // --- Folder Data ---
+    // --- Folder data ---
     const [folderData, setFolderData] = useState([
         {
             id: 1,
@@ -108,7 +108,7 @@ function OneFolder({ folderName }) {
         }
     ]);
 
-    // --- Star Toggle Handler ---
+    // --- Star toggle handler ---
     const toggleStar = (id) => {
         setFolderData(prev =>
             prev.map((item) =>
@@ -117,7 +117,7 @@ function OneFolder({ folderName }) {
         );
     };
 
-    // Update recent searches
+    // Add to recent search
     const addToRecentSearches = (doc) => {
         setRecentSearches((prev) => {
             const updated = [doc, ...prev.filter(item => item.id !== doc.id)];
@@ -125,7 +125,7 @@ function OneFolder({ folderName }) {
         });
     };
 
-    // Starred filter
+    // Filtered folder data
     const filteredData = starredOnly
         ? folderData.filter((item) => item.starred)
         : folderData;
@@ -477,7 +477,11 @@ function OneFolder({ folderName }) {
                     </div>
                 </div> 
 
-                <Folder view={localView.toLowerCase()} data={filteredData} toggleStar={toggleStar} />
+                <Folder 
+                    view={localView.toLowerCase()} 
+                    data={filteredData} 
+                    toggleStar={toggleStar} 
+                />
             </div>
         </div>
     );

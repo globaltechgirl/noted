@@ -452,7 +452,7 @@
   z-index: 1;
   background-color: var(--color-icon-primary);
   border: 0.5px solid var(--color-folder-border);
-  border-radius: 0.4rem;
+  border-radius: 0.35rem;
 }
 
 .folder-right .slider .ball.ball-list {

@@ -151,7 +151,26 @@ function Profile() {
                                     )}
 
                                     <div className="background-edit-icon" onClick={() => setShowBackgroundPopup(prev => !prev)} itle="Edit Background">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="camera-svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 7h1a2 2 0 0 0 2-2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2"/><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0-6 0"/></g></svg>
+                                        <svg 
+                                            xmlns="http://www.w3.org/2000/svg" 
+                                            className="camera-svg" 
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <g 
+                                                fill="none" 
+                                                stroke="currentColor" 
+                                                stroke-linecap="round" 
+                                                stroke-linejoin="round" 
+                                                stroke-width="2"
+                                            >
+                                                <path 
+                                                    d="M5 7h1a2 2 0 0 0 2-2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2"
+                                                />
+                                                <path 
+                                                    d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0-6 0"
+                                                />
+                                            </g>
+                                        </svg>
                                     </div>
 
                                     <input
@@ -237,7 +256,26 @@ function Profile() {
                                 <img src={profileImage} alt="Profile Pic" className="profile-img" />
 
                                 <div className="icon camera-icon" onClick={() => fileInputRef.current.click()} title="Change Profile Picture">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="camera-svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 7h1a2 2 0 0 0 2-2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2"/><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0-6 0"/></g></svg>
+                                    <svg 
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        className="camera-svg" 
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <g 
+                                            fill="none" 
+                                            stroke="currentColor" 
+                                            stroke-linecap="round" 
+                                            stroke-linejoin="round" 
+                                            stroke-width="2"
+                                        >
+                                            <path 
+                                                d="M5 7h1a2 2 0 0 0 2-2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2"
+                                            />
+                                            <path 
+                                                d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0-6 0"
+                                            />
+                                        </g>
+                                    </svg>
                                 </div>
 
                                 <div
@@ -245,7 +283,23 @@ function Profile() {
                                     onClick={() => setProfileImage(null)}
                                     title="Remove Profile Picture"
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="delete-svg" viewBox="0 0 24 24"><g fill="none"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M14.28 2a2 2 0 0 1 1.897 1.368L16.72 5H20a1 1 0 1 1 0 2l-.003.071l-.867 12.143A3 3 0 0 1 16.138 22H7.862a3 3 0 0 1-2.992-2.786L4.003 7.07L4 7a1 1 0 0 1 0-2h3.28l.543-1.632A2 2 0 0 1 9.721 2zm3.717 5H6.003l.862 12.071a1 1 0 0 0 .997.929h8.276a1 1 0 0 0 .997-.929zM10 10a1 1 0 0 1 .993.883L11 11v5a1 1 0 0 1-1.993.117L9 16v-5a1 1 0 0 1 1-1m4 0a1 1 0 0 1 1 1v5a1 1 0 1 1-2 0v-5a1 1 0 0 1 1-1m.28-6H9.72l-.333 1h5.226z"/></g></svg>
+                                    <svg 
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        className="delete-svg" 
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <g 
+                                            fill="none"
+                                        >
+                                            <path 
+                                                d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"
+                                            />
+                                            <path 
+                                                fill="currentColor" 
+                                                d="M14.28 2a2 2 0 0 1 1.897 1.368L16.72 5H20a1 1 0 1 1 0 2l-.003.071l-.867 12.143A3 3 0 0 1 16.138 22H7.862a3 3 0 0 1-2.992-2.786L4.003 7.07L4 7a1 1 0 0 1 0-2h3.28l.543-1.632A2 2 0 0 1 9.721 2zm3.717 5H6.003l.862 12.071a1 1 0 0 0 .997.929h8.276a1 1 0 0 0 .997-.929zM10 10a1 1 0 0 1 .993.883L11 11v5a1 1 0 0 1-1.993.117L9 16v-5a1 1 0 0 1 1-1m4 0a1 1 0 0 1 1 1v5a1 1 0 1 1-2 0v-5a1 1 0 0 1 1-1m.28-6H9.72l-.333 1h5.226z"
+                                            />
+                                        </g>
+                                    </svg>
                                 </div>
 
                                 <input
@@ -259,9 +313,10 @@ function Profile() {
                         </div>
 
                         <div className="profile-main">
-                           <div className="profile-main-wrapper">
+                            <div className="profile-main-wrapper">
                                 <div className="profile-placeholder">
                                     <p className="profile-placeholder-title">Full name</p>
+
                                     <p className="profile-placeholder-text">Your display name</p>
                                 </div>
 
@@ -288,10 +343,24 @@ function Profile() {
                                                     style={{ cursor: "pointer" }}
                                                     title="Save"
                                                 >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="profile-save-svg" viewBox="0 0 24 24">
-                                                        <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                                                            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
-                                                            <path d="m9 12l2 2l4-4"/>
+                                                    <svg 
+                                                        xmlns="http://www.w3.org/2000/svg" 
+                                                        className="profile-save-svg" 
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <g 
+                                                            fill="none" 
+                                                            stroke="currentColor" 
+                                                            strokeLinecap="round" 
+                                                            strokeLinejoin="round" 
+                                                            strokeWidth="2"
+                                                        >
+                                                            <path 
+                                                                d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"
+                                                            />
+                                                            <path 
+                                                                d="m9 12l2 2l4-4"
+                                                            />
                                                         </g>
                                                     </svg>
                                                 </div>
@@ -340,10 +409,24 @@ function Profile() {
                                                     style={{ cursor: "pointer" }}
                                                     title="Save"
                                                 >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="profile-save-svg" viewBox="0 0 24 24">
-                                                        <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                                                            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
-                                                            <path d="m9 12l2 2l4-4"/>
+                                                    <svg 
+                                                        xmlns="http://www.w3.org/2000/svg" 
+                                                        className="profile-save-svg" 
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <g 
+                                                            fill="none" 
+                                                            stroke="currentColor" 
+                                                            strokeLinecap="round" 
+                                                            strokeLinejoin="round" 
+                                                            strokeWidth="2"
+                                                        >
+                                                            <path 
+                                                                d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"
+                                                            />
+                                                            <path 
+                                                                d="m9 12l2 2l4-4"
+                                                            />
                                                         </g>
                                                     </svg>
                                                 </div>
@@ -388,10 +471,24 @@ function Profile() {
                                                     style={{ cursor: "pointer" }}
                                                     title="Save"
                                                 >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="profile-save-svg" viewBox="0 0 24 24">
-                                                        <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                                                            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
-                                                            <path d="m9 12l2 2l4-4"/>
+                                                    <svg 
+                                                        xmlns="http://www.w3.org/2000/svg" 
+                                                        className="profile-save-svg" 
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <g 
+                                                            fill="none" 
+                                                            stroke="currentColor" 
+                                                            strokeLinecap="round" 
+                                                            strokeLinejoin="round" 
+                                                            strokeWidth="2"
+                                                        >
+                                                            <path 
+                                                                d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"
+                                                            />
+                                                            <path 
+                                                                d="m9 12l2 2l4-4"
+                                                            />
                                                         </g>
                                                     </svg>
                                                 </div>
@@ -440,14 +537,37 @@ function Profile() {
                                                         style={{ cursor: "pointer" }}
                                                     >
                                                         {showPassword ? (
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="eye-icon" viewBox="0 0 24 24">
-                                                                <path fill="none" stroke="currentColor" strokeWidth="2" d="M3 3l18 18M10.73 10.73a3 3 0 0 0 4.24 4.24M9.88 5.63A9.77 9.77 0 0 1 12 5c5.523 0 10 4.03 10 7s-4.477 7-10 7a9.77 9.77 0 0 1-3.01-.47M6.24 6.24C4.318 7.39 2 9.45 2 12c0 .918.39 1.786 1.06 2.537"/>
+                                                            <svg 
+                                                                xmlns="http://www.w3.org/2000/svg" 
+                                                                className="eye-icon" 
+                                                                viewBox="0 0 24 24"
+                                                            >
+                                                                <path 
+                                                                    fill="none" 
+                                                                    stroke="currentColor" 
+                                                                    strokeWidth="2" 
+                                                                    d="M3 3l18 18M10.73 10.73a3 3 0 0 0 4.24 4.24M9.88 5.63A9.77 9.77 0 0 1 12 5c5.523 0 10 4.03 10 7s-4.477 7-10 7a9.77 9.77 0 0 1-3.01-.47M6.24 6.24C4.318 7.39 2 9.45 2 12c0 .918.39 1.786 1.06 2.537"
+                                                                />
                                                             </svg>
                                                         ) : (
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="eye-icon" viewBox="0 0 24 24">
-                                                                <g fill="none" stroke="currentColor" strokeWidth="2">
-                                                                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
-                                                                    <circle cx="12" cy="12" r="3"/>
+                                                            <svg 
+                                                                xmlns="http://www.w3.org/2000/svg" 
+                                                                className="eye-icon" 
+                                                                viewBox="0 0 24 24"
+                                                            >
+                                                                <g 
+                                                                    fill="none" 
+                                                                    stroke="currentColor" 
+                                                                    strokeWidth="2"
+                                                                >
+                                                                    <path 
+                                                                        d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"
+                                                                    />
+                                                                    <circle 
+                                                                        cx="12" 
+                                                                        cy="12" 
+                                                                        r="3"
+                                                                    />
                                                                 </g>
                                                             </svg>
                                                         )}
@@ -459,10 +579,24 @@ function Profile() {
                                                         title="Save"
                                                         style={{ cursor: "pointer" }}
                                                     >
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="profile-save-svg" viewBox="0 0 24 24">
-                                                            <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                                                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
-                                                                <path d="m9 12l2 2l4-4"/>
+                                                        <svg 
+                                                            xmlns="http://www.w3.org/2000/svg" 
+                                                            className="profile-save-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <g 
+                                                                fill="none" 
+                                                                stroke="currentColor" 
+                                                                strokeLinecap="round" 
+                                                                strokeLinejoin="round" 
+                                                                strokeWidth="2"
+                                                            >
+                                                                <path 
+                                                                    d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"
+                                                                />
+                                                                <path 
+                                                                    d="m9 12l2 2l4-4"
+                                                                />
                                                             </g>
                                                         </svg>
                                                     </div>
@@ -482,14 +616,37 @@ function Profile() {
                                                         style={{ cursor: "pointer" }}
                                                     >
                                                         {showPassword ? (
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="eye-icon" viewBox="0 0 24 24">
-                                                                <path fill="none" stroke="currentColor" strokeWidth="2" d="M3 3l18 18M10.73 10.73a3 3 0 0 0 4.24 4.24M9.88 5.63A9.77 9.77 0 0 1 12 5c5.523 0 10 4.03 10 7s-4.477 7-10 7a9.77 9.77 0 0 1-3.01-.47M6.24 6.24C4.318 7.39 2 9.45 2 12c0 .918.39 1.786 1.06 2.537"/>
+                                                            <svg 
+                                                                xmlns="http://www.w3.org/2000/svg" 
+                                                                className="eye-icon" 
+                                                                viewBox="0 0 24 24"
+                                                            >
+                                                                <path 
+                                                                    fill="none" 
+                                                                    stroke="currentColor" 
+                                                                    strokeWidth="2" 
+                                                                    d="M3 3l18 18M10.73 10.73a3 3 0 0 0 4.24 4.24M9.88 5.63A9.77 9.77 0 0 1 12 5c5.523 0 10 4.03 10 7s-4.477 7-10 7a9.77 9.77 0 0 1-3.01-.47M6.24 6.24C4.318 7.39 2 9.45 2 12c0 .918.39 1.786 1.06 2.537"
+                                                                />
                                                             </svg>
                                                         ) : (
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="eye-icon" viewBox="0 0 24 24">
-                                                                <g fill="none" stroke="currentColor" strokeWidth="2">
-                                                                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
-                                                                    <circle cx="12" cy="12" r="3"/>
+                                                            <svg 
+                                                                xmlns="http://www.w3.org/2000/svg" 
+                                                                className="eye-icon" 
+                                                                viewBox="0 0 24 24"
+                                                            >
+                                                                <g 
+                                                                    fill="none" 
+                                                                    stroke="currentColor" 
+                                                                    strokeWidth="2"
+                                                                >
+                                                                    <path 
+                                                                        d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"
+                                                                    />
+                                                                    <circle 
+                                                                        cx="12" 
+                                                                        cy="12" 
+                                                                        r="3"
+                                                                    />
                                                                 </g>
                                                             </svg>
                                                         )}
@@ -533,10 +690,24 @@ function Profile() {
                                                     style={{ cursor: "pointer" }}
                                                     title="Save"
                                                 >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="profile-save-svg" viewBox="0 0 24 24">
-                                                        <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                                                            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
-                                                            <path d="m9 12l2 2l4-4"/>
+                                                    <svg 
+                                                        xmlns="http://www.w3.org/2000/svg" 
+                                                        className="profile-save-svg" 
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <g 
+                                                            fill="none" 
+                                                            stroke="currentColor" 
+                                                            strokeLinecap="round" 
+                                                            strokeLinejoin="round" 
+                                                            strokeWidth="2"
+                                                        >
+                                                            <path 
+                                                                d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"
+                                                            />
+                                                            <path 
+                                                                d="m9 12l2 2l4-4"
+                                                            />
                                                         </g>
                                                     </svg>
                                                 </div>
@@ -573,8 +744,19 @@ function Profile() {
                                                 ))}
                                             </select>
 
-                                            <svg className="custom-dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                                            <svg 
+                                                className="custom-dropdown-arrow" 
+                                                viewBox="0 0 24 24" 
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M6 9l6 6 6-6" 
+                                                    stroke="currentColor" 
+                                                    strokeWidth="2" 
+                                                    fill="none" 
+                                                    strokeLinecap="round" 
+                                                    strokeLinejoin="round" 
+                                                />
                                             </svg>
                                         </div>
                                     </div>
@@ -601,10 +783,24 @@ function Profile() {
                                                     style={{ cursor: "pointer" }}
                                                     title="Save"
                                                 >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="profile-save-svg" viewBox="0 0 24 24">
-                                                        <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                                                            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
-                                                            <path d="m9 12l2 2l4-4"/>
+                                                    <svg 
+                                                        xmlns="http://www.w3.org/2000/svg" 
+                                                        className="profile-save-svg" 
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <g 
+                                                            fill="none" 
+                                                            stroke="currentColor" 
+                                                            strokeLinecap="round" 
+                                                            strokeLinejoin="round" 
+                                                            strokeWidth="2"
+                                                        >
+                                                            <path 
+                                                                d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"
+                                                            />
+                                                            <path 
+                                                                d="m9 12l2 2l4-4"
+                                                            />
                                                         </g>
                                                     </svg>
                                                 </div>
@@ -622,6 +818,7 @@ function Profile() {
                             <div className="profile-main-wrapper">
                                 <div className="profile-placeholder">
                                     <p className="profile-placeholder-title">Connect your socials</p>
+
                                     <p className="profile-placeholder-text">Add your social links</p>
                                 </div>
 
@@ -629,10 +826,24 @@ function Profile() {
                                     <div className="profile-details-specific">
                                         <div className="profile-details-left">
                                             <div className="profile-tag profile-socials-tag">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="profile-socials-tag-svg" viewBox="0 0 24 24">
-                                                    <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                                                        <path d="M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/>
-                                                        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0-6 0m7.5-4.5v.01"/>
+                                                <svg 
+                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                    className="profile-socials-tag-svg" 
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <g 
+                                                        fill="none" 
+                                                        stroke="currentColor" 
+                                                        strokeLinecap="round" 
+                                                        strokeLinejoin="round" 
+                                                        strokeWidth="2"
+                                                    >
+                                                        <path 
+                                                            d="M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"
+                                                        />
+                                                        <path 
+                                                            d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0-6 0m7.5-4.5v.01"
+                                                        />
                                                     </g>
                                                 </svg>
                                                 
@@ -653,10 +864,24 @@ function Profile() {
                                                     />
 
                                                     <div className="profile-details-save" onClick={() => setEditingField(null)} style={{ cursor: "pointer" }}>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="profile-save-svg" viewBox="0 0 24 24">
-                                                            <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                                                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
-                                                                <path d="m9 12l2 2l4-4"/>
+                                                        <svg 
+                                                            xmlns="http://www.w3.org/2000/svg" 
+                                                            className="profile-save-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <g 
+                                                                fill="none" 
+                                                                stroke="currentColor" 
+                                                                strokeLinecap="round" 
+                                                                strokeLinejoin="round" 
+                                                                strokeWidth="2"
+                                                            >
+                                                                <path 
+                                                                    d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"
+                                                                />
+                                                                <path 
+                                                                    d="m9 12l2 2l4-4"
+                                                                />
                                                             </g>
                                                         </svg>
                                                     </div>
@@ -666,8 +891,19 @@ function Profile() {
                                                     <p className="profile-text profile-socials-text">{instagramHandle}</p>
 
                                                     <div className="profile-details-edit" onClick={() => setEditingField("instagram")} style={{ cursor: "pointer" }}>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="profile-edit-svg" viewBox="0 0 24 24">
-                                                            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6"/>
+                                                        <svg 
+                                                            xmlns="http://www.w3.org/2000/svg" 
+                                                            className="profile-edit-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path 
+                                                                fill="none" 
+                                                                stroke="currentColor" 
+                                                                strokeLinecap="round" 
+                                                                strokeLinejoin="round" 
+                                                                strokeWidth="2" 
+                                                                d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6"
+                                                            />
                                                         </svg>
                                                     </div>
                                                 </>
@@ -678,8 +914,19 @@ function Profile() {
                                     <div className="profile-details-specific">
                                         <div className="profile-details-left">
                                             <div className="profile-tag profile-socials-tag">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="profile-socials-tag-svg" viewBox="0 0 24 24">
-                                                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 7.917v4.034A9.95 9.95 0 0 1 16 10v4.5a6.5 6.5 0 1 1-8-6.326V12.5a2.5 2.5 0 1 0 4 2V3h4.083A6.005 6.005 0 0 0 21 7.917"/>
+                                                <svg 
+                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                    className="profile-socials-tag-svg" 
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path 
+                                                        fill="none" 
+                                                        stroke="currentColor" 
+                                                        strokeLinecap="round" 
+                                                        strokeLinejoin="round" 
+                                                        strokeWidth="2" 
+                                                        d="M21 7.917v4.034A9.95 9.95 0 0 1 16 10v4.5a6.5 6.5 0 1 1-8-6.326V12.5a2.5 2.5 0 1 0 4 2V3h4.083A6.005 6.005 0 0 0 21 7.917"
+                                                    />
                                                 </svg>
 
                                                 <p className="profile-socials-tag-text">tiktok.com/</p>
@@ -698,10 +945,24 @@ function Profile() {
                                                         autoFocus
                                                     />
                                                     <div className="profile-details-save" onClick={() => setEditingField(null)} style={{ cursor: "pointer" }}>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="profile-save-svg" viewBox="0 0 24 24">
-                                                            <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                                                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
-                                                                <path d="m9 12l2 2l4-4"/>
+                                                        <svg 
+                                                            xmlns="http://www.w3.org/2000/svg" 
+                                                            className="profile-save-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <g 
+                                                                fill="none" 
+                                                                stroke="currentColor" 
+                                                                strokeLinecap="round" 
+                                                                strokeLinejoin="round" 
+                                                                strokeWidth="2"
+                                                            >
+                                                                <path 
+                                                                    d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"
+                                                                />
+                                                                <path 
+                                                                    d="m9 12l2 2l4-4"
+                                                                />
                                                             </g>
                                                         </svg>
                                                     </div>
@@ -711,8 +972,19 @@ function Profile() {
                                                     <p className="profile-text profile-socials-text">{tiktokHandle}</p>
 
                                                     <div className="profile-details-edit" onClick={() => setEditingField("tiktok")} style={{ cursor: "pointer" }}>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="profile-edit-svg" viewBox="0 0 24 24">
-                                                            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6"/>
+                                                        <svg 
+                                                            xmlns="http://www.w3.org/2000/svg" 
+                                                            className="profile-edit-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path 
+                                                                fill="none" 
+                                                                stroke="currentColor" 
+                                                                strokeLinecap="round" 
+                                                                strokeLinejoin="round" 
+                                                                strokeWidth="2" 
+                                                                d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6"
+                                                            />
                                                         </svg>
                                                     </div>
                                                 </>
@@ -723,8 +995,19 @@ function Profile() {
                                     <div className="profile-details-specific">
                                         <div className="profile-details-left">
                                             <div className="profile-tag profile-socials-tag">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="profile-socials-tag-svg" viewBox="0 0 24 24">
-                                                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M22 4.01c-1 .49-1.98.689-3 .99c-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4c0 0-4.182 7.433 4 11c-1.872 1.247-3.739 2.088-6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58-1.04 6.522-3.723 7.651-7.742a13.8 13.8 0 0 0 .497-3.753c0-.249 1.51-2.772 1.818-4.013z"/>
+                                                <svg 
+                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                    className="profile-socials-tag-svg" 
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path 
+                                                        fill="none" 
+                                                        stroke="currentColor" 
+                                                        strokeLinecap="round" 
+                                                        strokeLinejoin="round" 
+                                                        strokeWidth="2" 
+                                                        d="M22 4.01c-1 .49-1.98.689-3 .99c-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4c0 0-4.182 7.433 4 11c-1.872 1.247-3.739 2.088-6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58-1.04 6.522-3.723 7.651-7.742a13.8 13.8 0 0 0 .497-3.753c0-.249 1.51-2.772 1.818-4.013z"
+                                                    />
                                                 </svg>
 
                                                 <p className="profile-socials-tag-text">twitter.com/</p>
@@ -744,10 +1027,24 @@ function Profile() {
                                                     />
 
                                                     <div className="profile-details-save" onClick={() => setEditingField(null)} style={{ cursor: "pointer" }}>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="profile-save-svg" viewBox="0 0 24 24">
-                                                            <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                                                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
-                                                                <path d="m9 12l2 2l4-4"/>
+                                                        <svg 
+                                                            xmlns="http://www.w3.org/2000/svg" 
+                                                            className="profile-save-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <g 
+                                                                fill="none" 
+                                                                stroke="currentColor" 
+                                                                strokeLinecap="round" 
+                                                                strokeLinejoin="round" 
+                                                                strokeWidth="2"
+                                                            >
+                                                                <path 
+                                                                    d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"
+                                                                />
+                                                                <path 
+                                                                    d="m9 12l2 2l4-4"
+                                                                />
                                                             </g>
                                                         </svg>
                                                     </div>
@@ -757,8 +1054,19 @@ function Profile() {
                                                     <p className="profile-text profile-socials-text">{twitterHandle}</p>
 
                                                     <div className="profile-details-edit" onClick={() => setEditingField("twitter")} style={{ cursor: "pointer" }}>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="profile-edit-svg" viewBox="0 0 24 24">
-                                                            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6"/>
+                                                        <svg 
+                                                            xmlns="http://www.w3.org/2000/svg" 
+                                                            className="profile-edit-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path 
+                                                                fill="none" 
+                                                                stroke="currentColor" 
+                                                                strokeLinecap="round" 
+                                                                strokeLinejoin="round" 
+                                                                strokeWidth="2" 
+                                                                d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16zm9.5-13.5l4 4M16 19h6"
+                                                            />
                                                         </svg>
                                                     </div>
                                                 </>
