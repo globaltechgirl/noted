@@ -155,68 +155,74 @@
 /* Folder link */
 .folder-compact-main:has(.folder-link-wrapper) {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.folder-compact-main .folder-link-wrapper {
+.folder-link-container {
   position: relative;
+  overflow: visible;
+}
+
+.folder-compact-main .folder-link-main {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   height: auto;
-  gap: 15px;
-  padding: 0 0 15px 0;
-  background-color: var(--color-surface-secondary);
-  border-radius: 0.5rem;
-}
-
-.folder-compact-main .folder-link-wrapper:hover {
-  background-color: var(--color-surface-primary);
-  border: 0.5px solid var(--color-border);
-  cursor: pointer;
+  padding: 3px;
+  border-radius: 0.7rem;
+  background: var(--color-folder-regular-bg);
+  border: 1px solid var(--color-folder-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .folder-compact-main .folder-link-body {
   flex: 1;
-  padding: 15px 15px 0 15px;
+  padding: 4px;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
-  gap: 13px;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-sidebar-bg);
+  border: 1px solid var(--color-folder-border);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 0.6rem;
 }
 
 .folder-compact-main .folder-link-left .folder-link-left-svg {
-  width: 25px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   display: block;
-  background-color: var(--color-surface-primary);
-  border: 0.5px solid var(--color-border);
-  border-radius: 0.5rem;
-  color: var(--color-surface-accent);
-  padding: 5px;
+  background: var(--color-folder-regular-bg);
+  border: 1px solid var(--color-folder-border);
+  border-radius: 0.45rem;
+  color: var(--color-text-secondary);
+  padding: 7px;
 }
 
-.folder-compact-main .folder-link-right a {
+.folder-compact-main .folder-link-title {
   display: block;
-  padding-top: 5px;
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 500;
   letter-spacing: 0.6px;
   line-height: 2;
   color: var(--color-text-primary);
-  text-decoration: none;
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
 }
 
+
 /* Folder regular */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .folder-compact-main {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (min-width: 481px) and (max-width: 1024px) {
+@media (min-width: 601px) and (max-width: 1024px) {
   .folder-compact-main {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -229,22 +235,17 @@
 }
 
 /* Folder link */
-@media (max-width: 768px) {
+@media (min-width: 480px) and (max-width: 991px) {
+  .folder-compact-main:has(.folder-link-wrapper) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
   .folder-compact-main:has(.folder-link-wrapper) {
     grid-template-columns: repeat(3, 1fr);
   }
-
-  .folder-compact-main .folder-link-right a {
-    padding-top: 2px;
-  }
 }
-
-@media (min-width: 769px) and (max-width: 1200px) {
-  .folder-compact-main:has(.folder-link-wrapper) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
 @media (max-width: 1024px) {
   /* Folder main */
   .folder-compact-main {

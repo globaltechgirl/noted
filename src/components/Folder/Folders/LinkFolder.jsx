@@ -71,6 +71,14 @@ function LinkFolder({ folderName }) {
             website: "Dribble",
             link: "https://example.com/waterfall-licence-1",
             date: "12.04.25",
+        },
+        {
+            id: 5,
+            icon: "F",
+            title: "Brand Guideline 2025 Link",
+            website: "Dribble",
+            link: "https://example.com/waterfall-licence-1",
+            date: "12.04.25",
         }
     ]);
 

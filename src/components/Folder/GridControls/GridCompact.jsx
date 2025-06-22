@@ -1,7 +1,7 @@
 import React from "react";
 import "./GridCompact.css"; 
 
-function GridCompact ({ data = [], toggleStar }) {
+function GridCompact ({ data = [] }) {
     return (
         <div className="folder-container">
             <div className="folder-wrapper">
@@ -12,19 +12,21 @@ function GridCompact ({ data = [], toggleStar }) {
                                 return (
                                     <div key={index} className={`folder ${folder.link ? "folder-link-wrapper" : "folder-compact-regular"}`}>
                                         {folder.link ? (
-                                            <div className="folder-link-main">
-                                                <div className="folder-link-body">
-                                                    <div className="folder-link-left">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="folder-link-left-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11"/></svg>
-                                                    </div>
+                                            <>
+                                                <div className="folder-link-container">
+                                                    <div className="folder-link-main">
+                                                        <div className="folder-link-body">
+                                                            <div className="folder-link-left">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-link-left-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11"/></svg>
+                                                            </div>
 
-                                                    <div className="folder-link-right">
-                                                        <a href={folder.link} target="_blank">
-                                                            <p className="folder-link-title">{folder.title}</p>
-                                                        </a>
+                                                            <div className="folder-link-right">
+                                                                <p className="folder-link-title">{folder.title}</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </>
                                         ) : (
                                         <>
                                             <div className="folder-image-wrapper">
