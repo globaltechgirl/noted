@@ -14,14 +14,11 @@
   flex-direction: row;
   justify-content: space-between;
   height: auto;
-  padding: 5px;
+  padding: 3px;
   border-radius: 0.6rem;
   background: var(--color-folder-regular-bg);
   border: 1px solid var(--color-folder-border);
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 0;
-  overflow: hidden;
 }
 
 .folder-list-body {
@@ -124,54 +121,189 @@
 }
 
 /* Folder link */
-.folder-list-main .folder-link-wrapper {
+.folder-list-link-main {
   position: relative;
   display: flex;
   flex-direction: column;
   height: auto;
+  padding: 3px;
+  border-radius: 0.6rem;
+  background: var(--color-folder-regular-bg);
+  border: 1px solid var(--color-folder-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  letter-spacing: 0.6px;
+}
+
+.folder-list-link-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 10px;
-  padding: 0 0 15px 0;
-  background-color: var(--color-surface-secondary);
+  width: 100%;
+  padding: 10px;
+  background: var(--color-sidebar-bg);
+  border: 1px solid var(--color-folder-border);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border-radius: 0.5rem;
 }
 
-.folder-list-main .folder-link-wrapper:hover {
-  background-color: var(--color-surface-primary);
-  border: 0.5px solid var(--color-border);
-  cursor: pointer;
-}
-
-.folder-list-main .folder-link-body {
-  flex: 1;
-  padding: 15px 15px 0 20px;
+.folder-list-link-main .folder-link-body {
+  flex: 6;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 15px;
+  gap: 0.75rem;
 }
 
-.folder-list-main .folder-link-left .folder-link-left-svg {
+.folder-list-main .folder-link-left {
+  position: relative;
   width: 25px;
-  height: 28px;
-  display: block;
-  background-color: var(--color-surface-primary);
-  border: 0.5px solid var(--color-border);
-  border-radius: 0.5rem;
-  color: var(--color-surface-accent);
+  height: 30px;
+  background: var(--color-folder-regular-bg);
+  border: 1px solid var(--color-folder-border);
+  color: var(--color-text-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.4rem;
   padding: 5px;
 }
 
-.folder-list-main .folder-link-right a {
+.folder-list-main .folder-link-left .folder-link-left-svg {
+  width: 40px;
+  height: 40px;
   display: block;
-  font-size: 0.6rem;
+}
+
+.folder-list-main .folder-link-title {
+  font-size: 0.58rem;
   font-weight: 500;
-  letter-spacing: 0.6px;
   line-height: 2;
   color: var(--color-text-primary);
-  text-decoration: none;
-  white-space: normal;
-  word-break: break-word;
-  overflow-wrap: break-word;
+}
+
+.folder-list-link-main .folder-link-bottom {
+  flex: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  padding: 0px;
+}
+
+.folder-list-link-main .folder-link-bottom-icon {
+  cursor: pointer;
+  pointer-events: auto;
+  padding: 4px;
+  background: var(--color-folder-regular-bg);
+  border: 1px solid var(--color-folder-border);
+  border-radius: 0.3rem;
+}
+
+.folder-link-bottom-icon:hover {
+  background: var(--color-sidebar-bg);
+}
+
+.folder-bottom-icon-svg {
+  width: 9px;
+  height: 9px;
+  display: block;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.folder-list-main .folder-bottom-icon-text {
+  display: none;
+}
+
+.folder-list-link-container .folder-list-edit-toggle-wrapper {
+  position: absolute;
+  right: 3%;
+  width: 25%;
+  z-index: 1;
+  transform-origin: top;
+  transform: translateY(0);
+  margin-top: -115px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  padding: 3px;
+  border: 1px solid var(--color-folder-border);
+  border-radius: 0.7rem;
+}
+
+.folder-list-edit-toggle-wrapper.show {
+  transform: translateY(100%);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.folder-edit-toggle-main {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+  background: var(--color-sidebar-bg);
+  border: 1px dashed var(--color-folder-border);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 0.6rem;
+}
+
+.folder-edit-toggle-icons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  margin-left: auto;
+  margin-bottom: 3px;
+  padding: 2px 3px 0 0;
+}
+
+.folder-edit-save-wrapper {
+  padding: 4px 5px;
+  width: fit-content;
+  background: var(--color-folder-regular-bg);
+  border: 0.5px solid var(--color-folder-border);
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.folder-edit-save-wrapper:hover {
+  background: var(--color-sidebar-bg);
+}
+
+.folder-edit-save-svg,
+.folder-edit-reverse-svg {
+  width: 10px;
+  height: 10px;
+  color: var(--color-text-primary);
+  display: block;
+}
+
+.folder-edit-toggle-group {
+  padding: 12px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-folder-regular-bg);
+  border: 1px solid var(--color-folder-border);
+  border-radius: 0.5rem;
+}
+
+.folder-edit-input,
+.folder-edit-label {
+  font-size: 0.5rem;
+  font-weight: 450;
+  color: var(--color-text-primary);
+  letter-spacing: 0.6px;
+  width: 100%;
+  display: block;
+  border: none;
+  background: transparent;
+  outline: none;
 }
 
 @media (max-width: 600px) {

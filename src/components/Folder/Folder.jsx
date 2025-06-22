@@ -14,9 +14,7 @@ function Folder({
     setEditedTitle,
     editedLink,
     setEditedLink,
-    editingTitleId,
     setEditingTitleId,
-    editingLinkId,
     setEditingLinkId,
     editingId,
     setEditingId,
@@ -36,9 +34,7 @@ function Folder({
                         setEditedTitle={setEditedTitle}
                         editedLink={editedLink}
                         setEditedLink={setEditedLink}
-                        editingTitleId={editingTitleId}
                         setEditingTitleId={setEditingTitleId}
-                        editingLinkId={editingLinkId}
                         setEditingLinkId={setEditingLinkId}
                         editingId={editingId}
                         setEditingId={setEditingId}
@@ -59,9 +55,7 @@ function Folder({
                         setEditedTitle={setEditedTitle}
                         editedLink={editedLink}
                         setEditedLink={setEditedLink}
-                        editingTitleId={editingTitleId}
                         setEditingTitleId={setEditingTitleId}
-                        editingLinkId={editingLinkId}
                         setEditingLinkId={setEditingLinkId}
                         editingId={editingId}
                         setEditingId={setEditingId}
@@ -82,9 +76,7 @@ function Folder({
                         setEditedTitle={setEditedTitle}
                         editedLink={editedLink}
                         setEditedLink={setEditedLink}
-                        editingTitleId={editingTitleId}
                         setEditingTitleId={setEditingTitleId}
-                        editingLinkId={editingLinkId}
                         setEditingLinkId={setEditingLinkId}
                         editingId={editingId}
                         setEditingId={setEditingId}
