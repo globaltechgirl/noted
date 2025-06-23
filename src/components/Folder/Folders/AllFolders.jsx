@@ -16,9 +16,9 @@ function AllFolders() {
 
     // View switcher positions ---
     const [positions] = useState({
-        List: 4.5,
-        Layout: 50.5,
-        Compact: 112,
+        List: 3,
+        Layout: 42,
+        Compact: 93.5,
     });
 
     // --- Starred filter toggle ---

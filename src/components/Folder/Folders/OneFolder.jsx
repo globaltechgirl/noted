@@ -9,9 +9,9 @@ function OneFolder({ folderName }) {
 
     // View switcher positions ---
     const [positions] = useState({
-        List: 4.5,
-        Layout: 50.5,
-        Compact: 112,
+        List: 3.5,
+        Layout: 42,
+        Compact: 94,
     });
 
     // --- Starred filter toggle ---

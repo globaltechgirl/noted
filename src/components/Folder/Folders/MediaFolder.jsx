@@ -16,9 +16,9 @@ function MediaFolder({ folderName }) {
 
     // View switcher positions ---
     const [positions] = useState({
-        List: 2.5,
-        Layout: 41,
-        Compact: 90.5,
+        List: 3,
+        Layout: 42,
+        Compact: 93.5,
     });
 
     // --- Starred filter toggle ---

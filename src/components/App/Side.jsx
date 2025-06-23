@@ -163,7 +163,7 @@ function Side({ onSectionClick }) {
             <div className="side-header">
                 <div className="side-header-wrapper">
                     <div className="side-logo">
-                        <img src="/src/assets/images/logo.png" />
+                        <img src="/src/assets/images/noted.png" />
                     </div>
 
                     <div className="side-logo-svgs">

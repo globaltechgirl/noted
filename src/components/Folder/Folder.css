@@ -358,8 +358,8 @@
   align-items: center;
   justify-content: space-between;
   color: var(--color-text-primary);
-  margin-top: -9px;
-  margin-bottom: 12px;
+  margin-top: -15px;
+  margin-bottom: 10px;
 }
 
 .folder-left {
@@ -380,8 +380,8 @@
 }
 
 .folder-icon .folder-icon-svg {
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
   color: var(--color-text-secondary);
   opacity: 0.9;
 }
@@ -406,10 +406,10 @@
   display: flex;
   align-items: center;
   position: relative;
-  height: 24px;
+  height: 25px;
   color: var(--color-text-primary);
   opacity: 0.8;
-  padding: 0px 0 0 2px;
+  padding: 0px 1px 0 2.5px;
   background-color: var(--color-sidebar-bg);
   border-radius: 0.4rem;
 }
@@ -419,7 +419,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.2rem;
-  padding: 5px;
+  padding: 5.5px;
   cursor: pointer;
 }
 
@@ -445,7 +445,7 @@
   bottom: 1.5px;
   left: 0;
   height: 19px;
-  margin-bottom: 1px;
+  margin-bottom: 1.5px;
   transition: left 0.3s ease;
   z-index: 1;
   background-color: var(--color-icon-primary);
@@ -454,11 +454,11 @@
 }
 
 .folder-right .slider .ball.ball-list {
-  width: 37px;
+  width: 38px;
 }
 
 .folder-right .slider .ball.ball-layout {
-  width: 48.5px;
+  width: 50px;
 }
 
 .folder-right .slider .ball.ball-compact {
@@ -498,12 +498,12 @@
 @media (max-width: 1024px) {
   /* Folder header */
   .folder-header-wrapper {
-    width: 90%;
+    width: 60%;
   }
 
   /* Folder body */
   .folder-body-header {
-    width: 90%;
+    width: 93%;
   }
 }
 
