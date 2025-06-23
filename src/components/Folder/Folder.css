@@ -352,7 +352,7 @@
 
 /* Folder body header */
 .folder-body-header {
-  width: 94%;
+  width: 95%;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -409,8 +409,7 @@
   height: 28px;
   color: var(--color-text-primary);
   opacity: 0.8;
-  gap: 0.2rem;
-  padding: 15px 4px;
+  padding: 12px 2px;
   background-color: var(--color-sidebar-bg);
   border-radius: 0.5rem;
 }
@@ -425,7 +424,7 @@
 }
 
 .folder-grid-name {
-  font-size: 0.55rem;
+  font-size: 0.5rem;
   font-weight: 550;
   letter-spacing: 0.6px;
   text-transform: capitalize;
@@ -446,7 +445,7 @@
   bottom: 1.5px;
   left: 0;
   width: 42px;
-  height: 22.5px;
+  height: 20px;
   margin-bottom: 2px;
   transition: left 0.3s ease;
   z-index: 1;
@@ -456,7 +455,7 @@
 }
 
 .folder-right .slider .ball.ball-list {
-  width: 43.5px;
+  width: 40.5px;
 }
 
 .folder-right .slider .ball.ball-layout {
@@ -468,8 +467,8 @@
 }
 
 .folder-grid-svg {
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
   display: block;
   cursor: pointer;
   position: relative;

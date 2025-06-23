@@ -1,6 +1,6 @@
 /* Folder main */
 .folder-list-main {
-  width: 94%;
+  width: 95%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -19,6 +19,11 @@
   background: var(--color-folder-regular-bg);
   border: 1px solid var(--color-folder-border);
   backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+.folder-list-regular:hover {
+  background: var(--color-sidebar-bg);
 }
 
 .folder-list-body {
@@ -34,6 +39,10 @@
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   letter-spacing: 0.75px;
+}
+
+.folder-list-body:hover {
+  background: var(--color-folder-regular-bg);
 }
 
 .folder-list-body .folder-image-wrapper {
@@ -133,6 +142,11 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   letter-spacing: 0.6px;
+  cursor: pointer;
+}
+
+.folder-list-link-main:hover {
+  background: var(--color-sidebar-bg);
 }
 
 .folder-list-link-wrapper {
@@ -147,6 +161,10 @@
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-radius: 0.5rem;
+}
+
+.folder-list-link-wrapper:hover {
+  background: var(--color-folder-regular-bg);
 }
 
 .folder-list-link-main .folder-link-body {
@@ -220,8 +238,8 @@
 
 .folder-list-link-container .folder-list-edit-toggle-wrapper {
   position: absolute;
-  right: 3%;
-  width: 25%;
+  right: 25px;
+  width: 200px;
   z-index: 1;
   transform-origin: top;
   transform: translateY(0);
@@ -306,50 +324,9 @@
   outline: none;
 }
 
-@media (max-width: 600px) {
-  /* Folder main */
-  .folder-list-middle {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  /* Folder main */
-  .folder-list-left {
-    flex: 4.5;
-    padding-left: 15px;
-  }
-
-  .folder-list-right {
-    padding-right: 15px;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  /* Folder main */
-  .folder-list-left {
-    flex: 3.5;
-  }
-}
-
 @media (max-width: 1024px) {
   /* Folder main */
   .folder-list-main {
     width: 90%;
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1200px) {
-  /* Folder main */
-  .folder-list-left {
-    flex: 2.5;
-  }
-}
-
-/* Folder link */
-@media (max-width: 480px) {
-  .folder-list-main .folder-link-body {
-    padding: 15px 15px 0 15px;
-    align-items: flex-start;
   }
 }

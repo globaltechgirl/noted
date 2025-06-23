@@ -1,6 +1,6 @@
 /* Folder main */
 .folder-compact-main {
-  width: 94%;
+  width: 95%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -22,6 +22,7 @@
   z-index: 0;
   overflow: hidden;
   height: 100%;
+  cursor: pointer;
 }
 
 .folder-compact-regular::before {

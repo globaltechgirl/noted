@@ -16,7 +16,7 @@ function MediaFolder({ folderName }) {
 
     // View switcher positions ---
     const [positions] = useState({
-        List: 4.5,
+        List: 3.8,
         Layout: 50.5,
         Compact: 112,
     });
