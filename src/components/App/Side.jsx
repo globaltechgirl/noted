@@ -20,13 +20,12 @@ function Side({ onSectionClick }) {
     const menuItems = [
         {
             key: "note",
-            label: t.home || "Home",
+            label: t.home || "Dashboard",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                        <path d="m19 8.71-5.333-4.148a2.666 2.666 0 0 0-3.274 0L5.059 8.71a2.67 2.67 0 0 0-1.029 2.105v7.2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.2c0-.823-.38-1.6-1.03-2.105"/>
-                        <path d="M16 15c-2.21 1.333-5.792 1.333-8 0"/>
-                    </g>
+                    <path fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                        d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1m0 12h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1m10-4h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1m0-8h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1"
+                    ></path>
                 </svg>
             ),
         },
@@ -35,7 +34,7 @@ function Side({ onSectionClick }) {
             label: t.allNotes || "All Notes",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
-                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                    <path fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                         d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
                 </svg>
             ),
@@ -45,7 +44,7 @@ function Side({ onSectionClick }) {
             label: "Daily",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
-                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                    <path fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                         d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
                 </svg>
             ),
@@ -55,7 +54,7 @@ function Side({ onSectionClick }) {
             label: "Personal",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
-                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                    <path fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                         d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
                 </svg>
             ),
@@ -65,7 +64,7 @@ function Side({ onSectionClick }) {
             label: "Work",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
-                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                    <path fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                         d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
                 </svg>
             ),
@@ -75,7 +74,7 @@ function Side({ onSectionClick }) {
             label: t.media || "Media",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                    <g fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
                         <path d="M15 8h.01M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"/>
                         <path d="M3.5 15.5L8 11c.928-.893 2.072-.893 3 0l5 5"/>
                         <path d="m14 14l1-1c.928-.893 2.072-.893 3 0l2.5 2.5"/>
@@ -88,7 +87,7 @@ function Side({ onSectionClick }) {
             label: t.links || "Links",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
-                    <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                    <path fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                         d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11"/>
                 </svg>
             ),
@@ -98,65 +97,14 @@ function Side({ onSectionClick }) {
             label: t.settings || "Settings",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                        <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37c1 .608 2.296.07 2.572-1.065"/>
-                        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0-6 0"/>
+                    <g fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                        <path d="M19.875 6.27A2.23 2.23 0 0 1 21 8.218v7.284c0 .809-.443 1.555-1.158 1.948l-6.75 4.27a2.27 2.27 0 0 1-2.184 0l-6.75-4.27A2.23 2.23 0 0 1 3 15.502V8.217c0-.809.443-1.554 1.158-1.947l6.75-3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98z"></path>
+                        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path>
                     </g>
                 </svg>
             ),
         },
     ];
-
-    // Arrow Icon Indicator
-    const arrowIcon = (
-        <div className="arrow-wrapper">
-            <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="side-active-lock" 
-                viewBox="0 0 24 24">
-                <g
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                >
-                    <path 
-                        d="M5 13a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"
-                    />
-                    <path 
-                        d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0-2 0m-3-5V7a4 4 0 1 1 8 0v4"
-                    />
-                </g>
-            </svg>
-
-            <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="side-active-arrow" 
-                viewBox="0 0 24 24">
-                <g
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                >
-                    <path 
-                        d="M15 11l7.8-7.6" 
-                    />
-                    <path 
-                        d="M23 4v4" 
-                    />
-                    <path 
-                        d="M22 3h-4" 
-                    />
-                    <path 
-                        d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8" 
-                    />
-                </g>
-            </svg>
-        </div>
-    );
 
     return (
         <div className = "side">
@@ -167,23 +115,6 @@ function Side({ onSectionClick }) {
                     </div>
 
                     <div className="side-logo-svgs">
-                        <div className="side-bar-max" onClick={() => handleClick("profile")} style={{ cursor: "pointer" }}>
-                            <svg 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                className="side-bar-max-svg" 
-                                viewBox="0 0 24 24"
-                            >       
-                                <path 
-                                    fill="none" 
-                                    stroke="currentColor" 
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round" 
-                                    strokeWidth={2} 
-                                    d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm11-2v16">
-                                </path>
-                            </svg>
-                        </div>
-
                         <div className="side-user-max" onClick={() => handleClick("profile")} style={{ cursor: "pointer" }}>
                             <svg 
                                 xmlns="http://www.w3.org/2000/svg" 
@@ -213,12 +144,21 @@ function Side({ onSectionClick }) {
                 <div className="side-body">
                     <ul>
                         {menuItems.map(({ key, label, icon }) => (
-                            <li key={key} onClick={() => handleClick(key)} className={activeSection === key ? "active" : ""}>
-                                <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                            <li 
+                                key={key} 
+                                onClick={() => handleClick(key)} 
+                                className={activeSection === key ? "active" : ""}
+                            >
+                                <div className="side-body-item">
                                     {icon}
                                     <span>{label}</span>
+                                    
+                                   {activeSection !== key && (
+                                        <div className="side-body-figure">
+                                            {key !== "settings" && key !== "note" && <p>20</p>}
+                                        </div>
+                                    )}
                                 </div>
-                                    {activeSection === key && arrowIcon}
                             </li>
                         ))}
                     </ul>
@@ -230,25 +170,28 @@ function Side({ onSectionClick }) {
                 onClick={() => handleClick("profile")}
                 style={{ cursor: "pointer" }}
             >
-                <div className="side-user-wrapper">
-                    <div className="side-user-main">
-                        <div className="side-user-image">
-                            <img src="/src/assets/images/user.png" alt="user" />
-                        </div>
+                <div className="side-plan-wrapper">
+                    <div className="side-plan-text">
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            className= "side-plan-text-svg"
+                            viewBox="0 0 24 24"
+                        >
+                            <path 
+                                fill="#3a3a3a" 
+                                stroke="currentColor" 
+                                strokeLinecap="round" 
+                                strokeLinejoin="round" 
+                                strokeWidth={2} 
+                                d="M3 8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zm0 2h18M7 15h.01M11 15h2"
+                            ></path>
+                        </svg>
 
-                        <div className="side-user-details">
-                            <div className="side-user-name">
-                                <p>Nyla Woods</p>
-                            </div>
-
-                            <div className="side-user-title">
-                                <p>Free</p>
-                            </div>
-                        </div>
+                        <p>Free Plan</p>
                     </div>
 
-                    <div className="side-user-menu">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="side-user-menu-svg" viewBox="0 0 32 32"><circle cx="16" cy="8" r="2" fill="currentColor"/><circle cx="16" cy="16" r="2" fill="currentColor"/><circle cx="16" cy="24" r="2" fill="currentColor"/></svg>
+                    <div className="side-plan-bar">
+                        <div className="side-plan-bar-fill" style={{ width: "70%" }}></div> 
                     </div>
                 </div>
             </div>
