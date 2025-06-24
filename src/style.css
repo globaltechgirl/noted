@@ -113,7 +113,7 @@ body::-webkit-scrollbar-track:hover {
 .side-header-wrapper {
   width: 100%;
   margin: 0 auto;
-  padding: 20px 0 10px 15px;
+  padding: 20px 15px 15px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -128,6 +128,13 @@ body::-webkit-scrollbar-track:hover {
 .side-logo img {
   width: 30px;
   display: block;
+}
+
+.side-bar-max-svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+  color: var(--color-text-secondary);
 }
 
 .side-user-max-svg {
@@ -165,7 +172,7 @@ body::-webkit-scrollbar-track:hover {
   margin: 0;
 }
 
-.side-body ul li {
+.side-body > ul > li {
   margin-bottom: 20px;
   font-size: 0.58rem;
   font-weight: 500;
@@ -174,9 +181,10 @@ body::-webkit-scrollbar-track:hover {
   display: flex;
   align-items: center;
   margin-left: 8px;
+  transition: margin 0.3s ease, padding 0.3s ease;
 }
 
-.side-body ul li.active {
+.side-body > ul > li.active {
   color: var(--color-text-primary);
   font-size: 0.55rem;
   position: relative;
@@ -198,9 +206,45 @@ body::-webkit-scrollbar-track:hover {
   margin-right: 0.25rem;
   width: 12px;
   height: 12px;
+  display: block;
 }
 
-.side-body-figure {
+.side-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.side-submenu li {
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.side-submenu .side-body-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  text-transform: capitalize;
+  color: var(--color-text-secondary);
+  opacity: 0.9;
+}
+
+.side-submenu li.active .side-body-item {
+  color: var(--color-text-primary);
+}
+
+.side-submenu li:last-child {
+  margin-bottom: 20px;
+}
+
+.side-body-figure,
+.side-submenu-figure {
   margin-left: auto;
   background: var(--color-sidebar-bg);
   border: 1px solid var(--color-folder-border);
@@ -213,7 +257,8 @@ body::-webkit-scrollbar-track:hover {
   margin-right: 8px;
 }
 
-.side-body-figure p {
+.side-body-figure p,
+.side-submenu-figure p {
   font-size: 0.4rem;
   font-weight: 500;
   letter-spacing: 0.6px;
@@ -223,6 +268,10 @@ body::-webkit-scrollbar-track:hover {
 
 .side-body ul li.active .side-body-figure {
   display: none;
+}
+
+.side-body ul li.active .side-submenu-figure {
+  color: var(--color-text-secondary);
 }
 
 .side-user {
@@ -242,11 +291,11 @@ body::-webkit-scrollbar-track:hover {
   align-items: flex-start;
   padding: 12px 10px;
   gap: 12px;
-  background: var(--color-sidebar-bg);
+  background: var(--color-folder-regular-glass-highlight);
   border: 1px solid var(--color-folder-border);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border-radius: 0.35rem;
+  border-radius: 0.4rem;
   letter-spacing: 0.6px;
   color: var(--color-text-primary);
 }
@@ -257,8 +306,8 @@ body::-webkit-scrollbar-track:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  background-color: var(--color-folder-regular-glass-highlight);
+  gap: 0.5rem;
+  background-color: var(--color-sidebar-bg);
   border: 1px solid var(--color-folder-border);
   border-radius: 0.35rem;
   padding: 7px;
@@ -278,7 +327,7 @@ body::-webkit-scrollbar-track:hover {
 .side-plan-bar {
   width: 100%;
   height: 3.5px;
-   background-color: var(--color-folder-regular-glass-highlight);
+  background-color: var(--color-folder-regular-glass-highlight);
   border: 0.5px solid var(--color-folder-border);
   border-radius: 3px;
   overflow: hidden;

@@ -19,7 +19,7 @@ function Side({ onSectionClick }) {
     // Side Menu Items
     const menuItems = [
         {
-            key: "note",
+            key: "dashboard",
             label: t.home || "Dashboard",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
@@ -31,41 +31,55 @@ function Side({ onSectionClick }) {
         },
         {
             key: "all-notes",
-            label: t.allNotes || "All Notes",
+            label: t.allNotes || "Notes",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
                     <path fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                         d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
                 </svg>
             ),
+            children: [
+                { 
+                    key: "daily-notes", 
+                    label: "Daily",
+                    icon: (
+                        <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
+                            <path fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
+                        </svg>
+                    ),
+                },
+                { 
+                    key: "personal-notes", 
+                    label: "Personal",
+                    icon: (
+                        <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
+                            <path fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
+                        </svg>
+                    ),
+                },
+                { 
+                    key: "work-notes", 
+                    label: "Work",
+                    icon: (
+                        <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
+                            <path fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
+                        </svg>
+                    ),
+                },
+            ]
         },
         {
             key: "daily",
-            label: "Daily",
+            label: "Tasks",
             icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
-                    <path fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                        d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
-                </svg>
-            ),
-        },
-        {
-            key: "personal",
-            label: "Personal",
-            icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
-                    <path fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                        d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
-                </svg>
-            ),
-        },
-        {
-            key: "work",
-            label: "Work",
-            icon: (
-                <svg xmlns="http://www.w3.org/2000/svg" className="side-body-svg" viewBox="0 0 24 24">
-                    <path fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                        d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"/>
+                    <g fill="#2a2a2a" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
+                        <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                        <path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2m-8-4v-5m3 5v-1m3 1v-3"></path>
+                    </g>
                 </svg>
             ),
         },
@@ -115,6 +129,23 @@ function Side({ onSectionClick }) {
                     </div>
 
                     <div className="side-logo-svgs">
+                        <div className="side-bar-max">
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                className="side-bar-max-svg"
+                                viewBox="0 0 24 24"
+                            >
+                                <path 
+                                    fill="#2a2a2a" 
+                                    stroke="currentColor" 
+                                    strokeLinecap="round" 
+                                    strokeLinejoin="round" 
+                                    strokeWidth={2} 
+                                    d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm5-2v16"
+                                ></path>
+                            </svg>
+                        </div>
+
                         <div className="side-user-max" onClick={() => handleClick("profile")} style={{ cursor: "pointer" }}>
                             <svg 
                                 xmlns="http://www.w3.org/2000/svg" 
@@ -143,23 +174,44 @@ function Side({ onSectionClick }) {
             <div className="side-body-wrapper">
                 <div className="side-body">
                     <ul>
-                        {menuItems.map(({ key, label, icon }) => (
-                            <li 
-                                key={key} 
-                                onClick={() => handleClick(key)} 
-                                className={activeSection === key ? "active" : ""}
-                            >
-                                <div className="side-body-item">
-                                    {icon}
-                                    <span>{label}</span>
-                                    
-                                   {activeSection !== key && (
-                                        <div className="side-body-figure">
-                                            {key !== "settings" && key !== "note" && <p>20</p>}
-                                        </div>
-                                    )}
-                                </div>
-                            </li>
+                        {menuItems.map(({ key, label, icon, children }) => (
+                            <React.Fragment key={key}>
+                                <li
+                                    onClick={() => handleClick(key)}
+                                    className={activeSection === key ? "active" : ""}
+                                >
+                                    <div className="side-body-item">
+                                        {icon}
+                                        <span>{label}</span>
+                                        {activeSection !== key && key !== "settings" && key !== "dashboard" && (
+                                            <div className="side-body-figure">
+                                                <p>20</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </li>
+
+                            {children && key === "all-notes" && (
+                                <ul className="side-submenu">
+                                    {children.map((child) => (
+                                        <li
+                                            key={child.key}
+                                            onClick={() => handleClick(child.key)}
+                                            className={activeSection === child.key ? "active" : ""}
+                                        >
+                                            <div className="side-body-item">
+                                                {child.icon && child.icon}
+                                                <span>{child.label}</span>
+
+                                                <div className="side-submenu-figure">
+                                                    <p>20</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                            </React.Fragment>
                         ))}
                     </ul>
                 </div>
