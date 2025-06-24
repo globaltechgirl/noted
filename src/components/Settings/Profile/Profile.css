@@ -7,83 +7,76 @@
 
 /* profile header */
 .profile-header {
+  position: fixed;
+  z-index: 10;
   width: 85vw;
-  padding-bottom: 25px;
-  padding-top: 25px;
-  margin-bottom: 25px;
-  border-bottom: 0.5px solid var(--color-border);
-  background-color: var(--color-sidebar-bg);
+  padding-top: 20px;
 }
 
 .profile-header-wrapper {
-  width: 95%;
+  width: 50%;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: var(--color-sidebar-bg);
+  border-radius: 0.6rem;
+  padding: 4.5px;
 }
 
 .profile-logo {
   display: flex;
   align-items: center;
   color: var(--color-text-primary);
-  gap: 0.5rem;
-}
-
-.profile-logo .profile-header-svg-wrapper {
-  width: 10px;
-  height: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  animation: pulseBackground 1.5s infinite;
-}
-
-.profile-logo .profile-header-svg {
-  width: 5px;
-  height: 5px;
-}
-
-@keyframes pulseBackground {
-  0% {
-    background-color: var(--color-border);
-    opacity: 0.6;
-  }
-  50% {
-    background-color: var(--color-surface-primary);
-  }
-  100% {
-    background-color: var(--color-border);
-    opacity: 0.6;
-  }
+  gap: 0.4rem;
+  background-color: var(--color-icon-primary);
+  padding: 8px 14px;
+  border-radius: 0.4rem;
 }
 
 .profile-logo p {
-  font-size: 0.7rem;
+  font-size: 0.55rem;
   font-weight: 550;
   letter-spacing: 0.6px;
   text-transform: capitalize;
   color: var(--color-text-primary);
 }
 
-.profile-icons {
-  color: var(--color-surface-accent);
+.profile-icon {
+  position: relative;
+  z-index: 10;
   display: flex;
-  gap: 1rem;
+  gap: 0.15rem;
+  padding: 2.5px 2.7px;
+  background-color: var(--color-icon-primary);
+  border-radius: 0.4rem;
 }
 
-.profile-icons .profile-header-svg {
-  width: 14px;
-  height: 14px;
+.profile-icon > * {
+  padding: 5px;
+  background: var(--color-folder-regular-bg);
+  border: 1px solid var(--color-folder-border);
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.profile-icon > *:hover {
+  background-color: var(--color-sidebar-bg);
+}
+
+.profile-icon .profile-header-svg {
+  width: 9.5px;
+  height: 9.5px;
+  display: block;
+  color: var(--color-text-secondary);
+  cursor: pointer;
 }
 
 /* profile body */
 .profile-body {
-  width: 100%;
+  width: 85vw;
   margin: 0 auto;
-  max-width: 100vw;
-  margin-top: 5px;
+  margin-top: 90px;
 }
 
 .profile {

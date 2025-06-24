@@ -131,7 +131,7 @@ function AllFolders() {
                 <div className="folder-header">
                     <div className="folder-header-wrapper">
                         <div className="folder-logo">
-                            <p>{t[folderKeyMap["All Notes"]] || "All Notes"}</p>
+                            <p>{t[folderKeyMap["Notes"]] || "Notes"}</p>
                         </div>
 
                         <div className="folder-icons">
