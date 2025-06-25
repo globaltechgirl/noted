@@ -18,6 +18,8 @@
 
   --color-border-primary: rgba(255, 255, 255, 0.05);
   --color-border: #3b3b40;
+
+  --color-overlay-primary: rgba(255, 255, 255, 0.3);
 }
 
 /* Reset styles */
@@ -324,7 +326,8 @@ body::-webkit-scrollbar-track:hover {
   padding: 0 0 35px 0;
   margin-left: 15%;
   background: var(--color-regular-primary);
-  border: 1.2px solid var(--color-border-primary);
+  border: 1px solid var(--color-border);
+  border-left: 1.5px solid var(--color-border);
   border-radius: 0.5rem;
   overflow-y: auto;
   overflow-x: hidden;

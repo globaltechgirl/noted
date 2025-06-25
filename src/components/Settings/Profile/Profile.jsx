@@ -209,7 +209,7 @@ function Profile() {
                                         {activeTab === "gallery" && (
                                             <div className="popup-section">
                                                 <div className="color-options">
-                                                    {["#fcd5ce", "#ffe5b4", "#fff9b0", "#d0f4de", "#cfe7f5", "#dcd0ff", "#f3c7e9", "#e2e2e2", "#f9f9f9"].map(color => (
+                                                    {["#fcd5ce", "#ffe5b4", "#fff9b0", "#d0f4de", "#cfe7f5", "#dcd0ff", "#f3c7e9", "#e2e2e2"].map(color => (
                                                         <div
                                                             key={color}
                                                             className={`color-circle ${backgroundColor === color ? "active" : ""}`}
