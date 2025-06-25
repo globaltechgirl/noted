@@ -17,8 +17,6 @@
   padding: 0 0 5px 0;
   border-radius: 0.6rem;
   background: var(--color-regular-primary);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--color-border-primary);
   z-index: 0;
   overflow: hidden;
@@ -54,19 +52,16 @@
 
 .folder-compact-image {
   position: relative;
-  width: 100%;
-  overflow: visible;
-  padding: 0;
+  height: 2px;
   display: flex;
-  justify-content: center;
-  margin-bottom: 2px;
   align-items: center;
+  justify-content: center;
 }
 
 .folder-compact-img {
   position: absolute;
-  top: 43.5px;
-  left: 50%;
+  bottom: -90px;
+  left: 77px;
   transform: translateX(-50%);
   z-index: 100;
   width: 5vw;
@@ -84,11 +79,16 @@
 }
 
 .folder-compact-icon {
-  position: absolute;
-  top: 41px;
-  left: 104%;
+  position: relative;
+  bottom: -153px;
+  left: 195px;
   transform: translateX(-50%);
   z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
   pointer-events: none;
 }
 
@@ -113,8 +113,6 @@
   background: var(--color-background-secondary);
   border: 1px solid var(--color-border-primary);
   border-radius: 0.5rem;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   letter-spacing: 0.6px;
   text-align: center;
   z-index: 2;
@@ -161,8 +159,6 @@
   border-radius: 0.7rem;
   background: var(--color-regular-secondary);
   border: 1px solid var(--color-border-primary);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 
 .folder-compact-main .folder-link-body {
@@ -174,8 +170,6 @@
   gap: 10px;
   background: var(--color-background-secondary);
   border: 1px solid var(--color-border-primary);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   border-radius: 0.6rem;
 }
 

@@ -81,8 +81,6 @@ body::-webkit-scrollbar-track:hover {
   flex-direction: column;
   overflow: hidden;
   background: var(--color-regular-primary);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 
 .side-header {
@@ -177,8 +175,6 @@ body::-webkit-scrollbar-track:hover {
   margin-top: -5.5px;
   background: var(--color-background-secondary);
   border: 1px solid var(--color-border-primary);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   border-radius: 0.35rem;
 }
 
@@ -228,8 +224,6 @@ body::-webkit-scrollbar-track:hover {
   margin-left: auto;
   background: var(--color-background-secondary);
   border: 1px solid var(--color-border-primary);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   border-radius: 0.2rem;
   display: flex;
   align-items: center;
@@ -273,8 +267,6 @@ body::-webkit-scrollbar-track:hover {
   padding: 12px 10px;
   gap: 12px;
   background: var(--color-regular-primary);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--color-border-primary);
   border-radius: 0.4rem;
   letter-spacing: 0.6px;
@@ -332,10 +324,16 @@ body::-webkit-scrollbar-track:hover {
   padding: 0 0 35px 0;
   margin-left: 15%;
   background: var(--color-regular-primary);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--color-border-primary);
+  border: 1.2px solid var(--color-border-primary);
   border-radius: 0.5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.main::-webkit-scrollbar {
+  display: none;
 }
 
 @media (max-width: 480px) {

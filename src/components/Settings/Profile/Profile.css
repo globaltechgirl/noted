@@ -3,6 +3,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  background: var(--color-background-primary);
 }
 
 /* profile header */
@@ -104,8 +105,8 @@
 /* Profile background */
 .profile-background {
   position: relative;
-  border: 0.5px solid var(--color-border);
-  border-radius: 0.5rem;
+  border: 2px solid var(--color-border-primary);
+  border-radius: 0.6rem;
   height: 220px;
   overflow: hidden;
 }
@@ -127,8 +128,6 @@
   display: none;
   z-index: 2;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   border: 1px solid var(--color-surface-accent);
   border-radius: 0.3rem;
   padding: 2px;
@@ -141,7 +140,7 @@
   z-index: 100;
   width: 300px;
   background: var(--color-background-secondary);
-  border: 0.5px solid var(--color-border);
+  border: 0.5px solid var(--color-border-primary);
   border-radius: 0.5rem;
 }
 
@@ -149,7 +148,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 0.5px solid var(--color-border);
+  border-bottom: 0.5px solid var(--color-border-primary);
   padding: 15px;
   padding-bottom: 12px;
 }
@@ -208,12 +207,12 @@
   width: 80px;
   height: 50px;
   border-radius: 0.5rem;
-  border: 0.5px solid var(--color-border);
+  border: 0.5px solid var(--color-border-primary);
   cursor: pointer;
 }
 
 .color-circle.active {
-  border: 1.5px solid var(--color-border);
+  border: 1.5px solid var(--color-border-primary);
 }
 
 .popup-section {
@@ -229,7 +228,7 @@
   letter-spacing: 0.6px;
   cursor: pointer;
   background-color: var(--color-surface-primary);
-  border: 0.5px solid var(--color-border);
+  border: 0.5px solid var(--color-border-primary);
   border-radius: 0.5rem;
   color: var(--color-surface-accent);
 }
@@ -253,7 +252,7 @@
   margin-top: -50px;
   margin-left: 90px;
   display: inline-block;
-  border: 0.5px solid var(--color-border);
+  border: 2px solid var(--color-border-primary);
   border-radius: 0.5rem;
   width: 100px;
   height: 100px;
@@ -276,8 +275,6 @@
   cursor: pointer;
   display: none;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   border: 1px solid var(--color-surface-accent);
   border-radius: 0.3rem;
   padding: 2px;
@@ -316,14 +313,14 @@
 
 .profile-placeholder-title {
   color: var(--color-text-primary);
-  font-size: 0.65rem;
+  font-size: 0.58rem;
   font-weight: 500;
   letter-spacing: 0.6px;
 }
 
 .profile-placeholder-text {
-  color: var(--color-surface-accent);
-  font-size: 0.6rem;
+  color: var(--color-text-secondary);
+  font-size: 0.55rem;
   font-weight: 450;
   letter-spacing: 0.6px;
 }
@@ -334,8 +331,8 @@
   display: flex;
   width: 62.5%;
   align-items: center;
-  background: var(--color-background-secondary);
-  border: 0.5px solid var(--color-border);
+  background: var(--color-regular-highlight);
+  border: 0.5px solid var(--color-border-primary);
   border-radius: 0.5rem;
   padding-right: 2px;
 }
@@ -355,7 +352,7 @@
 
 .profile-details .profile-details-left {
   flex: 1;
-  padding: 8px 13px;
+  padding: 6px 13px;
 }
 
 .profile-details-specific .profile-details-right {
@@ -364,7 +361,7 @@
 
 .profile-text,
 .profile-input {
-  font-size: 0.59rem;
+  font-size: 0.52rem;
   font-weight: 450;
   color: var(--color-text-primary);
   letter-spacing: 0.6px;
@@ -376,30 +373,34 @@
 }
 
 .profile-tag {
-  font-size: 0.6rem;
+  font-size: 0.52rem;
   font-weight: 450;
   letter-spacing: 0.6px;
-  color: var(--color-surface-accent);
-  background-color: var(--color-surface-primary);
+  color: var(--color-text-secondary);
+  background: var(--color-background-secondary);
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-  border-right: 0.5px solid var(--color-border);
+  border-right: 0.5px solid var(--color-border-primary);
   width: 85px;
   flex-shrink: 0;
 }
 
 .profile-details-specific .profile-tag {
-  padding: 11px 13px;
+  padding: 10px 13px;
 }
 
 .profile-edit-svg,
 .profile-save-svg,
 .eye-icon,
 .profile-socials-tag-svg {
-  width: 13px;
-  height: 13px;
-  color: var(--color-surface-accent);
+  width: 11px;
+  height: 11px;
+  color: var(--color-text-accent);
   cursor: pointer;
+}
+
+.profile-socials-tag-svg {
+  color: var(--color-text-secondary);
 }
 
 /* Profile password */
@@ -433,7 +434,7 @@
 .profile-phone-dropdown-wrapper {
   position: relative;
   display: inline-block;
-  background-color: var(--color-surface-primary);
+  background: var(--color-background-secondary);
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
 }
@@ -445,15 +446,15 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  color: var(--color-surface-accent);
-  background-color: var(--color-surface-primary);
-  padding: 12px 13px;
+  color: var(--color-text-secondary);
+  background: var(--color-background-secondary);
+  padding: 10px 13px;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   width: 75px;
   flex-shrink: 0;
   border: none;
-  border-right: 0.5px solid var(--color-border);
+  border-right: 0.5px solid var(--color-border-primary);
   cursor: pointer;
 }
 
@@ -465,7 +466,7 @@
   transform: translateY(-50%);
   width: 13px;
   height: 13px;
-  color: var(--color-surface-accent);
+  color: var(--color-text-secondary);
 }
 
 /* Profile danger */
@@ -477,25 +478,25 @@
 }
 
 .profile-details-danger {
-  padding: 11px 13px;
+  padding: 10px 13px;
 }
 
 .profile-danger-logout {
-  background: var(--color-background-secondary);
+  background: var(--color-regular-highlight);
   cursor: pointer;
 }
 
 .profile-danger-logout:hover {
-  background-color: var(--color-surface-primary);
+  background: var(--color-background-secondary);
 }
 
 .profile-danger-delete {
-  background-color: var(--color-surface-primary);
+  background: var(--color-background-secondary);
   cursor: pointer;
 }
 
 .profile-danger-delete:hover {
-  background: var(--color-background-secondary);
+  background: var(--color-regular-highlight);
 }
 
 @media (max-width: 768px) {

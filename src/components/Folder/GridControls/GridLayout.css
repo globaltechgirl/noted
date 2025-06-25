@@ -17,8 +17,6 @@
   padding: 0 0 5px 0;
   border-radius: 0.6rem;
   background: var(--color-regular-primary);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--color-border-primary);
   z-index: 0;
   overflow: hidden;
@@ -54,19 +52,16 @@
 
 .folder-layout-image {
   position: relative;
-  width: 100%;
-  overflow: visible;
-  padding: 0;
+  height: 2px;
   display: flex;
-  justify-content: center;
-  margin-bottom: 2px;
   align-items: center;
+  justify-content: center;
 }
 
 .folder-layout-img {
   position: absolute;
-  top: 43.5px;
-  left: 50%;
+  bottom: -90px;
+  left: 94px;
   transform: translateX(-50%);
   z-index: 100;
   width: 5vw;
@@ -84,11 +79,16 @@
 }
 
 .folder-layout-icon {
-  position: absolute;
-  top: 40px;
-  left: 97%;
+  position: relative;
+  bottom: -159px;
+  left: 208px;
   transform: translateX(-50%);
   z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
   pointer-events: none;
 }
 
@@ -114,8 +114,6 @@
   background: var(--color-background-secondary);
   border: 1px solid var(--color-border-primary);
   border-radius: 0.5rem;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   letter-spacing: 0.6px;
   text-align: center;
   z-index: 2;
@@ -207,10 +205,8 @@
   height: auto;
   padding: 3px 3px 8px 3px;
   border-radius: 0.7rem;
-  background: var(--color-regular-secondary);
+  background: var(--color-regular-primary);
   border: 1px solid var(--color-border-primary);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 
 .folder-layout-main .folder-link-body {
@@ -222,8 +218,6 @@
   gap: 10px;
   background: var(--color-background-secondary);
   border: 1px solid var(--color-border-primary);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   border-radius: 0.6rem;
   margin-bottom: 10px;
 }
@@ -316,8 +310,6 @@
   padding: 4px;
   background: var(--color-background-secondary);
   border: 1px dashed var(--color-border-primary);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   border-radius: 0.6rem;
 }
 

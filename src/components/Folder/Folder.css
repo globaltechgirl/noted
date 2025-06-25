@@ -366,6 +366,8 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  background: var(--color-background-primary);
+  border-radius: 0.35rem;
 }
 
 .folder-left .folder-icon {
@@ -376,7 +378,6 @@
   border-radius: 0.35rem;
   background: var(--color-regular-accent);
   border: 0.5px solid var(--color-border-primary);
-  gap: 0.2rem;
 }
 
 .folder-icon .folder-icon-svg {
