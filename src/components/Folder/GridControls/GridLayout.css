@@ -19,7 +19,7 @@
   background: var(--color-regular-primary);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--color-folder-primary);
+  border: 1px solid var(--color-border-primary);
   z-index: 0;
   overflow: hidden;
   height: 100%;
@@ -47,7 +47,7 @@
   display: block;
   color: var(--color-text-accent);
   opacity: 0.8;
-  border: 0.5px solid var(--color-folder-primary);
+  border: 0.5px solid var(--color-border-primary);
   border-radius: 50%;
   padding: 0.5px;
 }
@@ -112,7 +112,7 @@
   gap: 8px;
   padding: 10px;
   background: var(--color-background-secondary);
-  border: 1px solid var(--color-folder-primary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 0.5rem;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -161,7 +161,7 @@
   font-size: 0.45rem;
   font-weight: 450;
   background: var(--color-regular-secondary);
-  border: 1px solid var(--color-folder-primary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 0.3rem;
 }
 
@@ -176,7 +176,7 @@
   z-index: 99;
   padding: 4px;
   background: var(--color-regular-secondary);
-  border: 1px solid var(--color-folder-primary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 0.3rem;
 }
 
@@ -208,7 +208,7 @@
   padding: 3px 3px 8px 3px;
   border-radius: 0.7rem;
   background: var(--color-regular-secondary);
-  border: 1px solid var(--color-folder-primary);
+  border: 1px solid var(--color-border-primary);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -221,7 +221,7 @@
   align-items: center;
   gap: 10px;
   background: var(--color-background-secondary);
-  border: 1px solid var(--color-folder-primary);
+  border: 1px solid var(--color-border-primary);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-radius: 0.6rem;
@@ -233,7 +233,7 @@
   height: 40px;
   display: block;
   background: var(--color-regular-secondary);
-  border: 1px solid var(--color-folder-primary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 0.45rem;
   color: var(--color-text-secondary);
   padding: 7px;
@@ -264,7 +264,7 @@
   gap: 0.3rem;
   padding: 4px 6px;
   background: var(--color-regular-secondary);
-  border: 1px solid var(--color-folder-primary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 0.3rem;
 }
 
@@ -299,7 +299,7 @@
   transition: opacity 0.6s ease, transform 0.6s ease;
   margin-top: -20px;
   padding: 3px;
-  border: 1px solid var(--color-folder-primary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 0.7rem;
 }
 
@@ -315,7 +315,7 @@
   gap: 5px;
   padding: 4px;
   background: var(--color-background-secondary);
-  border: 1px dashed var(--color-folder-primary);
+  border: 1px dashed var(--color-border-primary);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-radius: 0.6rem;
@@ -335,7 +335,7 @@
   padding: 4px 5px;
   width: fit-content;
   background: var(--color-regular-secondary);
-  border: 0.5px solid var(--color-folder-primary);
+  border: 0.5px solid var(--color-border-primary);
   border-radius: 0.3rem;
   cursor: pointer;
 }
@@ -358,7 +358,7 @@
   justify-content: space-between;
   align-items: center;
   background: var(--color-regular-secondary);
-  border: 1px solid var(--color-folder-primary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 0.5rem;
 }
 
