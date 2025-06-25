@@ -6,6 +6,7 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 15px;
   margin-top: -90px;
+  background: var(--color-background-primary);
 }
 
 .folder-layout-regular {
@@ -15,28 +16,14 @@
   gap: 10px;
   padding: 0 0 5px 0;
   border-radius: 0.6rem;
-  background: var(--color-folder-regular-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-regular-primary);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--color-folder-primary);
   z-index: 0;
   overflow: hidden;
   height: 100%;
   cursor: pointer;
-}
-
-.folder-layout-regular::before {
-  content: "";
-  position: absolute;
-  top: -40%;
-  left: -30%;
-  width: 200%;
-  height: 200%;
-  background: var(--color-folder-regular-glass-highlight);
-  transform: rotate(25deg);
-  pointer-events: none;
-  mix-blend-mode: soft-light;
-  z-index: 1;
 }
 
 .folder-image-wrapper {
@@ -60,7 +47,7 @@
   display: block;
   color: var(--color-text-accent);
   opacity: 0.8;
-  border: 0.5px solid var(--color-folder-border);
+  border: 0.5px solid var(--color-folder-primary);
   border-radius: 50%;
   padding: 0.5px;
 }
@@ -124,8 +111,8 @@
   margin-top: 50px;
   gap: 8px;
   padding: 10px;
-  background: var(--color-sidebar-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-folder-primary);
   border-radius: 0.5rem;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -173,8 +160,8 @@
   color: var(--color-text-secondary);
   font-size: 0.45rem;
   font-weight: 450;
-  background: var(--color-folder-regular-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-regular-secondary);
+  border: 1px solid var(--color-folder-primary);
   border-radius: 0.3rem;
 }
 
@@ -188,8 +175,8 @@
   cursor: pointer;
   z-index: 99;
   padding: 4px;
-  background: var(--color-folder-regular-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-regular-secondary);
+  border: 1px solid var(--color-folder-primary);
   border-radius: 0.3rem;
 }
 
@@ -220,8 +207,8 @@
   height: auto;
   padding: 3px 3px 8px 3px;
   border-radius: 0.7rem;
-  background: var(--color-folder-regular-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-regular-secondary);
+  border: 1px solid var(--color-folder-primary);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -233,8 +220,8 @@
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
-  background: var(--color-sidebar-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-folder-primary);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-radius: 0.6rem;
@@ -245,8 +232,8 @@
   width: 40px;
   height: 40px;
   display: block;
-  background: var(--color-folder-regular-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-regular-secondary);
+  border: 1px solid var(--color-folder-primary);
   border-radius: 0.45rem;
   color: var(--color-text-secondary);
   padding: 7px;
@@ -276,13 +263,13 @@
   cursor: pointer;
   gap: 0.3rem;
   padding: 4px 6px;
-  background: var(--color-folder-regular-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-regular-secondary);
+  border: 1px solid var(--color-folder-primary);
   border-radius: 0.3rem;
 }
 
 .folder-link-bottom-icon:hover {
-  background: var(--color-sidebar-bg);
+  background: var(--color-background-secondary);
 }
 
 .folder-bottom-icon-svg {
@@ -312,7 +299,7 @@
   transition: opacity 0.6s ease, transform 0.6s ease;
   margin-top: -20px;
   padding: 3px;
-  border: 1px solid var(--color-folder-border);
+  border: 1px solid var(--color-folder-primary);
   border-radius: 0.7rem;
 }
 
@@ -327,8 +314,8 @@
   flex-direction: column;
   gap: 5px;
   padding: 4px;
-  background: var(--color-sidebar-bg);
-  border: 1px dashed var(--color-folder-border);
+  background: var(--color-background-secondary);
+  border: 1px dashed var(--color-folder-primary);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-radius: 0.6rem;
@@ -347,14 +334,14 @@
 .folder-edit-save-wrapper {
   padding: 4px 5px;
   width: fit-content;
-  background: var(--color-folder-regular-bg);
-  border: 0.5px solid var(--color-folder-border);
+  background: var(--color-regular-secondary);
+  border: 0.5px solid var(--color-folder-primary);
   border-radius: 0.3rem;
   cursor: pointer;
 }
 
 .folder-edit-save-wrapper:hover {
-  background: var(--color-sidebar-bg);
+  background: var(--color-background-secondary);
 }
 
 .folder-edit-save-svg,
@@ -370,8 +357,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--color-folder-regular-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-regular-secondary);
+  border: 1px solid var(--color-folder-primary);
   border-radius: 0.5rem;
 }
 

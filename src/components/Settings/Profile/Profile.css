@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--color-sidebar-bg);
+  background: var(--color-background-secondary);
   border-radius: 0.6rem;
   padding: 4.5px;
 }
@@ -29,7 +29,7 @@
   align-items: center;
   color: var(--color-text-primary);
   gap: 0.4rem;
-  background-color: var(--color-icon-primary);
+  background: var(--color-regular-accent);
   padding: 8px 14px;
   border-radius: 0.4rem;
 }
@@ -48,20 +48,20 @@
   display: flex;
   gap: 0.15rem;
   padding: 2.5px 2.7px;
-  background-color: var(--color-icon-primary);
+  background: var(--color-regular-accent);
   border-radius: 0.4rem;
 }
 
 .profile-icon > * {
   padding: 5px;
-  background: var(--color-folder-regular-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-regular-secondary);
+  border: 1px solid var(--color-folder-primary);
   border-radius: 0.3rem;
   cursor: pointer;
 }
 
 .profile-icon > *:hover {
-  background-color: var(--color-sidebar-bg);
+  background: var(--color-background-secondary);
 }
 
 .profile-icon .profile-header-svg {
@@ -140,7 +140,7 @@
   right: 2%;
   z-index: 100;
   width: 300px;
-  background-color: var(--color-sidebar-bg);
+  background: var(--color-background-secondary);
   border: 0.5px solid var(--color-border);
   border-radius: 0.5rem;
 }
@@ -334,7 +334,7 @@
   display: flex;
   width: 62.5%;
   align-items: center;
-  background-color: var(--color-sidebar-bg);
+  background: var(--color-background-secondary);
   border: 0.5px solid var(--color-border);
   border-radius: 0.5rem;
   padding-right: 2px;
@@ -481,7 +481,7 @@
 }
 
 .profile-danger-logout {
-  background-color: var(--color-sidebar-bg);
+  background: var(--color-background-secondary);
   cursor: pointer;
 }
 
@@ -495,7 +495,7 @@
 }
 
 .profile-danger-delete:hover {
-  background-color: var(--color-sidebar-bg);
+  background: var(--color-background-secondary);
 }
 
 @media (max-width: 768px) {

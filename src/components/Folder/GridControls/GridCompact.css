@@ -6,6 +6,7 @@
   grid-template-columns: repeat(6, 1fr);
   gap: 15px;
   margin-top: -90px;
+  background: var(--color-background-primary);
 }
 
 .folder-compact-regular {
@@ -15,28 +16,14 @@
   gap: 10px;
   padding: 0 0 5px 0;
   border-radius: 0.6rem;
-  background: var(--color-folder-regular-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-regular-primary);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--color-folder-primary);
   z-index: 0;
   overflow: hidden;
   height: 100%;
   cursor: pointer;
-}
-
-.folder-compact-regular::before {
-  content: "";
-  position: absolute;
-  top: -40%;
-  left: -30%;
-  width: 200%;
-  height: 200%;
-  background: var(--color-folder-regular-glass-highlight);
-  transform: rotate(25deg);
-  pointer-events: none;
-  mix-blend-mode: soft-light;
-  z-index: 1;
 }
 
 .folder-image-wrapper {
@@ -60,7 +47,7 @@
   display: block;
   color: var(--color-text-accent);
   opacity: 0.8;
-  border: 0.5px solid var(--color-folder-border);
+  border: 0.5px solid var(--color-folder-primary);
   border-radius: 50%;
   padding: 0.5px;
 }
@@ -123,8 +110,8 @@
   margin: 0 auto;
   margin-top: 50px;
   padding: 10px;
-  background: var(--color-sidebar-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-folder-primary);
   border-radius: 0.5rem;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -172,8 +159,8 @@
   height: auto;
   padding: 3px;
   border-radius: 0.7rem;
-  background: var(--color-folder-regular-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-regular-secondary);
+  border: 1px solid var(--color-folder-primary);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -185,8 +172,8 @@
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
-  background: var(--color-sidebar-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-folder-primary);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-radius: 0.6rem;
@@ -196,8 +183,8 @@
   width: 40px;
   height: 40px;
   display: block;
-  background: var(--color-folder-regular-bg);
-  border: 1px solid var(--color-folder-border);
+  background: var(--color-regular-secondary);
+  border: 1px solid var(--color-folder-primary);
   border-radius: 0.45rem;
   color: var(--color-text-secondary);
   padding: 7px;
