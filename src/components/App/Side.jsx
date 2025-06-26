@@ -236,6 +236,16 @@ function Side({ onSectionClick }) {
                 style={{ cursor: "pointer" }}
             >
                 <div className="side-plan-wrapper">
+<div className="side-plan-bar">
+  {[...Array(25)].map((_, i) => (
+    <div
+      key={i}
+      className={`side-plan-bar-box ${i < 7 ? "filled" : ""}`} 
+    />
+  ))}
+</div>
+
+
                     <div className="side-plan-text">
                         <svg 
                             xmlns="http://www.w3.org/2000/svg" 
@@ -253,10 +263,6 @@ function Side({ onSectionClick }) {
                         </svg>
 
                         <p>Free Plan</p>
-                    </div>
-
-                    <div className="side-plan-bar">
-                        <div className="side-plan-bar-fill" style={{ width: "70%" }}></div> 
                     </div>
                 </div>
             </div>
