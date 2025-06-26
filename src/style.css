@@ -69,7 +69,6 @@ body::-webkit-scrollbar-track:hover {
   flex-direction: row;
   min-height: 100vh;
   background: var(--color-background-primary);
-  padding: 5px 5px 5px 0;
 }
 
 /* Side container */
@@ -83,6 +82,7 @@ body::-webkit-scrollbar-track:hover {
   flex-direction: column;
   overflow: hidden;
   background: var(--color-regular-primary);
+  border-right: 0.5px solid var(--color-border);
 }
 
 .side-header {
@@ -316,7 +316,7 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-plan-bar-box.filled {
-  background-color: var(--color-surface-accent); 
+  background-color: var(--color-surface-accent);
 }
 
 /* Main container */
@@ -329,19 +329,9 @@ body::-webkit-scrollbar-track:hover {
   width: 85%;
   height: 100vh;
   padding: 0 0 35px 0;
+  margin-right: -5px;
   margin-left: 15%;
   background: var(--color-regular-primary);
-  border: 1px solid var(--color-border);
-  border-left: 1.5px solid var(--color-border);
-  border-radius: 0.5rem;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.main::-webkit-scrollbar {
-  display: none;
 }
 
 @media (max-width: 480px) {
