@@ -37,14 +37,16 @@ function App() {
         <LanguageProvider>
             <DashboardViewProvider>
                 <div className="app-container">
-                    <Side onSectionClick={handleSectionOrFolderClick} />
+                    <div className="app-wrapper">
+                        <Side onSectionClick={handleSectionOrFolderClick} />
 
-                    <Main
-                        view={view}
-                        activeFolder={activeFolder}
-                        onFolderClick={handleSectionOrFolderClick}
-                        onBack={() => setView("home")}
-                    />
+                        <Main
+                            view={view}
+                            activeFolder={activeFolder}
+                            onFolderClick={handleSectionOrFolderClick}
+                            onBack={() => setView("home")}
+                        />
+                    </div>
                 </div>
             </DashboardViewProvider>
         </LanguageProvider>
