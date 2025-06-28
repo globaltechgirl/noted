@@ -15,7 +15,7 @@
   gap: 10px;
   padding: 0 0 5px 0;
   border-radius: 0.6rem;
-  background: var(--color-regular-highlight);
+  background: #f6f6f6;
   border: 1px solid var(--color-border-primary);
   z-index: 0;
   overflow: hidden;

@@ -1,5 +1,5 @@
 /* Root variables */
-:root {
+:root-b {
   --color-background-primary: #161618;
   --color-background-secondary: #1f1f21;
 
@@ -14,12 +14,36 @@
   --color-regular-primary: rgba(22, 22, 24, 0.6);
   --color-regular-secondary: rgba(23, 23, 25, 0.35);
   --color-regular-accent: rgba(255, 255, 255, 0.05);
-  --color-regular-highlight: rgba(255, 255, 255, 0.015);
+  --color-regular-highlight: rgba(255, 255, 255, 0.01);
 
   --color-border-primary: rgba(255, 255, 255, 0.05);
   --color-border: #3b3b40;
 
   --color-overlay-primary: rgba(255, 255, 255, 0.3);
+}
+
+:root {
+  --bg-primary: #141414;
+  --bg-secondary: #1c1c1c;
+  --bg-hover: #2a2a2d;
+  --color-background-primary: #1c1c1c;
+  --color-background-secondary: #1f1f21;
+  --color-regular-highlight: rgba(255, 255, 255, 0.005);
+
+  --border-subtle: #2e2e30;
+
+  --text-primary: #efeff1;
+  --text-muted: #b4b4b6;
+  --text-disabled: #7a7a7a;
+
+  --icon-default: #efeff1;
+  --icon-active: #ffffff;
+
+  --accent: #4f46e5;
+  --danger: #e5484d;
+  --success: #30a46c;
+
+  --highlight-glow: rgba(255, 255, 255, 0.05);
 }
 
 /* Reset styles */
@@ -63,22 +87,14 @@ body::-webkit-scrollbar-track:hover {
   background: var(--color-background-secondary);
 }
 
-/* App container */
-:root {
-  --bg-main: #ffffff;
-  --bg-app: #f6f7f9;
-  --bg-sidebar: #1e1e1e;
-  --bg-menu-hover: #333333;
-  --text-primary: #1a1a1a;
-  --text-secondary: #666666;
-  --border: #dfe3e6;
+.app-container {
+  background: #f1f1f1;
 }
 
 .app-wrapper {
   display: flex;
   flex-direction: row;
   min-height: 100vh;
-  background: var(--color-background-secondary);
 }
 
 /* Main container */
@@ -88,14 +104,19 @@ body::-webkit-scrollbar-track:hover {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 80%;
+  width: 82%;
   height: 98vh;
   padding: 0 0 35px 0;
   margin: 5px 5px 5px 0;
-  margin-left: 20%;
+  margin-left: 18%;
   border-radius: 0.5rem;
-  background: var(--color-background-primary);
   color: var(--text-primary);
+}
+
+.main,
+.side-menu {
+  background: #f7f7f7;
+  border: 0.5px solid #dcdcdc;
 }
 
 /* Side container */
@@ -104,7 +125,7 @@ body::-webkit-scrollbar-track:hover {
   top: 50%;
   transform: translateY(-50%);
   height: 100vh;
-  width: 20%;
+  width: 18%;
   display: flex;
   flex-direction: row;
   background: inherit;
@@ -112,21 +133,14 @@ body::-webkit-scrollbar-track:hover {
 
 /* Side menu */
 .side-menu {
-  width: 60px;
+  width: 55px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px 10px;
-  margin: 5px 5px 5px 3px;
+  padding: 10px 8px;
+  margin: 5px;
+  border: 0.5px solid #dcdcdc;
   border-radius: 0.5rem;
-
-
-  background: rgba(30, 30, 30, 0.3); /* semi-transparent black */
-  backdrop-filter: blur(12px); /* blur effect */
-  -webkit-backdrop-filter: blur(12px); /* Safari support */
-  border-radius: 0.5rem;
-  border: 0.5px solid rgba(255, 255, 255, 0.1); /* soft border for contrast */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* optional: subtle shadow */
 }
 
 .side-header {
@@ -137,12 +151,27 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-logo img {
-  width: 35px;
+  width: 25px;
   display: block;
 }
 
 .side-user-max-svg {
   display: none;
+}
+
+.side-menu-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.side-menu-section {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .side-menu-body ul {
@@ -157,7 +186,7 @@ body::-webkit-scrollbar-track:hover {
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
-  height: 35px;
+  height: 30px;
   transition: margin-bottom 0.3s ease;
 }
 
@@ -168,28 +197,28 @@ body::-webkit-scrollbar-track:hover {
   justify-content: center;
   width: 100%;
   height: 100%;
-  transition: background 0.3s ease, border 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .side-menu-body > ul > li.active .side-menu-item {
-  background: var(--bg-menu-hover);
-  border: 1px solid var(--color-border-primary);
-  border-radius: 0.4rem;
+  background: #f1f1f1;
+  border: 0.5px solid #dcdcdc;
+  border-radius: 0.3rem;
 }
 
 .side-menu-label {
   display: none;
   position: absolute;
-  left: 100%;
+  left: 36px;
   top: 50%;
   transform: translateY(-50%);
-  white-space: nowrap;
-  background-color: #1f1f21;
-  color: var(--color-text-primary);
-  padding: 5px 8px;
-  font-size: 0.6rem;
-  border-radius: 4px;
-  border: 1px solid var(--color-border-primary);
+  padding: 4px 6px;
+  font-size: 0.52rem;
+  font-weight: 550;
+  background: #f1f1f1;
+  border: 0.5px solid #dcdcdc;
+  border-radius: 0.25rem;
+  color: #3d3d3d;
   z-index: 10;
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -202,18 +231,38 @@ body::-webkit-scrollbar-track:hover {
 }
 
 .side-menu-svg {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   display: block;
   margin: 0;
-  color: #f2f2f2;
   flex-shrink: 0;
+}
+
+.side-menu-svg path {
+  fill: #f1f1f1;
+  stroke: #7d7d7d;
+  transition: all 0.3s ease;
+}
+
+li.active .side-menu-svg path {
+  fill: #f1f1f1;
+  stroke: #3d3d3d;
+}
+
+.side-menu-user img {
+  display: block;
+  width: 100%;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 0.3rem;
+  object-position: top;
+  border: 0.5px solid #dcdcdc;
 }
 
 /* submenu */
 .submenu {
   width: 210px;
-  padding: 40px 5px 0 5px;
+  padding: 40px 10px 0 0;
   overflow-y: auto;
   height: 100vh;
   background: inherit;
@@ -229,10 +278,10 @@ body::-webkit-scrollbar-track:hover {
 
 .side-submenu-body > ul > li {
   margin-bottom: 20px;
-  font-size: 0.65rem;
+  font-size: 0.55rem;
   font-weight: 550;
   letter-spacing: 0.6px;
-  color: #232526;
+  color: #3a3a3a;
   text-transform: capitalize;
   display: flex;
   align-items: center;
@@ -265,28 +314,33 @@ body::-webkit-scrollbar-track:hover {
 
 .side-submenu-svg {
   margin-right: 0.25rem;
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   display: block;
-  color: #232526;
+}
+
+.side-submenu-svg path {
+  fill: #f7f7f7;
+  stroke: #7d7d7d;
+  transition: all 0.3s ease;
 }
 
 .side-submenu-figure {
   margin-left: auto;
-  background: var(--color-background-secondary);
-  border: 1px solid var(--color-border-primary);
-  border-radius: 0.2rem;
+  background: #f7f7f7;
+  border: 0.5px solid #dcdcdc;
+  color: #3a3a3a;
+  border-radius: 0.15rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 8px;
 }
 
 .side-submenu-figure p {
   font-size: 0.4rem;
-  font-weight: 500;
+  font-weight: 550;
   letter-spacing: 0.6px;
-  padding: 1.5px;
+  padding: 1.5px 1px 1.5px 1.5px;
   margin: 0;
 }
 

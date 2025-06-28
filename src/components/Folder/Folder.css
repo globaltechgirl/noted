@@ -31,7 +31,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--color-background-secondary);
+  background: #f1f1f1;
+  border: 0.5px solid #dcdcdc;
   border-radius: 0.6rem;
   padding: 4.5px;
 }
@@ -39,11 +40,12 @@
 .folder-logo {
   display: flex;
   align-items: center;
-  color: var(--color-text-primary);
+  color: #3a3a3a;
   gap: 0.4rem;
-  background: var(--color-regular-accent);
+  background: #f7f7f7;
   padding: 8px 14px;
   border-radius: 0.4rem;
+  border: 0.5px solid #dcdcdc;
 }
 
 .folder-logo p {
@@ -51,7 +53,6 @@
   font-weight: 550;
   letter-spacing: 0.6px;
   text-transform: capitalize;
-  color: var(--color-text-primary);
 }
 
 .folder-icons {
@@ -60,28 +61,34 @@
   display: flex;
   gap: 0.15rem;
   padding: 2.5px 2.7px;
-  background: var(--color-regular-accent);
+  background: #f7f7f7;
   border-radius: 0.4rem;
+  border: 0.5px solid #dcdcdc;
 }
 
 .folder-icons > * {
   padding: 5px;
-  background: var(--color-regular-secondary);
-  border: 1px solid var(--color-border-primary);
+  background: #f1f1f1;
+  border: 0.5px solid #dcdcdc;
   border-radius: 0.3rem;
   cursor: pointer;
 }
 
 .folder-icons > *:hover {
-  background: var(--color-background-secondary);
+  background: #f7f7f7;
 }
 
 .folder-icons .folder-header-svg {
   width: 9.5px;
   height: 9.5px;
   display: block;
-  color: var(--color-text-secondary);
   cursor: pointer;
+}
+
+.folder-icons .folder-header-svg path {
+  fill: #f7f7f7;
+  stroke: #7d7d7d;
+  transition: all 0.3s ease;
 }
 
 /* Search popup */
@@ -366,7 +373,8 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  background: var(--color-background-primary);
+  background: #f1f1f1;
+  border: 0.5px solid #dcdcdc;
   border-radius: 0.35rem;
 }
 
@@ -387,9 +395,15 @@
   opacity: 0.9;
 }
 
+.folder-icon .folder-icon-svg path {
+  fill: #f7f7f7;
+  stroke: #7d7d7d;
+  transition: all 0.3s ease;
+}
+
 .folder-icon i {
   font-size: 0.55rem;
-  color: var(--color-text-secondary);
+  color: red;
   opacity: 0.8;
 }
 
@@ -411,7 +425,8 @@
   color: var(--color-text-primary);
   opacity: 0.8;
   padding: 0px 1px 0 2.5px;
-  background: var(--color-background-secondary);
+  background: #f1f1f1;
+  border: 0.5px solid #dcdcdc;
   border-radius: 0.4rem;
 }
 
