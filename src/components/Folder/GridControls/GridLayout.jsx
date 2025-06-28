@@ -310,11 +310,11 @@ function GridLayout ({
                                                                 xmlns="http://www.w3.org/2000/svg"
                                                             >
                                                                 <path 
-                                                                    fill="#1f1f21" 
-                                                                    stroke="rgba(255, 255, 255, 0.05)" 
+                                                                    fill="none" 
+                                                                    stroke="none" 
                                                                     stroke-linecap="round" 
                                                                     stroke-linejoin="round" 
-                                                                    stroke-width="0.5" 
+                                                                    stroke-width="0.2" 
                                                                     d="m13.163 2.168l8.021 5.828c.694.504.984 1.397.719 2.212l-3.064 9.43a1.98 1.98 0 0 1-1.881 1.367H7.042a1.98 1.98 0 0 1-1.881-1.367l-3.064-9.43a1.98 1.98 0 0 1 .719-2.212l8.021-5.828a1.98 1.98 0 0 1 2.326 0"
                                                                 />
                                                                 <text
@@ -350,11 +350,15 @@ function GridLayout ({
                                                         {folder.starred ? (
                                                             <svg 
                                                                 xmlns="http://www.w3.org/2000/svg" 
-                                                                className="folder-bottom-star-svg" 
+                                                                className="folder-bottom-starred-svg" 
                                                                 viewBox="0 0 24 24"
                                                             >
                                                                 <path 
-                                                                    fill="currentColor" 
+                                                                    fill="none" 
+                                                                    stroke="currentColor" 
+                                                                    strokeLinecap="round" 
+                                                                    strokeLinejoin="round" 
+                                                                    strokeWidth="2" 
                                                                     d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
                                                                 />
                                                             </svg>

@@ -15,8 +15,8 @@
   gap: 10px;
   padding: 0 0 5px 0;
   border-radius: 0.6rem;
-  background: #f6f6f6;
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   z-index: 0;
   overflow: hidden;
   height: 100%;
@@ -42,9 +42,9 @@
   width: 9px;
   height: 9px;
   display: block;
-  color: var(--color-text-accent);
+  color: var(--text-secondary);
   opacity: 0.8;
-  border: 0.5px solid var(--color-border-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 50%;
   padding: 0.5px;
 }
@@ -69,6 +69,10 @@
   width: auto;
   height: auto;
   pointer-events: none;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
 }
 
 .folder-layout-img img {
@@ -78,7 +82,7 @@
   object-position: center;
   display: block;
   border-radius: 0.5rem;
-  border: 1px solid var(--color-surface-secondary);
+  border: 1px solid var(--border-primary);
 }
 
 .folder-layout-icon {
@@ -100,8 +104,13 @@
   height: 15rem;
 }
 
+.folder-layout-icon-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--border-primary);
+}
+
 .folder-layout-icon-text {
-  fill: var(--color-text-secondary);
+  fill: var(--text-secondary);
   font-size: 0.65rem;
   font-weight: bold;
 }
@@ -114,8 +123,8 @@
   margin-top: 50px;
   gap: 8px;
   padding: 10px;
-  background: var(--color-regular-highlight);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.5rem;
   letter-spacing: 0.6px;
   text-align: center;
@@ -139,11 +148,11 @@
   margin-top: 35.5px;
 }
 
-.folder-top-text {
+.folder-layout-top .folder-top-text {
   font-size: 0.6rem;
-  font-weight: 500;
+  font-weight: 550;
   line-height: 2;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
 }
 
 .folder-layout-bottom {
@@ -158,11 +167,11 @@
   padding: 4px 6px;
   display: flex;
   justify-content: flex-start;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   font-size: 0.45rem;
-  font-weight: 450;
-  background: var(--color-regular-secondary);
-  border: 1px solid var(--color-border-primary);
+  font-weight: 500;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.3rem;
 }
 
@@ -176,17 +185,28 @@
   cursor: pointer;
   z-index: 99;
   padding: 4px;
-  background: var(--color-regular-secondary);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.3rem;
 }
 
-.folder-bottom-star-svg {
+.folder-bottom-star-svg,
+.folder-bottom-starred-svg {
   width: 9px;
   height: 9px;
   display: block;
-  color: var(--color-text-secondary);
   cursor: pointer;
+}
+
+.folder-bottom-star-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.folder-bottom-starred-svg path {
+  fill: var(--text-secondary);
+  stroke: var(--text-secondary);
 }
 
 /* Folder link */
