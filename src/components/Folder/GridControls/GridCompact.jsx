@@ -71,8 +71,8 @@ function GridCompact ({ data = [] }) {
                                                                 xmlns="http://www.w3.org/2000/svg"
                                                             >
                                                                 <path 
-                                                                    fill="#1f1f21" 
-                                                                    stroke="rgba(255, 255, 255, 0.05)" 
+                                                                    fill="none" 
+                                                                    stroke="none" 
                                                                     stroke-linecap="round" 
                                                                     stroke-linejoin="round" 
                                                                     stroke-width="0.5" 

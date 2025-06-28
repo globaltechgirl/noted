@@ -6,7 +6,6 @@
   grid-template-columns: repeat(6, 1fr);
   gap: 15px;
   margin-top: -90px;
-  background: var(--color-background-primary);
 }
 
 .folder-compact-regular {
@@ -16,8 +15,8 @@
   gap: 10px;
   padding: 0 0 5px 0;
   border-radius: 0.6rem;
-  background: var(--color-regular-primary);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   z-index: 0;
   overflow: hidden;
   height: 100%;
@@ -43,9 +42,9 @@
   width: 9px;
   height: 9px;
   display: block;
-  color: var(--color-text-accent);
+  color: var(--text-secondary);
   opacity: 0.8;
-  border: 0.5px solid var(--color-border-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 50%;
   padding: 0.5px;
 }
@@ -79,7 +78,7 @@
   object-position: center;
   display: block;
   border-radius: 0.5rem;
-  border: 1px solid var(--color-surface-secondary);
+  border: 1px solid var(--border-primary);
 }
 
 .folder-compact-icon {
@@ -101,8 +100,13 @@
   height: 14rem;
 }
 
+.folder-compact-icon-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--border-primary);
+}
+
 .folder-compact-icon-text {
-  fill: var(--color-text-secondary);
+  fill: var(--text-secondary);
   font-size: 0.6rem;
   font-weight: bold;
 }
@@ -114,8 +118,8 @@
   margin: 0 auto;
   margin-top: 50px;
   padding: 10px;
-  background: var(--color-background-secondary);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.5rem;
   letter-spacing: 0.6px;
   text-align: center;
@@ -137,9 +141,9 @@
 
 .folder-top-text {
   font-size: 0.6rem;
-  font-weight: 500;
+  font-weight: 550;
   line-height: 2;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
 }
 
 /* Folder link */

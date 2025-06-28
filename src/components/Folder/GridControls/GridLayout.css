@@ -69,10 +69,6 @@
   width: auto;
   height: auto;
   pointer-events: none;
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
 }
 
 .folder-layout-img img {
@@ -148,7 +144,7 @@
   margin-top: 35.5px;
 }
 
-.folder-layout-top .folder-top-text {
+.folder-top-text {
   font-size: 0.6rem;
   font-weight: 550;
   line-height: 2;
