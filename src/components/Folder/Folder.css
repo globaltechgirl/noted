@@ -37,13 +37,14 @@
   padding: 4px 4.5px;
 }
 
+/* Folder logo */
 .folder-logo {
   display: flex;
   align-items: center;
   color: var(--text-primary);
   gap: 0.4rem;
   background: var(--bg-secondary);
-  padding: 7px 14px;
+  padding: 7px 12px;
   border-radius: 0.4rem;
   border: 0.5px solid var(--border-primary);
 }
@@ -55,6 +56,7 @@
   text-transform: capitalize;
 }
 
+/* Folder icons */
 .folder-icons {
   position: relative;
   z-index: 10;
@@ -95,7 +97,6 @@
   position: fixed;
   inset: 0;
   backdrop-filter: blur(12px);
-  background: rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,13 +104,13 @@
 }
 
 .search-popup {
-  background: var(--color-icon-accent);
   padding: 2px 0 10px 0;
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px var(--shadow-secondary);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--color-icon-border);
   width: 90%;
   max-width: 400px;
   display: flex;
@@ -122,7 +123,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--color-icon-border);
+  border-bottom: 1px solid var(--border-primary);
   padding: 0 15px 12px 15px;
 }
 
@@ -134,29 +135,31 @@
 
 .search-top-icon,
 .close-icon {
-  color: var(--color-text-secondary);
-  opacity: 0.8;
   width: 10px;
   height: 10px;
+  display: block;
+}
+
+.search-top-icon path {
+  fill: var(--bg-primary);
+  stroke: var(--text-primary);
 }
 
 .search-input {
   width: 100%;
   padding: 13px 0 0 10px;
   border-radius: 0;
-  font-size: 0.65rem;
-  font-weight: 450;
+  font-size: 0.6rem;
+  font-weight: 500;
   letter-spacing: 0.6px;
-  color: var(--color-text-secondary);
-  opacity: 0.8;
+  color: var(--text-primary);
   border: none;
   background: none;
   outline: none;
 }
 
 .search-input::placeholder {
-  color: var(--color-text-secondary);
-  opacity: 0.8;
+  color: var(--text-primary);
 }
 
 .close-button {
@@ -165,6 +168,11 @@
   border: none;
   background: none;
   outline: none;
+}
+
+.close-button path {
+  fill: var(--bg-primary);
+  stroke: var(--text-primary);
 }
 
 /* Search popup recent & quick */
@@ -184,10 +192,9 @@
 .search-quick-header {
   padding: 0 0 0 15px;
   font-size: 0.54rem;
-  font-weight: 450;
+  font-weight: 500;
   letter-spacing: 0.6px;
-  color: var(--color-text-secondary);
-  opacity: 0.8;
+  color: var(--text-primary);
 }
 
 .search-recent-body,
@@ -217,8 +224,8 @@
 .search-quick-main:hover {
   padding: 8px;
   margin: 0 -7px 0 6.8px;
-  background: var(--color-icon-secondary);
-  border: 1px solid var(--color-icon-border);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
 }
 
 .search-quick-main:hover {
@@ -229,45 +236,46 @@
 .quick-main-icon {
   padding: 6px 6.5px;
   border-radius: 0.4rem;
-  background: var(--color-regular-accent);
-  border: 1px solid var(--color-icon-border);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
 }
 
 .recent-main-icon-svg,
 .quick-main-icon-svg {
-  color: var(--color-text-primary);
-  opacity: 0.8;
   width: 14px;
   height: 14px;
   display: block;
 }
 
+.recent-main-icon-svg path,
+.quick-main-icon-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-secondary);
+}
+
 .recent-main-header,
 .quick-main-header {
   font-size: 0.52rem;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.6px;
-  color: var(--color-text-primary);
-  opacity: 0.9;
+  color: var(--text-primary);
   margin-bottom: 4.3px;
 }
 
 .recent-main-text,
 .quick-main-text {
   font-size: 0.5rem;
-  font-weight: 450;
+  font-weight: 500;
   letter-spacing: 0.6px;
-  color: var(--color-text-secondary);
-  opacity: 0.8;
+  color: var(--text-secondary);
 }
 
 .search-recent-empty {
   margin: 5px 0 0 15px;
   font-size: 0.52rem;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.6px;
-  color: var(--color-text-primary);
-  opacity: 0.9;
+  color: var(--text-secondary);
 }
 
 /* Search no results */
@@ -284,63 +292,63 @@
 .no-results-icon {
   padding: 6.5px 7px;
   border-radius: 0.4rem;
-  background: var(--color-regular-accent);
-  border: 1px solid var(--color-icon-border);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   margin-bottom: 4px;
 }
 
 .no-results-icon-svg {
-  color: var(--color-text-primary);
-  opacity: 0.8;
   width: 15px;
   height: 15px;
   display: block;
 }
 
+.no-results-icon-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-secondary);
+}
+
 .no-results-header {
   margin: 5px 0 0 15px;
-  font-size: 0.6rem;
-  font-weight: 450;
+  font-size: 0.56rem;
+  font-weight: 500;
   letter-spacing: 0.6px;
-  color: var(--color-text-primary);
-  opacity: 0.9;
+  color: var(--text-primary);
 }
 
 .no-results-text {
   font-size: 0.52rem;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.6px;
   width: 50%;
   line-height: 1.6;
-  color: var(--color-text-secondary);
-  opacity: 0.8;
+  color: var(--text-secondary);
 }
 
 .no-results-text span {
-  color: var(--color-text-primary);
-  opacity: 0.8;
+  color: var(--text-primary);
+  opacity: 0.9;
   cursor: pointer;
 }
 
 .no-results-clear button {
   all: unset;
-  background: var(--color-regular-accent);
-  border: 1px solid var(--color-icon-border);
-  color: var(--color-text-primary);
-  opacity: 0.9;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  color: var(--text-primary);
   padding: 7px 12px;
   margin-top: 9px;
   border-radius: 0.4rem;
   font-size: 0.5rem;
-  font-weight: 450;
+  font-weight: 500;
   letter-spacing: 0.6px;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
 .no-results-clear button:hover {
-  color: var(--color-text-primary);
-  opacity: 0.7;
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
 }
 
 /* Folder body */
@@ -367,6 +375,7 @@
   margin-bottom: 10px;
 }
 
+/* Folder left - icon */
 .folder-left {
   display: flex;
   align-items: center;
@@ -407,6 +416,7 @@
   letter-spacing: 0.6px;
 }
 
+/* Folder right - grid */
 .folder-right {
   position: relative;
 }
@@ -500,7 +510,7 @@
 @media (min-width: 769px) and (max-width: 1024px) {
   /* Folder header */
   .folder-header {
-    width: 80vw;
+    width: 78vw;
   }
 }
 
@@ -519,6 +529,6 @@
 @media (min-width: 1025px) and (max-width: 1200px) {
   /* Folder header */
   .folder-header {
-    width: 83vw;
+    width: 80vw;
   }
 }

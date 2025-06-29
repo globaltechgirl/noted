@@ -1,4 +1,4 @@
-/* Folder main */
+/* Folder layout main */
 .folder-layout-main {
   width: 95%;
   margin: 0 auto;
@@ -8,6 +8,7 @@
   margin-top: -90px;
 }
 
+/* Folder layout regular */
 .folder-layout-regular {
   position: relative;
   display: flex;
@@ -23,10 +24,12 @@
   cursor: pointer;
 }
 
+/* Folder layout image wrapper */
 .folder-image-wrapper {
   position: relative;
 }
 
+/* Folder layout dots */
 .folder-layout-dots {
   position: absolute;
   width: 100%;
@@ -49,6 +52,7 @@
   padding: 0.5px;
 }
 
+/* Folder layout image */
 .folder-layout-image {
   position: relative;
   height: 2px;
@@ -81,6 +85,7 @@
   border: 1px solid var(--border-primary);
 }
 
+/* Folder layout icon */
 .folder-layout-icon {
   position: relative;
   bottom: -159px;
@@ -111,6 +116,7 @@
   font-weight: bold;
 }
 
+/* Folder layout div */
 .folder-layout-div {
   display: flex;
   flex-direction: column;
@@ -134,6 +140,7 @@
   flex-grow: 1;
 }
 
+/* Folder layout top */
 .folder-layout-top {
   display: flex;
   justify-content: center;
@@ -145,12 +152,13 @@
 }
 
 .folder-top-text {
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 550;
   line-height: 2;
   color: var(--text-primary);
 }
 
+/* Folder layout bottom */
 .folder-layout-bottom {
   display: flex;
   align-items: center;
@@ -204,7 +212,7 @@
   stroke: var(--text-secondary);
 }
 
-/* Folder link */
+/* Folder layout link */
 .folder-layout-main:has(.folder-link-wrapper) {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -215,6 +223,7 @@
   overflow: visible;
 }
 
+/* Folder layout link main */
 .folder-link-main {
   position: relative;
   z-index: 2;
@@ -240,6 +249,7 @@
   margin-bottom: 10px;
 }
 
+/* Folder layout link left */
 .folder-layout-main .folder-link-left .folder-link-left-svg {
   width: 40px;
   height: 40px;
@@ -267,6 +277,7 @@
   overflow-wrap: break-word;
 }
 
+/* Folder layout link bottom */
 .folder-link-bottom {
   padding: 0px 5px;
 }
@@ -311,6 +322,7 @@
   stroke: var(--text-secondary);
 }
 
+/* Folder layout link edit toggle */
 .folder-edit-toggle-wrapper {
   position: absolute;
   top: 0;
@@ -406,7 +418,7 @@
   outline: none;
 }
 
-/* Folder regular */
+/* Folder layout regular */
 @media (max-width: 600px) {
   .folder-layout-main {
     grid-template-columns: repeat(2, 1fr);
@@ -425,7 +437,7 @@
   }
 }
 
-/* Folder link */
+/* Folder layout link */
 @media (min-width: 480px) and (max-width: 991px) {
   .folder-layout-main:has(.folder-link-wrapper) {
     grid-template-columns: repeat(2, 1fr);
@@ -439,7 +451,7 @@
 }
 
 @media (max-width: 1024px) {
-  /* Folder main */
+  /* Folder layout main */
   .folder-layout-main {
     width: 93%;
   }

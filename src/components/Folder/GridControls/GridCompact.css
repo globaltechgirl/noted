@@ -1,4 +1,4 @@
-/* Folder main */
+/* Folder compact main */
 .folder-compact-main {
   width: 95%;
   margin: 0 auto;
@@ -8,6 +8,7 @@
   margin-top: -90px;
 }
 
+/* Folder compact regular */
 .folder-compact-regular {
   position: relative;
   display: flex;
@@ -23,10 +24,12 @@
   cursor: pointer;
 }
 
+/* Folder compact image wrapper */
 .folder-image-wrapper {
   position: relative;
 }
 
+/* Folder compact dots */
 .folder-compact-dots {
   position: absolute;
   width: 100%;
@@ -49,6 +52,7 @@
   padding: 0.5px;
 }
 
+/* Folder compact image */
 .folder-compact-image {
   position: relative;
   height: 2px;
@@ -81,6 +85,7 @@
   border: 1px solid var(--border-primary);
 }
 
+/* Folder compact icon */
 .folder-compact-icon {
   position: relative;
   bottom: -147px;
@@ -111,6 +116,7 @@
   font-weight: bold;
 }
 
+/* Folder compact div */
 .folder-compact-div {
   display: flex;
   flex-direction: column;
@@ -130,6 +136,7 @@
   height: 100%;
 }
 
+/* Folder compact top */
 .folder-compact-top {
   display: flex;
   justify-content: center;
@@ -141,13 +148,13 @@
 }
 
 .folder-top-text {
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 550;
   line-height: 2;
   color: var(--text-primary);
 }
 
-/* Folder link */
+/* Folder compact link */
 .folder-compact-main:has(.folder-link-wrapper) {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -158,6 +165,7 @@
   overflow: visible;
 }
 
+/* Folder compact link main */
 .folder-compact-main .folder-link-main {
   position: relative;
   z-index: 2;
@@ -182,6 +190,7 @@
   border-radius: 0.6rem;
 }
 
+/* Folder compact link left */
 .folder-compact-main .folder-link-left .folder-link-left-svg {
   width: 40px;
   height: 40px;
@@ -210,7 +219,7 @@
   overflow-wrap: break-word;
 }
 
-/* Folder regular */
+/* Folder compact regular */
 @media (max-width: 600px) {
   .folder-compact-main {
     grid-template-columns: repeat(3, 1fr);
@@ -229,7 +238,7 @@
   }
 }
 
-/* Folder link */
+/* Folder compact link */
 @media (min-width: 480px) and (max-width: 991px) {
   .folder-compact-main:has(.folder-link-wrapper) {
     grid-template-columns: repeat(2, 1fr);
@@ -242,7 +251,7 @@
   }
 }
 @media (max-width: 1024px) {
-  /* Folder main */
+  /* Folder compact main */
   .folder-compact-main {
     width: 93%;
   }

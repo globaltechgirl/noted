@@ -233,7 +233,7 @@
 @media (min-width: 769px) and (max-width: 1024px) {
   /* Note header */
   .note-header {
-    width: 80vw;
+    width: 78vw;
   }
 }
 
@@ -256,7 +256,7 @@
 @media (min-width: 1025px) and (max-width: 1200px) {
   /* Note header */
   .note-header {
-    width: 83vw;
+    width: 80vw;
   }
 
   /* Note body */

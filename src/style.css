@@ -26,13 +26,15 @@
   --bg-primary: #f1f1f1;
   --bg-secondary: #f7f7f7;
 
-  --border-primary: #dcdcdc;
-
   --text-primary: #3d3d3d;
   --text-secondary: #7d7d7d;
 
   --icon-default: #efeff1;
   --icon-active: #ffffff;
+
+  --border-primary: #dcdcdc;
+
+  --shadow-secondary: rgba(0, 0, 0, 0.2);
 
   --overlay-primary: rgba(255, 255, 255, 0.3);
 }
@@ -78,6 +80,7 @@ body::-webkit-scrollbar-track:hover {
   background: var(--color-background-secondary);
 }
 
+/* App container */
 .app-container {
   background: var(--bg-primary);
 }
@@ -133,6 +136,7 @@ body::-webkit-scrollbar-track:hover {
   border-radius: 0.5rem;
 }
 
+/* Side header */
 .side-header {
   width: 100%;
   display: flex;
@@ -149,6 +153,7 @@ body::-webkit-scrollbar-track:hover {
   display: none;
 }
 
+/* Side menu body */
 .side-menu-body {
   display: flex;
   flex-direction: column;
@@ -239,6 +244,7 @@ li.active .side-menu-svg path {
   stroke: var(--text-primary);
 }
 
+/* Side menu user */
 .side-menu-user img {
   display: block;
   width: 100%;
@@ -249,7 +255,7 @@ li.active .side-menu-svg path {
   border: 0.5px solid var(--border-primary);
 }
 
-/* submenu */
+/* Submenu */
 .submenu {
   width: 210px;
   padding: 40px 10px 0 0;
@@ -258,7 +264,7 @@ li.active .side-menu-svg path {
   background: inherit;
 }
 
-/* side submenu body */
+/* Side submenu body */
 .side-submenu-body ul {
   list-style: none;
   cursor: pointer;
@@ -271,7 +277,7 @@ li.active .side-menu-svg path {
   font-size: 0.55rem;
   font-weight: 550;
   letter-spacing: 0.6px;
-  color: #3a3a3a;
+  color: var(--text-primary);
   text-transform: capitalize;
   display: flex;
   align-items: center;
@@ -328,7 +334,7 @@ li.active .side-menu-svg path {
 
 .side-submenu-figure p {
   font-size: 0.4rem;
-  font-weight: 550;
+  font-weight: 500;
   letter-spacing: 0.6px;
   padding: 1.5px 1px 1.5px 1.5px;
   margin: 0;
@@ -445,11 +451,24 @@ li.active .side-menu-svg path {
 @media (max-width: 992px) {
   /* Side container */
   .side-user-wrapper {
-    width: 85%;
+    width: 82%;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
+  /* Side container */
+  .side {
+    width: 22%;
+  }
+
+  /* Main container */
+  .main {
+    width: calc(100% - 22%);
+    margin-left: 22%;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
   /* Side container */
   .side {
     width: 20%;
@@ -459,18 +478,5 @@ li.active .side-menu-svg path {
   .main {
     width: calc(100% - 20%);
     margin-left: 20%;
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1200px) {
-  /* Side container */
-  .side {
-    width: 17%;
-  }
-
-  /* Main container */
-  .main {
-    width: calc(100% - 17%);
-    margin-left: 17%;
   }
 }

@@ -1,4 +1,4 @@
-/* settings container */
+/* Settings container */
 .settings-container {
   flex-grow: 1;
   display: flex;
@@ -11,14 +11,14 @@
   border-radius: 0.5rem;
 }
 
-/* settings wrapper */
+/* Settings wrapper */
 .settings-wrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-/* settings header */
+/* Settings header */
 .settings-header {
   position: fixed;
   z-index: 10;
@@ -38,13 +38,14 @@
   padding: 4px 4.5px;
 }
 
+/* Settings logo */
 .settings-logo {
   display: flex;
   align-items: center;
   color: var(--text-primary);
   gap: 0.4rem;
   background: var(--bg-secondary);
-  padding: 7px 14px;
+  padding: 7px 12px;
   border-radius: 0.4rem;
   border: 0.5px solid var(--border-primary);
 }
@@ -56,6 +57,7 @@
   text-transform: capitalize;
 }
 
+/* Settings icon */
 .settings-icon {
   position: relative;
   z-index: 10;
@@ -119,8 +121,8 @@
   display: flex;
   justify-content: flex-start;
   gap: 40px;
-  background: #f1f1f1;
-  border: 0.5px solid var(--color-border-primary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.5rem;
   padding: 15px;
 }
@@ -136,8 +138,7 @@
   overflow: hidden;
   width: 320px;
   height: 365px;
-  background: var(--bg-root);
-  padding: 5px;
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.5rem;
 }
 
@@ -182,10 +183,10 @@
   justify-content: center;
   position: relative;
   flex-shrink: 0;
-  background: var(--bg-root);
+  background: var(--bg-secondary);
   border-radius: 0.5rem;
-  border: 0.5px solid var(--color-border-primary);
-  color: var(--text-primary);
+  border: 0.5px solid var(--border-primary);
+  color: var(--text-secondary);
 }
 
 .settings-line-icon::before,
@@ -194,7 +195,7 @@
   position: absolute;
   left: 50%;
   width: 0.8px;
-  background: var(--bg-root);
+  background: var(--border-primary);
   transform: translateX(-50%);
   z-index: 0;
 }
@@ -222,10 +223,10 @@
 }
 
 .settings-line-header {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.58rem;
   letter-spacing: 0.6px;
-  color: #3d3d3d;
+  color: var(--text-primary);
   margin-bottom: 10px;
 }
 
@@ -235,12 +236,13 @@
 }
 
 .settings-line-body p {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.55rem;
   letter-spacing: 0.6px;
-  color: #3d3d3d;
+  color: var(--text-secondary);
 }
 
+/* Settings save */
 .settings-save {
   display: flex;
   align-items: center;
@@ -253,17 +255,23 @@
 .settings-save-svg {
   width: 10px;
   height: 10px;
-  color: #3d3d3d;
+  display: block;
+}
+
+.settings-save-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-primary);
 }
 
 .settings-save p {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.55rem;
   letter-spacing: 0.6px;
-  color: #3d3d3d;
+  color: var(--text-primary);
   text-transform: lowercase;
 }
 
+/* Settings right */
 .settings-top-right {
   flex: 0.324;
   display: flex;
@@ -278,7 +286,7 @@
   gap: 10px;
 }
 
-/* settings bottom */
+/* Settings bottom */
 .settings-bottom {
   display: flex;
   gap: 15px;
@@ -291,44 +299,50 @@
   flex: 1;
 }
 
-/* settings details wrappper */
+/* Settings details wrappper */
 .settings-details {
   width: 100%;
   display: flex;
   flex-direction: column;
   letter-spacing: 0.6px;
-  color: #3d3d3d;
-  background: #f1f1f1;
-  border: 0.5px solid var(--color-border-primary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.5rem;
   gap: 16px;
   padding: 16px 14px;
 }
 
+/* Settings details left */
 .settings-details-left {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.55rem;
   display: flex;
   gap: 0.4rem;
   align-items: center;
+  color: var(--text-primary);
 }
 
 .settings-left-svg {
   width: 10px;
   height: 10px;
-  color: var(--color-text-secondary);
+  display: block;
 }
 
+.settings-left-svg path {
+  fill: var(--text-secondary);
+}
+
+/* Settings details right */
 .settings-details-right {
-  color: var(--color-text-secondary);
-  font-weight: 450;
+  color: var(--text-secondary);
+  font-weight: 500;
   font-size: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #f7f7f7;
+  background: var(--bg-secondary);
   border-radius: 0.35rem;
-  border: 0.5px solid var(--color-border-primary);
+  border: 0.5px solid var(--border-primary);
   padding: 6px 10px;
 }
 
@@ -345,20 +359,28 @@
 .settings-right-svg {
   width: 13px;
   height: 13px;
-  color: var(--color-text-secondary);
+  display: block;
+}
+
+.settings-right-svg path {
+  fill: var(--bg-primary);
+  stroke: var(--text-secondary);
 }
 
 .settings-dark-svg {
   width: 11.5px;
   height: 11.5px;
+  display: block;
 }
 
+/* Settings options */
 .settings-options {
-  background: #f1f1f1;
-  border: 0.5px solid var(--color-border-primary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.25rem;
   padding: 3px 6px;
   cursor: pointer;
+  font-size: 0.48rem;
 }
 
 /* Dropdown options */
@@ -368,8 +390,8 @@
   right: 0;
   z-index: 100;
   width: max-content;
-  background: var(--color-background-secondary);
-  border: 0.5px solid var(--color-border-primary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.35rem;
   padding: 3px;
 }
@@ -382,13 +404,13 @@
 }
 
 .dropdown-options div:hover {
-  background: var(--color-regular-highlight);
+  background: var(--bg-secondary);
   border-radius: 0.25rem;
-  border: 0.5px solid var(--color-border-primary);
+  border: 0.5px solid var(--border-primary);
 }
 
 @media (max-width: 480px) {
-  /* settings body */
+  /* Settings body */
   .settings-top-right1,
   .settings-top-right2,
   .settings-bottom-left,
@@ -403,7 +425,7 @@
 }
 
 @media (min-width: 481px) and (max-width: 600px) {
-  /* settings body */
+  /* Settings body */
   .settings-user-wrapper {
     margin-bottom: 120px;
   }
@@ -415,7 +437,7 @@
 }
 
 @media (min-width: 601px) and (max-width: 768px) {
-  /* settings body */
+  /* Settings body */
   .settings-user-wrapper {
     margin-bottom: 220px;
   }
@@ -427,7 +449,7 @@
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
-  /* settings body */
+  /* Settings body */
   .settings-top-right1,
   .settings-top-right2,
   .settings-bottom-left,
@@ -437,7 +459,7 @@
 }
 
 @media (max-width: 768px) {
-  /* settings header */
+  /* Settings header */
   .settings-header {
     width: 100vw;
     padding-top: 18px;
@@ -445,14 +467,14 @@
     margin-bottom: 20px;
   }
 
-  /* settings body */
+  /* Settings body */
   .settings-top-left {
     flex-direction: column;
   }
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
-  /* settings body */
+  /* Settings body */
   .settings-user {
     width: 270px;
   }
@@ -463,12 +485,12 @@
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  /* settings header */
+  /* Settings header */
   .settings-header {
-    width: 80vw;
+    width: 78vw;
   }
 
-  /* settings body */
+  /* Settings body */
   .settings-top-right1,
   .settings-top-right2 {
     flex-direction: row;
@@ -476,12 +498,12 @@
 }
 
 @media (max-width: 1024px) {
-  /* settings header */
+  /* Settings header */
   .settings-header-wrapper {
     width: 60%;
   }
 
-  /* settings body */
+  /* Settings body */
   .settings-body {
     width: 93%;
   }
@@ -502,8 +524,8 @@
 }
 
 @media (min-width: 1025px) and (max-width: 1200px) {
-  /* settings header */
+  /* Settings header */
   .settings-header {
-    width: 83vw;
+    width: 80vw;
   }
 }
