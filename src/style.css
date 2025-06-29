@@ -32,7 +32,9 @@
   --text-secondary: #7d7d7d;
 
   --icon-default: #efeff1;
-  --icon-active: #ffffff;/
+  --icon-active: #ffffff;
+
+  --overlay-primary: rgba(255, 255, 255, 0.3);
 }
 
 /* Reset styles */

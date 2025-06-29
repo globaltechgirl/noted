@@ -8,7 +8,6 @@
   width: 100%;
   margin: 0 auto;
   height: auto;
-  background: #f7f7f7;
   border-radius: 0.5rem;
 }
 
@@ -33,57 +32,64 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #f1f1f1;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.6rem;
-  padding: 4.5px;
+  padding: 4px 4.5px;
 }
 
 .settings-logo {
   display: flex;
   align-items: center;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
   gap: 0.4rem;
-  background: #f7f7f7;
-  padding: 8px 14px;
+  background: var(--bg-secondary);
+  padding: 7px 14px;
   border-radius: 0.4rem;
+  border: 0.5px solid var(--border-primary);
 }
 
 .settings-logo p {
-  font-size: 0.55rem;
-  font-weight: 650;
+  font-size: 0.56rem;
+  font-weight: 600;
   letter-spacing: 0.6px;
   text-transform: capitalize;
-  color: #3d3d3d;
 }
 
 .settings-icon {
   position: relative;
   z-index: 10;
   display: flex;
-  gap: 0.15rem;
-  padding: 2.5px 2.7px;
-  background: #f7f7f7;
+  gap: 0.2rem;
+  padding: 3px;
+  background: var(--bg-secondary);
   border-radius: 0.4rem;
+  border: 0.5px solid var(--border-primary);
 }
 
 .settings-icon > * {
-  padding: 5px;
-  background: #f1f1f1;
-  border: 1px solid var(--color-border-primary);
+  padding: 4.5px;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.3rem;
   cursor: pointer;
 }
 
 .settings-icon > *:hover {
-  background: var(--color-background-secondary);
+  background: var(--bg-secondary);
 }
 
 .settings-icon .settings-header-svg {
   width: 9.5px;
   height: 9.5px;
   display: block;
-  color: #3d3d3d;
   cursor: pointer;
+}
+
+.settings-icon .settings-header-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-primary);
+  transition: all 0.3s ease;
 }
 
 /* settings body */

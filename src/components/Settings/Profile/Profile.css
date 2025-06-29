@@ -8,6 +8,7 @@
   width: 100%;
   margin: 0 auto;
   height: auto;
+  border-radius: 0.5rem;
 }
 
 /* profile wrapper */
@@ -31,57 +32,63 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--color-background-secondary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.6rem;
-  padding: 4.5px;
+  padding: 4px 4.5px;
 }
 
 .profile-logo {
   display: flex;
   align-items: center;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
   gap: 0.4rem;
-  background: var(--color-regular-accent);
-  padding: 8px 14px;
+  background: var(--bg-secondary);
+  padding: 7px 14px;
   border-radius: 0.4rem;
+  border: 0.5px solid var(--border-primary);
 }
 
 .profile-logo p {
-  font-size: 0.55rem;
-  font-weight: 550;
+  font-size: 0.56rem;
+  font-weight: 600;
   letter-spacing: 0.6px;
   text-transform: capitalize;
-  color: var(--color-text-primary);
 }
 
 .profile-icon {
   position: relative;
   z-index: 10;
   display: flex;
-  gap: 0.15rem;
-  padding: 2.5px 2.7px;
-  background: var(--color-regular-accent);
+  gap: 0.2rem;
+  padding: 3px;
+  background: var(--bg-secondary);
   border-radius: 0.4rem;
+  border: 0.5px solid var(--border-primary);
 }
 
 .profile-icon > * {
-  padding: 5px;
-  background: var(--color-regular-secondary);
-  border: 1px solid var(--color-border-primary);
+  padding: 4.5px;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.3rem;
   cursor: pointer;
 }
 
 .profile-icon > *:hover {
-  background: var(--color-background-secondary);
+  background: var(--bg-secondary);
 }
 
 .profile-icon .profile-header-svg {
   width: 9.5px;
   height: 9.5px;
   display: block;
-  color: var(--color-text-secondary);
   cursor: pointer;
+}
+
+.profile-icon .profile-header-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-primary);
 }
 
 /* profile body */
@@ -109,14 +116,19 @@
 .delete-svg {
   width: 10px;
   height: 10px;
-  color: var(--color-surface-accent);
   display: block;
+}
+
+.camera-svg path,
+.delete-svg path {
+  fill: var(--bg-primary);
+  stroke: var(--text-secondary);
 }
 
 /* Profile background */
 .profile-background {
   position: relative;
-  border: 1px solid var(--color-border-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.6rem;
   height: 220px;
   overflow: hidden;
@@ -138,8 +150,8 @@
   cursor: pointer;
   display: none;
   z-index: 2;
-  background: var(--color-regular-secondary);
-  border: 1px solid var(--color-border);
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.3rem;
   padding: 2px;
 }
@@ -150,8 +162,8 @@
   right: 2%;
   z-index: 100;
   width: 330px;
-  background: var(--color-background-secondary);
-  border: 0.5px solid var(--color-border-primary);
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.5rem;
 }
 
@@ -159,7 +171,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 0.5px solid var(--color-border-primary);
+  border-bottom: 0.5px solid var(--border-primary);
   padding: 13px;
   padding-bottom: 13px;
 }
@@ -176,9 +188,9 @@
   background: none;
   outline: none;
   font-size: 0.55rem;
-  font-weight: 450;
+  font-weight: 500;
   letter-spacing: 0.6px;
-  color: var(--color-text-accent);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: background 0.2s;
 }
@@ -189,7 +201,7 @@
 }
 
 .popup-tabs .active {
-  color: var(--color-text-secondary);
+  color: var(--text-primary);
 }
 
 .popup-tabs button:not(.active):hover,
@@ -202,15 +214,15 @@
   background: none;
   border: none;
   font-size: 0.54rem;
-  font-weight: 450;
+  font-weight: 500;
   letter-spacing: 0.6px;
-  color: var(--color-text-accent);
+  color: var(--text-secondary);
   cursor: pointer;
 }
 
 .popup-tabs button:hover,
 .remove-bg-button:hover {
-  color: var(--color-text-secondary);
+  color: var(--text-primary);
 }
 
 .color-options {
@@ -223,7 +235,7 @@
   position: relative;
   height: 45px;
   border-radius: 0.5rem;
-  border: 0.5px solid var(--color-border-primary);
+  border: 0.5px solid var(--border-primary);
   cursor: pointer;
   overflow: hidden;
 }
@@ -237,7 +249,7 @@
 }
 
 .color-circle:hover::after {
-  background: var(--color-overlay-primary);
+  background: var(--overlay-primary);
 }
 
 .popup-section {
@@ -249,26 +261,26 @@
   padding: 8px;
   margin-bottom: 8px;
   font-size: 0.52rem;
-  font-weight: 400;
+  font-weight: 450;
   letter-spacing: 0.6px;
   cursor: pointer;
-  background-color: var(--color-regular-highlight);
-  border: 0.5px solid var(--color-border-primary);
+  background-color: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.4rem;
-  color: var(--color-text-secondary);
+  color: var(--text-primary);
 }
 
 .background-popup button:hover {
-  background-color: var(--color-background-secondary);
+  background-color: var(--bg-secondary);
 }
 
 .popup-section-text {
   text-align: center;
   margin-top: 10px;
   font-size: 0.48rem;
-  font-weight: 400;
+  font-weight: 450;
   letter-spacing: 0.6px;
-  color: var(--color-text-secondary);
+  color: var(--text-primary);
   opacity: 0.9;
 }
 
@@ -278,7 +290,7 @@
   margin-top: -50px;
   margin-left: 90px;
   display: inline-block;
-  border: 1px solid var(--color-border-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.5rem;
   width: 100px;
   height: 100px;
@@ -300,8 +312,8 @@
   bottom: 3px;
   cursor: pointer;
   display: none;
-  background: var(--color-regular-secondary);
-  border: 1px solid var(--color-border);
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.3rem;
   padding: 2px;
 }
@@ -338,16 +350,16 @@
 }
 
 .profile-placeholder-title {
-  color: var(--color-text-primary);
+  color: var(--text-primary);
   font-size: 0.58rem;
-  font-weight: 500;
+  font-weight: 550;
   letter-spacing: 0.6px;
 }
 
 .profile-placeholder-text {
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   font-size: 0.55rem;
-  font-weight: 450;
+  font-weight: 500;
   letter-spacing: 0.6px;
 }
 
@@ -357,8 +369,8 @@
   display: flex;
   width: 62.5%;
   align-items: center;
-  background: var(--color-regular-highlight);
-  border: 0.5px solid var(--color-border-primary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.5rem;
   padding-right: 2px;
 }
@@ -388,8 +400,8 @@
 .profile-text,
 .profile-input {
   font-size: 0.52rem;
-  font-weight: 450;
-  color: var(--color-text-primary);
+  font-weight: 500;
+  color: var(--text-primary);
   letter-spacing: 0.6px;
   width: 100%;
   display: block;
@@ -400,13 +412,13 @@
 
 .profile-tag {
   font-size: 0.52rem;
-  font-weight: 450;
+  font-weight: 500;
   letter-spacing: 0.6px;
-  color: var(--color-text-secondary);
-  background: var(--color-background-secondary);
+  color: var(--text-primary);
+  background: var(--bg-secondary);
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-  border-right: 0.5px solid var(--color-border-primary);
+  border-right: 0.5px solid var(--border-primary);
   width: 85px;
   flex-shrink: 0;
 }
@@ -421,12 +433,20 @@
 .profile-socials-tag-svg {
   width: 11px;
   height: 11px;
-  color: var(--color-text-accent);
   cursor: pointer;
 }
 
+.profile-edit-svg path,
+.profile-save-svg path,
+.eye-icon path,
+.profile-socials-tag-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-secondary);
+}
+
 .profile-socials-tag-svg {
-  color: var(--color-text-secondary);
+  fill: var(--bg-primary);
+  stroke: var(--text-secondary);
 }
 
 /* Profile password */
@@ -460,27 +480,27 @@
 .profile-phone-dropdown-wrapper {
   position: relative;
   display: inline-block;
-  background: var(--color-background-secondary);
+  background: var(--bg-secondary);
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
 }
 
 .profile-phone-tag {
   font-size: 0.6rem;
-  font-weight: 450;
+  font-weight: 500;
   letter-spacing: 0.6px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  color: var(--color-text-secondary);
-  background: var(--color-background-secondary);
+  color: var(--text-primary);
+  background: var(--bg-secondary);
   padding: 10px 13px;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   width: 75px;
   flex-shrink: 0;
   border: none;
-  border-right: 0.5px solid var(--color-border-primary);
+  border-right: 0.5px solid var(--border-primary);
   cursor: pointer;
 }
 
@@ -492,7 +512,7 @@
   transform: translateY(-50%);
   width: 13px;
   height: 13px;
-  color: var(--color-text-secondary);
+  color: var(--text-primary);
 }
 
 /* Profile danger */
@@ -508,21 +528,21 @@
 }
 
 .profile-danger-logout {
-  background: var(--color-regular-highlight);
+  background: var(--bg-secondary);
   cursor: pointer;
 }
 
 .profile-danger-logout:hover {
-  background: var(--color-background-secondary);
+  background: var(--bg-primary);
 }
 
 .profile-danger-delete {
-  background: var(--color-background-secondary);
+  background: var(--bg-primary);
   cursor: pointer;
 }
 
 .profile-danger-delete:hover {
-  background: var(--color-regular-highlight);
+  background: var(--bg-secondary);
 }
 
 @media (max-width: 768px) {
