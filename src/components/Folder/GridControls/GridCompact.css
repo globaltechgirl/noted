@@ -83,7 +83,7 @@
 
 .folder-compact-icon {
   position: relative;
-  bottom: -153px;
+  bottom: -147px;
   left: 195px;
   transform: translateX(-50%);
   z-index: 100;
@@ -116,7 +116,8 @@
   flex-direction: column;
   width: 95%;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 45px;
+  gap: 8px;
   padding: 10px;
   background: var(--bg-secondary);
   border: 0.5px solid var(--border-primary);
@@ -132,7 +133,7 @@
 .folder-compact-top {
   display: flex;
   justify-content: center;
-  margin: 30px 0 3px 0;
+  margin: 28px 0 2.8px 0;
 }
 
 .folder-compact-div.has-image .folder-compact-top {

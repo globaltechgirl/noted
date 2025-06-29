@@ -6,7 +6,6 @@
   flex-direction: column;
   gap: 15px;
   margin-top: -90px;
-  background: var(--color-background-primary);
 }
 
 .folder-list-regular {
@@ -17,13 +16,13 @@
   height: auto;
   padding: 3px;
   border-radius: 0.6rem;
-  background: var(--color-regular-primary);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   cursor: pointer;
 }
 
 .folder-list-regular:hover {
-  background: var(--color-background-secondary);
+  background: var(--bg-secondary);
 }
 
 .folder-list-body {
@@ -33,14 +32,14 @@
   width: 100%;
   margin: 0 auto;
   padding: 10px;
-  background: var(--color-background-secondary);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.5rem;
   letter-spacing: 0.75px;
 }
 
 .folder-list-body:hover {
-  background: var(--color-regular-secondary);
+  background: var(--bg-primary);
 }
 
 .folder-list-body .folder-image-wrapper {
@@ -65,16 +64,16 @@
   object-position: center;
   display: block;
   border-radius: 0.45rem;
-  border: 1px solid var(--color-surface-secondary);
+  border: 1px solid var(--border-primary);
 }
 
 .folder-list-icon p {
   position: relative;
   width: 25px;
   height: 30px;
-  background: var(--color-regular-secondary);
-  border: 1px solid var(--color-border-primary);
-  color: var(--color-text-secondary);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary);
+  color: var(--text-secondary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,9 +85,9 @@
 
 .folder-left-text {
   font-size: 0.6rem;
-  font-weight: 500;
+  font-weight: 550;
   line-height: 2;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
 }
 
 .folder-list-right {
@@ -102,11 +101,11 @@
 .folder-right-text {
   width: fit-content;
   padding: 4px 6px;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   font-size: 0.45rem;
-  font-weight: 450;
-  background: var(--color-regular-secondary);
-  border: 1px solid var(--color-border-primary);
+  font-weight: 500;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.3rem;
 }
 
@@ -114,17 +113,28 @@
   cursor: pointer;
   pointer-events: auto;
   padding: 4px;
-  background: var(--color-regular-secondary);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.3rem;
 }
 
-.folder-right-star-svg {
+.folder-right-star-svg,
+.folder-right-starred-svg {
   width: 9px;
   height: 9px;
   display: block;
-  color: var(--color-text-secondary);
   cursor: pointer;
+}
+
+.folder-right-star-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.folder-right-starred-svg path {
+  fill: var(--text-secondary);
+  stroke: var(--text-secondary);
 }
 
 /* Folder link */
