@@ -3,6 +3,14 @@ import './Profile.css';
 import { allCountries } from "country-telephone-data";
 
 function Profile() {
+    // --- Theme Toggle (Light/Dark) ---
+    const [darkMode, setDarkMode] = useState(false);
+
+    const toggleTheme = () => {
+        setDarkMode((prev) => !prev);
+        document.documentElement.classList.toggle("dark");
+    };
+
    // --- Profile Information State ---
     const [fullName, setFullName] = useState("First Last");
     const [username, setUsername] = useState("username");
@@ -130,8 +138,42 @@ function Profile() {
                         </div>
 
                         <div className="profile-icon">
-                            <div className="profile-settings">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="profile-header-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                            <div className="theme-toggle" onClick={toggleTheme}>
+                                <div className={`theme-slider ${darkMode ? "dark" : "light"}`}>
+                                    <div className="theme-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            className="theme-light-svg"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-4 0h.01M12 4v.01M20 12h.01M12 20v.01M6.31 6.31L6.3 6.3m11.41.01l-.01-.01m0 11.4l.01.01M6.3 17.7l.01.01"
+                                            />
+                                        </svg>
+                                    </div>
+
+                                    <div className="theme-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            className="theme-dark-svg"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -155,9 +197,9 @@ function Profile() {
                                             <g 
                                                 fill="none" 
                                                 stroke="currentColor" 
-                                                stroke-linecap="round" 
-                                                stroke-linejoin="round" 
-                                                stroke-width="2"
+                                                strokeLinecap="round" 
+                                                strokeLinejoin="round" 
+                                                strokeWidth="2"
                                             >
                                                 <path 
                                                     d="M5 7h1a2 2 0 0 0 2-2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2"
@@ -260,9 +302,9 @@ function Profile() {
                                         <g 
                                             fill="none" 
                                             stroke="currentColor" 
-                                            stroke-linecap="round" 
-                                            stroke-linejoin="round" 
-                                            stroke-width="2"
+                                            strokeLinecap="round" 
+                                            strokeLinejoin="round" 
+                                            strokeWidth="2"
                                         >
                                             <path 
                                                 d="M5 7h1a2 2 0 0 0 2-2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2"

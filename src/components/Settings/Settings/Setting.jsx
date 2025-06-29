@@ -5,6 +5,14 @@ import { settingsKeyMap, translations } from  "../../../Context/translations";
 import { useDashboardView } from "../../Folder/GridControls/DashboardViewContext.jsx";
 
 function Settings() {
+    // --- Theme Toggle (Light/Dark) ---
+    const [darkMode, setDarkMode] = useState(false);
+
+    const toggleTheme = () => {
+        setDarkMode((prev) => !prev);
+        document.documentElement.classList.toggle("dark");
+    };
+    
     // --- Username ---
     const [username, setUsername] = useState("username");
 
@@ -103,8 +111,42 @@ function Settings() {
                         </div>
 
                         <div className="settings-icon">
-                            <div className="settings-profile">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="settings-header-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                            <div className="theme-toggle" onClick={toggleTheme}>
+                                <div className={`theme-slider ${darkMode ? "dark" : "light"}`}>
+                                    <div className="theme-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            className="theme-light-svg"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-4 0h.01M12 4v.01M20 12h.01M12 20v.01M6.31 6.31L6.3 6.3m11.41.01l-.01-.01m0 11.4l.01.01M6.3 17.7l.01.01"
+                                            />
+                                        </svg>
+                                    </div>
+
+                                    <div className="theme-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            className="theme-dark-svg"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -124,7 +166,20 @@ function Settings() {
                                     <div className="settings-line-main">
                                         <div className="settings-line">
                                             <div className="settings-line-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="settings-line-icon-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h2.5m4.501 4a2 2 0 1 0 4 0a2 2 0 1 0-4 0m2-3.5V17m0 4v1.5m3.031-5.25l-1.299.75m-3.463 2l-1.3.75m0-3.5l1.3.75m3.463 2l1.3.75"/></svg>
+                                                <svg 
+                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                    className="settings-line-icon-svg" 
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path 
+                                                        fill="none" 
+                                                        stroke="currentColor" 
+                                                        strokeLinecap="round" 
+                                                        strokeLinejoin="round" 
+                                                        strokeWidth="2" 
+                                                        d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h2.5m4.501 4a2 2 0 1 0 4 0a2 2 0 1 0-4 0m2-3.5V17m0 4v1.5m3.031-5.25l-1.299.75m-3.463 2l-1.3.75m0-3.5l1.3.75m3.463 2l1.3.75"
+                                                    />
+                                                </svg>
                                             </div>
 
                                             <div className="settings-line-details">
@@ -146,7 +201,20 @@ function Settings() {
 
                                         <div className="settings-line">
                                             <div className="settings-line-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="settings-line-icon-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 21v-2a4 4 0 0 1 4-4h2m10 1c0 4-2.5 6-3.5 6S15 20 15 16c1 0 2.5-.5 3.5-1.5c1 1 2.5 1.5 3.5 1.5M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0"/></svg>
+                                                <svg 
+                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                    className="settings-line-icon-svg" 
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path 
+                                                        fill="none" 
+                                                        stroke="currentColor" 
+                                                        strokeLinecap="round" 
+                                                        strokeLinejoin="round" 
+                                                        strokeWidth="2" 
+                                                        d="M6 21v-2a4 4 0 0 1 4-4h2m10 1c0 4-2.5 6-3.5 6S15 20 15 16c1 0 2.5-.5 3.5-1.5c1 1 2.5 1.5 3.5 1.5M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0"
+                                                    />
+                                                </svg>
                                             </div>
 
                                             <div className="settings-line-details">
@@ -168,7 +236,20 @@ function Settings() {
 
                                         <div className="settings-line">
                                             <div className="settings-line-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="settings-line-icon-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4m1 4l2 2l4-4"/></svg>
+                                                <svg 
+                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                    className="settings-line-icon-svg" 
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path 
+                                                        fill="none" 
+                                                        stroke="currentColor" 
+                                                        strokeLinecap="round" 
+                                                        strokeLinejoin="round" 
+                                                        strokeWidth="2" 
+                                                        d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4m1 4l2 2l4-4"
+                                                    />
+                                                </svg>
                                             </div>
 
                                             <div className="settings-line-details">
@@ -190,7 +271,20 @@ function Settings() {
 
                                         <div className="settings-line">
                                             <div className="settings-line-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="settings-line-icon-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0m8 12h6m-3-3v6M6 21v-2a4 4 0 0 1 4-4h4"/></svg>
+                                                <svg 
+                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                    className="settings-line-icon-svg" 
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path 
+                                                        fill="none" 
+                                                        stroke="currentColor" 
+                                                        strokeLinecap="round" 
+                                                        strokeLinejoin="round" 
+                                                        strokeWidth="2" 
+                                                        d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0m8 12h6m-3-3v6M6 21v-2a4 4 0 0 1 4-4h4"
+                                                    />
+                                                </svg>
                                             </div>
 
                                             <div className="settings-line-details">
@@ -212,7 +306,20 @@ function Settings() {
 
                                         <div className="settings-line">
                                             <div className="settings-line-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="settings-line-icon-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+                                                <svg 
+                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                    className="settings-line-icon-svg" 
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path 
+                                                        fill="none"
+                                                        stroke="currentColor" 
+                                                        strokeLinecap="round" 
+                                                        strokeLinejoin="round" 
+                                                        strokeWidth="2" 
+                                                        d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"
+                                                    />
+                                                </svg>
                                             </div>
 
                                             <div className="settings-line-details">
@@ -234,8 +341,18 @@ function Settings() {
                                     </div>
 
                                     <div className="settings-save">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-save-svg" viewBox="0 0 24 24">
-                                            <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                                        <svg 
+                                            xmlns="http://www.w3.org/2000/svg" 
+                                            className="settings-save-svg" 
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <g 
+                                                fill="none" 
+                                                stroke="currentColor" 
+                                                strokeLinecap="round" 
+                                                strokeLinejoin="round" 
+                                                strokeWidth="2"
+                                            >
                                                 <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/>
                                                 <path d="m9 12l2 2l4-4"/>
                                             </g>
@@ -250,7 +367,19 @@ function Settings() {
                                 <div className="settings-top-right1">
                                     <div className="settings-details">
                                         <div className="settings-details-left">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                            <svg 
+                                                xmlns="http://www.w3.org/2000/svg" 
+                                                className="settings-left-svg" 
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path 
+                                                    fill="currentColor" 
+                                                    fillRule="evenodd" 
+                                                    d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" 
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
+
                                             <p>{t[settingsKeyMap["Membership"]] || "Membership"}</p>
                                         </div>
 
@@ -267,7 +396,19 @@ function Settings() {
 
                                     <div className="settings-details">
                                         <div className="settings-details-left">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                            <svg 
+                                                xmlns="http://www.w3.org/2000/svg" 
+                                                className="settings-left-svg" 
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path 
+                                                    fill="currentColor" 
+                                                    fillRule="evenodd" 
+                                                    d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" 
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
+
                                             <p>{t[settingsKeyMap["Notifications"]] || "Notifications"}</p>
                                         </div>
 
@@ -314,7 +455,19 @@ function Settings() {
                                 <div className="settings-top-right2">
                                     <div className="settings-details">
                                         <div className="settings-details-left">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                            <svg 
+                                                xmlns="http://www.w3.org/2000/svg" 
+                                                className="settings-left-svg" 
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path 
+                                                    fill="currentColor" 
+                                                    fillRule="evenodd" 
+                                                    d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" 
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
+
                                             <p>{t[settingsKeyMap["Notifications"]] || "Notifications"}</p>
                                         </div>
 
@@ -359,7 +512,19 @@ function Settings() {
 
                                     <div className="settings-details">
                                         <div className="settings-details-left">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                            <svg 
+                                                xmlns="http://www.w3.org/2000/svg" 
+                                                className="settings-left-svg" 
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path 
+                                                    fill="currentColor" 
+                                                    fillRule="evenodd" 
+                                                    d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" 
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
+
                                             <p>{t[settingsKeyMap["Dashboard"]] || "Dashboard"}</p>
                                         </div>
 
@@ -418,23 +583,77 @@ function Settings() {
                             <div className="settings-bottom-left">
                                 <div className="settings-details">
                                     <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                        <svg 
+                                            xmlns="http://www.w3.org/2000/svg" 
+                                            className="settings-left-svg" 
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path 
+                                                fill="currentColor" 
+                                                fillRule="evenodd" 
+                                                d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" 
+                                                clipRule="evenodd"
+                                            />
+                                        </svg>
+
                                         <p>{t[settingsKeyMap["Appearance"]] || "Appearance"}</p>
                                     </div>
 
                                     <div className="settings-details-right settings-details-appearance">
                                         <div className="settings-right">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19h18M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/></svg>
+                                            <svg 
+                                                xmlns="http://www.w3.org/2000/svg" 
+                                                className="settings-right-svg" 
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path 
+                                                    fill="none" 
+                                                    stroke="currentColor" 
+                                                    strokeLinecap="round" 
+                                                    strokeLinejoin="round" 
+                                                    strokeWidth="2" 
+                                                    d="M3 19h18M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"
+                                                />
+                                            </svg>
+
                                             <p>{t[settingsKeyMap["System"]] || "System"}</p>
                                         </div>
 
                                         <div className="settings-right settings-options">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7"/></svg>
+                                            <svg 
+                                                xmlns="http://www.w3.org/2000/svg" 
+                                                className="settings-right-svg" 
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path 
+                                                    fill="none" 
+                                                    stroke="currentColor" 
+                                                    strokeLinecap="round" 
+                                                    strokeLinejoin="round" 
+                                                    strokeWidth="2" 
+                                                    d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7"
+                                                />
+                                            </svg>
+
                                             <p>{t[settingsKeyMap["Light"]] || "Light"}</p>
                                         </div>
 
                                         <div className="settings-right">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="settings-right-svg settings-dark-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></svg>
+                                            <svg 
+                                                xmlns="http://www.w3.org/2000/svg" 
+                                                className="settings-right-svg settings-dark-svg" 
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path 
+                                                    fill="none" 
+                                                    stroke="currentColor" 
+                                                    strokeLinecap="round" 
+                                                    strokeLinejoin="round" 
+                                                    strokeWidth="2" 
+                                                    d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"
+                                                />
+                                            </svg>
+
                                             <p>{t[settingsKeyMap["Dark"]] || "Dark"}</p>
                                         </div>
                                     </div>
@@ -442,7 +661,19 @@ function Settings() {
 
                                 <div className="settings-details">
                                     <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                        <svg 
+                                            xmlns="http://www.w3.org/2000/svg" 
+                                            className="settings-left-svg" 
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path 
+                                                fill="currentColor" 
+                                                fillRule="evenodd" 
+                                                d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" 
+                                                clipRule="evenodd"
+                                            />
+                                        </svg>
+
                                         <p>{t[settingsKeyMap["Language"]] || "Language"}</p>
                                     </div>
 
@@ -498,7 +729,19 @@ function Settings() {
                             <div className="settings-bottom-right">
                                 <div className="settings-details">
                                     <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                        <svg 
+                                            xmlns="http://www.w3.org/2000/svg" 
+                                            className="settings-left-svg" 
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path 
+                                                fill="currentColor" 
+                                                fillRule="evenodd" 
+                                                d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" 
+                                                clipRule="evenodd"
+                                            />
+                                        </svg>
+
                                         <p>{t[settingsKeyMap["Spellchecker"]] || "Spellchecker"}</p>
                                     </div>
 
@@ -515,7 +758,19 @@ function Settings() {
 
                                 <div className="settings-details">
                                     <div className="settings-details-left">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="settings-left-svg" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" clip-rule="evenodd"/></svg>
+                                        <svg 
+                                            xmlns="http://www.w3.org/2000/svg" 
+                                            className="settings-left-svg" 
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path 
+                                                fill="currentColor" 
+                                                fillRule="evenodd" 
+                                                d="M12 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3M12 8a3 3 0 1 0-2.905-3.75H1.75a.75.75 0 0 0 0 1.5h7.345A3 3 0 0 0 12 8m-6.5 3a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m1.405.75A3.001 3.001 0 0 1 1 11a3 3 0 0 1 5.905-.75h7.345a.75.75 0 0 1 0 1.5z" 
+                                                clipRule="evenodd"
+                                            />
+                                        </svg>
+                                        
                                         <p>{t[settingsKeyMap["Timezone"]] || "Timezone"}</p>
                                     </div>
 

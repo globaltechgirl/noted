@@ -6,6 +6,14 @@ import { folderKeyMap, translations } from  "../../../Context/translations";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
 
 function AllFolders() {
+    // --- Theme Toggle (Light/Dark) ---
+    const [darkMode, setDarkMode] = useState(false);
+
+    const toggleTheme = () => {
+        setDarkMode((prev) => !prev);
+        document.documentElement.classList.toggle("dark");
+    };
+    
     // Language context
     const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.folders || {};
@@ -13,13 +21,6 @@ function AllFolders() {
     // --- Dashboard view ---
     const { dashboardView: defaultView } = useDashboardView(); 
     const [localView, setLocalView] = useState(defaultView); 
-
-    // View switcher positions ---
-    const [positions] = useState({
-        List: 3,
-        Layout: 42,
-        Compact: 93.5,
-    });
 
     // --- Starred filter toggle ---
     const [starredOnly, setStarredOnly] = useState(false);
@@ -135,13 +136,26 @@ function AllFolders() {
                         </div>
 
                         <div className="folder-icons">
-                            <div className="folder-add">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-                            </div>
-
                             <div className="folder-search" onClick={() => setShowSearchPopup(true)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24">
                                     <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/>
+                                </svg>
+                            </div>
+
+                            <div className="folder-add">
+                                <svg 
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    className="folder-header-svg" 
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path 
+                                        fill="none" 
+                                        stroke="currentColor" 
+                                        strokeLinecap="round" 
+                                        strokeLinejoin="round" 
+                                        strokeWidth="2" 
+                                        d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                                    />
                                 </svg>
                             </div>
 
@@ -163,6 +177,44 @@ function AllFolders() {
                                         d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
                                     />
                                 </svg>
+                            </div>
+
+                            <div className="theme-toggle" onClick={toggleTheme}>
+                                <div className={`theme-slider ${darkMode ? "dark" : "light"}`}>
+                                    <div className="theme-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            className="theme-light-svg"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-4 0h.01M12 4v.01M20 12h.01M12 20v.01M6.31 6.31L6.3 6.3m11.41.01l-.01-.01m0 11.4l.01.01M6.3 17.7l.01.01"
+                                            />
+                                        </svg>
+                                    </div>
+
+                                    <div className="theme-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            className="theme-dark-svg"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -334,8 +386,19 @@ function AllFolders() {
                                             <div className="search-quick-body">
                                                 <div className="search-quick-main">
                                                     <div className="quick-main-icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="quick-main-icon-svg" viewBox="0 0 24 24">
-                                                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M16 19h6m-3-3v6"/>
+                                                        <svg 
+                                                            xmlns="http://www.w3.org/2000/svg" 
+                                                            className="quick-main-icon-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path 
+                                                                fill="none" 
+                                                                stroke="currentColor" 
+                                                                strokeLinecap="round" 
+                                                                strokeLinejoin="round" 
+                                                                strokeWidth="2" 
+                                                                d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M16 19h6m-3-3v6"
+                                                            />
                                                         </svg>
                                                     </div>
 
@@ -352,8 +415,19 @@ function AllFolders() {
 
                                                 <div className="search-quick-main">
                                                     <div className="quick-main-icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="quick-main-icon-svg" viewBox="0 0 24 24">
-                                                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M19 22v-6m3 3l-3-3l-3 3"/>
+                                                        <svg 
+                                                            xmlns="http://www.w3.org/2000/svg" 
+                                                            className="quick-main-icon-svg" 
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path 
+                                                                fill="none" 
+                                                                stroke="currentColor" 
+                                                                strokeLinecap="round" 
+                                                                strokeLinejoin="round"
+                                                                strokeWidth="2" 
+                                                                d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M19 22v-6m3 3l-3-3l-3 3"
+                                                            />
                                                         </svg>
                                                     </div>
 
@@ -425,29 +499,85 @@ function AllFolders() {
                                 className={`folder-grid grid-list ${localView === "List" ? "grid-active" : ""}`}
                                 onClick={() => setLocalView("List")}
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="grid-list-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm0 10a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg>
+                                    <svg 
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        className="folder-grid-svg" 
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path 
+                                            fill="none" 
+                                            stroke="currentColor" 
+                                            strokeLinecap="round" 
+                                            strokeLinejoin="round" 
+                                            strokeWidth="2" 
+                                            d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm0 10a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"
+                                        />
+                                    </svg>
+
+                                    <span className="folder-grid-name">List</span>
+
+                                    {localView === "List" && (
+                                        <div className="slider">
+                                            <div className="ball ball-list"></div>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div 
                                 className={`folder-grid grid-layout ${localView === "Layout" ? "grid-active" : ""}`}
                                 onClick={() => setLocalView("Layout")}
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="grid-layout-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zM4 15a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z"/></svg>
+                                    <svg 
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        className="folder-grid-svg" 
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path 
+                                            fill="none" 
+                                            stroke="currentColor" 
+                                            strokeLinecap="round" 
+                                            strokeLinejoin="round" 
+                                            strokeWidth="2" 
+                                            d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zM4 15a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z"
+                                        />
+                                    </svg>
+
+                                    <span className="folder-grid-name">Layout</span>
+
+                                    {localView === "Layout" && (
+                                        <div className="slider">
+                                            <div className="ball ball-layout"></div>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div 
                                 className={`folder-grid grid-compact ${localView === "Compact" ? "grid-active" : ""}`}
                                 onClick={() => setLocalView("Compact")}
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="grid-compact-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0M4 19a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"/></svg>
-                                </div>
-                            </div>
+                                    <svg 
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        className="folder-grid-svg" 
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path 
+                                            fill="none" 
+                                            stroke="currentColor" 
+                                            strokeLinecap="round" 
+                                            strokeLinejoin="round" 
+                                            strokeWidth="2" 
+                                            d="M4 5a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0M4 19a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
+                                        />
+                                    </svg>
 
-                            <div className="slider">
-                                <div
-                                    className="ball"
-                                    style={{ left: positions[localView] + "px" }}
-                                ></div>
+                                    <span className="folder-grid-name">Compact</span>
+
+                                    {localView === "Compact" && (
+                                        <div className="slider">
+                                            <div className="ball ball-compact"></div>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>

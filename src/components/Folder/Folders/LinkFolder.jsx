@@ -5,6 +5,14 @@ import { folderKeyMap, translations } from  "../../../Context/translations";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
 
 function LinkFolder({ folderName }) {
+    // --- Theme Toggle (Light/Dark) ---
+    const [darkMode, setDarkMode] = useState(false);
+
+    const toggleTheme = () => {
+        setDarkMode((prev) => !prev);
+        document.documentElement.classList.toggle("dark");
+    };
+    
     // Language context
     const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.folders || {};
@@ -12,13 +20,6 @@ function LinkFolder({ folderName }) {
     // --- Dashboard view ---
     const { dashboardView: defaultView } = useDashboardView(); 
     const [localView, setLocalView] = useState(defaultView); 
-
-    // View switcher positions ---
-    const [positions] = useState({
-        List: 3.5,
-        Layout: 42,
-        Compact: 94,
-    });
 
     // --- Starred filter toggle ---
     const [starredOnly, setStarredOnly] = useState(false);
@@ -150,13 +151,26 @@ function LinkFolder({ folderName }) {
                         </div>
 
                         <div className="folder-icons">
-                            <div className="folder-add">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-                            </div>
-
                             <div className="folder-search" onClick={() => setShowSearchPopup(true)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24">
                                     <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/>
+                                </svg>
+                            </div>
+
+                            <div className="folder-add">
+                                <svg 
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    className="folder-header-svg" 
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path 
+                                        fill="none" 
+                                        stroke="currentColor" 
+                                        strokeLinecap="round" 
+                                        strokeLinejoin="round" 
+                                        strokeWidth="2" 
+                                        d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                                    />
                                 </svg>
                             </div>
 
@@ -179,6 +193,44 @@ function LinkFolder({ folderName }) {
                                     />
                                 </svg>
                             </div>
+
+                            <div className="theme-toggle" onClick={toggleTheme}>
+                                <div className={`theme-slider ${darkMode ? "dark" : "light"}`}>
+                                    <div className="theme-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            className="theme-light-svg"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-4 0h.01M12 4v.01M20 12h.01M12 20v.01M6.31 6.31L6.3 6.3m11.41.01l-.01-.01m0 11.4l.01.01M6.3 17.7l.01.01"
+                                            />
+                                        </svg>
+                                    </div>
+
+                                    <div className="theme-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            className="theme-dark-svg"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
@@ -188,8 +240,19 @@ function LinkFolder({ folderName }) {
                                 <div className="search-popup-top">
                                     <div className="search-top-left">
                                         <div className="search-top-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="folder-header-svg" viewBox="0 0 24 24">
-                                                <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/>
+                                            <svg 
+                                                xmlns="http://www.w3.org/2000/svg" 
+                                                className="folder-header-svg" 
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path 
+                                                    fill="none" 
+                                                    stroke="currentColor" 
+                                                    strokeLinecap="round" 
+                                                    strokeLinejoin="round" 
+                                                    strokeWidth="2" 
+                                                    d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"
+                                                />
                                             </svg>
                                         </div>
 
@@ -255,9 +318,9 @@ function LinkFolder({ folderName }) {
                                                     <g 
                                                         fill="none" 
                                                         stroke="currentColor" 
-                                                        stroke-linecap="round" 
-                                                        stroke-linejoin="round" 
-                                                        stroke-width="2"
+                                                        strokeLinecap="round" 
+                                                        strokeLinejoin="round" 
+                                                        strokeWidth="2"
                                                     >
                                                         <path 
                                                             d="M15 8h.01M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"
@@ -325,9 +388,9 @@ function LinkFolder({ folderName }) {
                                                                     <g 
                                                                         fill="none" 
                                                                         stroke="currentColor" 
-                                                                        stroke-linecap="round" 
-                                                                        stroke-linejoin="round" 
-                                                                        stroke-width="2"
+                                                                        strokeLinecap="round" 
+                                                                        strokeLinejoin="round" 
+                                                                        strokeWidth="2"
                                                                     >
                                                                         <path 
                                                                             d="M15 8h.01M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9"
@@ -372,9 +435,9 @@ function LinkFolder({ folderName }) {
                                                             <g 
                                                                 fill="none" 
                                                                 stroke="currentColor" 
-                                                                stroke-linecap="round" 
-                                                                stroke-linejoin="round" 
-                                                                stroke-width="2"
+                                                                strokeLinecap="round" 
+                                                                strokeLinejoin="round" 
+                                                                strokeWidth="2"
                                                             >
                                                                 <path 
                                                                     d="M12 3c6.8 0 8.4 1.6 8.8 8.2M12 21c-7.2 0-9-1.8-9-9c0-7.2 1.8-9 9-9" 
@@ -415,9 +478,9 @@ function LinkFolder({ folderName }) {
                                                             <g 
                                                                 fill="none" 
                                                                 stroke="currentColor" 
-                                                                stroke-linecap="round" 
-                                                                stroke-linejoin="round" 
-                                                                stroke-width="2"
+                                                                strokeLinecap="round" 
+                                                                strokeLinejoin="round" 
+                                                                strokeWidth="2"
                                                             >
                                                                 <path 
                                                                     d="M12 3c6.8 0 8.4 1.6 8.8 8.2M12 21c-7.2 0-9-1.8-9-9c0-7.2 1.8-9 9-9" 
@@ -489,14 +552,20 @@ function LinkFolder({ folderName }) {
                                         <path 
                                             fill="none" 
                                             stroke="currentColor" 
-                                            stroke-linecap="round" 
-                                            stroke-linejoin="round" 
-                                            stroke-width="2" 
+                                            strokeLinecap="round" 
+                                            strokeLinejoin="round" 
+                                            strokeWidth="2" 
                                             d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm0 10a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"
                                         />
                                     </svg>
 
-                                    <p className="folder-grid-name">List</p>
+                                    <span className="folder-grid-name">List</span>
+
+                                    {localView === "List" && (
+                                        <div className="slider">
+                                            <div className="ball ball-list"></div>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div 
@@ -511,14 +580,20 @@ function LinkFolder({ folderName }) {
                                         <path 
                                             fill="none" 
                                             stroke="currentColor" 
-                                            stroke-linecap="round" 
-                                            stroke-linejoin="round" 
-                                            stroke-width="2" 
+                                            strokeLinecap="round" 
+                                            strokeLinejoin="round" 
+                                            strokeWidth="2" 
                                             d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zM4 15a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm10 0a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z"
                                         />
                                     </svg>
 
-                                    <p className="folder-grid-name">Layout</p>
+                                    <span className="folder-grid-name">Layout</span>
+
+                                    {localView === "Layout" && (
+                                        <div className="slider">
+                                            <div className="ball ball-layout"></div>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div 
@@ -533,22 +608,21 @@ function LinkFolder({ folderName }) {
                                         <path 
                                             fill="none" 
                                             stroke="currentColor" 
-                                            stroke-linecap="round" 
-                                            stroke-linejoin="round" 
-                                            stroke-width="2" 
+                                            strokeLinecap="round" 
+                                            strokeLinejoin="round" 
+                                            strokeWidth="2" 
                                             d="M4 5a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0M4 19a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
                                         />
                                     </svg>
 
-                                    <p className="folder-grid-name">Compact</p>
-                                </div>
-                            </div>
+                                    <span className="folder-grid-name">Compact</span>
 
-                            <div className="slider">
-                                <div
-                                    className={`ball ball-${localView.toLowerCase()}`}
-                                    style={{ left: positions[localView] + "px" }}
-                                ></div>
+                                    {localView === "Compact" && (
+                                        <div className="slider">
+                                            <div className="ball ball-compact"></div>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>

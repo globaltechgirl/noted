@@ -351,6 +351,57 @@
   border: 0.5px solid var(--border-primary);
 }
 
+/* Theme toogle */
+.theme-toggle {
+  width: 19px;
+  height: 19px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-slider {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease-in-out;
+}
+
+.theme-slider.light {
+  transform: translateY(9.5px);
+}
+
+.theme-slider.dark {
+  transform: translateY(-9.5px);
+}
+
+.theme-icon {
+  width: 19px;
+  height: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-light-svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+.theme-dark-svg {
+  width: 9.5px;
+  height: 9.5px;
+  display: block;
+}
+
+.theme-light-svg path,
+.theme-dark-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-primary);
+}
+
 /* Folder body */
 .folder-body {
   width: 100%;
@@ -428,22 +479,27 @@
   height: 25px;
   color: var(--text-primary);
   opacity: 0.8;
-  padding: 0px 1px 0 2.5px;
+  padding: 0px 1px;
   background: var(--bg-primary);
   border: 0.5px solid var(--border-primary);
   border-radius: 0.4rem;
 }
 
 .folder-grid {
+  position: relative;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 0.2rem;
   padding: 5.5px;
   cursor: pointer;
+  z-index: 2;
 }
 
 .folder-grid-name {
+  position: relative;
+  z-index: 2;
   font-size: 0.48rem;
   font-weight: 550;
   letter-spacing: 0.6px;
@@ -457,19 +513,19 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
 
 .folder-right .slider .ball {
   position: absolute;
-  bottom: 1.5px;
-  left: 0;
+  bottom: 0.8px;
+  left: 1.5px;
   height: 19px;
-  margin-bottom: 1.5px;
   transition: left 0.3s ease;
-  z-index: 1;
+  z-index: 0;
   border: 0.5px solid var(--border-primary);
   border-radius: 0.3rem;
+  background: var(--bg-secondary);
 }
 
 .folder-right .slider .ball.ball-list {
@@ -491,6 +547,11 @@
   cursor: pointer;
   position: relative;
   z-index: 2;
+}
+
+.folder-grid-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-primary);
 }
 
 @media (max-width: 768px) {
