@@ -197,7 +197,6 @@
 .folder-bottom-star-svg path {
   fill: var(--bg-secondary);
   stroke: var(--text-secondary);
-  transition: all 0.3s ease;
 }
 
 .folder-bottom-starred-svg path {
@@ -224,8 +223,8 @@
   height: auto;
   padding: 3px 3px 8px 3px;
   border-radius: 0.7rem;
-  background: var(--color-regular-primary);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
 }
 
 .folder-layout-main .folder-link-body {
@@ -235,8 +234,8 @@
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
-  background: var(--color-background-secondary);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.6rem;
   margin-bottom: 10px;
 }
@@ -245,20 +244,24 @@
   width: 40px;
   height: 40px;
   display: block;
-  background: var(--color-regular-secondary);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
   border-radius: 0.45rem;
-  color: var(--color-text-secondary);
   padding: 7px;
+}
+
+.folder-link-left-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-secondary);
 }
 
 .folder-layout-main .folder-link-title {
   display: block;
   font-size: 0.58rem;
-  font-weight: 500;
+  font-weight: 550;
   letter-spacing: 0.6px;
   line-height: 2;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
@@ -276,43 +279,51 @@
   cursor: pointer;
   gap: 0.3rem;
   padding: 4px 6px;
-  background: var(--color-regular-secondary);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.3rem;
 }
 
 .folder-link-bottom-icon:hover {
-  background: var(--color-background-secondary);
+  background: var(--bg-primary);
 }
 
-.folder-bottom-icon-svg {
+.folder-bottom-icon-svg,
+.folder-bottom-icon-click-svg {
   width: 9px;
   height: 9px;
   display: block;
-  color: var(--color-text-secondary);
   cursor: pointer;
 }
 
 .folder-bottom-icon-text {
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   font-size: 0.45rem;
-  font-weight: 450;
+  font-weight: 500;
+}
+
+.folder-link-bottom-icon path {
+  stroke: var(--text-secondary);
+}
+
+.folder-bottom-icon-click-svg path {
+  fill: var(--text-secondary);
+  stroke: var(--text-secondary);
 }
 
 .folder-edit-toggle-wrapper {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: -3px;
+  width: 243px;
   z-index: 3;
   transform-origin: top;
   transform: translateY(0);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.6s ease, transform 0.6s ease;
-  margin-top: -20px;
+  margin-top: -15px;
   padding: 3px;
-  border: 1px solid var(--color-border-primary);
   border-radius: 0.7rem;
 }
 
@@ -327,8 +338,8 @@
   flex-direction: column;
   gap: 5px;
   padding: 4px;
-  background: var(--color-background-secondary);
-  border: 1px dashed var(--color-border-primary);
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.6rem;
 }
 
@@ -343,41 +354,50 @@
 }
 
 .folder-edit-save-wrapper {
-  padding: 4px 5px;
+  padding: 3.5px 4px;
   width: fit-content;
-  background: var(--color-regular-secondary);
-  border: 0.5px solid var(--color-border-primary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.3rem;
   cursor: pointer;
 }
 
 .folder-edit-save-wrapper:hover {
-  background: var(--color-background-secondary);
+  background: var(--bg-secondary);
 }
 
 .folder-edit-save-svg,
 .folder-edit-reverse-svg {
-  width: 10px;
-  height: 10px;
-  color: var(--color-text-primary);
+  width: 9.5px;
+  height: 9.5px;
   display: block;
 }
 
+.folder-edit-save-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-secondary);
+}
+
+.folder-edit-reverse-svg path {
+  fill: var(--text-secondary);
+  stroke: var(--text-secondary);
+}
+
 .folder-edit-toggle-group {
-  padding: 12px 10px;
+  padding: 10px 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--color-regular-secondary);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.5rem;
 }
 
 .folder-edit-input,
 .folder-edit-label {
   font-size: 0.5rem;
-  font-weight: 450;
-  color: var(--color-text-primary);
+  font-weight: 500;
+  color: var(--text-primary);
   letter-spacing: 0.6px;
   width: 100%;
   display: block;

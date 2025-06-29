@@ -166,8 +166,8 @@
   height: auto;
   padding: 3px;
   border-radius: 0.7rem;
-  background: var(--color-regular-secondary);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
 }
 
 .folder-compact-main .folder-link-body {
@@ -177,8 +177,8 @@
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
-  background: var(--color-background-secondary);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
   border-radius: 0.6rem;
 }
 
@@ -186,20 +186,25 @@
   width: 40px;
   height: 40px;
   display: block;
-  background: var(--color-regular-secondary);
-  border: 1px solid var(--color-border-primary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
   border-radius: 0.45rem;
   color: var(--color-text-secondary);
   padding: 7px;
 }
 
+.folder-link-left-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-secondary);
+}
+
 .folder-compact-main .folder-link-title {
   display: block;
   font-size: 0.58rem;
-  font-weight: 500;
+  font-weight: 550;
   letter-spacing: 0.6px;
   line-height: 2;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;

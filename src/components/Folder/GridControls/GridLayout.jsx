@@ -32,7 +32,20 @@ function GridLayout ({
                                                     <div className="folder-link-main">
                                                         <div className="folder-link-body">
                                                             <div className="folder-link-left">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" className="folder-link-left-svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11"/></svg>
+                                                                <svg 
+                                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                                    className="folder-link-left-svg" 
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path 
+                                                                        fill="none" 
+                                                                        stroke="none" 
+                                                                        stroke-linecap="round" 
+                                                                        stroke-linejoin="round" 
+                                                                        stroke-width="2" 
+                                                                        d="m9 15l6-6m-4-3l.463-.536a5 5 0 0 1 7.071 7.072L18 13m-5 5l-.397.534a5.07 5.07 0 0 1-7.127 0a4.97 4.97 0 0 1 0-7.071L6 11"
+                                                                    />
+                                                                </svg>
                                                             </div>
 
                                                             <div className="folder-link-right">
@@ -45,11 +58,15 @@ function GridLayout ({
                                                                 {folder.starred ? (
                                                                     <svg 
                                                                         xmlns="http://www.w3.org/2000/svg" 
-                                                                        className="folder-bottom-icon-svg" 
+                                                                        className="folder-bottom-icon-click-svg" 
                                                                         viewBox="0 0 24 24"
                                                                     >
                                                                         <path 
-                                                                            fill="currentColor" 
+                                                                            fill="none" 
+                                                                            stroke="currentColor" 
+                                                                            strokeLinecap="round" 
+                                                                            strokeLinejoin="round" 
+                                                                            strokeWidth="2" 
                                                                             d="m12 17.75l-6.172 3.245l1.179-6.873l-5-4.867l6.9-1l3.086-6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
                                                                         />
                                                                     </svg>
@@ -77,25 +94,13 @@ function GridLayout ({
                                                                 {copiedId === folder.id ? (
                                                                     <svg
                                                                         xmlns="http://www.w3.org/2000/svg"
-                                                                        className="folder-bottom-icon-svg"
+                                                                        className="folder-bottom-icon-click-svg" 
                                                                         viewBox="0 0 24 24"
                                                                     >
-                                                                        <g 
-                                                                            fill="none" 
-                                                                            stroke="currentColor" 
-                                                                            strokeLinecap="round" 
-                                                                            strokeLinejoin="round" 
-                                                                            strokeWidth={2}
-                                                                        >
-                                                                            <path 
-                                                                                d="M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z"
-                                                                            >
-                                                                            </path>
-                                                                            <path 
-                                                                                d="M4.012 16.737A2 2 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1M11 14l2 2l4-4"
-                                                                            >
-                                                                            </path>
-                                                                        </g>
+                                                                        <path 
+                                                                            fill="none"
+                                                                            d="M18.333 6A3.667 3.667 0 0 1 22 9.667v8.666A3.667 3.667 0 0 1 18.333 22H9.667A3.667 3.667 0 0 1 6 18.333V9.667A3.667 3.667 0 0 1 9.667 6zM15 2c1.094 0 1.828.533 2.374 1.514a1 1 0 1 1-1.748.972C15.405 4.088 15.284 4 15 4H5c-.548 0-1 .452-1 1v9.998c0 .32.154.618.407.805l.1.065a1 1 0 1 1-.99 1.738A3 3 0 0 1 2 15V5c0-1.652 1.348-3 3-3zm1.293 9.293L13 14.585l-1.293-1.292a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414"
+                                                                        ></path>
                                                                     </svg>
                                                                 ) : (
                                                                     <svg
@@ -162,17 +167,14 @@ function GridLayout ({
                                                                     className="folder-bottom-icon-svg" 
                                                                     viewBox="0 0 24 24"
                                                                 >
-                                                                    <g 
-                                                                        fill="none"
-                                                                    >
-                                                                        <path 
-                                                                            d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"
-                                                                        />
-                                                                        <path 
-                                                                            fill="currentColor" 
-                                                                            d="M14.28 2a2 2 0 0 1 1.897 1.368L16.72 5H20a1 1 0 1 1 0 2l-.003.071l-.867 12.143A3 3 0 0 1 16.138 22H7.862a3 3 0 0 1-2.992-2.786L4.003 7.07L4 7a1 1 0 0 1 0-2h3.28l.543-1.632A2 2 0 0 1 9.721 2zm3.717 5H6.003l.862 12.071a1 1 0 0 0 .997.929h8.276a1 1 0 0 0 .997-.929zM10 10a1 1 0 0 1 .993.883L11 11v5a1 1 0 0 1-1.993.117L9 16v-5a1 1 0 0 1 1-1m4 0a1 1 0 0 1 1 1v5a1 1 0 1 1-2 0v-5a1 1 0 0 1 1-1m.28-6H9.72l-.333 1h5.226z"
-                                                                        />
-                                                                    </g>
+                                                                   <path 
+                                                                        fill="none" 
+                                                                        stroke="currentColor" 
+                                                                        strokeLinecap="round" 
+                                                                        strokeLinejoin="round" 
+                                                                        strokeWidth={2} 
+                                                                        d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"
+                                                                    ></path>
                                                                 </svg>
 
                                                                 <p  className="folder-bottom-icon-text">Delete</p>
@@ -190,14 +192,12 @@ function GridLayout ({
                                                                     <div className="folder-edit-save-wrapper">
                                                                         <svg 
                                                                             xmlns="http://www.w3.org/2000/svg" 
-                                                                            className="folder-edit-save-svg" 
+                                                                            className="folder-edit-reverse-svg" 
                                                                             viewBox="0 0 24 24"
                                                                         >
                                                                             <path 
-                                                                                fill="currentColor" 
                                                                                 d="M12.207 2.293a1 1 0 0 1 0 1.414L10.914 5H12.5c4.652 0 8.5 3.848 8.5 8.5S17.152 22 12.5 22S4 18.152 4 13.5a1 1 0 1 1 2 0c0 3.548 2.952 6.5 6.5 6.5s6.5-2.952 6.5-6.5S16.048 7 12.5 7h-1.586l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 0"
-                                                                           >
-                                                                           </path>
+                                                                           ></path>
                                                                         </svg>
                                                                     </div>
                                                                 </div>
