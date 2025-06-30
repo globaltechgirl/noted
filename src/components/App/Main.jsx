@@ -1,18 +1,18 @@
 import React from "react";
-import Note from "../Note/Note";
+import Dashboard from "../Dashboard/Dashboard";
 import Folder from "../Folder/Folder";
-import AllFolders from "../Folder/Folders/AllFolders"; 
+import Notes from "../Folder/Folders/Notes"; 
 import OneFolder from "../Folder/Folders/OneFolder";
 import MediaFolder from "../Folder/Folders/MediaFolder";
 import LinkFolder from "../Folder/Folders/LinkFolder";
-import Profile from "../Settings/Profile/Profile"; 
-import Settings from "../Settings/Settings/Setting"
+import Profile from "../Folder/Profile/Profile"; 
+import Settings from "../Folder/Settings/Setting";
 
 function Main({ view, activeFolder, onFolderClick, onBack }) {
     const renderContent = () => {
         switch (view) {
-            case "all-notes":
-                return <AllFolders onFolderClick={onFolderClick} />;
+            case "notes":
+                return <Notes onFolderClick={onFolderClick} />;
             case "one-folder":
                 return <OneFolder folderName={activeFolder} onFolderClick={onFolderClick} />;
             case "media-folder":
@@ -26,7 +26,7 @@ function Main({ view, activeFolder, onFolderClick, onBack }) {
             case "settings":
                 return <Settings />;
             default:
-                return <Note onFolderClick={onFolderClick} />;
+                return <Dashboard onFolderClick={onFolderClick} />;
         }
     };
 

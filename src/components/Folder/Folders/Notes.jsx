@@ -1,43 +1,70 @@
-import React from "react";
-import './Note.css';
-import { useLanguage } from "../../Context//LanguageContext";
-import { folderKeyMap, translations } from  "../../Context/translations";
+import React, { useState, useEffect } from "react";
+import "./Notes.css";
+import { useLanguage } from "../../../Context/LanguageContext";
+import { folderKeyMap, translations } from  "../../../Context/translations";
+import { useTheme } from "../../../Context/ThemeContext";
 
-function Note({ onFolderClick }) {
-    // --- Language Selection ---
+function AllFolders() {   
+    // Language context
     const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.folders || {};
 
+    // --- Theme Toggle (Light/Dark) --- 
+    const { darkMode, toggleTheme } = useTheme();
+
     return (
-        <div className="note-container">
-            <div className="note-wrapper">
-                <div className="note-header">
-                    <div className="note-header-wrapper">
-                        <div className="note-logo">
-                            <p>{t[folderKeyMap["Home"]] || "Home"}</p>
+        <div className="folder-container">
+            <div className="folder-wrapper">
+                <div className="folder-header">
+                    <div className="folder-header-wrapper">
+                        <div className="folder-logo">
+                            <p>{t[folderKeyMap["Notes"]] || "Notes"}</p>
                         </div>
 
-                        <div className="note-icons">
-                            <div className="note-add">
-                                <svg 
-                                    xmlns="http://www.w3.org/2000/svg" 
-                                    className="note-header-svg" 
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path   
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round" 
-                                        d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
-                                    />
-                                </svg>
+                        <div className="folder-icons">
+                            <div className="theme-toggle" onClick={toggleTheme}>
+                                <div className={`theme-slider ${darkMode ? "dark" : "light"}`}>
+                                    <div className="theme-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            className="theme-light-svg"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-4 0h.01M12 4v.01M20 12h.01M12 20v.01M6.31 6.31L6.3 6.3m11.41.01l-.01-.01m0 11.4l.01.01M6.3 17.7l.01.01"
+                                            />
+                                        </svg>
+                                    </div>
+
+                                    <div className="theme-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            className="theme-dark-svg"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                
+        <div className="note-container">
+            <div className="note-wrapper">
                 <div className="note-body">
                     <div className="note note-white"
                     onClick={() => onFolderClick && onFolderClick("all-notes")}
@@ -146,7 +173,9 @@ function Note({ onFolderClick }) {
                 </div>
             </div>
         </div>
+            </div>
+        </div>
     );
 }
 
-export default Note;
+export default AllFolders;

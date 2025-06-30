@@ -255,7 +255,7 @@ const subMenus = {
                     <div className="side-header-wrapper">
                         <div className="side-logo">
                             <img
-                                src={darkMode ? logoDark : logoLight}
+                                src={darkMode ? logoLight : logoDark}
                                 alt="Logo"
                                 className="side-logo-img"
                             />

@@ -10,11 +10,11 @@ function App() {
     const [activeFolder, setActiveFolder] = useState(null);
 
     const handleSectionOrFolderClick = (section) => {
-        if (section === "note" || section === "home") {
+        if (section === "dashboard" || section === "home") {
             setView("home");
             setActiveFolder(null);
-        } else if (section === "all-notes") {
-            setView("all-notes");
+        } else if (section === "notes") {
+            setView("notes");
             setActiveFolder(null);
         } else if (section === "Media" || section === "media-folder") {
             setView("media-folder");
