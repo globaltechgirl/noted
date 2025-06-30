@@ -2,20 +2,16 @@ import React, { useState, useEffect } from "react";
 import Folder from "../Folder";
 import { useLanguage } from "../../../Context/LanguageContext";
 import { folderKeyMap, translations } from  "../../../Context/translations";
+import { useTheme } from "../../../Context/ThemeContext";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
 
-function LinkFolder({ folderName }) {
-    // --- Theme Toggle (Light/Dark) --- 
-    const [darkMode, setDarkMode] = useState(false);
-
-    const toggleTheme = () => {
-        setDarkMode((prev) => !prev);
-        document.documentElement.classList.toggle("dark");
-    };
-    
+function LinkFolder({ folderName }) {    
     // Language context
     const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.folders || {};
+
+    // --- Theme Toggle (Light/Dark) --- 
+    const { darkMode, toggleTheme } = useTheme();
 
     // --- Dashboard view ---
     const { dashboardView: defaultView } = useDashboardView(); 
@@ -646,8 +642,6 @@ function LinkFolder({ folderName }) {
                     setEditingId={setEditingId}
                     handleSave={handleSave}
                     handleDelete={handleDelete}
-                    darkMode={darkMode}
-                    toggleTheme={toggleTheme}
                 />
             </div>
         </div>

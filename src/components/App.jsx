@@ -1,33 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Side from "./App/Side";
 import Main from "./App/Main";
 import { LanguageProvider } from "../Context/LanguageContext.jsx";
+import { ThemeProvider } from "../Context/ThemeContext.jsx";
 import { DashboardViewProvider } from "./Folder/GridControls/DashboardViewContext.jsx";
 
 function App() {
     const [view, setView] = useState("home");
     const [activeFolder, setActiveFolder] = useState(null);
-
-    // --- Theme Toggle (Light/Dark) ---
-    const [darkMode, setDarkMode] = useState(() => {
-        const savedTheme = localStorage.getItem("theme");
-        if (savedTheme) return savedTheme === "dark";
-        return window.matchMedia("(prefers-color-scheme: dark)").matches;
-    });
-
-    useEffect(() => {
-        if (darkMode) {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-        }
-    }, [darkMode]);
-
-    const toggleTheme = () => {
-        setDarkMode((prev) => !prev);
-    };
 
     const handleSectionOrFolderClick = (section) => {
         if (section === "note" || section === "home") {
@@ -56,25 +36,24 @@ function App() {
 
     return (
         <LanguageProvider>
-            <DashboardViewProvider>
-                <div className="app-container">
-                    <div className="app-wrapper">
-                        <Side
-                            onSectionClick={handleSectionOrFolderClick}
-                            darkMode={darkMode}
-                            toggleTheme={toggleTheme}
-                        />
-                        <Main
-                            view={view}
-                            activeFolder={activeFolder}
-                            onFolderClick={handleSectionOrFolderClick}
-                            onBack={() => setView("home")}
-                            darkMode={darkMode}
-                            toggleTheme={toggleTheme}
-                        />
+            <ThemeProvider>
+                <DashboardViewProvider>
+                    <div className="app-container">
+                        <div className="app-wrapper">
+                            <Side 
+                                onSectionClick={handleSectionOrFolderClick} 
+                            />
+
+                            <Main
+                                view={view}
+                                activeFolder={activeFolder}
+                                onFolderClick={handleSectionOrFolderClick}
+                                onBack={() => setView("home")}
+                            />
+                        </div>
                     </div>
-                </div>
-            </DashboardViewProvider>
+                </DashboardViewProvider>
+            </ThemeProvider>
         </LanguageProvider>
     );
 }

@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Folder from "../Folder";
+import { useTheme } from "../../../Context/ThemeContext";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
 
 function OneFolder({ folderName }) {
     // --- Theme Toggle (Light/Dark) --- 
-    const [darkMode, setDarkMode] = useState(false);
-
-    const toggleTheme = () => {
-        setDarkMode((prev) => !prev);
-        document.documentElement.classList.toggle("dark");
-    };
+    const { darkMode, toggleTheme } = useTheme();
     
     // --- Dashboard view ---
     const { dashboardView: defaultView } = useDashboardView(); 
@@ -588,8 +584,6 @@ function OneFolder({ folderName }) {
                     view={localView.toLowerCase()} 
                     data={filteredData} 
                     toggleStar={toggleStar} 
-                    darkMode={darkMode}
-                    toggleTheme={toggleTheme}
                 />
             </div>
         </div>

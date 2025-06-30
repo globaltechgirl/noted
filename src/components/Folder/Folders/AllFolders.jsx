@@ -3,20 +3,16 @@ import Folder from "../Folder";
 import "./AllFolders.css";
 import { useLanguage } from "../../../Context/LanguageContext";
 import { folderKeyMap, translations } from  "../../../Context/translations";
+import { useTheme } from "../../../Context/ThemeContext";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
 
 function AllFolders() {   
-    // --- Theme Toggle (Light/Dark) --- 
-    const [darkMode, setDarkMode] = useState(false);
-
-    const toggleTheme = () => {
-        setDarkMode((prev) => !prev);
-        document.documentElement.classList.toggle("dark");
-    };
-
     // Language context
     const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.folders || {};
+
+    // --- Theme Toggle (Light/Dark) --- 
+    const { darkMode, toggleTheme } = useTheme();
 
     // --- Dashboard view ---
     const { dashboardView: defaultView } = useDashboardView(); 
@@ -587,8 +583,6 @@ function AllFolders() {
                     view={localView.toLowerCase()} 
                     data={filteredData} 
                     toggleStar={toggleStar} 
-                    darkMode={darkMode}
-                    toggleTheme={toggleTheme}
                 />
             </div>
         </div>

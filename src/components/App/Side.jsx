@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import { useLanguage } from "../../Context/LanguageContext";
 import { translations } from  "../../Context/translations";
+import { useTheme } from "../../Context/ThemeContext";
+import logoLight from "../../assets/images/logo-light.png";
+import logoDark from "../../assets/images/logo-dark.png";
 
-function Side({ onSectionClick }) {
-    // Active Section State
-    const [activeSection, setActiveSection] = useState("note");
-
+function Side({ 
+    onSectionClick
+}) {
     // --- Language Selection ---
     const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.side || {};
+
+    // --- Theme Toggle (Light/Dark) --- 
+    const { darkMode, toggleTheme } = useTheme();
+
+    // Active Section State
+    const [activeSection, setActiveSection] = useState("note");
 
     // Menu Item Click
     const handleClick = (sectionName) => {
@@ -17,7 +25,6 @@ function Side({ onSectionClick }) {
     };
 
     // Side Menu Items
-
     const groupedMenuItems = {
         top: [
             {
@@ -247,7 +254,11 @@ const subMenus = {
                 <div className="side-header">
                     <div className="side-header-wrapper">
                         <div className="side-logo">
-                            <img src="/src/assets/images/noted.png" />
+                            <img
+                                src={darkMode ? logoDark : logoLight}
+                                alt="Logo"
+                                className="side-logo-img"
+                            />
                         </div>
 
                         <div className="side-logo-svgs">
