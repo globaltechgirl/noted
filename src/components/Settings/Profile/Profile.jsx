@@ -3,14 +3,14 @@ import './Profile.css';
 import { allCountries } from "country-telephone-data";
 
 function Profile() {
-    // --- Theme Toggle (Light/Dark) ---
+    // --- Theme Toggle (Light/Dark) --- 
     const [darkMode, setDarkMode] = useState(false);
 
     const toggleTheme = () => {
         setDarkMode((prev) => !prev);
         document.documentElement.classList.toggle("dark");
     };
-
+    
    // --- Profile Information State ---
     const [fullName, setFullName] = useState("First Last");
     const [username, setUsername] = useState("username");

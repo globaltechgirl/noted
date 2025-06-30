@@ -5,15 +5,15 @@ import { useLanguage } from "../../../Context/LanguageContext";
 import { folderKeyMap, translations } from  "../../../Context/translations";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
 
-function AllFolders() {
-    // --- Theme Toggle (Light/Dark) ---
+function AllFolders() {   
+    // --- Theme Toggle (Light/Dark) --- 
     const [darkMode, setDarkMode] = useState(false);
 
     const toggleTheme = () => {
         setDarkMode((prev) => !prev);
         document.documentElement.classList.toggle("dark");
     };
-    
+
     // Language context
     const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.folders || {};
@@ -587,6 +587,8 @@ function AllFolders() {
                     view={localView.toLowerCase()} 
                     data={filteredData} 
                     toggleStar={toggleStar} 
+                    darkMode={darkMode}
+                    toggleTheme={toggleTheme}
                 />
             </div>
         </div>

@@ -1,7 +1,9 @@
 import React from "react";
 import "./GridCompact.css"; 
 
-function GridCompact ({ data = [] }) {
+function GridCompact ({ 
+    data = [],
+}) {
     return (
         <div className="folder-container">
             <div className="folder-wrapper">

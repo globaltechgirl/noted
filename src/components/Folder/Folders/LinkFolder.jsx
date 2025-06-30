@@ -5,7 +5,7 @@ import { folderKeyMap, translations } from  "../../../Context/translations";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
 
 function LinkFolder({ folderName }) {
-    // --- Theme Toggle (Light/Dark) ---
+    // --- Theme Toggle (Light/Dark) --- 
     const [darkMode, setDarkMode] = useState(false);
 
     const toggleTheme = () => {
@@ -646,6 +646,8 @@ function LinkFolder({ folderName }) {
                     setEditingId={setEditingId}
                     handleSave={handleSave}
                     handleDelete={handleDelete}
+                    darkMode={darkMode}
+                    toggleTheme={toggleTheme}
                 />
             </div>
         </div>

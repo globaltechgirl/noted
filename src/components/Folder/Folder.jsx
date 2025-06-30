@@ -20,6 +20,8 @@ function Folder({
     setEditingId,
     handleSave,
     handleDelete,
+    darkMode,   
+    toggleTheme, 
 }) {
     return (
         <>
@@ -40,6 +42,8 @@ function Folder({
                         setEditingId={setEditingId}
                         handleSave={handleSave}
                         handleDelete={handleDelete}
+                        darkMode={darkMode}
+                        toggleTheme={toggleTheme}
                     />
                 </div>
             )}
@@ -61,6 +65,8 @@ function Folder({
                         setEditingId={setEditingId}
                         handleSave={handleSave}
                         handleDelete={handleDelete}
+                        darkMode={darkMode}
+                        toggleTheme={toggleTheme}
                     />
                 </div>
             )}
@@ -82,6 +88,8 @@ function Folder({
                         setEditingId={setEditingId}
                         handleSave={handleSave}
                         handleDelete={handleDelete}
+                        darkMode={darkMode}
+                        toggleTheme={toggleTheme}
                     />
                 </div> 
             )}

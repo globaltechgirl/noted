@@ -4,15 +4,15 @@ import { useLanguage } from "../../../Context//LanguageContext";
 import { settingsKeyMap, translations } from  "../../../Context/translations";
 import { useDashboardView } from "../../Folder/GridControls/DashboardViewContext.jsx";
 
-function Settings() {
-    // --- Theme Toggle (Light/Dark) ---
+function Settings() {  
+    // --- Theme Toggle (Light/Dark) --- 
     const [darkMode, setDarkMode] = useState(false);
 
     const toggleTheme = () => {
         setDarkMode((prev) => !prev);
         document.documentElement.classList.toggle("dark");
     };
-    
+      
     // --- Username ---
     const [username, setUsername] = useState("username");
 

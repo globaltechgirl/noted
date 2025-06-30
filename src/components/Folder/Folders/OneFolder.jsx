@@ -3,14 +3,14 @@ import Folder from "../Folder";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
 
 function OneFolder({ folderName }) {
-    // --- Theme Toggle (Light/Dark) ---
+    // --- Theme Toggle (Light/Dark) --- 
     const [darkMode, setDarkMode] = useState(false);
 
     const toggleTheme = () => {
         setDarkMode((prev) => !prev);
         document.documentElement.classList.toggle("dark");
     };
-
+    
     // --- Dashboard view ---
     const { dashboardView: defaultView } = useDashboardView(); 
     const [localView, setLocalView] = useState(defaultView); 
@@ -588,6 +588,8 @@ function OneFolder({ folderName }) {
                     view={localView.toLowerCase()} 
                     data={filteredData} 
                     toggleStar={toggleStar} 
+                    darkMode={darkMode}
+                    toggleTheme={toggleTheme}
                 />
             </div>
         </div>
