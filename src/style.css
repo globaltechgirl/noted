@@ -50,7 +50,7 @@ body {
 .app-wrapper {
   display: flex;
   flex-direction: row;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 /* Side container */
@@ -342,7 +342,7 @@ li.active .side-menu-svg path {
 .custom-scrollbar::-webkit-slider-runnable-track {
   width: 5px;
   height: 98vh;
-  background: var(--border-primary);
+  background: var(--bg-primary);
   border-radius: 0.5rem;
 }
 
@@ -352,6 +352,7 @@ li.active .side-menu-svg path {
   width: 5px;
   height: 100px;
   background: var(--text-secondary);
+  opacity: 0.5;
   border-radius: 0.5rem;
   cursor: pointer;
   position: relative;

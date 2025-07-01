@@ -78,8 +78,9 @@ function App() {
             <ThemeProvider>
                 <DashboardViewProvider>
                     <div className="app-container">
-                        <div className="app-wrapper" style={{ display: "flex", height: "100vh" }}>
+                        <div className="app-wrapper">
                             <Side onSectionClick={handleSectionOrFolderClick} />
+
                             <div className="main-scroll-container">
                                 <div className="main-content">
                                     <div className="main-content-wrapper" ref={mainContentRef}>
