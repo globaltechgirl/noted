@@ -37,35 +37,9 @@
 /* Base HTML & Body styles */
 html,
 body {
-  min-height: 100vh;
-  height: auto;
-  overflow-x: hidden;
-  overflow-y: auto;
+  height: 100%;
+  overflow: hidden;
   font-family: "Inter", sans-serif;
-  background: var(--color-background-primary);
-}
-
-body::-webkit-scrollbar {
-  width: 0.4vw;
-  background: var(--color-background-secondary);
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: var(--color-border);
-  border-radius: 0.5rem;
-  cursor: pointer;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-surface-accent);
-}
-
-body::-webkit-scrollbar-track {
-  background: var(--color-background-secondary);
-}
-
-body::-webkit-scrollbar-track:hover {
-  background: var(--color-background-secondary);
 }
 
 /* App container */
@@ -79,22 +53,6 @@ body::-webkit-scrollbar-track:hover {
   min-height: 100vh;
 }
 
-/* Main container */
-.main {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 82%;
-  height: 98vh;
-  padding: 0 0 35px 0;
-  margin: 5px 5px 5px 0;
-  margin-left: 18%;
-  border-radius: 0.5rem;
-}
-
-.main,
 .side-menu {
   background: var(--bg-secondary);
   border: 0.5px solid var(--border-primary);
@@ -102,14 +60,84 @@ body::-webkit-scrollbar-track:hover {
 
 /* Side container */
 .side {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative; /* or static */
+  top: auto;
+  transform: none;
   height: 100vh;
   width: 18%;
   display: flex;
   flex-direction: row;
   background: inherit;
+}
+
+.main-scroll-container {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 82%;
+  height: 100vh;
+  background: transparent;
+  display: flex;
+  padding: 5px 0;
+  overflow: hidden;
+}
+
+.main-content-wrapper {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.main-content-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-scrollbar {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 5px;
+  height: 100%;
+  margin-left: 8px;
+  cursor: pointer;
+  background: var(--border-primary);
+  border-radius: 0.5rem;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+}
+
+.custom-scrollbar::-webkit-slider-runnable-track {
+  width: 5px;
+  height: 100%;
+  background: var(--border-primary);
+  border-radius: 0.5rem;
+}
+
+.custom-scrollbar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 5px;
+  height: 100px;
+  background: var(--text-secondary);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: -10px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Firefox */
+.custom-scrollbar::-moz-range-track {
+  background: var(--border-primary);
+  border-radius: 0.5rem;
+}
+
+.custom-scrollbar::-moz-range-thumb {
+  background: var(--text-secondary);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  height: 40px;
+  width: 5px;
 }
 
 /* Side menu */

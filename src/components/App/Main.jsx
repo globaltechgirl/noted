@@ -30,7 +30,11 @@ function Main({ view, activeFolder, onFolderClick, onBack }) {
         }
     };
 
-    return <div className="main">{renderContent()}</div>;
+    return (
+        <div className="main" >
+            {renderContent()}
+        </div>
+    );
 }
 
 export default Main;
