@@ -169,7 +169,7 @@
 .dashboard-top-main {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  gap: 15px;
   letter-spacing: 0.6px;
   font-weight: 550;
   margin-top: 25px;
@@ -210,25 +210,232 @@
   color: var(--text-primary);
 }
 
-.dashboard-bottom-left-main {
-  background: var(--bg-primary);
-  border: 0.5px solid var(--border-primary);
-  padding: 15px;
-  border-radius: 0.5rem;
-  font-weight: 550;
+.dashboard-middle {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+  margin-top: 15px;
 }
 
-.dashboard-bottom-left {
+.dashboard-tasks {
+  flex: 1.4;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  letter-spacing: 0.6px;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.5rem;
+  padding: 20px 15px 15px 15px;
 }
 
-.dashboard-bottom-left-header {
-  font-size: 0.62rem;
+.tasks-header,
+.performance-header,
+.projects-header {
+  font-size: 0.65rem;
+  color: var(--text-primary);
+  font-weight: 550;
+  margin-bottom: 15px;
+}
+
+.tasks-content-header ul,
+.tasks-content-text ul {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tasks-content-header ul li p {
+  font-size: 0.56rem;
+  font-weight: 550;
   color: var(--text-secondary);
-    font-weight: 550;
+  margin-bottom: 12px;
 }
 
+.tasks-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
 
+.tasks-content-text ul {
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
+  padding: 10px;
+  border-radius: 0.35rem;
+}
 
+.tasks-content-text ul li p {
+  font-size: 0.55rem;
+  font-weight: 550;
+  color: var(--text-primary);
+}
+
+.tasks-content-text .tasks-date {
+  font-size: 0.52rem;
+}
+
+.dashboard-performance {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  letter-spacing: 0.6px;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.5rem;
+  padding: 20px 15px 15px 15px;
+  font-weight: 550;
+}
+
+.performance-text {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.performance-text-figure {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+
+.performance-text-span {
+  font-size: 0.55rem;
+  color: var(--text-secondary);
+  margin-bottom: 3.5px;
+}
+
+.performance-text-span span {
+  color: var(--text-primary);
+}
+
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 120px;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bar-track {
+  height: 115px;
+  width: 40px;
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--border-primary),
+    var(--border-primary) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  border-radius: 0.35rem;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  border: 0.5px solid var(--border-primary);
+}
+
+.bar-fill {
+  width: 100%;
+  background: var(--bg-secondary);
+  border-radius: 0.35rem 0.35rem 0 0;
+  transition: height 0.3s ease-in-out;
+}
+
+.bar-day {
+  margin-top: 10px;
+  font-size: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.dashboard-bottom {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.dashboard-projects {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  letter-spacing: 0.6px;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.5rem;
+  padding: 20px 15px 15px 15px;
+}
+
+.projects-content-header ul,
+.projects-content-text ul {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.projects-content-header ul li p {
+  font-size: 0.56rem;
+  font-weight: 550;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.projects-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.projects-content-text ul {
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
+  padding: 10px;
+  border-radius: 0.35rem;
+}
+
+.projects-content-text ul li p {
+  font-size: 0.55rem;
+  font-weight: 550;
+  color: var(--text-primary);
+}
+
+.projects-content-text .projects-status {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 4px 5px;
+  font-size: 0.5rem;
+  font-weight: 500;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.3rem;
+}
+
+.projects-content-text .projects-date {
+  font-size: 0.52rem;
+}
+
+.projects-status-svg {
+  width: 9px;
+  height: 9px;
+  display: block;
+}
+
+.projects-status-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-primary);
+}
