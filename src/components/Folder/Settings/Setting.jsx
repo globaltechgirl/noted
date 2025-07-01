@@ -2,16 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import './Setting.css';
 import { useLanguage } from "../../../Context/LanguageContext.jsx";
 import { settingsKeyMap, translations } from  "../../../Context/translations.js";
+import { useTheme } from "../../../Context/ThemeContext";
 import { useDashboardView } from "../GridControls/DashboardViewContext.jsx";
 
 function Settings() {  
     // --- Theme Toggle (Light/Dark) --- 
-    const [darkMode, setDarkMode] = useState(false);
-
-    const toggleTheme = () => {
-        setDarkMode((prev) => !prev);
-        document.documentElement.classList.toggle("dark");
-    };
+    const { darkMode, toggleTheme } = useTheme();
       
     // --- Username ---
     const [username, setUsername] = useState("username");

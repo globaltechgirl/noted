@@ -1,10 +1,199 @@
-import React from "react";
+import React, { useState } from "react";
+import './Dashboard.css';
+import { useLanguage } from "../../Context/LanguageContext";
+import { folderKeyMap, translations } from  "../../Context/translations";
+import { useTheme } from "../../Context/ThemeContext";
 
-function Dashboard({ view, activeFolder, onFolderClick, onBack }) {
+function Dashboard({ }) {
+    // Language context
+    const { selectedLanguage } = useLanguage();
+    const t = translations[selectedLanguage]?.folders || {};
+
+    // --- Theme Toggle (Light/Dark) --- 
+    const { darkMode, toggleTheme } = useTheme();
+
     return (
-        <div className="dashboard">
-            <h2>Welcome to your dashboard</h2>
-            {/* You can add more components or interactions here */}
+        <div className="dashboard-container">
+            <div className="dashboard-wrapper">
+                <div className="dashboard-header">
+                    <div className="dashboard-header-wrapper">
+                        <div className="dashboard-logo">
+                           <p>Dashboard</p>
+                        </div>
+
+                        <div className="dashboard-icon">
+                            <div className="theme-toggle" onClick={toggleTheme}>
+                                <div className={`theme-slider ${darkMode ? "dark" : "light"}`}>
+                                    <div className="theme-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            className="theme-light-svg"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-4 0h.01M12 4v.01M20 12h.01M12 20v.01M6.31 6.31L6.3 6.3m11.41.01l-.01-.01m0 11.4l.01.01M6.3 17.7l.01.01"
+                                            />
+                                        </svg>
+                                    </div>
+
+                                    <div className="theme-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            className="theme-dark-svg"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="dashboard-body">
+                    <div className="dashboard-main">
+                        <div className="dashboard-banner">
+                            <div className="banner-header">
+                                <p>Welcome to Noted!</p>
+                            </div>
+
+                            <div className="banner-text">
+                                <p>
+                                    It's Friday, August 17 2024
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="dashboard-top-main">
+                            <div className="dashboard-top">
+                                <div className="dashboard-top-left">
+                                    <div className="dashboard-top-header">
+                                        <p>Total Projects</p>
+                                    </div>
+
+                                    <div className="dashboard-top-figure">
+                                        <p>15</p>
+                                    </div>
+
+                                    <div className="dashboard-top-text">
+                                        <p>
+                                            <span>+5 </span>
+                                            vs last month
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="dashboard-top-right">
+                                    <img src="./" alt="folder-img" />
+                                </div>
+                            </div>
+
+                            <div className="dashboard-top">
+                                <div className="dashboard-top-left">
+                                    <div className="dashboard-top-header">
+                                        <p>Total Projects</p>
+                                    </div>
+
+                                    <div className="dashboard-top-figure">
+                                        <p>15</p>
+                                    </div>
+
+                                    <div className="dashboard-top-text">
+                                        <p>
+                                            <span>+5 </span>
+                                            vs last month
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="dashboard-top-right">
+                                    <img src="./" alt="folder-img" />
+                                </div>
+                            </div>
+
+                            <div className="dashboard-top">
+                                <div className="dashboard-top-left">
+                                    <div className="dashboard-top-header">
+                                        <p>Total Projects</p>
+                                    </div>
+
+                                    <div className="dashboard-top-figure">
+                                        <p>15</p>
+                                    </div>
+
+                                    <div className="dashboard-top-text">
+                                        <p>
+                                            <span>+5 </span>
+                                            vs last month
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="dashboard-top-right">
+                                    <img src="./" alt="folder-img" />
+                                </div>
+                            </div>
+
+                            <div className="dashboard-top">
+                                <div className="dashboard-top-left">
+                                    <div className="dashboard-top-header">
+                                        <p>Total Projects</p>
+                                    </div>
+
+                                    <div className="dashboard-top-figure">
+                                        <p>15</p>
+                                    </div>
+
+                                    <div className="dashboard-top-text">
+                                        <p>
+                                            <span>+5 </span>
+                                            vs last month
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="dashboard-top-right">
+                                    <img src="./" alt="folder-img" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="dashboard-bottom-left-main">
+                            <div className="dashboard-bottom-left">
+                                <div className="dashboard-bottom-left-header">
+                                    <p>Today's Tasks</p>
+                                </div>
+
+                                <div className="dashboard-bottom-left-content">
+                                    <div className="dashboard-bottom-left-content-header">
+                                                                            <ul>
+                                        <li>
+                                            <p>Task Name</p>
+                                        </li>
+                                        <li>
+                                            <p>Date</p>
+                                        </li>
+                                    </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

@@ -1,15 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import './Profile.css';
+import { useTheme } from "../../../Context/ThemeContext";
 import { allCountries } from "country-telephone-data";
 
 function Profile() {
     // --- Theme Toggle (Light/Dark) --- 
-    const [darkMode, setDarkMode] = useState(false);
-
-    const toggleTheme = () => {
-        setDarkMode((prev) => !prev);
-        document.documentElement.classList.toggle("dark");
-    };
+    const { darkMode, toggleTheme } = useTheme();
     
    // --- Profile Information State ---
     const [fullName, setFullName] = useState("First Last");

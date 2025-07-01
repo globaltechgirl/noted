@@ -1,0 +1,234 @@
+/* Dashboard container */
+.dashboard-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+/* Dashboard wrapper */
+.dashboard-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dashboard header */
+.dashboard-header {
+  position: fixed;
+  z-index: 10;
+  width: 85vw;
+  padding-top: 20px;
+}
+
+.dashboard-header-wrapper {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.6rem;
+  padding: 4px 4.5px;
+}
+
+/* Dashboard logo */
+.dashboard-logo {
+  display: flex;
+  align-items: center;
+  color: var(--text-primary);
+  gap: 0.4rem;
+  background: var(--bg-secondary);
+  padding: 7px 12px;
+  border-radius: 0.4rem;
+  border: 0.5px solid var(--border-primary);
+}
+
+.dashboard-logo p {
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: capitalize;
+}
+
+/* Dashboard icon */
+.dashboard-icon {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  gap: 0.2rem;
+  padding: 3px;
+  background: var(--bg-secondary);
+  border-radius: 0.4rem;
+  border: 0.5px solid var(--border-primary);
+}
+
+.dashboard-icon > * {
+  padding: 4.5px;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.dashboard-icon > *:hover {
+  background: var(--bg-secondary);
+}
+
+.theme-toggle {
+  width: 19px;
+  height: 19px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-slider {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease-in-out;
+}
+
+.theme-slider.light {
+  transform: translateY(9.5px);
+}
+
+.theme-slider.dark {
+  transform: translateY(-9.5px);
+}
+
+.theme-icon {
+  width: 19px;
+  height: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-light-svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+.theme-dark-svg {
+  width: 9.5px;
+  height: 9.5px;
+  display: block;
+}
+
+.theme-light-svg path,
+.theme-dark-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-primary);
+}
+
+/* Dashboard body */
+.dashboard-body {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 90px;
+}
+
+.dashboard-main {
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+/* Dashboard banner */
+.dashboard-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  letter-spacing: 0.6px;
+}
+
+.banner-header {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.banner-text {
+  font-size: 0.55rem;
+  font-weight: 550;
+  color: var(--text-secondary);
+}
+
+/* Dashboard top main */
+.dashboard-top-main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  letter-spacing: 0.6px;
+  font-weight: 550;
+  margin-top: 25px;
+}
+
+.dashboard-top {
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  padding: 15px;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-top-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dashboard-top-header {
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+}
+
+.dashboard-top-figure {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.dashboard-top-text {
+  font-size: 0.55rem;
+  color: var(--text-secondary);
+}
+
+.dashboard-top-text span {
+  color: var(--text-primary);
+}
+
+.dashboard-bottom-left-main {
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  padding: 15px;
+  border-radius: 0.5rem;
+  font-weight: 550;
+}
+
+.dashboard-bottom-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dashboard-bottom-left-header {
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+    font-weight: 550;
+}
+
+
+
