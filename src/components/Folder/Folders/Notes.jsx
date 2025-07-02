@@ -3,9 +3,9 @@ import "./Notes.css";
 import { useLanguage } from "../../../Context/LanguageContext";
 import { folderKeyMap, translations } from "../../../Context/translations";
 import { useTheme } from "../../../Context/ThemeContext";
-import imgLight from "../../../assets/images/note-light.png";
+import imgLight from "../../../assets/images/note-dark.png";
 import imgLock from "../../../assets/images/note-lock.png";
-import imgBlack from "../../../assets/images/note-dark.png";
+import imgBlack from "../../../assets/images/note-light.png";
 
 function AllFolders({ onFolderClick }) {
   // Language context
@@ -220,6 +220,7 @@ return (
 
                                     <div className="note-details">
                                         <p className="note-title">{note.title} Notes</p>
+                                        <p className="note-text">12 files</p>
                                     </div>
                                 </div>
                             </div>
