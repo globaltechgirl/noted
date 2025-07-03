@@ -306,7 +306,6 @@ li.active .side-menu-svg path {
   writing-mode: vertical-lr;
   width: 5px;
   height: 98vh;
-  margin-left: 8px;
   cursor: pointer;
   background: var(--border-primary);
   border-radius: 0.5rem;
@@ -314,12 +313,13 @@ li.active .side-menu-svg path {
   -webkit-appearance: none;
   appearance: none;
   position: relative;
+  transition: opacity 0.3s ease;
 }
 
 .custom-scrollbar::-webkit-slider-runnable-track {
   width: 5px;
   height: 98vh;
-  background: var(--bg-primary);
+  background: var(--border-primary);
   border-radius: 0.5rem;
 }
 
@@ -327,7 +327,7 @@ li.active .side-menu-svg path {
   -webkit-appearance: none;
   appearance: none;
   width: 5px;
-  height: 100px;
+  height: var(--thumb-height);
   background: var(--text-secondary);
   opacity: 0.5;
   border-radius: 0.5rem;
@@ -343,6 +343,7 @@ li.active .side-menu-svg path {
 
 .custom-scrollbar::-moz-range-thumb {
   background: var(--text-secondary);
+  opacity: 0.5;
   border-radius: 0.5rem;
   cursor: pointer;
   height: 40px;
@@ -462,5 +463,4 @@ li.active .side-menu-svg path {
   .side {
     width: 20%;
   }
-
 }

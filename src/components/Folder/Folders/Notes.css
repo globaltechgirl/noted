@@ -57,8 +57,8 @@
   text-transform: capitalize;
 }
 
-/* Note icon */
-.note-icon {
+/* Note icons */
+.note-icons {
   position: relative;
   z-index: 10;
   display: flex;
@@ -69,7 +69,7 @@
   border: 0.5px solid var(--border-primary);
 }
 
-.note-icon > * {
+.note-icons > * {
   padding: 4.5px;
   background: var(--bg-primary);
   border: 0.5px solid var(--border-primary);
@@ -77,10 +77,11 @@
   cursor: pointer;
 }
 
-.note-icon > *:hover {
+.note-icons > *:hover {
   background: var(--bg-secondary);
 }
 
+/* Theme toogle */
 .theme-toggle {
   width: 19px;
   height: 19px;
@@ -145,6 +146,7 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 20px;
+  margin-right: 20px;
 }
 
 .note {
@@ -157,11 +159,14 @@
   flex: 1;
 }
 
+/* Note main */
 .note-main {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
+/* Note img */
 .note-img {
   max-width: 135px;
 }
@@ -172,6 +177,7 @@
   display: block;
 }
 
+/* Note details */
 .note-details {
   padding: 0 5px;
   letter-spacing: 0.6px;
@@ -291,5 +297,3 @@
     gap: 20px;
   }
 }
-
-

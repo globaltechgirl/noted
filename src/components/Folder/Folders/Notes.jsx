@@ -95,6 +95,22 @@ function Notes ({ onFolderClick }) {
             theme: "light",
             imgAlt: "Personal Notes",
             keyId: "personal",
+        },
+        {
+            id: 11,
+            image: imgLight,
+            title: "Notes",
+            theme: "dark",
+            imgAlt: "Notes",
+            keyId: "notes",
+        },
+        {
+            id: 12,
+            image: imgBlack,
+            title: "Personal",
+            theme: "light",
+            imgAlt: "Personal Notes",
+            keyId: "personal",
         }
     ]);
 

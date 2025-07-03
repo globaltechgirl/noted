@@ -15,27 +15,31 @@ function App() {
     const [scrollTop, setScrollTop] = useState(0);
     const [scrollHeight, setScrollHeight] = useState(0);
     const [clientHeight, setClientHeight] = useState(0);
+    const thumbHeight = Math.max((clientHeight / scrollHeight) * clientHeight, 30); 
 
     // Track scroll changes
     useEffect(() => {
         const scrollBox = mainContentRef.current;
         if (!scrollBox) return;
 
-        const onScroll = () => {
+        const updateScrollMetrics = () => {
             setScrollTop(scrollBox.scrollTop);
             setScrollHeight(scrollBox.scrollHeight);
             setClientHeight(scrollBox.clientHeight);
         };
 
-        scrollBox.addEventListener("scroll", onScroll);
+        updateScrollMetrics();
+        scrollBox.addEventListener("scroll", updateScrollMetrics);
+        window.addEventListener("resize", updateScrollMetrics);
 
-        setScrollHeight(scrollBox.scrollHeight);
-        setClientHeight(scrollBox.clientHeight);
+        const timeout = setTimeout(updateScrollMetrics, 100);
 
         return () => {
-            scrollBox.removeEventListener("scroll", onScroll);
+            scrollBox.removeEventListener("scroll", updateScrollMetrics);
+            window.removeEventListener("resize", updateScrollMetrics);
+            clearTimeout(timeout);
         };
-    }, []);
+    }, [view, activeFolder]);
 
     // Custom scrollbar handler
     const handleScrollbarChange = (e) => {
@@ -98,6 +102,12 @@ function App() {
                                     value={scrollTop}
                                     onChange={handleScrollbarChange}
                                     className="custom-scrollbar"
+                                    style={{ 
+                                        "--thumb-height": `${thumbHeight}px`,
+                                        opacity: scrollHeight > clientHeight ? 1 : 0,
+                                        marginLeft: scrollHeight > clientHeight ? "8px" : "0px",
+                                        pointerEvents: scrollHeight > clientHeight ? "auto" : "none",
+                                    }}
                                 />
                             </div>
                         </div>
