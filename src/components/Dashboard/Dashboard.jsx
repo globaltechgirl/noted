@@ -65,23 +65,11 @@ function Dashboard({ }) {
 
                 <div className="dashboard-body">
                     <div className="dashboard-main">
-                        <div className="dashboard-banner">
-                            <div className="banner-header">
-                                <p>Welcome to Noted!</p>
-                            </div>
-
-                            <div className="banner-text">
-                                <p>
-                                    It's Friday, August 17 2024
-                                </p>
-                            </div>
-                        </div>
-
                         <div className="dashboard-top-main">
                             <div className="dashboard-top">
                                 <div className="dashboard-top-left">
                                     <div className="dashboard-top-header">
-                                        <p>Total Projects</p>
+                                        <p>Total Notes</p>
                                     </div>
 
                                     <div className="dashboard-top-figure">
@@ -97,14 +85,14 @@ function Dashboard({ }) {
                                 </div>
 
                                 <div className="dashboard-top-right">
-                                    <img src="./" alt="folder-img" />
+                                    <img src="/public/assets/images/folder1.png" alt="folder-img" />
                                 </div>
                             </div>
 
                             <div className="dashboard-top">
                                 <div className="dashboard-top-left">
                                     <div className="dashboard-top-header">
-                                        <p>Total Projects</p>
+                                        <p>Total Files</p>
                                     </div>
 
                                     <div className="dashboard-top-figure">
@@ -120,14 +108,14 @@ function Dashboard({ }) {
                                 </div>
 
                                 <div className="dashboard-top-right">
-                                    <img src="./" alt="folder-img" />
+                                    <img src="/public/assets/images/folder1.png" alt="folder-img" />
                                 </div>
                             </div>
 
                             <div className="dashboard-top">
                                 <div className="dashboard-top-left">
                                     <div className="dashboard-top-header">
-                                        <p>Total Projects</p>
+                                        <p>Total Tasks</p>
                                     </div>
 
                                     <div className="dashboard-top-figure">
@@ -143,14 +131,14 @@ function Dashboard({ }) {
                                 </div>
 
                                 <div className="dashboard-top-right">
-                                    <img src="./" alt="folder-img" />
+                                    <img src="/public/assets/images/folder1.png" alt="folder-img" />
                                 </div>
                             </div>
 
                             <div className="dashboard-top">
                                 <div className="dashboard-top-left">
                                     <div className="dashboard-top-header">
-                                        <p>Total Projects</p>
+                                        <p>Total Media</p>
                                     </div>
 
                                     <div className="dashboard-top-figure">
@@ -166,7 +154,30 @@ function Dashboard({ }) {
                                 </div>
 
                                 <div className="dashboard-top-right">
-                                    <img src="./" alt="folder-img" />
+                                    <img src="/public/assets/images/folder1.png" alt="folder-img" />
+                                </div>
+                            </div>
+
+                            <div className="dashboard-top">
+                                <div className="dashboard-top-left">
+                                    <div className="dashboard-top-header">
+                                        <p>Total Links</p>
+                                    </div>
+
+                                    <div className="dashboard-top-figure">
+                                        <p>15</p>
+                                    </div>
+
+                                    <div className="dashboard-top-text">
+                                        <p>
+                                            <span>+5 </span>
+                                            vs last month
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="dashboard-top-right">
+                                    <img src="/public/assets/images/folder1.png" alt="folder-img" />
                                 </div>
                             </div>
                         </div>

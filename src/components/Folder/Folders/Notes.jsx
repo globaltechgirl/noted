@@ -3,9 +3,6 @@ import "./Notes.css";
 import { useLanguage } from "../../../Context/LanguageContext";
 import { folderKeyMap, translations } from "../../../Context/translations";
 import { useTheme } from "../../../Context/ThemeContext";
-import imgLight from "../../../assets/images/note-dark.png";
-import imgLock from "../../../assets/images/note-lock.png";
-import imgBlack from "../../../assets/images/note-light.png";
 
 function Notes ({ onFolderClick }) {
     // Language context
@@ -18,100 +15,20 @@ function Notes ({ onFolderClick }) {
     const [noteData] = useState([
         {
             id: 1,
-            image: imgLight,
-            title: "Notes",
-            theme: "dark",
-            imgAlt: "Notes",
-            keyId: "notes",
+            image: "/public/assets/images/note-light.png",
+            title: "Personal",
+            theme: "light",
+            imgAlt: "Personal Notes",
+            keyId: "personal",
         },
         {
             id: 2,
-            image: imgBlack,
+            image: "/public/assets/images/note-dark.png",
             title: "Personal",
-            theme: "light",
-            imgAlt: "Personal Notes",
-            keyId: "personal",
-        },
-        {
-            id: 3,
-            image: imgLight,
-            title: "Notes",
             theme: "dark",
-            imgAlt: "Notes",
-            keyId: "notes",
-        },
-        {
-            id: 4,
-            image: imgBlack,
-            title: "Personal",
-            theme: "light",
             imgAlt: "Personal Notes",
             keyId: "personal",
         },
-        {
-            id: 5,
-            image: imgLight,
-            title: "Notes",
-            theme: "dark",
-            imgAlt: "Notes",
-            keyId: "notes",
-        },
-        {
-            id: 6,
-            image: imgBlack,
-            title: "Personal",
-            theme: "light",
-            imgAlt: "Personal Notes",
-            keyId: "personal",
-        },
-        {
-            id: 7,
-            image: imgLight,
-            title: "Notes",
-            theme: "dark",
-            imgAlt: "Notes",
-            keyId: "notes",
-        },
-        {
-            id: 8,
-            image: imgBlack,
-            title: "Personal",
-            theme: "light",
-            imgAlt: "Personal Notes",
-            keyId: "personal",
-        },
-        {
-            id: 9,
-            image: imgLight,
-            title: "Notes",
-            theme: "dark",
-            imgAlt: "Notes",
-            keyId: "notes",
-        },
-        {
-            id: 10,
-            image: imgBlack,
-            title: "Personal",
-            theme: "light",
-            imgAlt: "Personal Notes",
-            keyId: "personal",
-        },
-        {
-            id: 11,
-            image: imgLight,
-            title: "Notes",
-            theme: "dark",
-            imgAlt: "Notes",
-            keyId: "notes",
-        },
-        {
-            id: 12,
-            image: imgBlack,
-            title: "Personal",
-            theme: "light",
-            imgAlt: "Personal Notes",
-            keyId: "personal",
-        }
     ]);
 
 return (
@@ -173,7 +90,7 @@ return (
                             <div
                                 key={note.id}
                                 className={`note ${
-                                    darkMode ? "note-white" : "note-black"
+                                    darkMode ? "note-light" : "note-dark"
                                 } ${note.isNew ? "note-new note-overlay" : ""} ${
                                     !darkMode && note.isNew ? "note-overlay" : ""
                                 }`}
