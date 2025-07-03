@@ -6,13 +6,13 @@ import { useTheme } from "../../../Context/ThemeContext";
 import { useDashboardView } from "../GridControls/DashboardViewContext.jsx";
 
 function Settings() {  
-    // --- Theme Toggle (Light/Dark) --- 
+    // Theme context
     const { darkMode, toggleTheme } = useTheme();
       
-    // --- Username ---
+    // Username
     const [username, setUsername] = useState("username");
 
-    // --- Login Notification ---
+    // Login notification
     const [loginNotification, setLoginNotification] = useState("Enabled");
     const [showLoginDropdown, setShowLoginDropdown] = useState(false);
     const loginDropdownRef = useRef(null);
@@ -33,7 +33,7 @@ function Settings() {
         };
     }, []);
 
-    // --- Email Subscription ---
+    // Email subscription
     const [emailSubscription, setEmailSubscription] = useState("Subscribed");
     const [showEmailDropdown, setShowEmailDropdown] = useState(false);
     const emailDropdownRef = useRef(null);
@@ -54,7 +54,7 @@ function Settings() {
         };
     }, []);
 
-    // --- Dashboard View ---
+    // Dashboard view
     const { dashboardView, setDashboardView } = useDashboardView();
     const [showDashboardDropdown, setShowDashboardDropdown] = useState(false);
     const dashboardDropdownRef = useRef(null);
@@ -75,7 +75,7 @@ function Settings() {
         };
     }, []);
 
-    // --- Language Selection ---
+    // Language selection
     const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
     const { selectedLanguage, setSelectedLanguage, languages } = useLanguage();
     const languageDropdownRef = useRef(null);

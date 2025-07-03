@@ -4,10 +4,10 @@ import { useTheme } from "../../../Context/ThemeContext";
 import { allCountries } from "country-telephone-data";
 
 function Profile() {
-    // --- Theme Toggle (Light/Dark) --- 
+    // Theme context
     const { darkMode, toggleTheme } = useTheme();
     
-   // --- Profile Information State ---
+   // Profile information state
     const [fullName, setFullName] = useState("First Last");
     const [username, setUsername] = useState("username");
     const [email, setEmail] = useState("name@gmail.com");
@@ -15,35 +15,35 @@ function Profile() {
     const [showPassword, setShowPassword] = useState(false);
     const [birthday, setBirthday] = useState("Month 00, Year");
 
-    // --- Social Media Handles ---
+    // Social media handles
     const [instagramHandle, setInstagramHandle] = useState("username_ig");
     const [tiktokHandle, setTiktokHandle] = useState("username_tt");
     const [twitterHandle, setTwitterHandle] = useState("username_tw");
 
-    // --- Phone Information ---
+    // Phone information
     const [phonePrefix, setPhonePrefix] = useState("+234");
     const [phoneNumber, setPhoneNumber] = useState("913625175");
 
-    // --- Editing Field State ---
+    // Editing field state
     const [editingField, setEditingField] = useState(null);
     const fullNameRef = useRef(null);
 
-    // --- Profile Image State ---
+    // Profile image state
     const [profileImage, setProfileImage] = useState("/src/assets/images/user.png");
     const fileInputRef = useRef(null);
 
-    // --- Background Customization State ---
+    // Background customization state
     const [backgroundImage, setBackgroundImage] = useState("/src/assets/images/background.png");
     const [backgroundType, setBackgroundType] = useState("image");
     const [backgroundColor, setBackgroundColor] = useState("#fcd5ce");
     const backgroundInputRef = useRef(null);
 
-    // --- UI Tab & Popup State ---
+    // UI tab & popup state
     const [activeTab, setActiveTab] = useState("gallery");
     const [showBackgroundPopup, setShowBackgroundPopup] = useState(false);
     const popupRef = useRef(null);
 
-    // --- Handle Outside Click: Close Background Popup ---
+    // Handle outside click: close background popup
     useEffect(() => {
         function handleClickOutsidePopup(event) {
             if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -60,7 +60,7 @@ function Profile() {
         };
     }, [showBackgroundPopup]);
 
-    // --- Handle Outside Click: Close Input Field Editing ---
+    // Handle outside click: close input field editing
     useEffect(() => {
         function handleClickOutsideField(event) {
             if (
@@ -78,7 +78,7 @@ function Profile() {
         };
     }, [editingField]);
 
-    // --- Edit Icon Component ---
+    // Edit icon component
     function EditIcon({ field }) {
         return (
             <div
@@ -101,12 +101,12 @@ function Profile() {
         );
     }
 
-    // --- Save Edited Field ---
+    // Save edited field
     const handleSave = (field) => {
         setEditingField(null);
     };
 
-    // --- Handle Profile Image Change ---
+    // Handle profile image change
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -115,7 +115,7 @@ function Profile() {
         }
     };
 
-    // --- Handle Background Image Change ---
+    // Handle background image change
     const handleBackgroundChange = (e) => {
         const file = e.target.files[0];
         if (file) {

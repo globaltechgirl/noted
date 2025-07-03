@@ -1,5 +1,138 @@
 /* Note container */
 .note-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+/* Note wrapper */
+.note-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Note header */
+.note-header {
+  position: fixed;
+  z-index: 10;
+  width: 85vw;
+  padding-top: 20px;
+}
+
+.note-header-wrapper {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.6rem;
+  padding: 4px 4.5px;
+}
+
+/* Note logo */
+.note-logo {
+  display: flex;
+  align-items: center;
+  color: var(--text-primary);
+  gap: 0.4rem;
+  background: var(--bg-secondary);
+  padding: 7px 12px;
+  border-radius: 0.4rem;
+  border: 0.5px solid var(--border-primary);
+}
+
+.note-logo p {
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: capitalize;
+}
+
+/* Note icon */
+.note-icon {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  gap: 0.2rem;
+  padding: 3px;
+  background: var(--bg-secondary);
+  border-radius: 0.4rem;
+  border: 0.5px solid var(--border-primary);
+}
+
+.note-icon > * {
+  padding: 4.5px;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.note-icon > *:hover {
+  background: var(--bg-secondary);
+}
+
+.theme-toggle {
+  width: 19px;
+  height: 19px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-slider {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease-in-out;
+}
+
+.theme-slider.light {
+  transform: translateY(9.5px);
+}
+
+.theme-slider.dark {
+  transform: translateY(-9.5px);
+}
+
+.theme-icon {
+  width: 19px;
+  height: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-light-svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+.theme-dark-svg {
+  width: 9.5px;
+  height: 9.5px;
+  display: block;
+}
+
+.theme-light-svg path,
+.theme-dark-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-primary);
+}
+
+/* Note body wrapper */
+.note-body-wrapper {
   width: 100%;
   margin: 0 auto;
   margin-top: 90px;

@@ -10,17 +10,17 @@ function LinkFolder({ folderName }) {
     const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.folders || {};
 
-    // --- Theme Toggle (Light/Dark) --- 
+    // Theme context
     const { darkMode, toggleTheme } = useTheme();
 
-    // --- Dashboard view ---
+    // Dashboard view
     const { dashboardView: defaultView } = useDashboardView(); 
     const [localView, setLocalView] = useState(defaultView); 
 
-    // --- Starred filter toggle ---
+    // Starred filter toggle
     const [starredOnly, setStarredOnly] = useState(false);
 
-    // --- Search popup state ---
+    // Search popup state
     const [showSearchPopup, setShowSearchPopup] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
@@ -37,7 +37,7 @@ function LinkFolder({ folderName }) {
     const [editingLinkId, setEditingLinkId] = useState(null); 
     const [editingId, setEditingId] = useState(null)
 
-    // --- Folder data ---
+    // Folder data
     const [folderData, setFolderData] = useState([
         {
             id: 1,
@@ -79,7 +79,7 @@ function LinkFolder({ folderName }) {
         }
     ]);
 
-    // --- Star toggle handler ---
+    // Star toggle handler
     const toggleStar = (id) => {
         setFolderData(prev =>
             prev.map((item) =>
@@ -127,7 +127,7 @@ function LinkFolder({ folderName }) {
         setEditingLinkId(null);
     };
 
-    // --- Delete handler ---
+    // Delete handler
     const handleDelete = (id) => {
         const updated = folderData.filter(folder => folder.id !== id); 
         setFolderData(updated); 

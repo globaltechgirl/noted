@@ -11,24 +11,24 @@ function MediaFolder({ folderName }) {
     const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.folders || {};
 
-    // --- Theme Toggle (Light/Dark) --- 
+    // Theme context 
     const { darkMode, toggleTheme } = useTheme();
 
-    // --- Dashboard view ---
+    // Dashboard view
     const { dashboardView: defaultView } = useDashboardView(); 
     const [localView, setLocalView] = useState(defaultView); 
 
-    // --- Starred filter toggle ---
+    // Starred filter toggle
     const [starredOnly, setStarredOnly] = useState(false);
 
-    // --- Search popup state ---
+    // Search popup state
     const [showSearchPopup, setShowSearchPopup] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [recentSearches, setRecentSearches] = useState([]);
     const noMatchFound = searchQuery.trim() !== "" && searchResults.length === 0;
 
-    // --- Folder data ---
+    // Folder data
     const [folderData, setFolderData] = useState([
         {
             id: 1,
@@ -77,7 +77,7 @@ function MediaFolder({ folderName }) {
         }
     ]);
 
-    // --- Star toggle handler ---
+    // Star toggle handler
     const toggleStar = (id) => {
         setFolderData(prev =>
             prev.map((item) =>

@@ -6,19 +6,17 @@ import { ThemeProvider } from "../Context/ThemeContext.jsx";
 import { DashboardViewProvider } from "./Folder/GridControls/DashboardViewContext.jsx";
 
 function App() {
-    // --- View State ---
+    // --- View state ---
     const [view, setView] = useState("home");
     const [activeFolder, setActiveFolder] = useState(null);
 
-    // --- Ref for Scrollable Content ---
+    // Scroll reference and metrics
     const mainContentRef = useRef(null);
-
-    // --- Scroll Tracking State ---
     const [scrollTop, setScrollTop] = useState(0);
     const [scrollHeight, setScrollHeight] = useState(0);
     const [clientHeight, setClientHeight] = useState(0);
 
-    // --- Effect to Track Scroll Metrics ---
+    // Track scroll changes
     useEffect(() => {
         const scrollBox = mainContentRef.current;
         if (!scrollBox) return;
@@ -39,7 +37,7 @@ function App() {
         };
     }, []);
 
-    // --- Handle Custom Scrollbar Drag ---
+    // Custom scrollbar handler
     const handleScrollbarChange = (e) => {
         if (!mainContentRef.current) return;
         const newScrollTop = Number(e.target.value);
@@ -47,7 +45,7 @@ function App() {
         setScrollTop(newScrollTop);
     };
 
-    // --- Handle Sidebar Navigation ---
+    // Handle sidebar clicks
     const handleSectionOrFolderClick = (section) => {
         if (section === "dashboard" || section === "home") {
             setView("home");
