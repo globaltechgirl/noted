@@ -12,6 +12,46 @@ function Dashboard({ }) {
     // --- Theme Toggle (Light/Dark) --- 
     const { darkMode, toggleTheme } = useTheme();
 
+    const dashboardStats = [
+        {
+            title: "Total Notes",
+            figure: 15,
+            change: "+ 15",
+            imgLight: "/assets/images/notes-light.png",
+            imgDark: "/assets/images/notes-dark.png",
+        },
+        {
+            title: "Total Files",
+            figure: 15,
+            change: "+ 15",
+            imgLight: "/assets/images/notes-light.png",
+            imgDark: "/assets/images/notes-dark.png",
+        },
+        {
+            title: "Total Tasks",
+            figure: 15,
+            change: "+ 15",
+            imgLight: "/assets/images/notes-light.png",
+            imgDark: "/assets/images/notes-dark.png",
+        },
+        {
+            title: "Total Media",
+            figure: 15,
+            change: "+ 15",
+            imgLight: "/assets/images/notes-light.png",
+            imgDark: "/assets/images/notes-dark.png",
+        },
+        {
+            title: "Total Links",
+            figure: 15,
+            change: "+ 15",
+            imgLight: "/assets/images/notes-light.png",
+            imgDark: "/assets/images/notes-dark.png",
+        },
+    ];
+
+
+
     return (
         <div className="dashboard-container">
             <div className="dashboard-wrapper">
@@ -66,120 +106,32 @@ function Dashboard({ }) {
                 <div className="dashboard-body">
                     <div className="dashboard-main">
                         <div className="dashboard-top-main">
-                            <div className="dashboard-top">
-                                <div className="dashboard-top-left">
-                                    <div className="dashboard-top-header">
-                                        <p>Total Notes</p>
+                            {dashboardStats.map((item, index) => (
+                                <div className="dashboard-top" key={index}>
+                                    <div className="dashboard-top-right">
+                                        <img
+                                            src={darkMode ? item.imgDark : item.imgLight}
+                                            alt={`${item.title.toLowerCase()} image`}
+                                        />
                                     </div>
 
-                                    <div className="dashboard-top-figure">
-                                        <p>15</p>
-                                    </div>
+                                    <div className="dashboard-top-left">
+                                        <div className="dashboard-top-header">
+                                            <p>{item.title}</p>
+                                        </div>
 
-                                    <div className="dashboard-top-text">
-                                        <p>
-                                            <span>+5 </span>
-                                            vs last month
-                                        </p>
-                                    </div>
-                                </div>
+                                        <div className="dashboard-text">
+                                            <div className="dashboard-figure">
+                                                <p>{item.figure}</p>
+                                            </div>
 
-                                <div className="dashboard-top-right">
-                                    <img src="/public/assets/images/folder1.png" alt="folder-img" />
-                                </div>
-                            </div>
-
-                            <div className="dashboard-top">
-                                <div className="dashboard-top-left">
-                                    <div className="dashboard-top-header">
-                                        <p>Total Files</p>
-                                    </div>
-
-                                    <div className="dashboard-top-figure">
-                                        <p>15</p>
-                                    </div>
-
-                                    <div className="dashboard-top-text">
-                                        <p>
-                                            <span>+5 </span>
-                                            vs last month
-                                        </p>
+                                            <div className="dashboard-change">
+                                                <p>{item.change} %</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div className="dashboard-top-right">
-                                    <img src="/public/assets/images/folder1.png" alt="folder-img" />
-                                </div>
-                            </div>
-
-                            <div className="dashboard-top">
-                                <div className="dashboard-top-left">
-                                    <div className="dashboard-top-header">
-                                        <p>Total Tasks</p>
-                                    </div>
-
-                                    <div className="dashboard-top-figure">
-                                        <p>15</p>
-                                    </div>
-
-                                    <div className="dashboard-top-text">
-                                        <p>
-                                            <span>+5 </span>
-                                            vs last month
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="dashboard-top-right">
-                                    <img src="/public/assets/images/folder1.png" alt="folder-img" />
-                                </div>
-                            </div>
-
-                            <div className="dashboard-top">
-                                <div className="dashboard-top-left">
-                                    <div className="dashboard-top-header">
-                                        <p>Total Media</p>
-                                    </div>
-
-                                    <div className="dashboard-top-figure">
-                                        <p>15</p>
-                                    </div>
-
-                                    <div className="dashboard-top-text">
-                                        <p>
-                                            <span>+5 </span>
-                                            vs last month
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="dashboard-top-right">
-                                    <img src="/public/assets/images/folder1.png" alt="folder-img" />
-                                </div>
-                            </div>
-
-                            <div className="dashboard-top">
-                                <div className="dashboard-top-left">
-                                    <div className="dashboard-top-header">
-                                        <p>Total Links</p>
-                                    </div>
-
-                                    <div className="dashboard-top-figure">
-                                        <p>15</p>
-                                    </div>
-
-                                    <div className="dashboard-top-text">
-                                        <p>
-                                            <span>+5 </span>
-                                            vs last month
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="dashboard-top-right">
-                                    <img src="/public/assets/images/folder1.png" alt="folder-img" />
-                                </div>
-                            </div>
+                            ))}
                         </div>
 
                         <div className="dashboard-middle">

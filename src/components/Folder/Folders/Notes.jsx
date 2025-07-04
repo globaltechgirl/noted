@@ -20,6 +20,7 @@ function Notes ({ onFolderClick }) {
             theme: "light",
             imgAlt: "Personal Notes",
             keyId: "personal",
+            files: 12,
         },
         {
             id: 2,
@@ -28,6 +29,7 @@ function Notes ({ onFolderClick }) {
             theme: "dark",
             imgAlt: "Personal Notes",
             keyId: "personal",
+            files: 12,
         },
     ]);
 
@@ -105,7 +107,7 @@ return (
 
                                     <div className="note-details">
                                         <p className="note-title">{note.title} Notes</p>
-                                        <p className="note-text">12 files</p>
+                                        <p className="note-text">{note.files} files</p>
                                     </div>
                                 </div>
                             </div>
