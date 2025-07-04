@@ -164,6 +164,124 @@ function Dashboard({ }) {
         { day: "Sun", height: 70 },
     ];
 
+    const fileList = [
+        {
+            name: "Finalize homepage design",
+            date: "12 December 2024",
+            source: {
+                label: "Work",
+                svg: (
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="file-source-svg"
+                        viewBox="0 0 24 24"
+                    >
+                        <path 
+                            fill="none" 
+                            stroke="currentColor" 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth={2} 
+                            d="m5 19l2.757-7.351A1 1 0 0 1 8.693 11H21a1 1 0 0 1 .986 1.164l-.996 5.211A2 2 0 0 1 19.026 19za2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v2"
+                        ></path>
+                    </svg>
+                ),
+            },
+        },
+        {
+            name: "Design dashboard UI",
+            date: "19 May 2024",
+            source: {
+                label: "Personal",
+                svg: (
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="file-source-svg"
+                        viewBox="0 0 24 24"
+                    >
+                        <path 
+                            fill="none" 
+                            stroke="currentColor" 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth={2} 
+                            d="m5 19l2.757-7.351A1 1 0 0 1 8.693 11H21a1 1 0 0 1 .986 1.164l-.996 5.211A2 2 0 0 1 19.026 19za2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v2"
+                        ></path>
+                    </svg>
+                ),
+            },
+        },
+        {
+            name: "Update landing page content",
+            date: "22 September 2024",  
+            source: {
+                label: "Daily",
+                svg: (
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="file-source-svg"
+                        viewBox="0 0 24 24"
+                    >
+                        <path 
+                            fill="none" 
+                            stroke="currentColor" 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth={2} 
+                            d="m5 19l2.757-7.351A1 1 0 0 1 8.693 11H21a1 1 0 0 1 .986 1.164l-.996 5.211A2 2 0 0 1 19.026 19za2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v2"
+                        ></path>
+                    </svg>
+                ),
+            },
+        },
+        {
+            name: "Design dashboard UI",
+            date: "19 May 2024",
+            source: {
+                label: "Personal",
+                svg: (
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="file-source-svg"
+                        viewBox="0 0 24 24"
+                    >
+                        <path 
+                            fill="none" 
+                            stroke="currentColor" 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth={2} 
+                            d="m5 19l2.757-7.351A1 1 0 0 1 8.693 11H21a1 1 0 0 1 .986 1.164l-.996 5.211A2 2 0 0 1 19.026 19za2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v2"
+                        ></path>
+                    </svg>
+                ),
+            },
+        },
+        {
+            name: "Update landing page content",
+            date: "22 September 2024",  
+            source: {
+                label: "Daily",
+                svg: (
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="file-source-svg"
+                        viewBox="0 0 24 24"
+                    >
+                        <path 
+                            fill="none" 
+                            stroke="currentColor" 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth={2} 
+                            d="m5 19l2.757-7.351A1 1 0 0 1 8.693 11H21a1 1 0 0 1 .986 1.164l-.996 5.211A2 2 0 0 1 19.026 19za2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v2"
+                        ></path>
+                    </svg>
+                ),
+            },
+        },
+    ];
+
     return (
         <div className="dashboard-container">
             <div className="dashboard-wrapper">
@@ -253,7 +371,7 @@ function Dashboard({ }) {
                                             </div>
 
                                             <div className="dashboard-change">
-                                                <p>{item.change} %</p>
+                                                <p>{item.change}%</p>
                                             </div>
                                         </div>
                                     </div>
@@ -375,20 +493,20 @@ function Dashboard({ }) {
                         </div>
 
                         <div className="dashboard-bottom">
-                            <div className="dashboard-projects">
-                                <div className="projects-header">
-                                    <p>List Projects</p>
+                            <div className="dashboard-file">
+                                <div className="file-header">
+                                    <p>File List</p>
                                 </div>
 
-                                <div className="projects-content">
-                                    <div className="projects-content-header">
+                                <div className="file-content">
+                                    <div className="file-content-header">
                                         <ul>
                                             <li>
-                                                <p>Project Name</p>
+                                                <p>File Name</p>
                                             </li>
 
                                             <li>
-                                                <p>Status</p>
+                                                <p>Source</p>
                                             </li>
 
                                             <li>
@@ -396,120 +514,28 @@ function Dashboard({ }) {
                                             </li>
                                         </ul>
                                     </div>
+ 
+                                    <div className="file-content-wrapper">
+                                        {fileList.slice(0, 10).map((file, index) => (
+                                            <div className="file-content-text" key={index}>
+                                                <ul>
+                                                    <li>
+                                                        <p className="file-name">{file.name}</p>
+                                                    </li>
 
-                                    <div className="projects-content-wrapper">
-                                        <div className="projects-content-text">
-                                            <ul>
-                                                <li>
-                                                    <p className="projects-name">Finalize homepage design</p>
-                                                </li>
+                                                    <li>
+                                                        <p className="file-source">
+                                                            {file.source.svg}
+                                                            {file.source.label}
+                                                        </p>
+                                                    </li>
 
-                                                <li>
-                                                    <p className="projects-status">
-                                                        <svg 
-                                                            xmlns="http://www.w3.org/2000/svg" 
-                                                            className="projects-status-svg"
-                                                            viewBox="0 0 24 24"
-                                                        >
-                                                            <path 
-                                                                fill="none" 
-                                                                stroke="currentColor" 
-                                                                strokeLinecap="round" 
-                                                                strokeLinejoin="round" 
-                                                                strokeWidth={2} 
-                                                                d="M10 20.777a9 9 0 0 1-2.48-.969M14 3.223a9.003 9.003 0 0 1 0 17.554m-9.421-3.684a9 9 0 0 1-1.227-2.592M3.124 10.5c.16-.95.468-1.85.9-2.675l.169-.305m2.714-2.941A9 9 0 0 1 10 3.223"
-                                                            ></path>
-                                                        </svg>
-                                                        
-                                                        Completed
-                                                    </p>
-                                                </li>
-
-                                                <li>
-                                                    <p className="projects-date">12 May 2024</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <div className="projects-content-text">
-                                            <ul>
-                                                <li>
-                                                    <p className="projects-name">Finalize homepage design</p>
-                                                </li>
-
-                                                <li>
-                                                    <p className="projects-status">Completed</p>
-                                                </li>
-
-                                                <li>
-                                                    <p className="projects-date">12 May 2024</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        
-                                        <div className="projects-content-text">
-                                            <ul>
-                                                <li>
-                                                    <p className="projects-name">Finalize homepage design</p>
-                                                </li>
-
-                                                <li>
-                                                    <p className="projects-status">Completed</p>
-                                                </li>
-
-                                                <li>
-                                                    <p className="projects-date">12 May 2024</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    
-                                        <div className="projects-content-text">
-                                            <ul>
-                                                <li>
-                                                    <p className="projects-name">Finalize homepage design</p>
-                                                </li>
-
-                                                <li>
-                                                    <p className="projects-status">Completed</p>
-                                                </li>
-
-                                                <li>
-                                                    <p className="projects-date">12 May 2024</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <div className="projects-content-text">
-                                            <ul>
-                                                <li>
-                                                    <p className="projects-name">Finalize homepage design</p>
-                                                </li>
-
-                                                <li>
-                                                    <p className="projects-status">Completed</p>
-                                                </li>
-
-                                                <li>
-                                                    <p className="projects-date">12 May 2024</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        
-                                        <div className="projects-content-text">
-                                            <ul>
-                                                <li>
-                                                    <p className="projects-name">Finalize homepage design</p>
-                                                </li>
-
-                                                <li>
-                                                    <p className="projects-status">Completed</p>
-                                                </li>
-
-                                                <li>
-                                                    <p className="projects-date">12 May 2024</p>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                                    <li>
+                                                        <p className="file-date">{file.date}</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             </div>

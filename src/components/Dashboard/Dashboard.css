@@ -230,7 +230,7 @@
 /* Dashboard headers */
 .tasks-header,
 .performance-header,
-.projects-header {
+.file-header {
   font-size: 0.6rem;
   color: var(--text-primary);
   font-weight: 600;
@@ -253,11 +253,18 @@
 .tasks-content-text ul {
   width: 100%;
   display: grid;
-  grid-template-columns: 2fr 0.8fr 0.6fr;
   list-style: none;
   padding: 0;
   margin: 0;
   align-items: center;
+}
+
+.tasks-content-header ul {
+  grid-template-columns: 2fr 0.8fr 0.75fr;
+}
+
+.tasks-content-text ul {
+  grid-template-columns: 2fr 0.85fr 0.7fr;
 }
 
 .tasks-content-header ul li p {
@@ -442,12 +449,10 @@
   width: 100%;
 }
 
-/* Dashboard projects */
-.dashboard-projects {
-  flex: 1;
+/* Dashboard file */
+.dashboard-file {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
   letter-spacing: 0.6px;
   background: var(--bg-primary);
   border: 0.5px solid var(--border-primary);
@@ -455,66 +460,76 @@
   padding: 20px 15px 15px 15px;
 }
 
-.projects-content-header ul,
-.projects-content-text ul {
+/* File content header */
+.file-content-header ul,
+.file-content-text ul {
+  width: 100%;
   display: grid;
-  grid-template-columns: 2.5fr 1fr 1fr;
-  align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
+  align-items: center;
 }
 
-.projects-content-header ul li p {
-  font-size: 0.56rem;
+.file-content-header ul {
+  grid-template-columns: 1.85fr 0.5fr 0.5fr;
+}
+
+.file-content-text ul {
+  grid-template-columns: 1.85fr 0.5fr 0.485fr;
+}
+
+.file-content-header ul li p {
+  font-size: 0.52rem;
   font-weight: 550;
   color: var(--text-secondary);
   margin-bottom: 12px;
 }
 
-.projects-content-wrapper {
+/* File content wrapper */
+.file-content-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
-.projects-content-text ul {
+.file-content-text ul {
   background: var(--bg-secondary);
   border: 0.5px solid var(--border-primary);
-  padding: 10px;
+  padding: 7px 10px;
   border-radius: 0.35rem;
 }
 
-.projects-content-text ul li p {
-  font-size: 0.55rem;
-  font-weight: 550;
+.file-content-text ul li p {
+  font-size: 0.5rem;
+  font-weight: 500;
   color: var(--text-primary);
 }
 
-.projects-content-text .projects-status {
+.file-content-text .file-source {
   width: fit-content;
   display: flex;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.3rem;
   padding: 4px 5px;
-  font-size: 0.5rem;
+  font-size: 0.48rem;
   font-weight: 500;
   background: var(--bg-primary);
   border: 0.5px solid var(--border-primary);
   border-radius: 0.3rem;
 }
 
-.projects-content-text .projects-date {
+.file-content-text .file-date {
   font-size: 0.52rem;
 }
 
-.projects-status-svg {
+.file-source-svg {
   width: 9px;
   height: 9px;
   display: block;
 }
 
-.projects-status-svg path {
+.file-source-svg path {
   fill: var(--bg-secondary);
   stroke: var(--text-primary);
 }
