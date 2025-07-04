@@ -50,6 +50,128 @@ function Dashboard({ }) {
         },
     ];
 
+    const taskList = [
+        {
+            name: "Finalize homepage design",
+            due: "12 December 2024",
+            status: {
+            label: "Completed",
+            svg: (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="tasks-status-svg"
+                    viewBox="0 0 24 24"
+                >
+                    <g
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2}
+                    >
+                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
+                        <path d="m9 12l2 2l4-4"></path>
+                    </g>
+                </svg>
+            ),
+            },
+        },
+        {
+            name: "Design dashboard UI",
+            due: "19 May 2024",
+            status: {
+            label: "In Progress",
+            svg: (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="tasks-status-svg"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 20.777a9 9 0 0 1-2.48-.969M14 3.223a9.003 9.003 0 0 1 0 17.554m-9.421-3.684a9 9 0 0 1-1.227-2.592M3.124 10.5c.16-.95.468-1.85.9-2.675l.169-.305m2.714-2.941A9 9 0 0 1 10 3.223"
+                    />
+                </svg>
+            ),
+            },
+        },
+        {
+            name: "Update landing page content",
+            due: "22 September 2024",
+            status: {
+            label: "On Hold",
+            svg: (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="tasks-status-svg"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 20.777a9 9 0 0 1-2.48-.969M14 3.223a9.003 9.003 0 0 1 0 17.554m-9.421-3.684a9 9 0 0 1-1.227-2.592M3.124 10.5c.16-.95.468-1.85.9-2.675l.169-.305m2.714-2.941A9 9 0 0 1 10 3.223M12 8v4m0 4v.01"
+                    />
+                </svg>
+            ),
+            },
+        },
+        {
+            name: "Finalize homepage design",
+            due: "12 May 2024",
+            status: {
+            label: "Completed",
+            svg: (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="tasks-status-svg"
+                    viewBox="0 0 24 24"
+                >
+                    <g
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2}
+                    >
+                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
+                        <path d="m9 12l2 2l4-4"></path>
+                    </g>
+                </svg>
+            ),
+            },
+        },
+        {
+            name: "Design dashboard UI",
+            due: "19 May 2024",
+            status: {
+            label: "In Progress",
+            svg: (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="tasks-status-svg"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 20.777a9 9 0 0 1-2.48-.969M14 3.223a9.003 9.003 0 0 1 0 17.554m-9.421-3.684a9 9 0 0 1-1.227-2.592M3.124 10.5c.16-.95.468-1.85.9-2.675l.169-.305m2.714-2.941A9 9 0 0 1 10 3.223"
+                    />
+                </svg>
+            ),
+            },
+        },
+    ];
+
 
 
     return (
@@ -108,14 +230,29 @@ function Dashboard({ }) {
                         <div className="dashboard-top-main">
                             {dashboardStats.map((item, index) => (
                                 <div className="dashboard-top" key={index}>
-                                    <div className="dashboard-top-right">
+                                    <div className="dashboard-top-icons">
                                         <img
                                             src={darkMode ? item.imgDark : item.imgLight}
                                             alt={`${item.title.toLowerCase()} image`}
                                         />
+
+                                        <svg 
+                                            xmlns="http://www.w3.org/2000/svg" 
+                                            className ="dashboard-svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path 
+                                                fill="none" 
+                                                stroke="currentColor" 
+                                                strokeLinecap="round" 
+                                                strokeLinejoin="round" 
+                                                strokeWidth={2} 
+                                                d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0 7a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0-14a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
+                                            ></path>
+                                        </svg>
                                     </div>
 
-                                    <div className="dashboard-top-left">
+                                    <div className="dashboard-top-info">
                                         <div className="dashboard-top-header">
                                             <p>{item.title}</p>
                                         </div>
@@ -148,59 +285,36 @@ function Dashboard({ }) {
                                             </li>
 
                                             <li>
-                                                <p>Date</p>
+                                                <p>Status</p>
+                                            </li>
+
+                                            <li>
+                                                <p>Due</p>
                                             </li>
                                         </ul>
                                     </div>
 
                                     <div className="tasks-content-wrapper">
-                                        <div className="tasks-content-text">
-                                            <ul>
-                                                <li>
-                                                    <p className="tasks-name">Finalize homepage design</p>
-                                                </li>
+                                        {taskList.map((task, index) => (
+                                            <div className="tasks-content-text" key={index}>
+                                                <ul>
+                                                    <li>
+                                                        <p className="tasks-name">{task.name}</p>
+                                                    </li>
 
-                                                <li>
-                                                    <p className="tasks-date">12 May 2024</p>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                                    <li>
+                                                        <p className="tasks-status">
+                                                            {task.status.svg}
+                                                            {task.status.label}
+                                                        </p>
+                                                    </li>
 
-                                        <div className="tasks-content-text">
-                                            <ul>
-                                                <li>
-                                                    <p className="tasks-name">Finalize homepage design</p>
-                                                </li>
-
-                                                <li>
-                                                    <p className="tasks-date">12 May 2024</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <div className="tasks-content-text">
-                                            <ul>
-                                                <li>
-                                                    <p className="tasks-name">Finalize homepage design</p>
-                                                </li>
-
-                                                <li>
-                                                    <p className="tasks-date">12 May 2024</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <div className="tasks-content-text">
-                                            <ul>
-                                                <li>
-                                                    <p className="tasks-name">Finalize homepage design</p>
-                                                </li>
-
-                                                <li>
-                                                    <p className="tasks-date">12 May 2024</p>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                                    <li>
+                                                        <p className="tasks-due">{task.due}</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
