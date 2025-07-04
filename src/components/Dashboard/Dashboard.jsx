@@ -147,32 +147,22 @@ function Dashboard({ }) {
             ),
             },
         },
-        {
-            name: "Design dashboard UI",
-            due: "19 May 2024",
-            status: {
-            label: "In Progress",
-            svg: (
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="tasks-status-svg"
-                    viewBox="0 0 24 24"
-                >
-                    <path
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 20.777a9 9 0 0 1-2.48-.969M14 3.223a9.003 9.003 0 0 1 0 17.554m-9.421-3.684a9 9 0 0 1-1.227-2.592M3.124 10.5c.16-.95.468-1.85.9-2.675l.169-.305m2.714-2.941A9 9 0 0 1 10 3.223"
-                    />
-                </svg>
-            ),
-            },
-        },
     ];
 
+    const performanceStats = {
+        figure: 15,
+        change: "+ 5",
+    };
 
+    const performanceChartData = [
+        { day: "Mon", height: 40 },
+        { day: "Tue", height: 60 },
+        { day: "Wed", height: 80 },
+        { day: "Thu", height: 50 },
+        { day: "Fri", height: 90 },
+        { day: "Sat", height: 30 },
+        { day: "Sun", height: 70 },
+    ];
 
     return (
         <div className="dashboard-container">
@@ -295,26 +285,54 @@ function Dashboard({ }) {
                                     </div>
 
                                     <div className="tasks-content-wrapper">
-                                        {taskList.map((task, index) => (
-                                            <div className="tasks-content-text" key={index}>
-                                                <ul>
-                                                    <li>
-                                                        <p className="tasks-name">{task.name}</p>
-                                                    </li>
+                                        {Array.from({ length: 5 }).map((_, index) => {
+                                            const task = taskList[index];
+                                            return task ? (
+                                                <div className="tasks-content-text" key={index}>
+                                                    <ul>
+                                                        <li>
+                                                            <p className="tasks-name">{task.name}</p>
+                                                        </li>
 
-                                                    <li>
-                                                        <p className="tasks-status">
-                                                            {task.status.svg}
-                                                            {task.status.label}
-                                                        </p>
-                                                    </li>
-
-                                                    <li>
-                                                        <p className="tasks-due">{task.due}</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        ))}
+                                                        <li>
+                                                            <p className="tasks-status">
+                                                                {task.status.svg}
+                                                                {task.status.label}
+                                                            </p>
+                                                        </li>
+                                                        
+                                                        <li>
+                                                            <p className="tasks-due">{task.due}</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            ) : (
+                                                <div className="tasks-content-text add-task" key={`add-${index}`}>
+                                                    <ul>
+                                                        <li className="add-task-wrapper">
+                                                            <p className="add-task-message">
+                                                                <svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    className="add-task-svg"
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path
+                                                                        fill="none"
+                                                                        stroke="currentColor"
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m6 0h6m-3-3v6"
+                                                                    />
+                                                                </svg>
+                                                                
+                                                                Add Task
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            );
+                                        })}
                                     </div>
                                 </div>
                             </div>
@@ -326,12 +344,12 @@ function Dashboard({ }) {
 
                                 <div className="performance-text">
                                     <div className="performance-text-figure">
-                                        <p>15</p>
+                                        <p>{performanceStats.figure}</p>
                                     </div>
 
                                     <div className="performance-text-span">
                                         <p>
-                                            <span>+5 </span>
+                                            <span>{performanceStats.change}% </span>
                                             vs last month
                                         </p>
                                     </div>
@@ -339,23 +357,18 @@ function Dashboard({ }) {
 
                                 <div className="performance-content">
                                     <div className="bar-chart">
-                                        {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day, index) => {
-                                            const heights = [40, 60, 80, 50, 90, 30, 70]; // Example values
-                                            const percent = (heights[index] / 100) * 100; // Convert to % if needed
-
-                                            return (
-                                                <div className="bar-wrapper" key={day}>
-                                                    <div className="bar-track">
-                                                        <div
-                                                            className="bar-fill"
-                                                            style={{ height: `${percent}%` }}
-                                                        ></div>
-                                                    </div>
-
-                                                    <p className="bar-day">{day}</p>
+                                        {performanceChartData.map(({ day, height }) => (
+                                            <div className="bar-wrapper" key={day}>
+                                                <div className="bar-track">
+                                                    <div
+                                                        className="bar-fill"
+                                                        style={{ height: `${height}%` }}
+                                                    ></div>
                                                 </div>
-                                            );
-                                        })}
+
+                                                <p className="bar-day">{day}</p>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             </div>

@@ -248,8 +248,10 @@
   padding: 20px 15px 15px 15px;
 }
 
+/* Tasks content header */
 .tasks-content-header ul,
 .tasks-content-text ul {
+  width: 100%;
   display: grid;
   grid-template-columns: 2fr 0.8fr 0.6fr;
   list-style: none;
@@ -265,6 +267,7 @@
   margin-bottom: 12px;
 }
 
+/* Tasks content wrapper */
 .tasks-content-wrapper {
   display: flex;
   flex-direction: column;
@@ -308,47 +311,92 @@
   stroke: var(--text-primary);
 }
 
+/* Add task */
+.add-task ul {
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
+  padding: 6.5px 10px;
+  border-radius: 0.35rem;
+  display: flex;
+  justify-content: center;
+}
+
+.add-task-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.add-task-message {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 4.5px 5.5px;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.3rem;
+  color: var(--text-primary);
+  font-size: 0.5rem;
+  font-weight: 500;
+}
+
+.add-task-message p {
+  font-size: 0.48rem;
+  font-weight: 500;
+}
+
+.add-task-svg {
+  width: 9.5px;
+  height: 9.5px;
+  display: block;
+}
+
+.add-task-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-primary);
+}
+
+/* Dashboard performance */
 .dashboard-performance {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  justify-content: space-between;
   letter-spacing: 0.6px;
   background: var(--bg-primary);
   border: 0.5px solid var(--border-primary);
   border-radius: 0.5rem;
   padding: 20px 15px 15px 15px;
-  font-weight: 550;
 }
 
+/* Performance text */
 .performance-text {
   display: flex;
   align-items: flex-end;
-  gap: 0.4rem;
+  gap: 0.3rem;
+  font-weight: 550;
+  margin-top: -12px;
+  margin-bottom: 12px;
 }
 
 .performance-text-figure {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--text-primary);
 }
 
 .performance-text-span {
-  font-size: 0.55rem;
+  font-size: 0.5rem;
   color: var(--text-secondary);
-  margin-bottom: 3.5px;
+  margin-bottom: 2px;
 }
 
-.performance-text-span span {
-  color: var(--text-primary);
-}
-
+/* Performance bar chart */
 .bar-chart {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  height: 120px;
+  height: 180px;
   gap: 10px;
-  margin-top: 25px;
 }
 
 .bar-wrapper {
@@ -358,7 +406,7 @@
 }
 
 .bar-track {
-  height: 115px;
+  height: 170px;
   width: 40px;
   background-image: repeating-linear-gradient(
     135deg,
@@ -385,16 +433,16 @@
 .bar-day {
   margin-top: 10px;
   font-size: 0.5rem;
+  font-weight: 550;
   color: var(--text-secondary);
 }
 
+/* Dashboard bottom */
 .dashboard-bottom {
-  display: flex;
   width: 100%;
-  gap: 15px;
-  margin-top: 15px;
 }
 
+/* Dashboard projects */
 .dashboard-projects {
   flex: 1;
   display: flex;
