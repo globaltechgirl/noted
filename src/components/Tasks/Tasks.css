@@ -1,0 +1,239 @@
+/* Tasks container */
+.tasks-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+/* Tasks wrapper */
+.tasks-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tasks header */
+.tasks-header {
+  position: fixed;
+  z-index: 10;
+  width: 85vw;
+  padding-top: 20px;
+}
+
+.tasks-header-wrapper {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.6rem;
+  padding: 4px 4.5px;
+}
+
+/* Tasks logo */
+.tasks-logo {
+  display: flex;
+  align-items: center;
+  color: var(--text-primary);
+  gap: 0.4rem;
+  background: var(--bg-secondary);
+  padding: 7px 12px;
+  border-radius: 0.4rem;
+  border: 0.5px solid var(--border-primary);
+}
+
+.tasks-logo p {
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: capitalize;
+}
+
+/* Tasks icons */
+.tasks-icons {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  gap: 0.2rem;
+  padding: 3px;
+  background: var(--bg-secondary);
+  border-radius: 0.4rem;
+  border: 0.5px solid var(--border-primary);
+}
+
+.tasks-icons > * {
+  padding: 4.5px;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.tasks-icons > *:hover {
+  background: var(--bg-secondary);
+}
+
+/* Theme toggle */
+.theme-toggle {
+  width: 19px;
+  height: 19px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-slider {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease-in-out;
+}
+
+.theme-slider.light {
+  transform: translateY(9.5px);
+}
+
+.theme-slider.dark {
+  transform: translateY(-9.5px);
+}
+
+.theme-icon {
+  width: 19px;
+  height: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-light-svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+.theme-dark-svg {
+  width: 9.5px;
+  height: 9.5px;
+  display: block;
+}
+
+.theme-light-svg path,
+.theme-dark-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-primary);
+}
+
+/* Tasks body */
+.tasks-body {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 105px;
+}
+
+.tasks-body-main {
+  margin-top: 15px;
+}
+
+/* Tasks body header */
+.tasks-body-header {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: -15px;
+  margin-bottom: 10px;
+}
+
+/* Tasks left - icon */
+.tasks-left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.tasks-left .tasks-icon {
+  display: flex;
+  align-items: center;
+  padding: 4.5px 5px;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.3rem;
+}
+
+.tasks-icon .tasks-icon-svg {
+  width: 10px;
+  height: 10px;
+  color: var(--color-text-secondary);
+}
+
+.tasks-icon .tasks-icon-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+/* Tasks right */
+.tasks-right {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* Tasks right - toggle */
+.tasks-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  width: fit-content;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.3rem;
+  cursor: pointer;
+  padding: 4.5px 5.5px;
+}
+
+.tasks-toggle p {
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+}
+
+/* Tasks right - icons */
+.tasks-right .tasks-search,
+.tasks-right .tasks-menu {
+  display: flex;
+  align-items: center;
+  padding: 4.5px 5px;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.tasks-search .tasks-search-svg,
+.tasks-menu .tasks-menu-svg,
+.tasks-toggle .tasks-toggle-svg {
+  width: 10px;
+  height: 10px;
+  color: var(--color-text-secondary);
+  opacity: 0.9;
+}
+
+.tasks-search .tasks-search-svg path,
+.tasks-menu .tasks-menu-svg path {
+  fill: var(--bg-secondary);
+  stroke: var(--text-primary);
+  transition: all 0.3s ease;
+}

@@ -81,6 +81,7 @@
   background: var(--bg-secondary);
 }
 
+/* Theme toggle */
 .theme-toggle {
   width: 19px;
   height: 19px;

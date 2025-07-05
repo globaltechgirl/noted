@@ -5,8 +5,9 @@ import Notes from "../Folder/Folders/Notes";
 import OneFolder from "../Folder/Folders/OneFolder";
 import MediaFolder from "../Folder/Folders/MediaFolder";
 import LinkFolder from "../Folder/Folders/LinkFolder";
-import Profile from "../Folder/Profile/Profile"; 
-import Settings from "../Folder/Settings/Setting";
+import Tasks from "../Tasks/Tasks"; 
+import Profile from "../Profile/Profile"; 
+import Settings from "../Settings/Setting";
 
 function Main({ view, activeFolder, onFolderClick, onBack }) {
     const renderContent = () => {
@@ -21,6 +22,8 @@ function Main({ view, activeFolder, onFolderClick, onBack }) {
                 return <LinkFolder folderName={activeFolder} onFolderClick={onFolderClick} />;
             case "folder":
                 return activeFolder && <Folder folderName={activeFolder} onBack={onBack} />;
+            case "tasks":
+                return <Tasks />;
             case "profile":
                 return <Profile />;
             case "settings":

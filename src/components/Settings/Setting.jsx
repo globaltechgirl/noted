@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import './Setting.css';
-import { useLanguage } from "../../../Context/LanguageContext.jsx";
-import { settingsKeyMap, translations } from  "../../../Context/translations.js";
-import { useTheme } from "../../../Context/ThemeContext";
-import { useDashboardView } from "../GridControls/DashboardViewContext.jsx";
+import { useLanguage } from "../../Context/LanguageContext.jsx";
+import { settingsKeyMap, translations } from  "../../Context/translations.js";
+import { useTheme } from "../../Context/ThemeContext.jsx";
+import { useDashboardView } from "../Folder/GridControls/DashboardViewContext.jsx";
 
 function Settings() {  
     // Theme context

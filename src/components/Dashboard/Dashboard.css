@@ -228,7 +228,7 @@
 }
 
 /* Dashboard headers */
-.tasks-header,
+.task-header,
 .performance-header,
 .file-header {
   font-size: 0.6rem;
@@ -237,8 +237,8 @@
   margin-bottom: 20px;
 }
 
-/* Dashboard tasks */
-.dashboard-tasks {
+/* Dashboard task */
+.dashboard-task {
   display: flex;
   flex-direction: column;
   letter-spacing: 0.6px;
@@ -248,9 +248,9 @@
   padding: 20px 15px 15px 15px;
 }
 
-/* Tasks content header */
-.tasks-content-header ul,
-.tasks-content-text ul {
+/* Task content header */
+.task-content-header ul,
+.task-content-text ul {
   width: 100%;
   display: grid;
   list-style: none;
@@ -259,42 +259,42 @@
   align-items: center;
 }
 
-.tasks-content-header ul {
+.task-content-header ul {
   grid-template-columns: 2fr 0.8fr 0.75fr;
 }
 
-.tasks-content-text ul {
+.task-content-text ul {
   grid-template-columns: 2fr 0.85fr 0.7fr;
 }
 
-.tasks-content-header ul li p {
+.task-content-header ul li p {
   font-size: 0.52rem;
   font-weight: 550;
   color: var(--text-secondary);
   margin-bottom: 12px;
 }
 
-/* Tasks content wrapper */
-.tasks-content-wrapper {
+/* Task content wrapper */
+.task-content-wrapper {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.tasks-content-text ul {
+.task-content-text ul {
   background: var(--bg-secondary);
   border: 0.5px solid var(--border-primary);
   padding: 7px 10px;
   border-radius: 0.35rem;
 }
 
-.tasks-content-text ul li p {
+.task-content-text ul li p {
   font-size: 0.5rem;
   font-weight: 500;
   color: var(--text-primary);
 }
 
-.tasks-content-text .tasks-status {
+.task-content-text .task-status {
   width: fit-content;
   display: flex;
   align-items: center;
@@ -307,13 +307,13 @@
   border-radius: 0.3rem;
 }
 
-.tasks-status-svg {
+.task-status-svg {
   width: 9px;
   height: 9px;
   display: block;
 }
 
-.tasks-status-svg path {
+.task-status-svg path {
   fill: var(--bg-secondary);
   stroke: var(--text-primary);
 }

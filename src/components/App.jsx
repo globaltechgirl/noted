@@ -63,6 +63,9 @@ function App() {
         } else if (section === "Links" || section === "link-folder") {
             setView("link-folder");
             setActiveFolder("Links");
+        } else if (section === "tasks") {
+            setView("tasks");
+            setActiveFolder(null);
         } else if (section === "profile") {
             setView("profile");
             setActiveFolder(null);

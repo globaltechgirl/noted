@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import './Profile.css';
-import { useTheme } from "../../../Context/ThemeContext";
+import { useTheme } from "../../Context/ThemeContext";
 import { allCountries } from "country-telephone-data";
 
 function Profile() {

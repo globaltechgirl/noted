@@ -9,9 +9,10 @@ function Dashboard({ }) {
     const { selectedLanguage } = useLanguage();
     const t = translations[selectedLanguage]?.folders || {};
 
-    // --- Theme Toggle (Light/Dark) --- 
+    // Theme context
     const { darkMode, toggleTheme } = useTheme();
 
+    // Dashboard stats
     const dashboardStats = [
         {
             title: "Total Notes",
@@ -50,6 +51,7 @@ function Dashboard({ }) {
         },
     ];
 
+    // Task list
     const taskList = [
         {
             name: "Finalize homepage design",
@@ -59,7 +61,7 @@ function Dashboard({ }) {
             svg: (
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="tasks-status-svg"
+                    className="task-status-svg"
                     viewBox="0 0 24 24"
                 >
                     <g
@@ -84,7 +86,7 @@ function Dashboard({ }) {
             svg: (
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="tasks-status-svg"
+                    className="task-status-svg"
                     viewBox="0 0 24 24"
                 >
                     <path
@@ -107,7 +109,7 @@ function Dashboard({ }) {
             svg: (
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="tasks-status-svg"
+                    className="task-status-svg"
                     viewBox="0 0 24 24"
                 >
                     <path
@@ -130,7 +132,7 @@ function Dashboard({ }) {
             svg: (
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="tasks-status-svg"
+                    className="task-status-svg"
                     viewBox="0 0 24 24"
                 >
                     <g
@@ -149,11 +151,13 @@ function Dashboard({ }) {
         },
     ];
 
+    // Performance stats
     const performanceStats = {
         figure: 15,
         change: "+ 5",
     };
 
+    // Performance chart data
     const performanceChartData = [
         { day: "Mon", height: 40 },
         { day: "Tue", height: 60 },
@@ -164,6 +168,7 @@ function Dashboard({ }) {
         { day: "Sun", height: 70 },
     ];
 
+    // File list
     const fileList = [
         {
             name: "Finalize homepage design",
@@ -380,13 +385,13 @@ function Dashboard({ }) {
                         </div>
 
                         <div className="dashboard-middle">
-                            <div className="dashboard-tasks">
-                                <div className="tasks-header">
+                            <div className="dashboard-task">
+                                <div className="task-header">
                                     <p>Today's Tasks</p>
                                 </div>
 
-                                <div className="tasks-content">
-                                    <div className="tasks-content-header">
+                                <div className="task-content">
+                                    <div className="task-content-header">
                                         <ul>
                                             <li>
                                                 <p>Task Name</p>
@@ -402,30 +407,30 @@ function Dashboard({ }) {
                                         </ul>
                                     </div>
 
-                                    <div className="tasks-content-wrapper">
+                                    <div className="task-content-wrapper">
                                         {Array.from({ length: 5 }).map((_, index) => {
                                             const task = taskList[index];
                                             return task ? (
-                                                <div className="tasks-content-text" key={index}>
+                                                <div className="task-content-text" key={index}>
                                                     <ul>
                                                         <li>
-                                                            <p className="tasks-name">{task.name}</p>
+                                                            <p className="task-name">{task.name}</p>
                                                         </li>
 
                                                         <li>
-                                                            <p className="tasks-status">
+                                                            <p className="task-status">
                                                                 {task.status.svg}
                                                                 {task.status.label}
                                                             </p>
                                                         </li>
                                                         
                                                         <li>
-                                                            <p className="tasks-due">{task.due}</p>
+                                                            <p className="task-due">{task.due}</p>
                                                         </li>
                                                     </ul>
                                                 </div>
                                             ) : (
-                                                <div className="tasks-content-text add-task" key={`add-${index}`}>
+                                                <div className="task-content-text add-task" key={`add-${index}`}>
                                                     <ul>
                                                         <li className="add-task-wrapper">
                                                             <p className="add-task-message">

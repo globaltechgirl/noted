@@ -63,46 +63,6 @@ function OneFolder({ folderName }) {
             date: "15.05.25",
             starred: false
         },
-        {
-            id: 6,
-            icon: "F",
-            title: "Q2 Budget Review for International Holdings Ltd",
-            subtitle: "Finance department internal audit summary",
-            date: "12.04.25",
-            starred: false
-        },
-        {
-            id: 7,
-            icon: "F",
-            title: "UX Research Notes from Multi-Country Study Phase",
-            subtitle: "User testing insights from April rollout",
-            date: "10.05.25",
-            starred: false
-        },
-        {
-            id: 8,
-            icon: "F",
-            title: "Project Neon Proposal for Long-Term Infrastructure",
-            subtitle: "Initial pitch deck and scope documentation",
-            date: "08.05.25",
-            starred: false
-        },
-        {
-            id: 9,
-            icon: "F",
-            title: "Brand Guideline 2025 – Visual Identity Expansion",
-            subtitle: "Updated brand colors, typography, and icons",
-            date: "01.05.25",
-            starred: false
-        },
-        {
-            id: 10,
-            icon: "F",
-            title: "Confidential Agreement For NovaTech CeloCorp",
-            subtitle: "Signed legal documentation with NDAs enclosed",
-            date: "15.05.25",
-            starred: false
-        }
     ]);
 
     // Star toggle handler
