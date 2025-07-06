@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import './Tasks.css';
 import { useLanguage } from "../../Context/LanguageContext";
 import { folderKeyMap, translations } from  "../../Context/translations";
@@ -53,7 +53,31 @@ function Tasks ({ }) {
     // Tasks state
     const [tasks, setTasks] = useState(initialTasks);
 
-    // Toggle subtask done state and update task status
+    // Selected task IDs
+    const [selectedTaskIds, setSelectedTaskIds] = useState([]);
+
+    // Dropdown visibility
+    const [showTodoDropdown, setShowTodoDropdown] = useState(false);
+    const [showInProgressDropdown, setShowInProgressDropdown] = useState(false);
+    const [showCompletedDropdown, setShowCompletedDropdown] = useState(false);
+   
+    // Dropdown refs
+    const todoDropdownRef = useRef(null);
+    const inProgressDropdownRef = useRef(null)
+    const completedDropdownRef = useRef(null);
+
+    // Filter tasks by status
+    const todoTasks = tasks.filter(task => task.status === "todo");
+    const inProgressTasks = tasks.filter(task => task.status === "inprogress");
+    const completedTasks = tasks.filter(task => task.status === "completed");
+
+    // Get subtask completion %
+    const getProgress = (subtasks) => {
+        const completed = subtasks.filter(t => t.done).length;
+        return Math.round((completed / subtasks.length) * 100);
+    };
+
+    // Toggle subtask done and update status
     const toggleCheck = (taskId, subtaskId) => {
         setTasks(prev =>
             prev.map(task => {
@@ -79,10 +103,19 @@ function Tasks ({ }) {
         );
     };
 
-    // Get subtask progress in %
-    const getProgress = (subtasks) => {
-        const completed = subtasks.filter(t => t.done).length;
-        return Math.round((completed / subtasks.length) * 100);
+    // Toggle task selection
+    const toggleTaskSelection = (taskId) => {
+        setSelectedTaskIds(prev =>
+            prev.includes(taskId)
+                ? prev.filter(id => id !== taskId) 
+                : [...prev, taskId]               
+        );
+    };
+
+    // Delete selected tasks
+    const deleteSelectedTask = () => {
+        setTasks(prev => prev.filter(task => !selectedTaskIds.includes(task.id)));
+        setSelectedTaskIds([]);
     };
 
     // Add new todo task
@@ -131,14 +164,27 @@ function Tasks ({ }) {
         setTasks(prev => [newTask, ...prev]);
     };
 
-    // Filter todo tasks
-    const todoTasks = tasks.filter(task => task.status === "todo");
+    // Handle outside click to close dropdowns
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (todoDropdownRef.current && !todoDropdownRef.current.contains(event.target)) {
+                setShowTodoDropdown(false);
+            }
 
-    // Filter in-progress tasks
-    const inProgressTasks = tasks.filter(task => task.status === "inprogress");
+            if (inProgressDropdownRef.current && !inProgressDropdownRef.current.contains(event.target)) {
+                setShowInProgressDropdown(false);
+            }
 
-    // Filter completed tasks
-    const completedTasks = tasks.filter(task => task.status === "completed");
+            if (completedDropdownRef.current && !completedDropdownRef.current.contains(event.target)) {
+                setShowCompletedDropdown(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     return (
         <div className="tasks-container">
@@ -279,7 +325,7 @@ function Tasks ({ }) {
                             <div className="tasks-main-header">
                                 <div className="tasks-header-left">
                                     <p className="tasks-header-name">To Do</p>
-                                    <p className="tasks-header-text">{tasks.length}</p>
+                                    <p className="tasks-header-text">{todoTasks.length}</p>
                                 </div>
 
                                 <div className="tasks-header-right">
@@ -300,7 +346,15 @@ function Tasks ({ }) {
                                         </svg>
                                     </div>
 
-                                    <div className="todo-menu tasks-menu">
+                                    <div 
+                                        className="todo-menu tasks-menu"
+                                        onClick={() => {
+                                            setShowTodoDropdown(prev => !prev);
+                                            setShowInProgressDropdown(false);
+                                        }}
+                                        ref={todoDropdownRef}
+                                        style={{ position: "relative" }}
+                                    >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="tasks-menu-svg"
@@ -315,6 +369,13 @@ function Tasks ({ }) {
                                                 d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0 7a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0-14a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
                                             />
                                         </svg>
+
+                                        {showTodoDropdown && (
+                                            <div className="tasks-dropdown-options">
+                                                <div onClick={deleteSelectedTask}>Delete Task</div>
+                                                <div onClick={deleteSelectedTask}>Archive Task</div>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -323,10 +384,36 @@ function Tasks ({ }) {
                                 {todoTasks.map(task => {
                                     const progress = getProgress(task.subtasks);
                                     return (
-                                        <div key={task.id} className="tasks-body-list">
+                                        <div 
+                                            key={task.id} 
+                                            className={`tasks-body-list ${selectedTaskIds.includes(task.id) ? "selected" : ""}`}
+                                        >
                                             <div className="tasks-list-top">
                                                 <div className="tasks-list-toggle">
                                                     <p>{task.priority}</p>
+                                                </div>
+
+                                                <div 
+                                                    className="select-task-check"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation(); 
+                                                        toggleTaskSelection(task.id);
+                                                    }}
+                                                >
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className={`check-task-icon ${selectedTaskIds.includes(task.id) ? "selected" : ""}`}
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="m5 12l5 5L20 7"
+                                                        />
+                                                    </svg>
                                                 </div>
                                             </div>
 
@@ -398,24 +485,15 @@ function Tasks ({ }) {
                                 </div>
 
                                 <div className="tasks-header-right">
-                                    <div className="todo-plus tasks-plus" onClick={addNewInProgressTask}>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="tasks-plus-svg"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                fill="none"
-                                                stroke="currentColor"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M12 5v14m-7-7h14"
-                                            />
-                                        </svg>
-                                    </div>
-
-                                    <div className="todo-menu tasks-menu">
+                                    <div 
+                                        className="inprogress-menu tasks-menu"
+                                        onClick={() => {
+                                            setShowInProgressDropdown(prev => !prev);
+                                            setShowTodoDropdown(false);
+                                        }}
+                                        ref={inProgressDropdownRef}
+                                        style={{ position: "relative" }}
+                                    >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="tasks-menu-svg"
@@ -430,6 +508,13 @@ function Tasks ({ }) {
                                                 d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0 7a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0-14a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
                                             />
                                         </svg>
+
+                                        {showInProgressDropdown && (
+                                            <div className="tasks-dropdown-options">
+                                                <div onClick={deleteSelectedTask}>Delete Task</div>
+                                                <div onClick={deleteSelectedTask}>Archive Task</div>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -438,10 +523,36 @@ function Tasks ({ }) {
                                 {inProgressTasks.map(task => {
                                     const progress = getProgress(task.subtasks);
                                     return (
-                                        <div key={task.id} className="tasks-body-list">
+                                        <div 
+                                            key={task.id} 
+                                            className={`tasks-body-list ${selectedTaskIds.includes(task.id) ? "selected" : ""}`}
+                                        >
                                             <div className="tasks-list-top">
                                                 <div className="tasks-list-toggle">
                                                     <p>{task.priority}</p>
+                                                </div>
+
+                                                <div 
+                                                    className="select-task-check"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation(); 
+                                                        toggleTaskSelection(task.id);
+                                                    }}
+                                                >
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className={`check-task-icon ${selectedTaskIds.includes(task.id) ? "selected" : ""}`}
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="m5 12l5 5L20 7"
+                                                        />
+                                                    </svg>
                                                 </div>
                                             </div>
 
@@ -513,24 +624,16 @@ function Tasks ({ }) {
                                 </div>
 
                                 <div className="tasks-header-right">
-                                    <div className="todo-plus tasks-plus" onClick={addNewCompletedTask}>
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="tasks-plus-svg"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                fill="none"
-                                                stroke="currentColor"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M12 5v14m-7-7h14"
-                                            />
-                                        </svg>
-                                    </div>
-
-                                    <div className="todo-menu tasks-menu">
+                                    <div 
+                                        className="completed-menu tasks-menu"
+                                        onClick={() => {
+                                            setShowCompletedDropdown(prev => !prev);
+                                            setShowTodoDropdown(false);
+                                            setShowInProgressDropdown(false);
+                                        }}
+                                        ref={completedDropdownRef}
+                                        style={{ position: "relative" }}
+                                    >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="tasks-menu-svg"
@@ -545,6 +648,12 @@ function Tasks ({ }) {
                                                 d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0 7a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0-14a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
                                             />
                                         </svg>
+
+                                        {showCompletedDropdown && (
+                                            <div className="tasks-dropdown-options">
+                                                <div onClick={deleteSelectedTask}>Archive Task</div>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -553,10 +662,36 @@ function Tasks ({ }) {
                                 {completedTasks.map(task => {
                                     const progress = getProgress(task.subtasks);
                                     return (
-                                        <div key={task.id} className="tasks-body-list">
+                                        <div 
+                                            key={task.id} 
+                                            className={`tasks-body-list ${selectedTaskIds.includes(task.id) ? "selected" : ""}`}
+                                        >
                                             <div className="tasks-list-top">
                                                 <div className="tasks-list-toggle">
                                                     <p>{task.priority}</p>
+                                                </div>
+
+                                                <div 
+                                                    className="select-task-check"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation(); 
+                                                        toggleTaskSelection(task.id);
+                                                    }}
+                                                >
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className={`check-task-icon ${selectedTaskIds.includes(task.id) ? "selected" : ""}`}
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="m5 12l5 5L20 7"
+                                                        />
+                                                    </svg>
                                                 </div>
                                             </div>
 

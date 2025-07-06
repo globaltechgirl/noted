@@ -221,6 +221,7 @@
   border: 0.5px solid var(--border-primary);
   border-radius: 0.3rem;
   cursor: pointer;
+  position: relative;
 }
 
 .tasks-search .tasks-search-svg,
@@ -248,9 +249,7 @@
   margin-top: 15px;
 }
 
-.tasks-section,
-.tasks-progress,
-.tasks-completed {
+.tasks-section {
   padding: 10px;
   border-radius: 0.5rem;
   background: var(--bg-primary);
@@ -303,6 +302,11 @@
   cursor: pointer;
 }
 
+.tasks-plus:hover,
+.tasks-menu:hover {
+  background: var(--bg-primary);
+}
+
 .tasks-plus .tasks-plus-svg,
 .tasks-menu .tasks-menu-svg {
   width: 9px;
@@ -317,11 +321,41 @@
   transition: all 0.3s ease;
 }
 
+.tasks-dropdown-options {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 10px;
+  z-index: 100;
+  width: max-content;
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.35rem;
+  padding: 3px;
+  font-size: 0.48rem;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  color: var(--text-primary);
+}
+
+.tasks-dropdown-options div {
+  margin: 0;
+  padding: 3px 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.tasks-dropdown-options div:hover {
+  background: var(--bg-primary);
+  border-radius: 0.25rem;
+  border: 0.5px solid var(--border-primary);
+}
+
 /* Tasks body list */
 .tasks-body-list {
   display: flex;
   flex-direction: column;
-  margin-top: 15px;
+  margin-top: 12px;
   gap: 12px;
   padding: 12px 10px;
   background: var(--bg-secondary);
@@ -329,6 +363,18 @@
   border-radius: 0.5rem;
   letter-spacing: 0.6px;
   line-height: 1.6;
+  cursor: pointer;
+}
+
+.tasks-body-list.selected {
+  background: var(--bg-primary);
+}
+
+/* Tasks list top */
+.tasks-list-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .tasks-list-toggle {
@@ -343,6 +389,25 @@
 .tasks-list-toggle p {
   font-size: 0.45rem;
   font-weight: 550;
+}
+
+.select-task-check {
+  padding: 1.5px 2px 1.5px 1.5px;
+  cursor: pointer;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.2rem;
+}
+
+.check-task-icon.selected {
+  background: var(--bg-secondary);
+}
+
+.check-task-icon {
+  width: 8px;
+  height: 8px;
+  display: block;
+  color: var(--text-secondary);
 }
 
 /* Tasks list middle */
@@ -360,7 +425,7 @@
 
 .tasks-list-text {
   color: var(--text-secondary);
-  font-size: 0.50rem;
+  font-size: 0.5rem;
   font-weight: 500;
 }
 
