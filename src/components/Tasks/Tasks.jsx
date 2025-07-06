@@ -11,13 +11,15 @@ function Tasks ({ }) {
 
     // Theme context
     const { darkMode, toggleTheme } = useTheme();
-    
+
+    // Initial tasks
     const initialTasks = [
         {
             id: 1,
             title: "Category Pages SEO Audit",
             subtitle: "SEO Campaign",
             priority: "Medium",
+            status: "todo",
             subtasks: [
                 { id: 1, text: "Prepare promotional banners", done: false },
                 { id: 2, text: "Landing page assets", done: false },
@@ -29,34 +31,114 @@ function Tasks ({ }) {
             title: "Homepage Redesign",
             subtitle: "UI/UX Update",
             priority: "High",
+            status: "todo",
             subtasks: [
                 { id: 1, text: "Design hero section", done: false },
                 { id: 2, text: "Implement responsive styles", done: false }
             ]
+        },
+        {
+            id: 3,
+            title: "Social Media Audit",
+            subtitle: "Brand Campaign",
+            priority: "Low",
+            status: "todo",
+            subtasks: [
+                { id: 1, text: "Analyze Instagram", done: false },
+                { id: 2, text: "Audit Twitter", done: false }
+            ]
         }
     ];
 
-  const [tasks, setTasks] = useState(initialTasks);
+    // Tasks state
+    const [tasks, setTasks] = useState(initialTasks);
 
-  const toggleCheck = (taskId, subtaskId) => {
-    setTasks(prev =>
-      prev.map(task =>
-        task.id === taskId
-          ? {
-              ...task,
-              subtasks: task.subtasks.map(sub =>
-                sub.id === subtaskId ? { ...sub, done: !sub.done } : sub
-              )
-            }
-          : task
-      )
-    );
-  };
+    // Toggle subtask done state and update task status
+    const toggleCheck = (taskId, subtaskId) => {
+        setTasks(prev =>
+            prev.map(task => {
+                if (task.id !== taskId) return task;
 
-  const getProgress = (subtasks) => {
-    const completed = subtasks.filter(t => t.done).length;
-    return Math.round((completed / subtasks.length) * 100);
-  };
+                const updatedSubtasks = task.subtasks.map(sub =>
+                    sub.id === subtaskId ? { ...sub, done: !sub.done } : sub
+                );
+
+                const progress = getProgress(updatedSubtasks);
+
+                let newStatus;
+                if (progress === 100) newStatus = "completed";
+                else if (progress >= 50) newStatus = "inprogress";
+                else newStatus = "todo";
+
+                return {
+                    ...task,
+                    subtasks: updatedSubtasks,
+                    status: newStatus
+                };
+            })
+        );
+    };
+
+    // Get subtask progress in %
+    const getProgress = (subtasks) => {
+        const completed = subtasks.filter(t => t.done).length;
+        return Math.round((completed / subtasks.length) * 100);
+    };
+
+    // Add new todo task
+    const addNewTodoTask = () => {
+        const newTask = {
+            id: Date.now(),
+            title: "New Task",
+            subtitle: "New Subtitle",
+            priority: "Medium",
+            status: "todo",
+            subtasks: [
+                { id: 1, text: "New Subtask", done: false }
+            ]
+        };
+        setTasks(prev => [newTask, ...prev]);
+    };
+
+    // Add new in-progress task
+    const addNewInProgressTask = () => {
+        const newTask = {
+            id: Date.now(),
+            title: "New In Progress Task",
+            subtitle: "In Progress Subtitle",
+            priority: "Low",
+            status: "inprogress",
+            subtasks: [
+                { id: 1, text: "In Progress Subtask", done: false }
+            ]
+        };
+        setTasks(prev => [newTask, ...prev]);
+    };
+
+    // Add new completed task
+    const addNewCompletedTask = () => {
+        const newTask = {
+            id: Date.now(),
+            title: "New Completed Task",
+            subtitle: "Completed Subtitle",
+            priority: "High",
+            status: "completed",
+            subtasks: [
+                { id: 1, text: "Completed Subtask 1", done: true },
+                { id: 2, text: "Completed Subtask 2", done: true }
+            ]
+        };
+        setTasks(prev => [newTask, ...prev]);
+    };
+
+    // Filter todo tasks
+    const todoTasks = tasks.filter(task => task.status === "todo");
+
+    // Filter in-progress tasks
+    const inProgressTasks = tasks.filter(task => task.status === "inprogress");
+
+    // Filter completed tasks
+    const completedTasks = tasks.filter(task => task.status === "completed");
 
     return (
         <div className="tasks-container">
@@ -201,7 +283,7 @@ function Tasks ({ }) {
                                 </div>
 
                                 <div className="tasks-header-right">
-                                    <div className="todo-plus tasks-plus">
+                                    <div className="todo-plus tasks-plus" onClick={addNewTodoTask}>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="tasks-plus-svg"
@@ -238,9 +320,8 @@ function Tasks ({ }) {
                             </div>
 
                             <div className="tasks-todo">
-                                {tasks.map(task => {
+                                {todoTasks.map(task => {
                                     const progress = getProgress(task.subtasks);
-
                                     return (
                                         <div key={task.id} className="tasks-body-list">
                                             <div className="tasks-list-top">
@@ -255,7 +336,7 @@ function Tasks ({ }) {
                                                 </div>
 
                                                 <div className="tasks-list-text">
-                                                    <p>{task.subtasks.length}</p>
+                                                    <p>{task.subtitle}</p>
                                                 </div>
 
                                                 <div className="tasks-list-checks">
@@ -313,11 +394,11 @@ function Tasks ({ }) {
                             <div className="tasks-main-header">
                                 <div className="tasks-header-left">
                                     <p className="tasks-header-name">In Progress</p>
-                                    <p className="tasks-header-text">{tasks.length}</p>
+                                    <p className="tasks-header-text">{inProgressTasks.length}</p>
                                 </div>
 
                                 <div className="tasks-header-right">
-                                    <div className="todo-plus tasks-plus">
+                                    <div className="todo-plus tasks-plus" onClick={addNewInProgressTask}>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="tasks-plus-svg"
@@ -354,9 +435,8 @@ function Tasks ({ }) {
                             </div>
 
                             <div className="tasks-todo">
-                                {tasks.map(task => {
+                                {inProgressTasks.map(task => {
                                     const progress = getProgress(task.subtasks);
-
                                     return (
                                         <div key={task.id} className="tasks-body-list">
                                             <div className="tasks-list-top">
@@ -371,7 +451,7 @@ function Tasks ({ }) {
                                                 </div>
 
                                                 <div className="tasks-list-text">
-                                                    <p>{task.subtasks.length}</p>
+                                                    <p>{task.subtitle}</p>
                                                 </div>
 
                                                 <div className="tasks-list-checks">
@@ -429,11 +509,11 @@ function Tasks ({ }) {
                             <div className="tasks-main-header">
                                 <div className="tasks-header-left">
                                     <p className="tasks-header-name">Completed</p>
-                                    <p className="tasks-header-text">{tasks.length}</p>
+                                    <p className="tasks-header-text">{completedTasks.length}</p>
                                 </div>
 
                                 <div className="tasks-header-right">
-                                    <div className="todo-plus tasks-plus">
+                                    <div className="todo-plus tasks-plus" onClick={addNewCompletedTask}>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="tasks-plus-svg"
@@ -470,9 +550,8 @@ function Tasks ({ }) {
                             </div>
 
                             <div className="tasks-todo">
-                                {tasks.map(task => {
+                                {completedTasks.map(task => {
                                     const progress = getProgress(task.subtasks);
-
                                     return (
                                         <div key={task.id} className="tasks-body-list">
                                             <div className="tasks-list-top">
@@ -487,7 +566,7 @@ function Tasks ({ }) {
                                                 </div>
 
                                                 <div className="tasks-list-text">
-                                                    <p>{task.subtasks.length}</p>
+                                                    <p>{task.subtitle}</p>
                                                 </div>
 
                                                 <div className="tasks-list-checks">
