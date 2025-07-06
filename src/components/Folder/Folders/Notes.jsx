@@ -15,7 +15,7 @@ function Notes ({ onFolderClick }) {
     const [noteData] = useState([
         {
             id: 1,
-            image: "/public/assets/images/note-light.png",
+            image: "/assets/images/note-light.png",
             title: "Personal",
             theme: "light",
             imgAlt: "Personal Notes",
@@ -24,7 +24,7 @@ function Notes ({ onFolderClick }) {
         },
         {
             id: 2,
-            image: "/public/assets/images/note-dark.png",
+            image: "/assets/images/note-dark.png",
             title: "Personal",
             theme: "dark",
             imgAlt: "Personal Notes",

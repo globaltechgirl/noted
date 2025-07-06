@@ -198,7 +198,7 @@
   background: var(--bg-secondary);
   border: 1px solid var(--border-primary);
   border-radius: 0.45rem;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   padding: 7px;
 }
 

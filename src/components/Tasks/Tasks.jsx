@@ -11,6 +11,52 @@ function Tasks ({ }) {
 
     // Theme context
     const { darkMode, toggleTheme } = useTheme();
+    
+    const initialTasks = [
+        {
+            id: 1,
+            title: "Category Pages SEO Audit",
+            subtitle: "SEO Campaign",
+            priority: "Medium",
+            subtasks: [
+                { id: 1, text: "Prepare promotional banners", done: false },
+                { id: 2, text: "Landing page assets", done: false },
+                { id: 3, text: "Newsletter campaign assets", done: false }
+            ]
+        },
+        {
+            id: 2,
+            title: "Homepage Redesign",
+            subtitle: "UI/UX Update",
+            priority: "High",
+            subtasks: [
+                { id: 1, text: "Design hero section", done: false },
+                { id: 2, text: "Implement responsive styles", done: false }
+            ]
+        }
+    ];
+
+  const [tasks, setTasks] = useState(initialTasks);
+
+  const toggleCheck = (taskId, subtaskId) => {
+    setTasks(prev =>
+      prev.map(task =>
+        task.id === taskId
+          ? {
+              ...task,
+              subtasks: task.subtasks.map(sub =>
+                sub.id === subtaskId ? { ...sub, done: !sub.done } : sub
+              )
+            }
+          : task
+      )
+    );
+  };
+
+  const getProgress = (subtasks) => {
+    const completed = subtasks.filter(t => t.done).length;
+    return Math.round((completed / subtasks.length) * 100);
+  };
 
     return (
         <div className="tasks-container">
@@ -147,7 +193,353 @@ function Tasks ({ }) {
                     </div>
 
                     <div className="tasks-main">
+                        <div className="tasks-section">
+                            <div className="tasks-main-header">
+                                <div className="tasks-header-left">
+                                    <p className="tasks-header-name">To Do</p>
+                                    <p className="tasks-header-text">{tasks.length}</p>
+                                </div>
 
+                                <div className="tasks-header-right">
+                                    <div className="todo-plus tasks-plus">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="tasks-plus-svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M12 5v14m-7-7h14"
+                                            />
+                                        </svg>
+                                    </div>
+
+                                    <div className="todo-menu tasks-menu">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="tasks-menu-svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0 7a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0-14a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="tasks-todo">
+                                {tasks.map(task => {
+                                    const progress = getProgress(task.subtasks);
+
+                                    return (
+                                        <div key={task.id} className="tasks-body-list">
+                                            <div className="tasks-list-top">
+                                                <div className="tasks-list-toggle">
+                                                    <p>{task.priority}</p>
+                                                </div>
+                                            </div>
+
+                                            <div className="tasks-list-middle">
+                                                <div className="tasks-list-header">
+                                                    <p>{task.title}</p>
+                                                </div>
+
+                                                <div className="tasks-list-text">
+                                                    <p>{task.subtasks.length}</p>
+                                                </div>
+
+                                                <div className="tasks-list-checks">
+                                                    <ul>
+                                                        {task.subtasks.map(sub => (
+                                                            <li
+                                                                key={sub.id}
+                                                                onClick={() => toggleCheck(task.id, sub.id)}
+                                                                className={sub.done ? "subtask-done" : ""}
+                                                            >
+                                                                <svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    className={`tasks-list-checks-svg ${sub.done ? "subtask-done" : ""}`}
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path
+                                                                        fill="none"
+                                                                        stroke="currentColor"
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="m5 12l5 5L20 7"
+                                                                    />
+                                                                </svg>
+
+                                                                <p className={sub.done ? "subtask-done" : ""}>{sub.text}</p>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div className="tasks-list-bottom">
+                                                <div className="tasks-list-progress">
+                                                    <div className="tasks-progress-top">
+                                                        <p>Progress</p>
+                                                        <p>{progress}%</p>
+                                                    </div>
+
+                                                    <div className="tasks-progress-bar">
+                                                        <div
+                                                            className="tasks-progress-fill"
+                                                            style={{ width: `${progress}%` }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        <div className="tasks-section">
+                            <div className="tasks-main-header">
+                                <div className="tasks-header-left">
+                                    <p className="tasks-header-name">In Progress</p>
+                                    <p className="tasks-header-text">{tasks.length}</p>
+                                </div>
+
+                                <div className="tasks-header-right">
+                                    <div className="todo-plus tasks-plus">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="tasks-plus-svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M12 5v14m-7-7h14"
+                                            />
+                                        </svg>
+                                    </div>
+
+                                    <div className="todo-menu tasks-menu">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="tasks-menu-svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0 7a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0-14a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="tasks-todo">
+                                {tasks.map(task => {
+                                    const progress = getProgress(task.subtasks);
+
+                                    return (
+                                        <div key={task.id} className="tasks-body-list">
+                                            <div className="tasks-list-top">
+                                                <div className="tasks-list-toggle">
+                                                    <p>{task.priority}</p>
+                                                </div>
+                                            </div>
+
+                                            <div className="tasks-list-middle">
+                                                <div className="tasks-list-header">
+                                                    <p>{task.title}</p>
+                                                </div>
+
+                                                <div className="tasks-list-text">
+                                                    <p>{task.subtasks.length}</p>
+                                                </div>
+
+                                                <div className="tasks-list-checks">
+                                                    <ul>
+                                                        {task.subtasks.map(sub => (
+                                                            <li
+                                                                key={sub.id}
+                                                                onClick={() => toggleCheck(task.id, sub.id)}
+                                                                className={sub.done ? "subtask-done" : ""}
+                                                            >
+                                                                <svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    className={`tasks-list-checks-svg ${sub.done ? "subtask-done" : ""}`}
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path
+                                                                        fill="none"
+                                                                        stroke="currentColor"
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="m5 12l5 5L20 7"
+                                                                    />
+                                                                </svg>
+
+                                                                <p className={sub.done ? "subtask-done" : ""}>{sub.text}</p>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div className="tasks-list-bottom">
+                                                <div className="tasks-list-progress">
+                                                    <div className="tasks-progress-top">
+                                                        <p>Progress</p>
+                                                        <p>{progress}%</p>
+                                                    </div>
+
+                                                    <div className="tasks-progress-bar">
+                                                        <div
+                                                            className="tasks-progress-fill"
+                                                            style={{ width: `${progress}%` }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        <div className="tasks-section">
+                            <div className="tasks-main-header">
+                                <div className="tasks-header-left">
+                                    <p className="tasks-header-name">Completed</p>
+                                    <p className="tasks-header-text">{tasks.length}</p>
+                                </div>
+
+                                <div className="tasks-header-right">
+                                    <div className="todo-plus tasks-plus">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="tasks-plus-svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M12 5v14m-7-7h14"
+                                            />
+                                        </svg>
+                                    </div>
+
+                                    <div className="todo-menu tasks-menu">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="tasks-menu-svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0 7a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0-14a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="tasks-todo">
+                                {tasks.map(task => {
+                                    const progress = getProgress(task.subtasks);
+
+                                    return (
+                                        <div key={task.id} className="tasks-body-list">
+                                            <div className="tasks-list-top">
+                                                <div className="tasks-list-toggle">
+                                                    <p>{task.priority}</p>
+                                                </div>
+                                            </div>
+
+                                            <div className="tasks-list-middle">
+                                                <div className="tasks-list-header">
+                                                    <p>{task.title}</p>
+                                                </div>
+
+                                                <div className="tasks-list-text">
+                                                    <p>{task.subtasks.length}</p>
+                                                </div>
+
+                                                <div className="tasks-list-checks">
+                                                    <ul>
+                                                        {task.subtasks.map(sub => (
+                                                            <li
+                                                                key={sub.id}
+                                                                onClick={() => toggleCheck(task.id, sub.id)}
+                                                                className={sub.done ? "subtask-done" : ""}
+                                                            >
+                                                                <svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    className={`tasks-list-checks-svg ${sub.done ? "subtask-done" : ""}`}
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path
+                                                                        fill="none"
+                                                                        stroke="currentColor"
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="m5 12l5 5L20 7"
+                                                                    />
+                                                                </svg>
+
+                                                                <p className={sub.done ? "subtask-done" : ""}>{sub.text}</p>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div className="tasks-list-bottom">
+                                                <div className="tasks-list-progress">
+                                                    <div className="tasks-progress-top">
+                                                        <p>Progress</p>
+                                                        <p>{progress}%</p>
+                                                    </div>
+
+                                                    <div className="tasks-progress-bar">
+                                                        <div
+                                                            className="tasks-progress-fill"
+                                                            style={{ width: `${progress}%` }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -439,7 +439,7 @@
 .folder-icon .folder-icon-svg {
   width: 10px;
   height: 10px;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
 }
 
 .folder-icon .folder-icon-svg path {
