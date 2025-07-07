@@ -291,6 +291,7 @@
   padding: 1.5px 2.5px 1.25px 2.5px;
 }
 
+/* Tasks icons - plus & menu */
 .tasks-plus,
 .tasks-menu {
   display: flex;
@@ -318,9 +319,150 @@
 .tasks-menu .tasks-menu-svg path {
   fill: var(--bg-secondary);
   stroke: var(--text-primary);
-  transition: all 0.3s ease;
 }
 
+/* Tasks popup overlay */
+.tasks-popup-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.tasks-popup {
+  padding: 4px;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.6rem;
+  box-shadow: 0 8px 32px var(--shadow-secondary);
+  width: 90%;
+  max-width: 350px;
+}
+
+.tasks-popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  background: var(--bg-secondary);
+  border: 1px dashed var(--border-primary);
+  border-radius: 0.5rem;
+}
+
+/* Tasks popup top */
+.tasks-popup-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tasks-popup-top p {
+  font-size: 0.56rem;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  color: var(--text-primary);
+}
+
+.tasks-close-icon {
+  all: unset;
+  padding: 1.5px 2px 1.5px 1.5px;
+  cursor: pointer;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.2rem;
+}
+
+.tasks-close-icon:hover {
+  background: var(--bg-secondary);
+}
+
+.tasks-close-icon-svg {
+  width: 8px;
+  height: 8px;
+  display: block;
+  color: var(--text-secondary);
+}
+
+/* Tasks popup middle */
+.priority-grid-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 0 8px 0 0;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.3rem;
+}
+
+.ball-low {
+  right: 95%;
+  position: absolute;
+}
+
+.ball-medium {
+  left: 2%;
+  position: absolute;
+}
+
+.ball-high {
+  left: 102.8%;
+  position: absolute;
+}
+
+.priority-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 2px;
+  z-index: 2;
+}
+
+.priority-svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.status-svg-outer {
+  fill: var(--border-primary);
+}
+
+.status-svg-inner {
+  fill: var(--text-secondary);
+}
+
+.tasks-popup-status p {
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  color: var(--text-primary);
+}
+
+.tasks-popup-status .slider {
+  position: absolute;
+  top: 0;
+  top: 1.2px;
+  height: 15.5px;
+  width: 33.33%;
+  transition: left 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.tasks-popup-status .ball {
+  height: 100%;
+  width: 100%;
+  background: var(--bg-secondary);
+  border-radius: 0.25rem;
+  border: 0.5px solid var(--border-primary);
+}
+
+/* Tasks dropdown options */
 .tasks-dropdown-options {
   position: absolute;
   top: 100%;

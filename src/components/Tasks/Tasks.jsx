@@ -53,6 +53,10 @@ function Tasks ({ }) {
     // Tasks state
     const [tasks, setTasks] = useState(initialTasks);
 
+    const [showTodoPopup, setShowTodoPopup] = useState(false);
+
+    const [priority, setPriority] = useState("low");
+
     // Selected task IDs
     const [selectedTaskIds, setSelectedTaskIds] = useState([]);
 
@@ -329,7 +333,7 @@ function Tasks ({ }) {
                                 </div>
 
                                 <div className="tasks-header-right">
-                                    <div className="todo-plus tasks-plus" onClick={addNewTodoTask}>
+                                    <div className="todo-plus tasks-plus" onClick={() => setShowTodoPopup(true)}>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="tasks-plus-svg"
@@ -345,6 +349,96 @@ function Tasks ({ }) {
                                             />
                                         </svg>
                                     </div>
+
+                                    {showTodoPopup && (
+                                        <div className="tasks-popup-overlay" onClick={() => setShowTodoPopup(false)}>
+                                            <div className="tasks-popup" onClick={(e) => e.stopPropagation()}>
+                                                <div className="tasks-popup-content">
+                                                    <div className="tasks-popup-top">
+                                                        <p>Add New Task</p>
+
+                                                        <button onClick={() => setShowTodoPopup(false)} className="tasks-close-icon">
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                className="tasks-close-icon-svg"
+                                                                viewBox="0 0 24 24"
+                                                                width="20"
+                                                                height="20"
+                                                            >
+                                                                <path
+                                                                    fill="none"
+                                                                    stroke="currentColor"
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                    strokeWidth="2"
+                                                                    d="M18 6L6 18M6 6l12 12"
+                                                                />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+
+                                                    <div className="tasks-popup-middle">
+                                                        <div className="tasks-popup-status">
+                                                            <div className="priority-grid-wrapper">
+                                                                <div 
+                                                                    className={`priority-option ${priority === "low" ? "active" : ""}`}
+                                                                    onClick={() => setPriority("low")}
+                                                                >
+                                                                    <svg className="priority-svg" viewBox="0 0 256 256">
+                                                                        <circle className="status-svg-outer" cx="128" cy="128" r="48" />
+                                                                        <circle className="status-svg-inner" cx="128" cy="128" r="24" />
+                                                                    </svg>
+
+                                                                    <p>Low</p>
+                                                                </div>
+
+                                                                <div 
+                                                                    className={`priority-option ${priority === "medium" ? "active" : ""}`}
+                                                                    onClick={() => setPriority("medium")}
+                                                                >
+                                                                    <svg className="priority-svg" viewBox="0 0 256 256">
+                                                                        <circle className="status-svg-outer" cx="128" cy="128" r="48" />
+                                                                        <circle className="status-svg-inner" cx="128" cy="128" r="24" />
+                                                                    </svg>
+                                                                    
+                                                                    <p>Medium</p>
+                                                                </div>
+
+                                                                <div 
+                                                                    className={`priority-option ${priority === "high" ? "active" : ""}`}
+                                                                    onClick={() => setPriority("high")}
+                                                                >
+                                                                    <svg className="priority-svg" viewBox="0 0 256 256">
+                                                                        <circle className="status-svg-outer" cx="128" cy="128" r="48" />
+                                                                        <circle className="status-svg-inner" cx="128" cy="128" r="24" />
+                                                                    </svg>
+
+                                                                    <p>High</p>
+                                                                </div>
+
+                                                                <div className="slider">
+                                                                    <div className={`ball ball-${priority}`}></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="tasks-popup-title">
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <button
+                                                    onClick={() => {
+                                                        addNewTodoTask();
+                                                        setShowTodoPopup(false);
+                                                    }}
+                                                    >
+                                                    Add Task
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
 
                                     <div 
                                         className="todo-menu tasks-menu"
