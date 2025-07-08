@@ -20,6 +20,7 @@ function Tasks ({ }) {
             subtitle: "SEO Campaign",
             priority: "Medium",
             status: "todo",
+            category: "Work",
             subtasks: [
                 { id: 1, text: "Prepare promotional banners", done: false },
                 { id: 2, text: "Landing page assets", done: false },
@@ -32,6 +33,7 @@ function Tasks ({ }) {
             subtitle: "UI/UX Update",
             priority: "High",
             status: "todo",
+            category: "Personal",
             subtasks: [
                 { id: 1, text: "Design hero section", done: false },
                 { id: 2, text: "Implement responsive styles", done: false }
@@ -43,6 +45,7 @@ function Tasks ({ }) {
             subtitle: "Brand Campaign",
             priority: "Low",
             status: "todo",
+            category: "Daily",
             subtasks: [
                 { id: 1, text: "Analyze Instagram", done: false },
                 { id: 2, text: "Audit Twitter", done: false }
@@ -50,30 +53,42 @@ function Tasks ({ }) {
         }
     ];
 
-    // Tasks state
+    // States
     const [tasks, setTasks] = useState(initialTasks);
-
-    const [showTodoPopup, setShowTodoPopup] = useState(false);
-
     const [priority, setPriority] = useState("low");
-
-    // Selected task IDs
+    const [showTodoPopup, setShowTodoPopup] = useState(false);
     const [selectedTaskIds, setSelectedTaskIds] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("All");
 
-    // Dropdown visibility
+    const [showCategoryMenu, setShowCategoryMenu] = useState(false);
+    const [showCategorySelector, setShowCategorySelector] = useState(false);
+
     const [showTodoDropdown, setShowTodoDropdown] = useState(false);
     const [showInProgressDropdown, setShowInProgressDropdown] = useState(false);
     const [showCompletedDropdown, setShowCompletedDropdown] = useState(false);
-   
-    // Dropdown refs
-    const todoDropdownRef = useRef(null);
-    const inProgressDropdownRef = useRef(null)
-    const completedDropdownRef = useRef(null);
 
-    // Filter tasks by status
-    const todoTasks = tasks.filter(task => task.status === "todo");
-    const inProgressTasks = tasks.filter(task => task.status === "inprogress");
-    const completedTasks = tasks.filter(task => task.status === "completed");
+    const [categoryFilter, setCategoryFilter] = useState({
+        priority: "",
+        status: ""
+    });
+   
+    // Refs
+    const todoDropdownRef = useRef(null);
+    const inProgressDropdownRef = useRef(null);
+    const completedDropdownRef = useRef(null);
+    const categoryDropdownRef = useRef(null);
+
+    // Filtered task lists
+    const filteredTasks = tasks.filter(task =>
+        task.status !== "archived" &&
+        (selectedCategory === "All" || task.category === selectedCategory) &&
+        (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+        (!categoryFilter.status || task.status === categoryFilter.status)
+    );
+
+    const filteredTodoTasks = filteredTasks.filter(task => task.status === "todo");
+    const filteredInProgressTasks = filteredTasks.filter(task => task.status === "inprogress");
+    const filteredCompletedTasks = filteredTasks.filter(task => task.status === "completed");
 
     // Get subtask completion %
     const getProgress = (subtasks) => {
@@ -81,7 +96,7 @@ function Tasks ({ }) {
         return Math.round((completed / subtasks.length) * 100);
     };
 
-    // Toggle subtask done and update status
+    // Toggle subtask completion
     const toggleCheck = (taskId, subtaskId) => {
         setTasks(prev =>
             prev.map(task => {
@@ -122,7 +137,34 @@ function Tasks ({ }) {
         setSelectedTaskIds([]);
     };
 
-    // Add new todo task
+    // Archive selected tasks
+    const archiveSelectedTask = () => {
+        setTasks(prev =>
+            prev.map(task =>
+                selectedTaskIds.includes(task.id)
+                    ? { ...task, status: "archived" }
+                    : task
+                )
+            );
+        setSelectedTaskIds([]);
+    };
+
+    // Move selected tasks to category
+    const moveSelectedTasksToCategory = (newCategory) => {
+        setTasks(prev =>
+            prev.map(task =>
+                selectedTaskIds.includes(task.id)
+                    ? { ...task, category: newCategory }
+                    : task
+                )
+            );
+        setTimeout(() => {
+            setSelectedTaskIds([]);
+        }, 0);
+        setShowCategorySelector(false);
+    };
+
+    // Add tasks
     const addNewTodoTask = () => {
         const newTask = {
             id: Date.now(),
@@ -130,57 +172,26 @@ function Tasks ({ }) {
             subtitle: "New Subtitle",
             priority: "Medium",
             status: "todo",
-            subtasks: [
-                { id: 1, text: "New Subtask", done: false }
-            ]
+            category: selectedCategory === "All" ? "Personal" : selectedCategory,
+            subtasks: [{ id: 1, text: "New Subtask", done: false }]
         };
         setTasks(prev => [newTask, ...prev]);
     };
 
-    // Add new in-progress task
-    const addNewInProgressTask = () => {
-        const newTask = {
-            id: Date.now(),
-            title: "New In Progress Task",
-            subtitle: "In Progress Subtitle",
-            priority: "Low",
-            status: "inprogress",
-            subtasks: [
-                { id: 1, text: "In Progress Subtask", done: false }
-            ]
-        };
-        setTasks(prev => [newTask, ...prev]);
-    };
-
-    // Add new completed task
-    const addNewCompletedTask = () => {
-        const newTask = {
-            id: Date.now(),
-            title: "New Completed Task",
-            subtitle: "Completed Subtitle",
-            priority: "High",
-            status: "completed",
-            subtasks: [
-                { id: 1, text: "Completed Subtask 1", done: true },
-                { id: 2, text: "Completed Subtask 2", done: true }
-            ]
-        };
-        setTasks(prev => [newTask, ...prev]);
-    };
-
-    // Handle outside click to close dropdowns
+    // Handle outside clicks
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (todoDropdownRef.current && !todoDropdownRef.current.contains(event.target)) {
                 setShowTodoDropdown(false);
             }
-
             if (inProgressDropdownRef.current && !inProgressDropdownRef.current.contains(event.target)) {
                 setShowInProgressDropdown(false);
             }
-
             if (completedDropdownRef.current && !completedDropdownRef.current.contains(event.target)) {
                 setShowCompletedDropdown(false);
+            }
+            if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(event.target)) {
+                setShowCategoryMenu(false);
             }
         };
 
@@ -329,7 +340,7 @@ function Tasks ({ }) {
                             <div className="tasks-main-header">
                                 <div className="tasks-header-left">
                                     <p className="tasks-header-name">To Do</p>
-                                    <p className="tasks-header-text">{todoTasks.length}</p>
+                                    <p className="tasks-header-text">{filteredTodoTasks.length}</p>
                                 </div>
 
                                 <div className="tasks-header-right">
@@ -466,8 +477,8 @@ function Tasks ({ }) {
 
                                         {showTodoDropdown && (
                                             <div className="tasks-dropdown-options">
-                                                <div onClick={deleteSelectedTask}>Delete Task</div>
-                                                <div onClick={deleteSelectedTask}>Archive Task</div>
+                                                <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>Delete Task</div>
+                                                <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>Archive Task</div>
                                             </div>
                                         )}
                                     </div>
@@ -475,7 +486,7 @@ function Tasks ({ }) {
                             </div>
 
                             <div className="tasks-todo">
-                                {todoTasks.map(task => {
+                                {filteredTodoTasks.map(task => {
                                     const progress = getProgress(task.subtasks);
                                     return (
                                         <div 
@@ -575,7 +586,7 @@ function Tasks ({ }) {
                             <div className="tasks-main-header">
                                 <div className="tasks-header-left">
                                     <p className="tasks-header-name">In Progress</p>
-                                    <p className="tasks-header-text">{inProgressTasks.length}</p>
+                                    <p className="tasks-header-text">{filteredInProgressTasks.length}</p>
                                 </div>
 
                                 <div className="tasks-header-right">
@@ -605,8 +616,8 @@ function Tasks ({ }) {
 
                                         {showInProgressDropdown && (
                                             <div className="tasks-dropdown-options">
-                                                <div onClick={deleteSelectedTask}>Delete Task</div>
-                                                <div onClick={deleteSelectedTask}>Archive Task</div>
+                                                <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>Delete Task</div>
+                                                <div className="tasks-dropdown-item" onClick={archiveSelectedTask}>Archive Task</div>
                                             </div>
                                         )}
                                     </div>
@@ -614,7 +625,7 @@ function Tasks ({ }) {
                             </div>
 
                             <div className="tasks-todo">
-                                {inProgressTasks.map(task => {
+                                {filteredInProgressTasks.map(task => {
                                     const progress = getProgress(task.subtasks);
                                     return (
                                         <div 
@@ -714,7 +725,7 @@ function Tasks ({ }) {
                             <div className="tasks-main-header">
                                 <div className="tasks-header-left">
                                     <p className="tasks-header-name">Completed</p>
-                                    <p className="tasks-header-text">{completedTasks.length}</p>
+                                    <p className="tasks-header-text">{filteredCompletedTasks.length}</p>
                                 </div>
 
                                 <div className="tasks-header-right">
@@ -745,7 +756,7 @@ function Tasks ({ }) {
 
                                         {showCompletedDropdown && (
                                             <div className="tasks-dropdown-options">
-                                                <div onClick={deleteSelectedTask}>Archive Task</div>
+                                                <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>Archive Task</div>
                                             </div>
                                         )}
                                     </div>
@@ -753,7 +764,7 @@ function Tasks ({ }) {
                             </div>
 
                             <div className="tasks-todo">
-                                {completedTasks.map(task => {
+                                {filteredCompletedTasks.map(task => {
                                     const progress = getProgress(task.subtasks);
                                     return (
                                         <div 
@@ -848,6 +859,217 @@ function Tasks ({ }) {
                                 })}
                             </div>
                         </div>
+
+<div className="tasks-section">
+  <div className="tasks-main-header">
+    <div className="tasks-header-left">
+      <p className="tasks-header-name">{selectedCategory}</p>
+      <p className="tasks-header-text">
+        {selectedCategory === "All"
+          ? filteredTasks.length
+          : filteredTasks.filter(task => task.category === selectedCategory).length}
+      </p>
+    </div>
+
+<div className="tasks-header-right">
+  <div
+    className="category-menu tasks-menu"
+    onClick={() => {
+      setShowCategoryMenu(prev => !prev);
+      setShowTodoDropdown(false);
+      setShowInProgressDropdown(false);
+      setShowCompletedDropdown(false);
+    }}
+    style={{ position: "relative" }}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="tasks-menu-svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0 7a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0-14a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
+      />
+    </svg>
+
+{showCategoryMenu && (
+  <div className="tasks-dropdown-options" ref={categoryDropdownRef}>
+    {!showCategorySelector ? (
+      <div className="menu-slide">
+        <div
+          className="tasks-dropdown-item"
+        >
+          Delete Task
+        </div>
+
+        <div
+          className="tasks-dropdown-item"
+        >
+          Archive Task
+        </div>
+
+        <div
+          className="tasks-dropdown-item"
+          onClick={(e) => {
+            e.stopPropagation(); 
+            setShowCategorySelector(true);
+          }}
+        >
+          Select Category
+        </div>
+      </div>
+    ) : (
+      <div className="menu-slide">
+        <div
+          className="tasks-dropdown-item"
+          onClick={(e) => {
+            e.stopPropagation(); 
+            setShowCategorySelector(false);
+          }}
+        >
+          ← Back
+        </div>
+
+        {["Work", "Personal", "Daily"].map((category) => (
+          <div
+            key={category}
+            className="tasks-dropdown-item"
+            onClick={(e) => {
+              e.stopPropagation();
+              moveSelectedTasksToCategory(category);
+            }}
+          >
+            {category}
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+)}
+
+
+
+
+
+  </div>
+</div>
+
+  </div>
+
+  <div className="tasks-todo">
+    {filteredTasks
+      .filter(task =>
+        selectedCategory === "All" ? true : task.category === selectedCategory
+      )
+      .map(task => {
+        const progress = getProgress(task.subtasks);
+        return (
+          <div
+            key={task.id}
+            className={`tasks-body-list ${
+              selectedTaskIds.includes(task.id) ? "selected" : ""
+            }`}
+          >
+            <div className="tasks-list-top">
+              <div className="tasks-list-toggle">
+                <p>{task.priority}</p>
+              </div>
+
+              <div
+                className="select-task-check"
+                onClick={e => {
+                  e.stopPropagation();
+                  toggleTaskSelection(task.id);
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`check-task-icon ${
+                    selectedTaskIds.includes(task.id) ? "selected" : ""
+                  }`}
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="m5 12l5 5L20 7"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <div className="tasks-list-middle">
+              <div className="tasks-list-header">
+                <p>{task.title}</p>
+              </div>
+
+              <div className="tasks-list-text">
+                <p>{task.subtitle}</p>
+              </div>
+
+              <div className="tasks-list-checks">
+                <ul>
+                  {task.subtasks.map(sub => (
+                    <li
+                      key={sub.id}
+                      onClick={() => toggleCheck(task.id, sub.id)}
+                      className={sub.done ? "subtask-done" : ""}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className={`tasks-list-checks-svg ${
+                          sub.done ? "subtask-done" : ""
+                        }`}
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fill="none"
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="m5 12l5 5L20 7"
+                        />
+                      </svg>
+
+                      <p className={sub.done ? "subtask-done" : ""}>
+                        {sub.text}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="tasks-list-bottom">
+              <div className="tasks-list-progress">
+                <div className="tasks-progress-top">
+                  <p>Progress</p>
+                  <p>{progress}%</p>
+                </div>
+
+                <div className="tasks-progress-bar">
+                  <div
+                    className="tasks-progress-fill"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+  </div>
+</div>
+
                     </div>
                 </div>
             </div>

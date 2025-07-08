@@ -244,13 +244,13 @@
   width: 95%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   margin-top: 15px;
 }
 
 .tasks-section {
-  padding: 10px;
+  padding: 5px;
   border-radius: 0.5rem;
   background: var(--bg-primary);
   border: 0.5px solid var(--border-primary);
@@ -261,6 +261,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 5px;
 }
 
 .tasks-header-left,
@@ -480,24 +481,31 @@
   color: var(--text-primary);
 }
 
-.tasks-dropdown-options div {
+.tasks-dropdown-item {
   margin: 0;
   padding: 3px 6px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
-.tasks-dropdown-options div:hover {
+.tasks-dropdown-item:hover {
   background: var(--bg-primary);
   border-radius: 0.25rem;
   border: 0.5px solid var(--border-primary);
 }
 
+.tasks-dropdown-options {
+  overflow: hidden;
+  width: 100px;
+  transition: height 0.3s ease;
+}
+
+
 /* Tasks body list */
 .tasks-body-list {
   display: flex;
   flex-direction: column;
-  margin-top: 12px;
+  margin-top: 5px;
   gap: 12px;
   padding: 12px 10px;
   background: var(--bg-secondary);
