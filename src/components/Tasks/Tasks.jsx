@@ -20,7 +20,7 @@ function Tasks ({ }) {
             subtitle: "SEO Campaign",
             priority: "Medium",
             status: "todo",
-            category: "Work",
+            category: "General", 
             subtasks: [
                 { id: 1, text: "Prepare promotional banners", done: false },
                 { id: 2, text: "Landing page assets", done: false },
@@ -79,16 +79,28 @@ function Tasks ({ }) {
     const categoryDropdownRef = useRef(null);
 
     // Filtered task lists
-    const filteredTasks = tasks.filter(task =>
-        task.status !== "archived" &&
-        (selectedCategory === "All" || task.category === selectedCategory) &&
-        (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
-        (!categoryFilter.status || task.status === categoryFilter.status)
+    const generalTasks = tasks.filter(
+        task =>
+            task.category === "General" &&
+            task.status !== "archived" &&
+            (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+            (!categoryFilter.status || task.status === categoryFilter.status)
     );
 
-    const filteredTodoTasks = filteredTasks.filter(task => task.status === "todo");
-    const filteredInProgressTasks = filteredTasks.filter(task => task.status === "inprogress");
-    const filteredCompletedTasks = filteredTasks.filter(task => task.status === "completed");
+    const categoryTasks = tasks.filter(
+        task =>
+            task.category !== "General" &&
+            task.status !== "archived" &&
+            (selectedCategory === "All" || task.category === selectedCategory) &&
+            (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+            (!categoryFilter.status || task.status === categoryFilter.status)
+    );
+
+    const generalTodoTasks = generalTasks.filter(task => task.status === "todo");
+    const generalInProgressTasks = generalTasks.filter(task => task.status === "inprogress");
+    const generalCompletedTasks = generalTasks.filter(task => task.status === "completed");
+
+    const filteredCategoryTasks = categoryTasks;
 
     // Get subtask completion %
     const getProgress = (subtasks) => {
@@ -340,7 +352,7 @@ function Tasks ({ }) {
                             <div className="tasks-main-header">
                                 <div className="tasks-header-left">
                                     <p className="tasks-header-name">To Do</p>
-                                    <p className="tasks-header-text">{filteredTodoTasks.length}</p>
+                                    <p className="tasks-header-text">{generalTodoTasks.length}</p>
                                 </div>
 
                                 <div className="tasks-header-right">
@@ -486,7 +498,7 @@ function Tasks ({ }) {
                             </div>
 
                             <div className="tasks-todo">
-                                {filteredTodoTasks.map(task => {
+                                {generalTodoTasks.map(task => {
                                     const progress = getProgress(task.subtasks);
                                     return (
                                         <div 
@@ -586,7 +598,7 @@ function Tasks ({ }) {
                             <div className="tasks-main-header">
                                 <div className="tasks-header-left">
                                     <p className="tasks-header-name">In Progress</p>
-                                    <p className="tasks-header-text">{filteredInProgressTasks.length}</p>
+                                    <p className="tasks-header-text">{generalInProgressTasks.length}</p>
                                 </div>
 
                                 <div className="tasks-header-right">
@@ -625,7 +637,7 @@ function Tasks ({ }) {
                             </div>
 
                             <div className="tasks-todo">
-                                {filteredInProgressTasks.map(task => {
+                                {generalInProgressTasks.map(task => {
                                     const progress = getProgress(task.subtasks);
                                     return (
                                         <div 
@@ -725,7 +737,7 @@ function Tasks ({ }) {
                             <div className="tasks-main-header">
                                 <div className="tasks-header-left">
                                     <p className="tasks-header-name">Completed</p>
-                                    <p className="tasks-header-text">{filteredCompletedTasks.length}</p>
+                                    <p className="tasks-header-text">{generalCompletedTasks.length}</p>
                                 </div>
 
                                 <div className="tasks-header-right">
@@ -764,7 +776,7 @@ function Tasks ({ }) {
                             </div>
 
                             <div className="tasks-todo">
-                                {filteredCompletedTasks.map(task => {
+                                {generalCompletedTasks.map(task => {
                                     const progress = getProgress(task.subtasks);
                                     return (
                                         <div 
@@ -864,211 +876,187 @@ function Tasks ({ }) {
   <div className="tasks-main-header">
     <div className="tasks-header-left">
       <p className="tasks-header-name">{selectedCategory}</p>
-      <p className="tasks-header-text">
-        {selectedCategory === "All"
-          ? filteredTasks.length
-          : filteredTasks.filter(task => task.category === selectedCategory).length}
-      </p>
+      <p className="tasks-header-text">{filteredCategoryTasks.length}</p>
     </div>
 
-<div className="tasks-header-right">
-  <div
-    className="category-menu tasks-menu"
-    onClick={() => {
-      setShowCategoryMenu(prev => !prev);
-      setShowTodoDropdown(false);
-      setShowInProgressDropdown(false);
-      setShowCompletedDropdown(false);
-    }}
-    style={{ position: "relative" }}
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="tasks-menu-svg"
-      viewBox="0 0 24 24"
-    >
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0 7a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0-14a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
-      />
-    </svg>
-
-{showCategoryMenu && (
-  <div className="tasks-dropdown-options" ref={categoryDropdownRef}>
-    {!showCategorySelector ? (
-      <div className="menu-slide">
-        <div
-          className="tasks-dropdown-item"
+    <div className="tasks-header-right">
+      <div
+        className="category-menu tasks-menu"
+        onClick={() => {
+          setShowCategoryMenu(prev => !prev);
+          setShowTodoDropdown(false);
+          setShowInProgressDropdown(false);
+          setShowCompletedDropdown(false);
+        }}
+        style={{ position: "relative" }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="tasks-menu-svg"
+          viewBox="0 0 24 24"
         >
-          Delete Task
-        </div>
+          <path
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0 7a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0-14a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
+          />
+        </svg>
 
-        <div
-          className="tasks-dropdown-item"
-        >
-          Archive Task
-        </div>
-
-        <div
-          className="tasks-dropdown-item"
-          onClick={(e) => {
-            e.stopPropagation(); 
-            setShowCategorySelector(true);
-          }}
-        >
-          Select Category
-        </div>
-      </div>
-    ) : (
-      <div className="menu-slide">
-        <div
-          className="tasks-dropdown-item"
-          onClick={(e) => {
-            e.stopPropagation(); 
-            setShowCategorySelector(false);
-          }}
-        >
-          ← Back
-        </div>
-
-        {["Work", "Personal", "Daily"].map((category) => (
-          <div
-            key={category}
-            className="tasks-dropdown-item"
-            onClick={(e) => {
-              e.stopPropagation();
-              moveSelectedTasksToCategory(category);
-            }}
-          >
-            {category}
+        {showCategoryMenu && (
+          <div className="tasks-dropdown-options" ref={categoryDropdownRef}>
+            {!showCategorySelector ? (
+              <div className="menu-slide">
+                <div className="tasks-dropdown-item">Delete Task</div>
+                <div className="tasks-dropdown-item">Archive Task</div>
+                <div
+                  className="tasks-dropdown-item"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowCategorySelector(true);
+                  }}
+                >
+                  Select Category
+                </div>
+              </div>
+            ) : (
+              <div className="menu-slide">
+                <div
+                  className="tasks-dropdown-item"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowCategorySelector(false);
+                  }}
+                >
+                  ← Back
+                </div>
+                {["Work", "Personal", "Daily"].map((category) => (
+                  <div
+                    key={category}
+                    className="tasks-dropdown-item"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      moveSelectedTasksToCategory(category);
+                    }}
+                  >
+                    {category}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-        ))}
+        )}
       </div>
-    )}
-  </div>
-)}
-
-
-
-
-
-  </div>
-</div>
-
+    </div>
   </div>
 
   <div className="tasks-todo">
-    {filteredTasks
-      .filter(task =>
-        selectedCategory === "All" ? true : task.category === selectedCategory
-      )
-      .map(task => {
-        const progress = getProgress(task.subtasks);
-        return (
-          <div
-            key={task.id}
-            className={`tasks-body-list ${
-              selectedTaskIds.includes(task.id) ? "selected" : ""
-            }`}
-          >
-            <div className="tasks-list-top">
-              <div className="tasks-list-toggle">
-                <p>{task.priority}</p>
-              </div>
+    {filteredCategoryTasks.map(task => {
+      const progress = getProgress(task.subtasks);
+      return (
+        <div
+          key={task.id}
+          className={`tasks-body-list ${
+            selectedTaskIds.includes(task.id) ? "selected" : ""
+          } ${task.category === "Work" ? "special-category-task" : ""}`}
+        >
+          <div className="tasks-list-top">
+            <div className="tasks-list-toggle">
+              <p>{task.priority}</p>
+            </div>
 
-              <div
-                className="select-task-check"
-                onClick={e => {
-                  e.stopPropagation();
-                  toggleTaskSelection(task.id);
-                }}
+            <div
+              className="select-task-check"
+              onClick={e => {
+                e.stopPropagation();
+                toggleTaskSelection(task.id);
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`check-task-icon ${
+                  selectedTaskIds.includes(task.id) ? "selected" : ""
+                }`}
+                viewBox="0 0 24 24"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`check-task-icon ${
-                    selectedTaskIds.includes(task.id) ? "selected" : ""
-                  }`}
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="m5 12l5 5L20 7"
-                  />
-                </svg>
-              </div>
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="m5 12l5 5L20 7"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div className="tasks-list-middle">
+            <div className="tasks-list-header">
+              <p>{task.title}</p>
             </div>
 
-            <div className="tasks-list-middle">
-              <div className="tasks-list-header">
-                <p>{task.title}</p>
-              </div>
+            <div className="tasks-list-text">
+              <p>{task.subtitle}</p>
+            </div>
 
-              <div className="tasks-list-text">
-                <p>{task.subtitle}</p>
-              </div>
-
-              <div className="tasks-list-checks">
-                <ul>
-                  {task.subtasks.map(sub => (
-                    <li
-                      key={sub.id}
-                      onClick={() => toggleCheck(task.id, sub.id)}
-                      className={sub.done ? "subtask-done" : ""}
+            <div className="tasks-list-checks">
+              <ul>
+                {task.subtasks.map(sub => (
+                  <li
+                    key={sub.id}
+                    onClick={() => toggleCheck(task.id, sub.id)}
+                    className={sub.done ? "subtask-done" : ""}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`tasks-list-checks-svg ${
+                        sub.done ? "subtask-done" : ""
+                      }`}
+                      viewBox="0 0 24 24"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className={`tasks-list-checks-svg ${
-                          sub.done ? "subtask-done" : ""
-                        }`}
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="m5 12l5 5L20 7"
-                        />
-                      </svg>
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="m5 12l5 5L20 7"
+                      />
+                    </svg>
 
-                      <p className={sub.done ? "subtask-done" : ""}>
-                        {sub.text}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                    <p className={sub.done ? "subtask-done" : ""}>
+                      {sub.text}
+                    </p>
+                  </li>
+                ))}
+              </ul>
             </div>
+          </div>
 
-            <div className="tasks-list-bottom">
-              <div className="tasks-list-progress">
-                <div className="tasks-progress-top">
-                  <p>Progress</p>
-                  <p>{progress}%</p>
-                </div>
+          <div className="tasks-list-bottom">
+            <div className="tasks-list-progress">
+              <div className="tasks-progress-top">
+                <p>Progress</p>
+                <p>{progress}%</p>
+              </div>
 
-                <div className="tasks-progress-bar">
-                  <div
-                    className="tasks-progress-fill"
-                    style={{ width: `${progress}%` }}
-                  />
-                </div>
+              <div className="tasks-progress-bar">
+                <div
+                  className="tasks-progress-fill"
+                  style={{ width: `${progress}%` }}
+                />
               </div>
             </div>
           </div>
-        );
-      })}
+        </div>
+      );
+    })}
   </div>
 </div>
+
 
                     </div>
                 </div>
