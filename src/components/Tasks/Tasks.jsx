@@ -58,7 +58,8 @@ function Tasks ({ }) {
     const [priority, setPriority] = useState("low");
     const [showTodoPopup, setShowTodoPopup] = useState(false);
     const [selectedTaskIds, setSelectedTaskIds] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState("All");
+    const initialCategory = tasks.find(task => task.category !== "General")?.category || "All";
+    const [selectedCategory, setSelectedCategory] = useState(initialCategory);
 
     const [showCategoryMenu, setShowCategoryMenu] = useState(false);
     const [showCategorySelector, setShowCategorySelector] = useState(false);
@@ -100,7 +101,10 @@ function Tasks ({ }) {
     const generalInProgressTasks = generalTasks.filter(task => task.status === "inprogress");
     const generalCompletedTasks = generalTasks.filter(task => task.status === "completed");
 
-    const filteredCategoryTasks = categoryTasks;
+    const filteredCategoryTasks =
+        selectedCategory === "All"
+            ? [...generalTasks, ...categoryTasks]
+            : categoryTasks.filter(task => task.category === selectedCategory);
 
     // Get subtask completion %
     const getProgress = (subtasks) => {
@@ -880,6 +884,23 @@ function Tasks ({ }) {
     </div>
 
     <div className="tasks-header-right">
+                                            <div className="todo-plus tasks-plus" onClick={() => setShowTodoPopup(true)}>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="tasks-plus-svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M12 5v14m-7-7h14"
+                                            />
+                                        </svg>
+                                    </div>
+
       <div
         className="category-menu tasks-menu"
         onClick={() => {
@@ -938,7 +959,9 @@ function Tasks ({ }) {
                     className="tasks-dropdown-item"
                     onClick={(e) => {
                       e.stopPropagation();
+                      setSelectedCategory(category);
                       moveSelectedTasksToCategory(category);
+                      setShowCategoryMenu(false); 
                     }}
                   >
                     {category}
