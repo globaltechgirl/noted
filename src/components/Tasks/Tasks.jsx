@@ -68,6 +68,9 @@ function Tasks ({ }) {
     const [showInProgressDropdown, setShowInProgressDropdown] = useState(false);
     const [showCompletedDropdown, setShowCompletedDropdown] = useState(false);
 
+    const [showPlusDropdown, setShowPlusDropdown] = useState(false);
+    const [showCategoryPopup, setShowCategoryPopup] = useState(false);
+
     const [categoryFilter, setCategoryFilter] = useState({
         priority: "",
         status: ""
@@ -876,18 +879,124 @@ function Tasks ({ }) {
                             </div>
                         </div>
 
-<div className="tasks-section">
-  <div className="tasks-main-header">
-    <div className="tasks-header-left">
-      <p className="tasks-header-name">{selectedCategory}</p>
-      <p className="tasks-header-text">{filteredCategoryTasks.length}</p>
-    </div>
+                        <div className="tasks-section">
+                            <div className="tasks-main-header">
+                                <div className="tasks-header-left">
+                                    <p className="tasks-header-name">{selectedCategory}</p>
+                                    <p className="tasks-header-text">{filteredCategoryTasks.length}</p>
+                                </div>
 
-    <div className="tasks-header-right">
-                                            <div className="todo-plus tasks-plus" onClick={() => setShowTodoPopup(true)}>
+                                <div className="tasks-header-right">
+                                    <div style={{ position: "relative" }}>
+                                        <div
+                                            className="todo-plus tasks-plus"
+                                            onClick={() => {
+                                                setShowPlusDropdown(prev => !prev);
+                                                setShowCategoryMenu(false); 
+                                            }}
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="tasks-plus-svg"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M12 5v14m-7-7h14"
+                                                />
+                                            </svg>
+                                        </div>
+
+                                        {showPlusDropdown && (
+                                            <div className="tasks-dropdown-options plus-dropdown">
+                                                <div
+                                                    className="tasks-dropdown-item"
+                                                    onClick={() => {
+                                                        setShowTodoPopup(true);
+                                                        setShowPlusDropdown(false);
+                                                    }}
+                                                >
+                                                    Add Task
+                                                </div>
+
+                                                <div
+                                                    className="tasks-dropdown-item"
+                                                    onClick={() => {
+                                                        setShowCategoryPopup(true);
+                                                        setShowPlusDropdown(false);
+                                                    }}
+                                                >
+                                                    Add Category
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {showCategoryPopup && (
+                                        <div className="tasks-popup-overlay" onClick={() => setShowCategoryPopup(false)}>
+                                            <div className="tasks-popup" onClick={(e) => e.stopPropagation()}>
+                                                <div className="tasks-popup-content">
+                                                    <div className="tasks-popup-top">
+                                                        <p>Add New Category</p>
+
+                                                        <button onClick={() => setShowCategoryPopup(false)} className="tasks-close-icon">
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                className="tasks-close-icon-svg"
+                                                                viewBox="0 0 24 24"
+                                                                width="20"
+                                                                height="20"
+                                                            >
+                                                                <path
+                                                                    fill="none"
+                                                                    stroke="currentColor"
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                    strokeWidth="2"
+                                                                    d="M18 6L6 18M6 6l12 12"
+                                                                />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+
+                                                    <div className="tasks-popup-middle">
+                                                        <input
+                                                            type="text"
+                                                            placeholder="Category Name"
+                                                            className="input-new-category"
+                                                            onChange={(e) => setNewCategoryName(e.target.value)}
+                                                        />
+                                                    </div>
+
+                                                    <button
+                                                        onClick={() => {
+                                                            setShowCategoryPopup(false);
+                                                        }}
+                                                        >
+                                                        Add Category
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                    
+                                    <div
+                                        className="category-menu tasks-menu"
+                                        onClick={() => {
+                                            setShowCategoryMenu(prev => !prev);
+                                            setShowTodoDropdown(false);
+                                            setShowInProgressDropdown(false);
+                                            setShowCompletedDropdown(false);
+                                        }}
+                                        style={{ position: "relative" }}
+                                    >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            className="tasks-plus-svg"
+                                            className="tasks-menu-svg"
                                             viewBox="0 0 24 24"
                                         >
                                             <path
@@ -896,191 +1005,164 @@ function Tasks ({ }) {
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"
                                                 strokeWidth={2}
-                                                d="M12 5v14m-7-7h14"
+                                                d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0 7a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0-14a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
                                             />
                                         </svg>
+
+                                        {showCategoryMenu && (
+                                            <div className="tasks-dropdown-options" ref={categoryDropdownRef}>
+                                                {!showCategorySelector ? (
+                                                    <div className="menu-slide">
+                                                        <div className="tasks-dropdown-item">Delete Task</div>
+                                                        <div className="tasks-dropdown-item">Archive Task</div>
+                                                        <div
+                                                            className="tasks-dropdown-item"
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setShowCategorySelector(true);
+                                                            }}
+                                                        >
+                                                            Select Category
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div className="menu-slide">
+                                                        <div
+                                                            className="tasks-dropdown-item"
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setShowCategorySelector(false);
+                                                            }}
+                                                        >
+                                                            ← Back
+                                                        </div>
+
+                                                        {["Work", "Personal", "Daily"].map((category) => (
+                                                            <div
+                                                                key={category}
+                                                                className="tasks-dropdown-item"
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    setSelectedCategory(category);
+                                                                    moveSelectedTasksToCategory(category);
+                                                                    setShowCategoryMenu(false); 
+                                                                }}
+                                                            >
+                                                                {category}
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
                                     </div>
+                                </div>
+                            </div>
 
-      <div
-        className="category-menu tasks-menu"
-        onClick={() => {
-          setShowCategoryMenu(prev => !prev);
-          setShowTodoDropdown(false);
-          setShowInProgressDropdown(false);
-          setShowCompletedDropdown(false);
-        }}
-        style={{ position: "relative" }}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="tasks-menu-svg"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0 7a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0-14a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
-          />
-        </svg>
+                            <div className="tasks-todo">
+                                {filteredCategoryTasks.map(task => {
+                                    const progress = getProgress(task.subtasks);
+                                    return (
+                                        <div
+                                            key={task.id}
+                                            className={`tasks-body-list ${selectedTaskIds.includes(task.id) ? "selected" : ""} $ 
+                                                {task.category === "Work" ? "special-category-task" : ""
+                                            }`}
+                                        >
+                                            <div className="tasks-list-top">
+                                                <div className="tasks-list-toggle">
+                                                    <p>{task.priority}</p>
+                                                </div>
 
-        {showCategoryMenu && (
-          <div className="tasks-dropdown-options" ref={categoryDropdownRef}>
-            {!showCategorySelector ? (
-              <div className="menu-slide">
-                <div className="tasks-dropdown-item">Delete Task</div>
-                <div className="tasks-dropdown-item">Archive Task</div>
-                <div
-                  className="tasks-dropdown-item"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setShowCategorySelector(true);
-                  }}
-                >
-                  Select Category
-                </div>
-              </div>
-            ) : (
-              <div className="menu-slide">
-                <div
-                  className="tasks-dropdown-item"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setShowCategorySelector(false);
-                  }}
-                >
-                  ← Back
-                </div>
-                {["Work", "Personal", "Daily"].map((category) => (
-                  <div
-                    key={category}
-                    className="tasks-dropdown-item"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedCategory(category);
-                      moveSelectedTasksToCategory(category);
-                      setShowCategoryMenu(false); 
-                    }}
-                  >
-                    {category}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-  </div>
+                                                <div
+                                                    className="select-task-check"
+                                                    onClick={e => {
+                                                        e.stopPropagation();
+                                                        toggleTaskSelection(task.id);
+                                                    }}
+                                                >
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className={`check-task-icon ${
+                                                            selectedTaskIds.includes(task.id) ? "selected" : ""
+                                                        }`}
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="m5 12l5 5L20 7"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                            </div>
 
-  <div className="tasks-todo">
-    {filteredCategoryTasks.map(task => {
-      const progress = getProgress(task.subtasks);
-      return (
-        <div
-          key={task.id}
-          className={`tasks-body-list ${
-            selectedTaskIds.includes(task.id) ? "selected" : ""
-          } ${task.category === "Work" ? "special-category-task" : ""}`}
-        >
-          <div className="tasks-list-top">
-            <div className="tasks-list-toggle">
-              <p>{task.priority}</p>
-            </div>
+                                            <div className="tasks-list-middle">
+                                                <div className="tasks-list-header">
+                                                    <p>{task.title}</p>
+                                                </div>
 
-            <div
-              className="select-task-check"
-              onClick={e => {
-                e.stopPropagation();
-                toggleTaskSelection(task.id);
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className={`check-task-icon ${
-                  selectedTaskIds.includes(task.id) ? "selected" : ""
-                }`}
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="m5 12l5 5L20 7"
-                />
-              </svg>
-            </div>
-          </div>
+                                                <div className="tasks-list-text">
+                                                    <p>{task.subtitle}</p>
+                                                </div>
 
-          <div className="tasks-list-middle">
-            <div className="tasks-list-header">
-              <p>{task.title}</p>
-            </div>
+                                                <div className="tasks-list-checks">
+                                                    <ul>
+                                                        {task.subtasks.map(sub => (
+                                                            <li
+                                                                key={sub.id}
+                                                                onClick={() => toggleCheck(task.id, sub.id)}
+                                                                className={sub.done ? "subtask-done" : ""}
+                                                            >
+                                                                <svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    className={`tasks-list-checks-svg ${
+                                                                        sub.done ? "subtask-done" : ""
+                                                                    }`}
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path
+                                                                        fill="none"
+                                                                        stroke="currentColor"
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        strokeWidth={2}
+                                                                        d="m5 12l5 5L20 7"
+                                                                    />
+                                                                </svg>
 
-            <div className="tasks-list-text">
-              <p>{task.subtitle}</p>
-            </div>
+                                                                <p className={sub.done ? "subtask-done" : ""}>
+                                                                    {sub.text}
+                                                                </p>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
 
-            <div className="tasks-list-checks">
-              <ul>
-                {task.subtasks.map(sub => (
-                  <li
-                    key={sub.id}
-                    onClick={() => toggleCheck(task.id, sub.id)}
-                    className={sub.done ? "subtask-done" : ""}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className={`tasks-list-checks-svg ${
-                        sub.done ? "subtask-done" : ""
-                      }`}
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="m5 12l5 5L20 7"
-                      />
-                    </svg>
+                                            <div className="tasks-list-bottom">
+                                                <div className="tasks-list-progress">
+                                                    <div className="tasks-progress-top">
+                                                        <p>Progress</p>
+                                                        <p>{progress}%</p>
+                                                    </div>
 
-                    <p className={sub.done ? "subtask-done" : ""}>
-                      {sub.text}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="tasks-list-bottom">
-            <div className="tasks-list-progress">
-              <div className="tasks-progress-top">
-                <p>Progress</p>
-                <p>{progress}%</p>
-              </div>
-
-              <div className="tasks-progress-bar">
-                <div
-                  className="tasks-progress-fill"
-                  style={{ width: `${progress}%` }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    })}
-  </div>
-</div>
-
-
+                                                    <div className="tasks-progress-bar">
+                                                        <div
+                                                            className="tasks-progress-fill"
+                                                            style={{ width: `${progress}%` }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
