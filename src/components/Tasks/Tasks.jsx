@@ -665,15 +665,28 @@ const [editingIndex, setEditingIndex] = useState(null);
                                                     </div>
 
                                                     <div className="tasks-popup-bottom">
-                                                        <div className="slider-dots">
-                                                            {[0, 1, 2].map((step) => (
-                                                                <span
-                                                                    key={step}
-                                                                    className={`dot ${taskStep === step ? "active" : ""}`}
-                                                                    onClick={() => setTaskStep(step)}
-                                                                />
-                                                            ))}
-                                                        </div>
+                                                        {taskStep < 2 ? (
+                                                            <div className="tasks-slider-dots">
+                                                                {[0, 1, 2].map((step) => (
+                                                                    <span
+                                                                        key={step}
+                                                                        className={`dot ${taskStep === step ? "active" : ""}`}
+                                                                        onClick={() => setTaskStep(step)}
+                                                                    />
+                                                                ))}
+                                                            </div>
+                                                        ) : (
+                                                            <div 
+                                                                className="tasks-slider-button"
+                                                                onClick={() => {
+                                                                    addNewTodoTask(); 
+                                                                    setShowTodoPopup(false);
+                                                                    setTaskStep(0); 
+                                                                }}
+                                                            >
+                                                                <p>Add task</p>
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 </div>
                                             </div>

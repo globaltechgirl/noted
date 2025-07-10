@@ -490,7 +490,7 @@
 }
 
 .middle-slider-list .popup-text-contents {
-  height: 30px;
+  height: 32px;
 }
 
 .popup-text-contents-wrapper {
@@ -510,16 +510,16 @@
   padding: 5px;
 }
 
-.add-task-block {
-  cursor: pointer;
-}
-
 .popup-text-input {
   font-weight: 500;
   display: block;
   border: none;
   background: transparent;
   outline: none;
+}
+
+.add-task-block {
+  cursor: pointer;
 }
 
 .popup-text-footer {
@@ -542,18 +542,19 @@
   color: var(--text-secondary);
 }
 
+/* Tasks popup bottom */
 .tasks-popup-bottom {
   padding: 2px;
   width: fit-content;
   margin: 0 auto;
 }
 
-.slider-dots {
+.tasks-slider-dots {
   display: flex;
   justify-content: center;
 }
 
-.slider-dots .dot {
+.tasks-slider-dots .dot {
   width: 4px;
   height: 4px;
   margin: 0 4px;
@@ -563,8 +564,33 @@
   transition: background 0.3s;
 }
 
-.slider-dots .dot.active {
+.tasks-slider-dots .dot.active {
   background: var(--text-primary);
+}
+
+.tasks-slider-button {
+  width: 120px;
+  margin: 0 auto;
+  padding-top: 200px;
+  padding: 1.5px;
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.6rem;
+  background: var(--bg-primary);
+  cursor: pointer;
+}
+
+.tasks-slider-button p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.5rem;
+  background: var(--bg-secondary);
+  font-size: 0.45rem;
+  font-weight: 550;
+  letter-spacing: 0.6px;
+  color: var(--text-primary);
+  padding: 4px;
 }
 
 /* Tasks dropdown options */
