@@ -71,6 +71,12 @@ function Tasks ({ }) {
     const [showPlusDropdown, setShowPlusDropdown] = useState(false);
     const [showCategoryPopup, setShowCategoryPopup] = useState(false);
 
+    const [editingTaskTitle, setEditingTaskTitle] = useState(false);
+    const [newTaskTitle, setNewTaskTitle] = useState("New Task");
+
+    const [editingTaskSubtitle, setEditingTaskSubtitle] = useState(false);
+    const [newTaskSubtitle, setNewTaskSubtitle] = useState("New Task");
+
     const [categoryFilter, setCategoryFilter] = useState({
         priority: "",
         status: ""
@@ -408,52 +414,159 @@ function Tasks ({ }) {
                                                     </div>
 
                                                     <div className="tasks-popup-middle">
-                                                        <div className="tasks-popup-status">
-                                                            <div className="priority-grid-wrapper">
+                                                        <div className="tasks-popup-priority">
+                                                            <div className="tasks-priority-option">
                                                                 <div 
                                                                     className={`priority-option ${priority === "low" ? "active" : ""}`}
                                                                     onClick={() => setPriority("low")}
                                                                 >
-                                                                    <svg className="priority-svg" viewBox="0 0 256 256">
-                                                                        <circle className="status-svg-outer" cx="128" cy="128" r="48" />
-                                                                        <circle className="status-svg-inner" cx="128" cy="128" r="24" />
-                                                                    </svg>
-
                                                                     <p>Low</p>
-                                                                </div>
+                                                                </div> 
+                                                            </div>
 
+                                                            <div className="tasks-priority-option">
                                                                 <div 
                                                                     className={`priority-option ${priority === "medium" ? "active" : ""}`}
                                                                     onClick={() => setPriority("medium")}
                                                                 >
-                                                                    <svg className="priority-svg" viewBox="0 0 256 256">
-                                                                        <circle className="status-svg-outer" cx="128" cy="128" r="48" />
-                                                                        <circle className="status-svg-inner" cx="128" cy="128" r="24" />
-                                                                    </svg>
-                                                                    
                                                                     <p>Medium</p>
-                                                                </div>
+                                                                </div> 
+                                                            </div>
 
+                                                            <div className="tasks-priority-option">
                                                                 <div 
                                                                     className={`priority-option ${priority === "high" ? "active" : ""}`}
                                                                     onClick={() => setPriority("high")}
                                                                 >
-                                                                    <svg className="priority-svg" viewBox="0 0 256 256">
-                                                                        <circle className="status-svg-outer" cx="128" cy="128" r="48" />
-                                                                        <circle className="status-svg-inner" cx="128" cy="128" r="24" />
-                                                                    </svg>
-
                                                                     <p>High</p>
-                                                                </div>
+                                                                </div> 
+                                                            </div>
+                                                        </div>
 
-                                                                <div className="slider">
-                                                                    <div className={`ball ball-${priority}`}></div>
+                                                        <div className="tasks-popup-text">
+                                                            <div className="popup-text-header">
+                                                                <p>Task Title</p>
+
+                                                                <svg 
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    className="popup-text-save-svg" 
+                                                                    viewBox="0 0 24 24"
+                                                                >   
+                                                                    <g 
+                                                                        fill="none" 
+                                                                        stroke="currentColor" 
+                                                                        strokeLinecap="round" 
+                                                                        strokeLinejoin="round" 
+                                                                        strokeWidth={2}
+                                                                    >
+                                                                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
+                                                                        <path d="m9 12l2 2l4-4"></path>
+                                                                    </g>
+                                                                </svg>
+                                                            </div>
+
+                                                            <div className="popup-text-contents">
+                                                                {editingTaskTitle ? (
+                                                                    <input
+                                                                        type="text"
+                                                                        value={newTaskTitle}
+                                                                        onChange={(e) => setNewTaskTitle(e.target.value)}
+                                                                        onBlur={() => setEditingTaskTitle(false)} 
+                                                                        onKeyDown={(e) => {
+                                                                            if (e.key === "Enter") {
+                                                                                setEditingTaskTitle(false);
+                                                                            }
+                                                                        }}
+                                                                        className="popup-text-input"
+                                                                        autoFocus
+                                                                    />
+                                                                ) : (
+                                                                    <p
+                                                                        className="popup-text-input-p"
+                                                                        onClick={() => setEditingTaskTitle(true)}
+                                                                    >
+                                                                        Enter new task title
+                                                                    </p>
+                                                                )}
+
+                                                                <div className="popup-text-footer">
+                                                                    <svg 
+                                                                        xmlns="http://www.w3.org/2000/svg" 
+                                                                        className="text-footer-svg" 
+                                                                        viewBox="0 0 24 24"
+                                                                    >   
+                                                                        <path 
+                                                                            fill="currentColor" 
+                                                                            d="M19 2a3 3 0 0 1 2.995 2.824L22 5v14a3 3 0 0 1-2.824 2.995L19 22H5a3 3 0 0 1-2.995-2.824L2 19V5a3 3 0 0 1 2.824-2.995L5 2zm-7 9h-1l-.117.007a1 1 0 0 0 0 1.986L11 13v3l.007.117a1 1 0 0 0 .876.876L12 17h1l.117-.007a1 1 0 0 0 .876-.876L14 16l-.007-.117a1 1 0 0 0-.764-.857l-.112-.02L13 15v-3l-.007-.117a1 1 0 0 0-.876-.876zm.01-3l-.127.007a1 1 0 0 0 0 1.986L12 10l.127-.007a1 1 0 0 0 0-1.986z"
+                                                                        ></path>
+                                                                    </svg>
+                                                                    
+                                                                    <p>Allows words between 50-100 letters</p>
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <div className="tasks-popup-title">
-                                                            
+                                                        <div className="tasks-popup-text">
+                                                            <div className="popup-text-header">
+                                                                <p>Task Subtitle</p>
+
+                                                                <svg 
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    className="popup-text-save-svg" 
+                                                                    viewBox="0 0 24 24"
+                                                                >   
+                                                                    <g 
+                                                                        fill="none" 
+                                                                        stroke="currentColor" 
+                                                                        strokeLinecap="round" 
+                                                                        strokeLinejoin="round" 
+                                                                        strokeWidth={2}
+                                                                    >
+                                                                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
+                                                                        <path d="m9 12l2 2l4-4"></path>
+                                                                    </g>
+                                                                </svg>
+                                                            </div>
+
+                                                            <div className="popup-text-contents">
+                                                                {editingTaskSubtitle ? (
+                                                                    <input
+                                                                        type="text"
+                                                                        value={newTaskSubtitle}
+                                                                        onChange={(e) => setNewTaskSubtitle(e.target.value)}
+                                                                        onBlur={() => setEditingTaskSubtitle(false)} 
+                                                                        onKeyDown={(e) => {
+                                                                            if (e.key === "Enter") {
+                                                                                setEditingTaskSubtitle(false);
+                                                                            }
+                                                                        }}
+                                                                        className="popup-text-input"
+                                                                        autoFocus
+                                                                    />
+                                                                ) : (
+                                                                    <p
+                                                                        className="popup-text-input-p"
+                                                                        onClick={() => setEditingTaskSubtitle(true)}
+                                                                    >
+                                                                        Enter new task subtitle
+                                                                    </p>
+                                                                )}
+
+                                                                <div className="popup-text-footer">
+                                                                    <svg 
+                                                                        xmlns="http://www.w3.org/2000/svg" 
+                                                                        className="text-footer-svg" 
+                                                                        viewBox="0 0 24 24"
+                                                                    >   
+                                                                        <path 
+                                                                            fill="currentColor" 
+                                                                            d="M19 2a3 3 0 0 1 2.995 2.824L22 5v14a3 3 0 0 1-2.824 2.995L19 22H5a3 3 0 0 1-2.995-2.824L2 19V5a3 3 0 0 1 2.824-2.995L5 2zm-7 9h-1l-.117.007a1 1 0 0 0 0 1.986L11 13v3l.007.117a1 1 0 0 0 .876.876L12 17h1l.117-.007a1 1 0 0 0 .876-.876L14 16l-.007-.117a1 1 0 0 0-.764-.857l-.112-.02L13 15v-3l-.007-.117a1 1 0 0 0-.876-.876zm.01-3l-.127.007a1 1 0 0 0 0 1.986L12 10l.127-.007a1 1 0 0 0 0-1.986z"
+                                                                        ></path>
+                                                                    </svg>
+                                                                    
+                                                                    <p>Allows words between 50-100 letters</p>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -1070,8 +1183,20 @@ function Tasks ({ }) {
                                             }`}
                                         >
                                             <div className="tasks-list-top">
-                                                <div className="tasks-list-toggle">
-                                                    <p>{task.priority}</p>
+                                                <div className="tasks-list-toggle-wrapper">
+                                                    <div className="tasks-list-toggle">
+                                                        <p className={`status-label ${task.status}`}>
+                                                            {task.status === "todo"
+                                                                ? "To-do"
+                                                                : task.status === "inprogress"
+                                                                ? "In Progress"
+                                                                : "Completed"}
+                                                        </p>
+                                                    </div>
+                                                    
+                                                    <div className="tasks-list-toggle">
+                                                        <p>{task.priority}</p>
+                                                    </div>
                                                 </div>
 
                                                 <div
