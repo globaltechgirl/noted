@@ -135,7 +135,6 @@
 .folder-right-star-svg path {
   fill: var(--bg-secondary);
   stroke: var(--text-secondary);
-  transition: all 0.3s ease;
 }
 
 .folder-right-starred-svg path {

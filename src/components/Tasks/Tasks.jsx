@@ -21,6 +21,7 @@ function Tasks ({ }) {
             priority: "Medium",
             status: "todo",
             category: "General", 
+            createdAt: "2025-07-07T10:00:00Z",
             subtasks: [
                 { id: 1, text: "Prepare promotional banners", done: false },
                 { id: 2, text: "Landing page assets", done: false },
@@ -34,6 +35,7 @@ function Tasks ({ }) {
             priority: "High",
             status: "todo",
             category: "Personal",
+            createdAt: "2025-07-07T10:00:00Z",
             subtasks: [
                 { id: 1, text: "Design hero section", done: false },
                 { id: 2, text: "Implement responsive styles", done: false }
@@ -46,6 +48,7 @@ function Tasks ({ }) {
             priority: "Low",
             status: "todo",
             category: "Daily",
+            createdAt: "2025-07-07T10:00:00Z",
             subtasks: [
                 { id: 1, text: "Analyze Instagram", done: false },
                 { id: 2, text: "Audit Twitter", done: false }
@@ -58,6 +61,11 @@ function Tasks ({ }) {
     const [selectedTaskIds, setSelectedTaskIds] = useState([]);
     const [priority, setPriority] = useState("low");
     const [taskSource, setTaskSource] = useState("todo");
+
+    // Categories
+    const [categories, setCategories] = useState(["Work", "Personal", "Daily"]);
+    const [newCategoryName, setNewCategoryName] = useState("");
+    const [editingCategory, setEditingCategory] = useState(false);
 
     const initialCategory = tasks.find(task => task.category !== "General")?.category || "All";
     const [selectedCategory, setSelectedCategory] = useState(initialCategory);
@@ -73,7 +81,7 @@ function Tasks ({ }) {
     const [showCategoryMenu, setShowCategoryMenu] = useState(false);
     const [showCategorySelector, setShowCategorySelector] = useState(false);
 
-    // Task editing
+    // Task input & editing
     const [editingTaskTitle, setEditingTaskTitle] = useState(false);
     const [newTaskTitle, setNewTaskTitle] = useState("");
     const [editingTaskSubtitle, setEditingTaskSubtitle] = useState(false);
@@ -130,7 +138,23 @@ function Tasks ({ }) {
         return Math.round((completed / subtasks.length) * 100);
     };
 
-    // Task interaction handlers
+    // Time formatting
+    const getTimeAgo = (createdAt) => {
+        const now = new Date();
+        const created = new Date(createdAt);
+        const diffInSeconds = Math.floor((now - created) / 1000);
+
+        const minutes = Math.floor(diffInSeconds / 60);
+        const hours = Math.floor(diffInSeconds / 3600);
+        const days = Math.floor(diffInSeconds / 86400);
+
+        if (days > 0) return `${days}d`;
+        if (hours > 0) return `${hours}h`;
+        if (minutes > 0) return `${minutes}m`;
+        return "Just now";
+    };
+
+    // Task interaction
     const toggleCheck = (taskId, subtaskId) => {
         setTasks(prev =>
             prev.map(task => {
@@ -188,7 +212,7 @@ function Tasks ({ }) {
         setShowCategorySelector(false);
     };
 
-    // Task creation handlers
+    // Task creation
     const addNewTodoTask = () => {
         const newSubtasks = taskInputs.filter(Boolean).map((text, index) => ({
             id: index + 1,
@@ -203,6 +227,7 @@ function Tasks ({ }) {
             priority: capitalize(priority),
             status: "todo",
             category: "General",
+            createdAt: new Date().toISOString(),
             subtasks: newSubtasks.length > 0 ? newSubtasks : [{ id: 1, text: "New Subtask", done: false }],
         };
 
@@ -224,6 +249,7 @@ function Tasks ({ }) {
             priority: capitalize(priority),
             status: "todo",
             category: selectedCategory === "All" ? "Personal" : selectedCategory,
+            createdAt: new Date().toISOString(),
             subtasks: newSubtasks.length > 0 ? newSubtasks : [{ id: 1, text: "New Subtask", done: false }],
         };
 
@@ -241,7 +267,20 @@ function Tasks ({ }) {
         setTaskStep(0);
     };
 
-    // Outside click handlers
+    // Category creation
+    const addNewCategory = () => {
+        const name = newCategoryName.trim() || `Category ${categories.length + 1}`;
+
+        if (!categories.includes(name)) {
+            setCategories((prev) => [...prev, name]);
+        }
+
+        setNewCategoryName("");
+        setShowCategoryPopup(false);
+        setTaskStep(0);
+    };
+
+    // Outside click handler
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (todoDropdownRef.current && !todoDropdownRef.current.contains(event.target)) {
@@ -554,7 +593,7 @@ function Tasks ({ }) {
                                                                                     ></path>
                                                                                 </svg>
                                                                                     
-                                                                                <p>Allows words between 50-100 letters</p>
+                                                                                <p>Must be between 50 and 100 characters</p>
                                                                             </div>
                                                                         </div>
                                                                     </div> 
@@ -619,7 +658,7 @@ function Tasks ({ }) {
                                                                                     ></path>
                                                                                 </svg>
                                                                                     
-                                                                                <p>Allows words between 50-100 letters</p>
+                                                                                <p>Must be between 50 and 100 characters</p>
                                                                             </div>
                                                                         </div>
                                                                     </div> 
@@ -840,8 +879,28 @@ function Tasks ({ }) {
                                             <div className="tasks-list-bottom">
                                                 <div className="tasks-list-progress">
                                                     <div className="tasks-progress-top">
-                                                        <p>Progress</p>
                                                         <p>{progress}%</p>
+
+                                                        <div className="tasks-list-date">
+                                                            <svg   
+                                                                xmlns="http://www.w3.org/2000/svg" 
+                                                                className="tasks-list-date-svg" 
+                                                                viewBox="0 0 24 24"
+                                                            >   
+                                                                <g 
+                                                                    fill="none" 
+                                                                    stroke="currentColor" 
+                                                                    strokeLinecap="round" 
+                                                                    strokeLinejoin="round" 
+                                                                    strokeWidth={2}
+                                                                >
+                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0"></path>
+                                                                    <path d="M12 7v5l3 3"></path>
+                                                                </g>
+                                                            </svg>
+
+                                                            <p>{getTimeAgo(task.createdAt)}</p>
+                                                        </div>
                                                     </div>
 
                                                     <div className="tasks-progress-bar">
@@ -979,8 +1038,28 @@ function Tasks ({ }) {
                                             <div className="tasks-list-bottom">
                                                 <div className="tasks-list-progress">
                                                     <div className="tasks-progress-top">
-                                                        <p>Progress</p>
                                                         <p>{progress}%</p>
+
+                                                        <div className="tasks-list-date">
+                                                            <svg   
+                                                                xmlns="http://www.w3.org/2000/svg" 
+                                                                className="tasks-list-date-svg" 
+                                                                viewBox="0 0 24 24"
+                                                            >   
+                                                                <g 
+                                                                    fill="none" 
+                                                                    stroke="currentColor" 
+                                                                    strokeLinecap="round" 
+                                                                    strokeLinejoin="round" 
+                                                                    strokeWidth={2}
+                                                                >
+                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0"></path>
+                                                                    <path d="M12 7v5l3 3"></path>
+                                                                </g>
+                                                            </svg>
+
+                                                            <p>{getTimeAgo(task.createdAt)}</p>
+                                                        </div>
                                                     </div>
 
                                                     <div className="tasks-progress-bar">
@@ -1118,8 +1197,28 @@ function Tasks ({ }) {
                                             <div className="tasks-list-bottom">
                                                 <div className="tasks-list-progress">
                                                     <div className="tasks-progress-top">
-                                                        <p>Progress</p>
                                                         <p>{progress}%</p>
+
+                                                        <div className="tasks-list-date">
+                                                            <svg   
+                                                                xmlns="http://www.w3.org/2000/svg" 
+                                                                className="tasks-list-date-svg" 
+                                                                viewBox="0 0 24 24"
+                                                            >   
+                                                                <g 
+                                                                    fill="none" 
+                                                                    stroke="currentColor" 
+                                                                    strokeLinecap="round" 
+                                                                    strokeLinejoin="round" 
+                                                                    strokeWidth={2}
+                                                                >
+                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0"></path>
+                                                                    <path d="M12 7v5l3 3"></path>
+                                                                </g>
+                                                            </svg>
+
+                                                            <p>{getTimeAgo(task.createdAt)}</p>
+                                                        </div>
                                                     </div>
 
                                                     <div className="tasks-progress-bar">
@@ -1320,7 +1419,7 @@ function Tasks ({ }) {
                                                                                     ></path>
                                                                                 </svg>
                                                                                     
-                                                                                <p>Allows words between 50-100 letters</p>
+                                                                                <p>Must be between 50 and 100 characters</p>
                                                                             </div>
                                                                         </div>
                                                                     </div> 
@@ -1385,7 +1484,7 @@ function Tasks ({ }) {
                                                                                     ></path>
                                                                                 </svg>
                                                                                     
-                                                                                <p>Allows words between 50-100 letters</p>
+                                                                                <p>Must be between 50 and 100 characters</p>
                                                                             </div>
                                                                         </div>
                                                                     </div> 
@@ -1492,6 +1591,98 @@ function Tasks ({ }) {
                                             </div>
                                         </div>
                                     )}
+
+                                    {showCategoryPopup && (
+                                        <div className="tasks-popup-overlay" onClick={() => setShowCategoryPopup(false)}>
+                                            <div className="tasks-popup" onClick={(e) => e.stopPropagation()}>
+                                                <div className="tasks-popup-content">
+                                                    <div className="tasks-popup-middle">
+                                                        <div className="tasks-popup-middle-wrapper">
+                                                            <div className="popup-middle-slider">
+                                                                <div className="middle-slider-page">
+                                                                    <div className="tasks-popup-text">
+                                                                        <div className="popup-text-header">
+                                                                            <p>Task Category</p>
+
+                                                                            <svg 
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                className="popup-text-save-svg" 
+                                                                                viewBox="0 0 24 24"
+                                                                            >   
+                                                                                <g 
+                                                                                    fill="none" 
+                                                                                    stroke="currentColor" 
+                                                                                    strokeLinecap="round" 
+                                                                                    strokeLinejoin="round" 
+                                                                                    strokeWidth={2}
+                                                                                >
+                                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
+                                                                                    <path d="m9 12l2 2l4-4"></path>
+                                                                                </g>
+                                                                            </svg>
+                                                                        </div>
+
+                                                                        <div className="popup-text-contents-wrapper">
+                                                                            <div className="popup-text-contents">
+                                                                                {editingCategory ? (
+                                                                                    <input
+                                                                                        type="text"
+                                                                                        value={newCategoryName}
+                                                                                        onChange={(e) => setNewCategoryName(e.target.value)}
+                                                                                        onBlur={() => setEditingCategory(false)}
+                                                                                        onKeyDown={(e) => {
+                                                                                            if (e.key === "Enter") setEditingCategory(false);
+                                                                                        }}
+                                                                                        autoFocus
+                                                                                        className="popup-text-input"
+                                                                                    />
+                                                                                ) : (
+                                                                                    <p
+                                                                                        className="popup-text-input-p"
+                                                                                        onClick={() => setEditingCategory(true)}
+                                                                                    >
+                                                                                        {newCategoryName || "Enter new category"}
+                                                                                    </p>
+                                                                                )}
+
+                                                                                <div className="popup-text-footer">
+                                                                                    <svg 
+                                                                                        xmlns="http://www.w3.org/2000/svg" 
+                                                                                        className="text-footer-svg" 
+                                                                                        viewBox="0 0 24 24"
+                                                                                    >   
+                                                                                        <path 
+                                                                                            fill="currentColor" 
+                                                                                            d="M19 2a3 3 0 0 1 2.995 2.824L22 5v14a3 3 0 0 1-2.824 2.995L19 22H5a3 3 0 0 1-2.995-2.824L2 19V5a3 3 0 0 1 2.824-2.995L5 2zm-7 9h-1l-.117.007a1 1 0 0 0 0 1.986L11 13v3l.007.117a1 1 0 0 0 .876.876L12 17h1l.117-.007a1 1 0 0 0 .876-.876L14 16l-.007-.117a1 1 0 0 0-.764-.857l-.112-.02L13 15v-3l-.007-.117a1 1 0 0 0-.876-.876zm.01-3l-.127.007a1 1 0 0 0 0 1.986L12 10l.127-.007a1 1 0 0 0 0-1.986z"
+                                                                                        ></path>
+                                                                                    </svg>
+                                                                                        
+                                                                                    <p>Must be between 50 and 100 characters</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="tasks-popup-bottom">
+                                                        <div 
+                                                            className="tasks-slider-button"
+                                                            onClick={() => {
+                                                                addNewCategory();
+                                                                setShowCategoryPopup(false);
+                                                                setTaskStep(0);
+                                                            }}
+                                                        >
+                                                            <p>Add Category</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                                     
                                     <div
                                         className="category-menu tasks-menu"
@@ -1537,16 +1728,29 @@ function Tasks ({ }) {
                                                 ) : (
                                                     <div className="menu-slide">
                                                         <div
-                                                            className="tasks-dropdown-item"
+                                                            className="tasks-dropdown-item tasks-dropdown-item-icon"
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 setShowCategorySelector(false);
                                                             }}
                                                         >
-                                                            ← Back
+                                                            <svg 
+                                                                xmlns="http://www.w3.org/2000/svg" 
+                                                                className="tasks-dropdown-item-icon-svg" 
+                                                                viewBox="0 0 24 24"
+                                                            >   
+                                                                <path 
+                                                                    fill="none" 
+                                                                    stroke="currentColor" 
+                                                                    strokeLinecap="round" 
+                                                                    strokeLinejoin="round" 
+                                                                    strokeWidth={2} 
+                                                                    d="M5 12h14M5 12l6 6m-6-6l6-6"
+                                                                ></path>
+                                                            </svg>
                                                         </div>
 
-                                                        {["Work", "Personal", "Daily"].map((category) => (
+                                                        {categories.map((category) => (
                                                             <div
                                                                 key={category}
                                                                 className="tasks-dropdown-item"
@@ -1667,8 +1871,28 @@ function Tasks ({ }) {
                                             <div className="tasks-list-bottom">
                                                 <div className="tasks-list-progress">
                                                     <div className="tasks-progress-top">
-                                                        <p>Progress</p>
                                                         <p>{progress}%</p>
+
+                                                        <div className="tasks-list-date">
+                                                            <svg   
+                                                                xmlns="http://www.w3.org/2000/svg" 
+                                                                className="tasks-list-date-svg" 
+                                                                viewBox="0 0 24 24"
+                                                            >   
+                                                                <g 
+                                                                    fill="none" 
+                                                                    stroke="currentColor" 
+                                                                    strokeLinecap="round" 
+                                                                    strokeLinejoin="round" 
+                                                                    strokeWidth={2}
+                                                                >
+                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0"></path>
+                                                                    <path d="M12 7v5l3 3"></path>
+                                                                </g>
+                                                            </svg>
+
+                                                            <p>{getTimeAgo(task.createdAt)}</p>
+                                                        </div>
                                                     </div>
 
                                                     <div className="tasks-progress-bar">

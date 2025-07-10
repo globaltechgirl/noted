@@ -178,7 +178,6 @@ body {
 .side-menu-svg path {
   fill: var(--bg-primary);
   stroke: var(--text-secondary);
-  transition: all 0.3s ease;
 }
 
 li.active .side-menu-svg path {
@@ -244,7 +243,6 @@ li.active .side-menu-svg path {
 .side-submenu-svg path {
   fill: var(--bg-secondary);
   stroke: var(--text-secondary);
-  transition: all 0.3s ease;
 }
 
 .side-submenu-figure {

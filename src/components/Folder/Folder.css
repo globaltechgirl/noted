@@ -445,7 +445,6 @@
 .folder-icon .folder-icon-svg path {
   fill: var(--bg-secondary);
   stroke: var(--text-primary);
-  transition: all 0.3s ease;
 }
 
 /* Folder right - grid */
