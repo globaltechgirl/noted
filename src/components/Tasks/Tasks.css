@@ -326,7 +326,7 @@
 .tasks-popup-overlay {
   position: fixed;
   inset: 0;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -334,84 +334,44 @@
 }
 
 .tasks-popup {
-  padding: 4px;
-  background: var(--bg-primary);
-  border: 0.5px solid var(--border-primary);
-  border-radius: 0.6rem;
-  box-shadow: 0 8px 32px var(--shadow-secondary);
-  width: 90%;
-  max-width: 350px;
+  width: 360px;
+  margin: 0 auto;
 }
 
 .tasks-popup-content {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding: 10px;
-  background: var(--bg-secondary);
-  border: 1px dashed var(--border-primary);
-  border-radius: 0.5rem;
+  gap: 20px;
 }
 
 /* Tasks popup top */
-.tasks-popup-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.tasks-popup-top p {
-  font-size: 0.56rem;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  color: var(--text-primary);
-}
-
-.tasks-close-icon {
-  all: unset;
-  padding: 1.5px 2px 1.5px 1.5px;
-  cursor: pointer;
-  background: var(--bg-primary);
-  border: 0.5px solid var(--border-primary);
-  border-radius: 0.2rem;
-}
-
-.tasks-close-icon:hover {
-  background: var(--bg-secondary);
-}
-
-.tasks-close-icon-svg {
-  width: 8px;
-  height: 8px;
-  display: block;
-  color: var(--text-secondary);
-}
-
-/* Tasks popup middle */
-.tasks-popup-middle {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
 .tasks-popup-priority {
+  position: relative;
   display: flex;
+  justify-content: space-evenly;
   align-items: center;
+  width: 120px;
+  margin: 0 auto;
+  padding: 1.5px;
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.6rem;
+  background: var(--bg-primary);
   gap: 0.4rem;
+  padding-left: 2px;
 }
 
 .tasks-priority-option {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   cursor: pointer;
+  z-index: 2;
 }
 
 .priority-option {
   width: fit-content;
-  background: var(--bg-primary);
-  border: 0.5px solid var(--border-primary);
   color: var(--text-secondary);
-  border-radius: 0.25rem;
   padding: 2.5px 5px;
 }
 
@@ -420,6 +380,68 @@
   font-weight: 550;
   letter-spacing: 0.6px;
   color: var(--text-primary);
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  top: 1px;
+  height: 14.5px;
+  width: 100%;
+  transition: left 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ball {
+  height: 100%;
+  width: 100%;
+  background: var(--bg-secondary);
+  border-radius: 0.5rem;
+  border: 0.5px solid var(--border-primary);
+}
+
+.ball-low {
+  left: 0.5%;
+  position: absolute;
+  width: 32px;
+}
+
+.ball-medium {
+  left: 29.5%;
+  position: absolute;
+  width: 45px;
+}
+
+.ball-high {
+  left: 70.5%;
+  position: absolute;
+  width: 34px;
+}
+
+/* Tasks popup middle */
+.tasks-popup-middle {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  gap: 20px;
+}
+
+.tasks-popup-middle-wrapper {
+  width: calc(360px / 3);
+}
+
+.popup-middle-slider {
+  display: flex;
+  width: 300%;
+  transition: transform 0.4s ease;
+  touch-action: pan-y;
+}
+
+.middle-slider-page {
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .tasks-popup-text {
@@ -459,7 +481,7 @@
 .popup-text-contents {
   display: flex;
   flex-direction: column;
-  height: 60px;
+  height: 70px;
   justify-content: space-between;
   background: var(--bg-secondary);
   border: 0.5px solid var(--border-primary);
@@ -467,20 +489,29 @@
   padding: 6px 5px 6px 5px;
 }
 
-.popup-text-display {
+.middle-slider-list .popup-text-contents {
+  height: 30px;
+}
+
+.popup-text-contents-wrapper {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .popup-text-input,
-.popup-text-input-p {
+.popup-text-input-p,
+.popup-text-item p {
   font-size: 0.47rem;
   font-weight: 550;
   letter-spacing: 0.6px;
   color: var(--text-primary);
   opacity: 0.9;
   padding: 5px;
+}
+
+.add-task-block {
+  cursor: pointer;
 }
 
 .popup-text-input {
@@ -509,6 +540,31 @@
   font-weight: 500;
   letter-spacing: 0.6px;
   color: var(--text-secondary);
+}
+
+.tasks-popup-bottom {
+  padding: 2px;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+}
+
+.slider-dots .dot {
+  width: 4px;
+  height: 4px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.slider-dots .dot.active {
+  background: var(--text-primary);
 }
 
 /* Tasks dropdown options */
