@@ -53,50 +53,49 @@ function Tasks ({ }) {
         }
     ];
 
-    // States
+    // Task data
     const [tasks, setTasks] = useState(initialTasks);
-    const [priority, setPriority] = useState("low");
-    const [showTodoPopup, setShowTodoPopup] = useState(false);
     const [selectedTaskIds, setSelectedTaskIds] = useState([]);
+    const [priority, setPriority] = useState("low");
+    const [taskSource, setTaskSource] = useState("todo");
+
     const initialCategory = tasks.find(task => task.category !== "General")?.category || "All";
     const [selectedCategory, setSelectedCategory] = useState(initialCategory);
 
-    const [showCategoryMenu, setShowCategoryMenu] = useState(false);
-    const [showCategorySelector, setShowCategorySelector] = useState(false);
-
+    // Popups & dropdowns
+    const [showTodoPopup, setShowTodoPopup] = useState(false);
+    const [showCategoryTaskPopup, setShowCategoryTaskPopup] = useState(false);
+    const [showCategoryPopup, setShowCategoryPopup] = useState(false);
+    const [showPlusDropdown, setShowPlusDropdown] = useState(false);
     const [showTodoDropdown, setShowTodoDropdown] = useState(false);
     const [showInProgressDropdown, setShowInProgressDropdown] = useState(false);
     const [showCompletedDropdown, setShowCompletedDropdown] = useState(false);
+    const [showCategoryMenu, setShowCategoryMenu] = useState(false);
+    const [showCategorySelector, setShowCategorySelector] = useState(false);
 
-    const [showPlusDropdown, setShowPlusDropdown] = useState(false);
-    const [showCategoryPopup, setShowCategoryPopup] = useState(false);
-
+    // Task editing
     const [editingTaskTitle, setEditingTaskTitle] = useState(false);
-    const [newTaskTitle, setNewTaskTitle] = useState("New Task");
-
+    const [newTaskTitle, setNewTaskTitle] = useState("");
     const [editingTaskSubtitle, setEditingTaskSubtitle] = useState(false);
-    const [newTaskSubtitle, setNewTaskSubtitle] = useState("New Task");
-
+    const [newTaskSubtitle, setNewTaskSubtitle] = useState("");
+    const [taskInputs, setTaskInputs] = useState([""]);
+    const [editingIndex, setEditingIndex] = useState(null);
     const [taskStep, setTaskStep] = useState(0);
-const touchStartXRef = useRef(0);
-const touchEndXRef = useRef(0);
 
-const [taskInputs, setTaskInputs] = useState([""]); 
-const [editingIndex, setEditingIndex] = useState(null);
+    // Filters
+    const [categoryFilter, setCategoryFilter] = useState({ priority: "", status: "" });
 
+    // Touch slider refs
+    const touchStartXRef = useRef(0);
+    const touchEndXRef = useRef(0);
 
-    const [categoryFilter, setCategoryFilter] = useState({
-        priority: "",
-        status: ""
-    });
-   
-    // Refs
+    // Dropdown refs
     const todoDropdownRef = useRef(null);
     const inProgressDropdownRef = useRef(null);
     const completedDropdownRef = useRef(null);
     const categoryDropdownRef = useRef(null);
 
-    // Filtered task lists
+    // Derived task lists
     const generalTasks = tasks.filter(
         task =>
             task.category === "General" &&
@@ -123,13 +122,15 @@ const [editingIndex, setEditingIndex] = useState(null);
             ? [...generalTasks, ...categoryTasks]
             : categoryTasks.filter(task => task.category === selectedCategory);
 
-    // Get subtask completion %
+    // Utility functions
+    const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
     const getProgress = (subtasks) => {
         const completed = subtasks.filter(t => t.done).length;
         return Math.round((completed / subtasks.length) * 100);
     };
 
-    // Toggle subtask completion
+    // Task interaction handlers
     const toggleCheck = (taskId, subtaskId) => {
         setTasks(prev =>
             prev.map(task => {
@@ -140,11 +141,7 @@ const [editingIndex, setEditingIndex] = useState(null);
                 );
 
                 const progress = getProgress(updatedSubtasks);
-
-                let newStatus;
-                if (progress === 100) newStatus = "completed";
-                else if (progress >= 50) newStatus = "inprogress";
-                else newStatus = "todo";
+                const newStatus = progress === 100 ? "completed" : progress >= 50 ? "inprogress" : "todo";
 
                 return {
                     ...task,
@@ -155,63 +152,96 @@ const [editingIndex, setEditingIndex] = useState(null);
         );
     };
 
-    // Toggle task selection
     const toggleTaskSelection = (taskId) => {
         setSelectedTaskIds(prev =>
             prev.includes(taskId)
-                ? prev.filter(id => id !== taskId) 
-                : [...prev, taskId]               
+                ? prev.filter(id => id !== taskId)
+                : [...prev, taskId]
         );
     };
 
-    // Delete selected tasks
     const deleteSelectedTask = () => {
         setTasks(prev => prev.filter(task => !selectedTaskIds.includes(task.id)));
         setSelectedTaskIds([]);
     };
 
-    // Archive selected tasks
     const archiveSelectedTask = () => {
         setTasks(prev =>
             prev.map(task =>
                 selectedTaskIds.includes(task.id)
                     ? { ...task, status: "archived" }
                     : task
-                )
-            );
+            )
+        );
         setSelectedTaskIds([]);
     };
 
-    // Move selected tasks to category
     const moveSelectedTasksToCategory = (newCategory) => {
         setTasks(prev =>
             prev.map(task =>
                 selectedTaskIds.includes(task.id)
                     ? { ...task, category: newCategory }
                     : task
-                )
-            );
-        setTimeout(() => {
-            setSelectedTaskIds([]);
-        }, 0);
+            )
+        );
+        setTimeout(() => setSelectedTaskIds([]), 0);
         setShowCategorySelector(false);
     };
 
-    // Add tasks
+    // Task creation handlers
     const addNewTodoTask = () => {
+        const newSubtasks = taskInputs.filter(Boolean).map((text, index) => ({
+            id: index + 1,
+            text,
+            done: false,
+        }));
+
         const newTask = {
             id: Date.now(),
-            title: "New Task",
-            subtitle: "New Subtitle",
-            priority: "Medium",
+            title: newTaskTitle || "Untitled Task",
+            subtitle: newTaskSubtitle || "",
+            priority: capitalize(priority),
             status: "todo",
-            category: selectedCategory === "All" ? "Personal" : selectedCategory,
-            subtasks: [{ id: 1, text: "New Subtask", done: false }]
+            category: "General",
+            subtasks: newSubtasks.length > 0 ? newSubtasks : [{ id: 1, text: "New Subtask", done: false }],
         };
+
         setTasks(prev => [newTask, ...prev]);
+        resetTaskPopup();
     };
 
-    // Handle outside clicks
+    const addNewCategoryTask = () => {
+        const newSubtasks = taskInputs.filter(Boolean).map((text, index) => ({
+            id: index + 1,
+            text,
+            done: false,
+        }));
+
+        const newTask = {
+            id: Date.now(),
+            title: newTaskTitle || "Untitled Task",
+            subtitle: newTaskSubtitle || "",
+            priority: capitalize(priority),
+            status: "todo",
+            category: selectedCategory === "All" ? "Personal" : selectedCategory,
+            subtasks: newSubtasks.length > 0 ? newSubtasks : [{ id: 1, text: "New Subtask", done: false }],
+        };
+
+        setTasks(prev => [newTask, ...prev]);
+        resetTaskPopup();
+    };
+
+    const resetTaskPopup = () => {
+        setShowTodoPopup(false);
+        setShowCategoryTaskPopup(false);
+        setNewTaskTitle("");
+        setNewTaskSubtitle("");
+        setTaskInputs([""]);
+        setEditingIndex(null);
+        setTaskStep(0);
+    };
+
+    // Outside click handlers
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (todoDropdownRef.current && !todoDropdownRef.current.contains(event.target)) {
@@ -229,9 +259,7 @@ const [editingIndex, setEditingIndex] = useState(null);
         };
 
         document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
+        return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
     return (
@@ -377,7 +405,13 @@ const [editingIndex, setEditingIndex] = useState(null);
                                 </div>
 
                                 <div className="tasks-header-right">
-                                    <div className="todo-plus tasks-plus" onClick={() => setShowTodoPopup(true)}>
+                                    <div 
+                                        className="todo-plus tasks-plus" 
+                                        onClick={() => {
+                                            setShowTodoPopup(true);
+                                            setTaskSource("todo");
+                                        }}
+                                    >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="tasks-plus-svg"
@@ -679,9 +713,9 @@ const [editingIndex, setEditingIndex] = useState(null);
                                                             <div 
                                                                 className="tasks-slider-button"
                                                                 onClick={() => {
-                                                                    addNewTodoTask(); 
+                                                                    addNewTodoTask();
                                                                     setShowTodoPopup(false);
-                                                                    setTaskStep(0); 
+                                                                    setTaskStep(0);
                                                                 }}
                                                             >
                                                                 <p>Add task</p>
@@ -1139,8 +1173,9 @@ const [editingIndex, setEditingIndex] = useState(null);
                                                 <div
                                                     className="tasks-dropdown-item"
                                                     onClick={() => {
-                                                        setShowTodoPopup(true);
+                                                        setShowCategoryTaskPopup(true)
                                                         setShowPlusDropdown(false);
+                                                        setTaskSource("category")
                                                     }}
                                                 >
                                                     Add Task
@@ -1159,49 +1194,300 @@ const [editingIndex, setEditingIndex] = useState(null);
                                         )}
                                     </div>
 
-                                    {showCategoryPopup && (
-                                        <div className="tasks-popup-overlay" onClick={() => setShowCategoryPopup(false)}>
+                                    {showCategoryTaskPopup && (
+                                        <div className="tasks-popup-overlay" onClick={() => setShowCategoryTaskPopup(false)}>
                                             <div className="tasks-popup" onClick={(e) => e.stopPropagation()}>
                                                 <div className="tasks-popup-content">
                                                     <div className="tasks-popup-top">
-                                                        <p>Add New Category</p>
+                                                        <div className="tasks-popup-priority">
+                                                            <div className="tasks-priority-option">
+                                                                <div 
+                                                                    className={`priority-option ${priority === "low" ? "active" : ""}`}
+                                                                    onClick={() => setPriority("low")}
+                                                                >
+                                                                    <p>Low</p>
+                                                                </div> 
+                                                            </div>
 
-                                                        <button onClick={() => setShowCategoryPopup(false)} className="tasks-close-icon">
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                className="tasks-close-icon-svg"
-                                                                viewBox="0 0 24 24"
-                                                                width="20"
-                                                                height="20"
-                                                            >
-                                                                <path
-                                                                    fill="none"
-                                                                    stroke="currentColor"
-                                                                    strokeLinecap="round"
-                                                                    strokeLinejoin="round"
-                                                                    strokeWidth="2"
-                                                                    d="M18 6L6 18M6 6l12 12"
-                                                                />
-                                                            </svg>
-                                                        </button>
+                                                            <div className="tasks-priority-option">
+                                                                <div 
+                                                                    className={`priority-option ${priority === "medium" ? "active" : ""}`}
+                                                                    onClick={() => setPriority("medium")}
+                                                                >
+                                                                    <p>Medium</p>
+                                                                </div> 
+                                                            </div>
+
+                                                            <div className="tasks-priority-option">
+                                                                <div 
+                                                                    className={`priority-option ${priority === "high" ? "active" : ""}`}
+                                                                    onClick={() => setPriority("high")}
+                                                                >
+                                                                    <p>High</p>
+                                                                </div> 
+                                                            </div>
+
+                                                            <div className="slider">
+                                                                <div className={`ball ball-${priority}`}></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <div className="tasks-popup-middle">
-                                                        <input
-                                                            type="text"
-                                                            placeholder="Category Name"
-                                                            className="input-new-category"
-                                                            onChange={(e) => setNewCategoryName(e.target.value)}
-                                                        />
+                                                        <div className="tasks-popup-middle-wrapper">
+                                                            <div 
+                                                                className="popup-middle-slider"
+                                                                style={{
+                                                                    transform: `translateX(-${taskStep * 100}%)`,
+                                                                }}
+                                                                onTouchStart={(e) => {
+                                                                    touchStartXRef.current = e.touches[0].clientX;
+                                                                }}
+                                                                onTouchMove={(e) => {
+                                                                    touchEndXRef.current = e.touches[0].clientX;
+                                                                }}
+                                                                onTouchEnd={() => {
+                                                                    const deltaX = touchEndXRef.current - touchStartXRef.current;
+
+                                                                    if (deltaX > 30 && taskStep > 0) {
+                                                                        setTaskStep((prev) => prev - 1);
+                                                                    }
+
+                                                                    if (deltaX < -30 && taskStep < 2) {
+                                                                        setTaskStep((prev) => prev + 1);
+                                                                    }
+
+                                                                    touchStartXRef.current = 0;
+                                                                    touchEndXRef.current = 0;
+                                                                }}
+                                                            >
+                                                                <div className="middle-slider-page middle-slider-title">
+                                                                    <div className="tasks-popup-text">
+                                                                        <div className="popup-text-header">
+                                                                            <p>Task Title</p>
+
+                                                                            <svg 
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                className="popup-text-save-svg" 
+                                                                                viewBox="0 0 24 24"
+                                                                            >   
+                                                                                <g 
+                                                                                    fill="none" 
+                                                                                    stroke="currentColor" 
+                                                                                    strokeLinecap="round" 
+                                                                                    strokeLinejoin="round" 
+                                                                                    strokeWidth={2}
+                                                                                >
+                                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
+                                                                                    <path d="m9 12l2 2l4-4"></path>
+                                                                                </g>
+                                                                            </svg>
+                                                                        </div>
+
+                                                                        <div className="popup-text-contents">
+                                                                            {editingTaskTitle ? (
+                                                                                <input
+                                                                                    type="text"
+                                                                                    value={newTaskTitle}
+                                                                                    onChange={(e) => setNewTaskTitle(e.target.value)}
+                                                                                    onBlur={() => setEditingTaskTitle(false)} 
+                                                                                    onKeyDown={(e) => {
+                                                                                        if (e.key === "Enter") {
+                                                                                            setEditingTaskTitle(false);
+                                                                                        }
+                                                                                    }}
+                                                                                    className="popup-text-input"
+                                                                                    autoFocus
+                                                                                />
+                                                                            ) : (
+                                                                                <p
+                                                                                    className="popup-text-input-p"
+                                                                                    onClick={() => setEditingTaskTitle(true)}
+                                                                                >
+                                                                                    Enter new task title
+                                                                                </p>
+                                                                            )}
+
+                                                                            <div className="popup-text-footer">
+                                                                                <svg 
+                                                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                                                    className="text-footer-svg" 
+                                                                                    viewBox="0 0 24 24"
+                                                                                >   
+                                                                                    <path 
+                                                                                        fill="currentColor" 
+                                                                                        d="M19 2a3 3 0 0 1 2.995 2.824L22 5v14a3 3 0 0 1-2.824 2.995L19 22H5a3 3 0 0 1-2.995-2.824L2 19V5a3 3 0 0 1 2.824-2.995L5 2zm-7 9h-1l-.117.007a1 1 0 0 0 0 1.986L11 13v3l.007.117a1 1 0 0 0 .876.876L12 17h1l.117-.007a1 1 0 0 0 .876-.876L14 16l-.007-.117a1 1 0 0 0-.764-.857l-.112-.02L13 15v-3l-.007-.117a1 1 0 0 0-.876-.876zm.01-3l-.127.007a1 1 0 0 0 0 1.986L12 10l.127-.007a1 1 0 0 0 0-1.986z"
+                                                                                    ></path>
+                                                                                </svg>
+                                                                                    
+                                                                                <p>Allows words between 50-100 letters</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> 
+                                                                </div>
+
+                                                                <div className="middle-slider-page middle-slider-subtitle">
+                                                                    <div className="tasks-popup-text">
+                                                                        <div className="popup-text-header">
+                                                                            <p>Task Subtitle</p>
+
+                                                                            <svg 
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                className="popup-text-save-svg" 
+                                                                                viewBox="0 0 24 24"
+                                                                            >   
+                                                                                <g 
+                                                                                    fill="none" 
+                                                                                    stroke="currentColor" 
+                                                                                    strokeLinecap="round" 
+                                                                                    strokeLinejoin="round" 
+                                                                                    strokeWidth={2}
+                                                                                >
+                                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
+                                                                                    <path d="m9 12l2 2l4-4"></path>
+                                                                                </g>
+                                                                            </svg>
+                                                                        </div>
+
+                                                                        <div className="popup-text-contents">
+                                                                            {editingTaskSubtitle ? (
+                                                                                <input
+                                                                                    type="text"
+                                                                                    value={newTaskSubtitle}
+                                                                                    onChange={(e) => setNewTaskSubtitle(e.target.value)}
+                                                                                    onBlur={() => setEditingTaskSubtitle(false)} 
+                                                                                    onKeyDown={(e) => {
+                                                                                        if (e.key === "Enter") {
+                                                                                            setEditingTaskSubtitle(false);
+                                                                                        }
+                                                                                    }}
+                                                                                    className="popup-text-input"
+                                                                                    autoFocus
+                                                                                />
+                                                                            ) : (
+                                                                                <p
+                                                                                    className="popup-text-input-p"
+                                                                                    onClick={() => setEditingTaskSubtitle(true)}
+                                                                                >
+                                                                                    Enter new task subtitle
+                                                                                </p>
+                                                                            )}
+
+                                                                            <div className="popup-text-footer">
+                                                                                <svg 
+                                                                                    xmlns="http://www.w3.org/2000/svg" 
+                                                                                    className="text-footer-svg" 
+                                                                                    viewBox="0 0 24 24"
+                                                                                >   
+                                                                                    <path 
+                                                                                        fill="currentColor" 
+                                                                                        d="M19 2a3 3 0 0 1 2.995 2.824L22 5v14a3 3 0 0 1-2.824 2.995L19 22H5a3 3 0 0 1-2.995-2.824L2 19V5a3 3 0 0 1 2.824-2.995L5 2zm-7 9h-1l-.117.007a1 1 0 0 0 0 1.986L11 13v3l.007.117a1 1 0 0 0 .876.876L12 17h1l.117-.007a1 1 0 0 0 .876-.876L14 16l-.007-.117a1 1 0 0 0-.764-.857l-.112-.02L13 15v-3l-.007-.117a1 1 0 0 0-.876-.876zm.01-3l-.127.007a1 1 0 0 0 0 1.986L12 10l.127-.007a1 1 0 0 0 0-1.986z"
+                                                                                    ></path>
+                                                                                </svg>
+                                                                                    
+                                                                                <p>Allows words between 50-100 letters</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> 
+                                                                </div>
+
+                                                                <div className="middle-slider-page middle-slider-list">
+                                                                    <div className="tasks-popup-text">
+                                                                        <div className="popup-text-header">
+                                                                            <p>Task List</p>
+
+                                                                            <svg 
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                className="popup-text-save-svg" 
+                                                                                viewBox="0 0 24 24"
+                                                                            >   
+                                                                                <g 
+                                                                                    fill="none" 
+                                                                                    stroke="currentColor" 
+                                                                                    strokeLinecap="round" 
+                                                                                    strokeLinejoin="round" 
+                                                                                    strokeWidth={2}
+                                                                                >
+                                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
+                                                                                    <path d="m9 12l2 2l4-4"></path>
+                                                                                </g>
+                                                                            </svg>
+                                                                        </div>
+
+                                                                        <div className="popup-text-contents-wrapper">
+                                                                            {taskInputs.map((task, index) => (
+                                                                                <div key={index} className="popup-text-contents">
+                                                                                    <div className="popup-text-item">
+                                                                                        {editingIndex === index ? (
+                                                                                            <input
+                                                                                                type="text"
+                                                                                                value={task}
+                                                                                                onChange={(e) => {
+                                                                                                    const updated = [...taskInputs];
+                                                                                                    updated[index] = e.target.value;
+                                                                                                    setTaskInputs(updated);
+                                                                                                }}
+                                                                                                onBlur={() => setEditingIndex(null)}
+                                                                                                onKeyDown={(e) => {
+                                                                                                    if (e.key === "Enter") setEditingIndex(null);
+                                                                                                }}
+                                                                                                autoFocus
+                                                                                                className="popup-text-input"
+                                                                                            />
+                                                                                        ) : (
+                                                                                            <p
+                                                                                                className="popup-text-input-p"
+                                                                                                onClick={() => setEditingIndex(index)}
+                                                                                            >
+                                                                                                {task || `Task ${index + 1}`}
+                                                                                            </p>
+                                                                                        )}
+                                                                                    </div>
+                                                                                </div>
+                                                                            ))}
+
+                                                                            <div className="popup-text-contents">
+                                                                                <div
+                                                                                    className="popup-text-item add-task-block"
+                                                                                    onClick={() => {
+                                                                                        setTaskInputs([...taskInputs, ""]);
+                                                                                        setEditingIndex(taskInputs.length);
+                                                                                    }}
+                                                                                >
+                                                                                    <p>Add Task List</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> 
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
-                                                    <button
-                                                        onClick={() => {
-                                                            setShowCategoryPopup(false);
-                                                        }}
-                                                        >
-                                                        Add Category
-                                                    </button>
+                                                    <div className="tasks-popup-bottom">
+                                                        {taskStep < 2 ? (
+                                                            <div className="tasks-slider-dots">
+                                                                {[0, 1, 2].map((step) => (
+                                                                    <span
+                                                                        key={step}
+                                                                        className={`dot ${taskStep === step ? "active" : ""}`}
+                                                                        onClick={() => setTaskStep(step)}
+                                                                    />
+                                                                ))}
+                                                            </div>
+                                                        ) : (
+                                                            <div 
+                                                                className="tasks-slider-button"
+                                                                onClick={() => {
+                                                                    addNewCategoryTask();
+                                                                    setShowCategoryTaskPopup(false);
+                                                                    setTaskStep(0);
+                                                                }}
+                                                            >
+                                                                <p>Add task</p>
+                                                            </div>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
