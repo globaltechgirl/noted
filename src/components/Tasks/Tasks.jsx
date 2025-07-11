@@ -53,7 +53,7 @@ function Tasks ({ }) {
                 { id: 1, text: "Analyze Instagram", done: false },
                 { id: 2, text: "Audit Twitter", done: false }
             ]
-        }
+        },        
     ];
 
     // Task data
