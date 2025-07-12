@@ -175,12 +175,11 @@
 .tasks-icon .tasks-icon-svg {
   width: 10px;
   height: 10px;
-  color: var(--text-secondary);
 }
 
 .tasks-icon .tasks-icon-svg path {
   fill: var(--bg-secondary);
-  stroke: var(--text-primary);
+  stroke: var(--text-secondary);
 }
 
 /* Tasks right */
@@ -228,13 +227,13 @@
 .tasks-toggle .tasks-toggle-svg {
   width: 10px;
   height: 10px;
-  color: var(--text-secondary);
+  display: block;
 }
 
 .tasks-search .tasks-search-svg path,
 .tasks-menu .tasks-menu-svg path {
   fill: var(--bg-secondary);
-  stroke: var(--text-primary);
+  stroke: var(--text-secondary);
 }
 
 /* Tasks dropdown menu */
@@ -344,13 +343,13 @@
 .tasks-menu .tasks-menu-svg {
   width: 8px;
   height: 8px;
-  color: var(--text-secondary);
+  display: block;
 }
 
 .tasks-plus .tasks-plus-svg path,
 .tasks-menu .tasks-menu-svg path {
   fill: var(--bg-secondary);
-  stroke: var(--text-primary);
+  stroke: var(--text-secondary);
 }
 
 /* Tasks popup overlay */
@@ -488,7 +487,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 6px 8px 6px;
+  padding: 6px 6px 7.5px 6px;
 }
 
 .popup-text-header p {
@@ -498,15 +497,22 @@
   color: var(--text-primary);
 }
 
-.popup-text-save-svg {
-  width: 9px;
-  height: 9px;
-  color: var(--text-primary);
+.popup-text-header-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.popup-text-header-svg {
+  width: 9.5px;
+  height: 9.5px;
+  display: block;
+  cursor: pointer;
 }
 
 .popup-text-header-svg path {
   fill: var(--bg-secondary);
-  stroke: var(--text-secondary);
+  stroke: var(--text-primary);
 }
 
 .popup-text-contents {
@@ -820,7 +826,6 @@
 .tasks-list-date-svg {
   width: 8px;
   height: 8px;
-  color: var(--text-secondary);
 }
 
 .tasks-list-date-svg path {
