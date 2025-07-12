@@ -12,7 +12,6 @@ function Tasks ({ }) {
     // Theme context
     const { darkMode, toggleTheme } = useTheme();
 
-    // Initial tasks
     const initialTasks = [
         {
             id: 1,
@@ -20,13 +19,13 @@ function Tasks ({ }) {
             subtitle: "SEO Campaign",
             priority: "Medium",
             status: "todo",
-            category: "General", 
+            category: "General",
             createdAt: "2025-07-07T10:00:00Z",
             subtasks: [
                 { id: 1, text: "Prepare promotional banners", done: false },
                 { id: 2, text: "Landing page assets", done: false },
-                { id: 3, text: "Newsletter campaign assets", done: false }
-            ]
+                { id: 3, text: "Newsletter campaign assets", done: false },
+            ],
         },
         {
             id: 2,
@@ -38,8 +37,8 @@ function Tasks ({ }) {
             createdAt: "2025-07-07T10:00:00Z",
             subtasks: [
                 { id: 1, text: "Design hero section", done: false },
-                { id: 2, text: "Implement responsive styles", done: false }
-            ]
+                { id: 2, text: "Implement responsive styles", done: false },
+            ],
         },
         {
             id: 3,
@@ -51,26 +50,23 @@ function Tasks ({ }) {
             createdAt: "2025-07-07T10:00:00Z",
             subtasks: [
                 { id: 1, text: "Analyze Instagram", done: false },
-                { id: 2, text: "Audit Twitter", done: false }
-            ]
-        },        
+                { id: 2, text: "Audit Twitter", done: false },
+            ],
+        },
     ];
 
-    // Task data
+    // States
     const [tasks, setTasks] = useState(initialTasks);
     const [selectedTaskIds, setSelectedTaskIds] = useState([]);
     const [priority, setPriority] = useState("low");
     const [taskSource, setTaskSource] = useState("todo");
 
-    // Categories
     const [categories, setCategories] = useState(["Work", "Personal", "Daily"]);
     const [newCategoryName, setNewCategoryName] = useState("");
     const [editingCategory, setEditingCategory] = useState(false);
-
-    const initialCategory = tasks.find(task => task.category !== "General")?.category || "All";
+    const initialCategory = tasks.find((t) => t.category !== "General")?.category || "All";
     const [selectedCategory, setSelectedCategory] = useState(initialCategory);
 
-    // Popups & dropdowns
     const [showTodoPopup, setShowTodoPopup] = useState(false);
     const [showCategoryTaskPopup, setShowCategoryTaskPopup] = useState(false);
     const [showCategoryPopup, setShowCategoryPopup] = useState(false);
@@ -80,8 +76,8 @@ function Tasks ({ }) {
     const [showCompletedDropdown, setShowCompletedDropdown] = useState(false);
     const [showCategoryMenu, setShowCategoryMenu] = useState(false);
     const [showCategorySelector, setShowCategorySelector] = useState(false);
+    const [showTimeDropdown, setShowTimeDropdown] = useState(false);
 
-    // Task input & editing
     const [editingTaskTitle, setEditingTaskTitle] = useState(false);
     const [newTaskTitle, setNewTaskTitle] = useState("");
     const [editingTaskSubtitle, setEditingTaskSubtitle] = useState(false);
@@ -89,56 +85,26 @@ function Tasks ({ }) {
     const [taskInputs, setTaskInputs] = useState([""]);
     const [editingIndex, setEditingIndex] = useState(null);
     const [taskStep, setTaskStep] = useState(0);
-
-    // Filters
+    
     const [categoryFilter, setCategoryFilter] = useState({ priority: "", status: "" });
+    const [selectedTimeFilter, setSelectedTimeFilter] = useState("Last Month");
 
-    // Touch slider refs
+    // Refs
     const touchStartXRef = useRef(0);
     const touchEndXRef = useRef(0);
-
-    // Dropdown refs
     const todoDropdownRef = useRef(null);
     const inProgressDropdownRef = useRef(null);
     const completedDropdownRef = useRef(null);
     const categoryDropdownRef = useRef(null);
 
-    // Derived task lists
-    const generalTasks = tasks.filter(
-        task =>
-            task.category === "General" &&
-            task.status !== "archived" &&
-            (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
-            (!categoryFilter.status || task.status === categoryFilter.status)
-    );
-
-    const categoryTasks = tasks.filter(
-        task =>
-            task.category !== "General" &&
-            task.status !== "archived" &&
-            (selectedCategory === "All" || task.category === selectedCategory) &&
-            (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
-            (!categoryFilter.status || task.status === categoryFilter.status)
-    );
-
-    const generalTodoTasks = generalTasks.filter(task => task.status === "todo");
-    const generalInProgressTasks = generalTasks.filter(task => task.status === "inprogress");
-    const generalCompletedTasks = generalTasks.filter(task => task.status === "completed");
-
-    const filteredCategoryTasks =
-        selectedCategory === "All"
-            ? [...generalTasks, ...categoryTasks]
-            : categoryTasks.filter(task => task.category === selectedCategory);
-
-    // Utility functions
+    // Utility Functions
     const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
     const getProgress = (subtasks) => {
-        const completed = subtasks.filter(t => t.done).length;
+        const completed = subtasks.filter((t) => t.done).length;
         return Math.round((completed / subtasks.length) * 100);
     };
 
-    // Time formatting
     const getTimeAgo = (createdAt) => {
         const now = new Date();
         const created = new Date(createdAt);
@@ -154,13 +120,74 @@ function Tasks ({ }) {
         return "Just now";
     };
 
-    // Task interaction
+    const isWithinTimeFilter = (createdAt, filter) => {
+        const created = new Date(createdAt);
+        const now = new Date();
+
+        switch (filter) {
+            case "Today":
+                return created.toDateString() === now.toDateString();
+            case "This Week":
+                const startOfWeek = new Date(now);
+                startOfWeek.setDate(now.getDate() - now.getDay());
+                return created >= startOfWeek;
+            case "This Month":
+                const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+                return created >= startOfMonth;
+            case "This Year":
+                const startOfYear = new Date(now.getFullYear(), 0, 1);
+                return created >= startOfYear;
+            case "All Tasks":
+            default:
+                return true;
+        }
+    };
+
+    const getAvailableTimeFilters = () => {
+        return ["Today", "This Week", "This Month", "This Year", "All Tasks"];
+    };
+
+    const availableTimeFilters = getAvailableTimeFilters(tasks);
+
+    const handleTimeFilter = (filter) => {
+        setSelectedTimeFilter(filter);
+        setShowTimeDropdown(false);
+    };
+
+    // Derived Data
+    const generalTasks = tasks.filter(
+        (task) =>
+            task.category === "General" &&
+            task.status !== "archived" &&
+            isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+            (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+            (!categoryFilter.status || task.status === categoryFilter.status)
+    );
+
+    const generalTodoTasks = generalTasks.filter((task) => task.status === "todo");
+    const generalInProgressTasks = generalTasks.filter((task) => task.status === "inprogress");
+    const generalCompletedTasks = generalTasks.filter((task) => task.status === "completed");
+
+    const categoryTasks = tasks.filter(
+        (task) =>
+            task.category !== "General" &&
+            task.status !== "archived" &&
+            isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+            (selectedCategory === "All" || task.category === selectedCategory) &&
+            (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+            (!categoryFilter.status || task.status === categoryFilter.status)
+    );
+
+    const filteredCategoryTasks =
+            selectedCategory === "All" ? [...generalTasks, ...categoryTasks] : categoryTasks;
+
+    // Task Actions
     const toggleCheck = (taskId, subtaskId) => {
-        setTasks(prev =>
-            prev.map(task => {
+        setTasks((prev) =>
+            prev.map((task) => {
                 if (task.id !== taskId) return task;
 
-                const updatedSubtasks = task.subtasks.map(sub =>
+                const updatedSubtasks = task.subtasks.map((sub) =>
                     sub.id === subtaskId ? { ...sub, done: !sub.done } : sub
                 );
 
@@ -170,49 +197,52 @@ function Tasks ({ }) {
                 return {
                     ...task,
                     subtasks: updatedSubtasks,
-                    status: newStatus
+                    status: newStatus,
                 };
             })
         );
     };
 
     const toggleTaskSelection = (taskId) => {
-        setSelectedTaskIds(prev =>
-            prev.includes(taskId)
-                ? prev.filter(id => id !== taskId)
-                : [...prev, taskId]
+        setSelectedTaskIds((prev) =>
+            prev.includes(taskId) ? prev.filter((id) => id !== taskId) : [...prev, taskId]
         );
     };
 
     const deleteSelectedTask = () => {
-        setTasks(prev => prev.filter(task => !selectedTaskIds.includes(task.id)));
+        setTasks((prev) => prev.filter((task) => !selectedTaskIds.includes(task.id)));
         setSelectedTaskIds([]);
     };
 
     const archiveSelectedTask = () => {
-        setTasks(prev =>
-            prev.map(task =>
-                selectedTaskIds.includes(task.id)
-                    ? { ...task, status: "archived" }
-                    : task
+        setTasks((prev) =>
+            prev.map((task) =>
+                selectedTaskIds.includes(task.id) ? { ...task, status: "archived" } : task
             )
         );
         setSelectedTaskIds([]);
     };
 
     const moveSelectedTasksToCategory = (newCategory) => {
-        setTasks(prev =>
-            prev.map(task =>
-                selectedTaskIds.includes(task.id)
-                    ? { ...task, category: newCategory }
-                    : task
+        setTasks((prev) =>
+            prev.map((task) =>
+                selectedTaskIds.includes(task.id) ? { ...task, category: newCategory } : task
             )
         );
         setTimeout(() => setSelectedTaskIds([]), 0);
         setShowCategorySelector(false);
     };
 
-    // Task creation
+    const resetTaskPopup = () => {
+        setShowTodoPopup(false);
+        setShowCategoryTaskPopup(false);
+        setNewTaskTitle("");
+        setNewTaskSubtitle("");
+        setTaskInputs([""]);
+        setEditingIndex(null);
+        setTaskStep(0);
+    };
+
     const addNewTodoTask = () => {
         const newSubtasks = taskInputs.filter(Boolean).map((text, index) => ({
             id: index + 1,
@@ -231,7 +261,7 @@ function Tasks ({ }) {
             subtasks: newSubtasks.length > 0 ? newSubtasks : [{ id: 1, text: "New Subtask", done: false }],
         };
 
-        setTasks(prev => [newTask, ...prev]);
+        setTasks((prev) => [newTask, ...prev]);
         resetTaskPopup();
     };
 
@@ -253,50 +283,25 @@ function Tasks ({ }) {
             subtasks: newSubtasks.length > 0 ? newSubtasks : [{ id: 1, text: "New Subtask", done: false }],
         };
 
-        setTasks(prev => [newTask, ...prev]);
+        setTasks((prev) => [newTask, ...prev]);
         resetTaskPopup();
     };
 
-    const resetTaskPopup = () => {
-        setShowTodoPopup(false);
-        setShowCategoryTaskPopup(false);
-        setNewTaskTitle("");
-        setNewTaskSubtitle("");
-        setTaskInputs([""]);
-        setEditingIndex(null);
-        setTaskStep(0);
-    };
-
-    // Category creation
     const addNewCategory = () => {
         const name = newCategoryName.trim() || `Category ${categories.length + 1}`;
-
-        if (!categories.includes(name)) {
-            setCategories((prev) => [...prev, name]);
-        }
-
+        if (!categories.includes(name)) setCategories((prev) => [...prev, name]);
         setNewCategoryName("");
         setShowCategoryPopup(false);
         setTaskStep(0);
     };
 
-    // Outside click handler
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (todoDropdownRef.current && !todoDropdownRef.current.contains(event.target)) {
-                setShowTodoDropdown(false);
-            }
-            if (inProgressDropdownRef.current && !inProgressDropdownRef.current.contains(event.target)) {
-                setShowInProgressDropdown(false);
-            }
-            if (completedDropdownRef.current && !completedDropdownRef.current.contains(event.target)) {
-                setShowCompletedDropdown(false);
-            }
-            if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(event.target)) {
-                setShowCategoryMenu(false);
-            }
+            if (todoDropdownRef.current && !todoDropdownRef.current.contains(event.target)) setShowTodoDropdown(false);
+            if (inProgressDropdownRef.current && !inProgressDropdownRef.current.contains(event.target)) setShowInProgressDropdown(false);
+            if (completedDropdownRef.current && !completedDropdownRef.current.contains(event.target)) setShowCompletedDropdown(false);
+            if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(event.target)) setShowCategoryMenu(false);
         };
-
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
@@ -380,8 +385,8 @@ function Tasks ({ }) {
                         </div>
 
                         <div className="tasks-right">
-                            <div className="tasks-toggle">
-                                <p>Last month</p>
+                            <div className="tasks-toggle" onClick={() => setShowTimeDropdown(prev => !prev)}>
+                                <p>{selectedTimeFilter}</p>
 
                                 <svg 
                                     xmlns="http://www.w3.org/2000/svg" 
@@ -398,6 +403,25 @@ function Tasks ({ }) {
                                     ></path>
                                 </svg>
                             </div>
+
+{showTimeDropdown && (
+  <div className="tasks-dropdown-menu">
+    {getAvailableTimeFilters().map(filter => (
+      <div
+        key={filter}
+        className={`tasks-dropdown-item ${selectedTimeFilter === filter ? "active" : ""}`}
+        onClick={() => {
+          setSelectedTimeFilter(filter); // or null if you want to clear
+          setShowTimeDropdown(false);
+        }}
+      >
+        {filter}
+      </div>
+    ))}
+  </div>
+)}
+
+
 
                             <div className="tasks-search">
                                 <svg 

@@ -237,6 +237,39 @@
   stroke: var(--text-primary);
 }
 
+/* Tasks dropdown menu */
+.tasks-dropdown-menu {
+  position: absolute;
+  top: 20%;
+  right: 84px;
+  margin-top: 5px;
+  z-index: 100;
+  width: max-content;
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.35rem;
+  padding: 3px;
+  font-size: 0.46rem;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  color: var(--text-primary);
+  width: 74px;
+  transition: height 0.3s ease;
+}
+
+.tasks-dropdown-menu .tasks-dropdown-item {
+  margin: 0;
+  padding: 3px 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.tasks-dropdown-menu .tasks-dropdown-item:hover {
+  background: var(--bg-primary);
+  border-radius: 0.25rem;
+  border: 0.5px solid var(--border-primary);
+}
+
 /* Tasks main */
 .tasks-main {
   width: 95%;
@@ -607,25 +640,22 @@
   font-weight: 500;
   letter-spacing: 0.6px;
   color: var(--text-primary);
+  overflow: hidden;
+  width: 90px;
+  transition: height 0.3s ease;
 }
 
-.tasks-dropdown-item {
+.tasks-dropdown-options .tasks-dropdown-item {
   margin: 0;
   padding: 3px 6px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
-.tasks-dropdown-item:hover {
+.tasks-dropdown-options .tasks-dropdown-item:hover {
   background: var(--bg-primary);
   border-radius: 0.25rem;
   border: 0.5px solid var(--border-primary);
-}
-
-.tasks-dropdown-options {
-  overflow: hidden;
-  width: 90px;
-  transition: height 0.3s ease;
 }
 
 .tasks-dropdown-item-icon {
