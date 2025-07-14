@@ -404,24 +404,22 @@ function Tasks ({ }) {
                                 </svg>
                             </div>
 
-{showTimeDropdown && (
-  <div className="tasks-dropdown-menu">
-    {getAvailableTimeFilters().map(filter => (
-      <div
-        key={filter}
-        className={`tasks-dropdown-item ${selectedTimeFilter === filter ? "active" : ""}`}
-        onClick={() => {
-          setSelectedTimeFilter(filter); // or null if you want to clear
-          setShowTimeDropdown(false);
-        }}
-      >
-        {filter}
-      </div>
-    ))}
-  </div>
-)}
-
-
+                            {showTimeDropdown && (
+                                <div className="tasks-dropdown-menu">
+                                    {getAvailableTimeFilters().map(filter => (
+                                        <div
+                                            key={filter}
+                                            className={`tasks-dropdown-item ${selectedTimeFilter === filter ? "active" : ""}`}
+                                            onClick={() => {
+                                                setSelectedTimeFilter(filter); 
+                                                setShowTimeDropdown(false);
+                                            }}
+                                        >
+                                            {filter}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
 
                             <div className="tasks-search">
                                 <svg 

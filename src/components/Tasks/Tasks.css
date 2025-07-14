@@ -515,7 +515,7 @@
   stroke: var(--text-primary);
 }
 
-.popup-text-contents {
+.tasks-popup-text .popup-text-contents {
   display: flex;
   flex-direction: column;
   height: 70px;
@@ -526,11 +526,11 @@
   padding: 6px 5px 6px 5px;
 }
 
-.middle-slider-list .popup-text-contents {
+.tasks-popup-text .middle-slider-list .popup-text-contents {
   height: 32px;
 }
 
-.popup-text-contents-wrapper {
+.tasks-popup-text .popup-text-contents-wrapper {
   display: flex;
   flex-direction: column;
   gap: 2px;

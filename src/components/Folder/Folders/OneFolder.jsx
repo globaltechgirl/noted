@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Folder from "../Folder";
 import { useTheme } from "../../../Context/ThemeContext";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
@@ -86,6 +86,14 @@ function OneFolder({ folderName }) {
     const filteredData = starredOnly
         ? folderData.filter((item) => item.starred)
         : folderData;
+
+            const [searchStep, setSearchStep] = useState(0);
+            const [taskStep, setTaskStep] = useState(0);
+const touchStartXRef = useRef(0);
+const touchEndXRef = useRef(0);
+    const [taskInputs, setTaskInputs] = useState([""]);
+    const [editingIndex, setEditingIndex] = useState(null);
+
 
     return (
         <div className="folder-container">
@@ -431,6 +439,159 @@ function OneFolder({ folderName }) {
                             </div>
                         </div>
                     )}
+
+                    {showSearchPopup && (
+                        <div className="search-popup-overlay" onClick={() => setShowSearchPopup(false)}>
+                            <div className="search-popup" onClick={(e) => e.stopPropagation()}>
+                                <div className="search-popup-content">
+                                    <div className="search-popup-top">
+                                        <div className="search-popup-input">
+                                             <div className="search-input-box">
+                                                <input
+                                                    type="text"
+                                                    placeholder="Search"
+                                                    className="search-input"
+                                                    autoFocus
+                                                    value={searchQuery}
+                                                    onChange={(e) => {
+                                                        const query = e.target.value;
+                                                        setSearchQuery(query);
+
+                                                        if (query.trim() === "") {
+                                                            setSearchResults([]);
+                                                            setNoMatchFound(false); 
+                                                        } else {
+                                                            const filtered = folderData.filter((doc) =>
+                                                                doc.title.toLowerCase().includes(query.toLowerCase())
+                                                            )
+                                                            .slice(0, 3);
+
+                                                            setSearchResults(filtered);
+                                                            setNoMatchFound(filtered.length === 0);
+                                                        }
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="search-popup-middle">
+                                        <div className="search-popup-middle-wrapper">
+                                            <div 
+                                                className="popup-middle-slider"
+                                                style={{
+                                                    transform: `translateX(-${searchStep * 100}%)`,
+                                                }}
+                                                onTouchStart={(e) => {
+                                                    touchStartXRef.current = e.touches[0].clientX;
+                                                }}
+                                                onTouchMove={(e) => {
+                                                    touchEndXRef.current = e.touches[0].clientX;
+                                                }}
+                                                onTouchEnd={() => {
+                                                    const deltaX = touchEndXRef.current - touchStartXRef.current;
+
+                                                    if (deltaX > 30 && searchStep > 0) {
+                                                        setSearchStep((prev) => prev - 1);
+                                                    }
+
+                                                    if (deltaX < -30 && searchStep < 1) {
+                                                        setSearchStep((prev) => prev + 1);
+                                                    }
+
+                                                    touchStartXRef.current = 0;
+                                                    touchEndXRef.current = 0;
+                                                }}
+                                            >
+                                                <div className="middle-slider-page middle-slider-list">
+                                                    <div className="search-popup-text">
+                                                        <div className="popup-text-header">
+                                                            <p>Search Results</p>
+                                                        </div>
+
+                                                        <div className="popup-text-contents-wrapper">
+                                                            {noMatchFound ? (
+                                                                <div className="no-results-body">
+                                                                    <div className="no-results-main">
+                                                                        <div className="no-results-icon">
+                                                                            <img src="../../../../public/assets/images/notes-dark.png" alt="" />
+                                                                        </div>
+
+                                                                        <div className="no-results-header">
+                                                                            <p>No notes found</p>
+                                                                        </div>
+
+                                                                        <div className="no-results-text">
+                                                                            <p>
+                                                                                "{searchQuery}" did not match any notes. <br/> Please try again or <span>create a new note</span>.
+                                                                            </p>
+                                                                        </div>
+
+                                                                        <div className="no-results-clear">
+                                                                            <button
+                                                                                onClick={() => {
+                                                                                    setSearchQuery("");
+                                                                                    setSearchResults([]);
+                                                                                }}
+                                                                            >
+                                                                                Clear search
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            ) : (
+                                                                searchResults.map((doc) => (
+                                                                    <div
+                                                                        className="popup-text-contents"
+                                                                        key={doc.id}
+                                                                        onClick={() => {
+                                                                            addToRecentSearches(doc);
+                                                                            setShowSearchPopup(false);
+                                                                        }}
+                                                                    >
+                                                                        <div className="popup-text-item">
+                                                                            <p className="popup-text-item-p">{doc.title}</p>
+                                                                            <p className="popup-text-sub">{doc.subtitle}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                ))
+                                                            )}
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="tasks-popup-bottom">
+                                        {taskStep < 1 ? (
+                                                        <div 
+                                                                className="tasks-slider-button"
+                                                                onClick={() => {
+                                                                    addNewTodoTask();
+                                                                    setShowTodoPopup(false);
+                                                                    setTaskStep(0);
+                                                                }}
+                                                            >
+                                                                <p>Add task</p>
+                                                            </div>
+                                                        ) : (
+                                                            <div 
+                                                                className="tasks-slider-button"
+                                                                onClick={() => {
+                                                                    addNewTodoTask();
+                                                                    setShowTodoPopup(false);
+                                                                    setTaskStep(0);
+                                                                }}
+                                                            >
+                                                                <p>Add task</p>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                 </div>
 
                 <div className="folder-body">
