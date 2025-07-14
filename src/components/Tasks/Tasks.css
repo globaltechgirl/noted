@@ -518,7 +518,7 @@
 .tasks-popup-text .popup-text-contents {
   display: flex;
   flex-direction: column;
-  height: 70px;
+  height: 33px;
   justify-content: space-between;
   background: var(--bg-secondary);
   border: 0.5px solid var(--border-primary);

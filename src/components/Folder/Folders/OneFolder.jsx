@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+
 import Folder from "../Folder";
 import { useTheme } from "../../../Context/ThemeContext";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
@@ -13,6 +14,8 @@ function OneFolder({ folderName }) {
 
     // Starred filter toggle
     const [starredOnly, setStarredOnly] = useState(false);
+
+
 
     // Search popup state
     const [showSearchPopup, setShowSearchPopup] = useState(false);
@@ -202,249 +205,8 @@ const touchEndXRef = useRef(0);
                     {showSearchPopup && (
                         <div className="search-popup-overlay" onClick={() => setShowSearchPopup(false)}>
                             <div className="search-popup" onClick={(e) => e.stopPropagation()}>
-                                <div className="search-popup-top">
-                                    <div className="search-top-left">
-                                        <div className="search-top-icon">
-                                            <svg 
-                                                xmlns="http://www.w3.org/2000/svg" 
-                                                className="folder-header-svg" 
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path 
-                                                    fill="none" 
-                                                    stroke="currentColor" 
-                                                    strokeLinecap="round" 
-                                                    strokeLinejoin="round" 
-                                                    strokeWidth="2" 
-                                                    d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"
-                                                />
-                                            </svg>
-                                        </div>
-
-                                        <div className="search-top-input">
-                                            <input
-                                                type="text"
-                                                placeholder="Search"
-                                                className="search-input"
-                                                autoFocus
-                                                value={searchQuery}
-                                                onChange={(e) => {
-                                                    const query = e.target.value;
-                                                    setSearchQuery(query);
-
-                                                    if (query.trim() === "") {
-                                                        setSearchResults([]);
-                                                        setNoMatchFound(false); 
-                                                    } else {
-                                                        const filtered = folderData.filter((doc) =>
-                                                            doc.title.toLowerCase().includes(query.toLowerCase())
-                                                        )
-                                                        .slice(0, 3);
-
-                                                        setSearchResults(filtered);
-                                                        setNoMatchFound(filtered.length === 0);
-                                                    }
-                                                }}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="search-top-right">
-                                        <button onClick={() => setShowSearchPopup(false)} className="close-button">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="close-icon"
-                                                viewBox="0 0 24 24"
-                                                width="20"
-                                                height="20"
-                                            >
-                                                <path
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="2"
-                                                    d="M18 6L6 18M6 6l12 12"
-                                                />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                {noMatchFound ? (
-                                    <div className="no-results-body">
-                                        <div className="no-results-main">
-                                            <div className="no-results-icon">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    className="no-results-icon-svg"
-                                                    viewBox="0 0 24 24"
-                                                    width="48"
-                                                    height="48"
-                                                >
-                                                    <path
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth="2"
-                                                        d="m5 19l2.757-7.351A1 1 0 0 1 8.693 11H21a1 1 0 0 1 .986 1.164l-.996 5.211A2 2 0 0 1 19.026 19za2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v2"
-                                                    />
-                                                </svg>
-                                            </div>
-
-                                            <div className="no-results-header">
-                                                <p>No notes found</p>
-                                            </div>
-
-                                            <div className="no-results-text">
-                                                <p>
-                                                    "{searchQuery}" did not match any notes. <br/> Please try again or <span>create a new note</span>.
-                                                </p>
-                                            </div>
-
-                                            <div className="no-results-clear">
-                                                <button
-                                                    onClick={() => {
-                                                        setSearchQuery("");
-                                                        setSearchResults([]);
-                                                    }}
-                                                >
-                                                    Clear search
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    ) : (
-                                    <>
-                                        <div className="search-popup-recent">
-                                            <div className="search-recent-header">
-                                                <p>{searchQuery.trim() ? "Search results" : "Recent"}</p>
-                                            </div>
-
-                                            <div className="search-recent-body">
-                                                {(searchQuery.trim() ? searchResults : recentSearches).length === 0 ? (
-                                                    <p className="search-recent-empty">
-                                                        {searchQuery.trim() ? "No results found" : "No recent searches"}
-                                                    </p>
-                                                ) : (
-                                                    (searchQuery.trim() ? searchResults : recentSearches).map((doc) => (
-                                                        <div
-                                                            className="search-recent-main"
-                                                            key={doc.id}
-                                                            onClick={() => {
-                                                                addToRecentSearches(doc);
-                                                                setShowSearchPopup(false);
-                                                            }}
-                                                    >
-                                                            <div className="recent-main-icon">
-                                                                <svg
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                    className="recent-main-icon-svg"
-                                                                    viewBox="0 0 24 24"
-                                                                >
-                                                                    <path
-                                                                        fill="none"
-                                                                        stroke="currentColor"
-                                                                        strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                        strokeWidth="2"
-                                                                        d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2"
-                                                                    />
-                                                                </svg>
-                                                            </div>
-
-                                                            <div className="recent-main-wrapper">
-                                                                <div className="recent-main-header">
-                                                                    <p>{doc.title}</p>
-                                                                </div>
-
-                                                                <div className="recent-main-text">
-                                                                    <p>{doc.subtitle}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    ))
-                                                )}
-                                            </div>
-                                        </div>
-
-                                        <div className="search-popup-quick">
-                                            <div className="search-quick-header">
-                                                <p>Quick actions</p>
-                                            </div>
-
-                                            <div className="search-quick-body">
-                                                <div className="search-quick-main">
-                                                    <div className="quick-main-icon">
-                                                        <svg 
-                                                            xmlns="http://www.w3.org/2000/svg" 
-                                                            className="quick-main-icon-svg" 
-                                                            viewBox="0 0 24 24"
-                                                        >
-                                                            <path 
-                                                                fill="none" 
-                                                                stroke="currentColor" 
-                                                                strokeLinecap="round" 
-                                                                strokeLinejoin="round" 
-                                                                strokeWidth="2" 
-                                                                d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M16 19h6m-3-3v6"
-                                                            />
-                                                        </svg>
-                                                    </div>
-
-                                                    <div className="quick-main-wrapper">
-                                                        <div className="quick-main-header">
-                                                            <p>New note</p>
-                                                        </div>
-
-                                                        <div className="quick-main-text">
-                                                            <p>Create new note</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="search-quick-main">
-                                                    <div className="quick-main-icon">
-                                                        <svg 
-                                                            xmlns="http://www.w3.org/2000/svg" 
-                                                            className="quick-main-icon-svg" 
-                                                            viewBox="0 0 24 24"
-                                                        >
-                                                            <path 
-                                                                fill="none" 
-                                                                stroke="currentColor" 
-                                                                strokeLinecap="round" 
-                                                                strokeLinejoin="round" 
-                                                                strokeWidth="2" 
-                                                                d="M12 19H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v3.5M19 22v-6m3 3l-3-3l-3 3"
-                                                            />
-                                                        </svg>
-                                                    </div>
-
-                                                    <div className="quick-main-wrapper">
-                                                        <div className="quick-main-header">
-                                                            <p>View notes</p>
-                                                        </div>
-
-                                                        <div className="quick-main-text">
-                                                            <p>View all notes</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </>
-                                 )}
-                            </div>
-                        </div>
-                    )}
-
-                    {showSearchPopup && (
-                        <div className="search-popup-overlay" onClick={() => setShowSearchPopup(false)}>
-                            <div className="search-popup" onClick={(e) => e.stopPropagation()}>
                                 <div className="search-popup-content">
-                                    <div className="search-popup-top">
+                                    <div className={`search-popup-top ${searchStep === 1 ? "hide-search-top" : ""}`}>
                                         <div className="search-popup-input">
                                              <div className="search-input-box">
                                                 <input
@@ -507,34 +269,77 @@ const touchEndXRef = useRef(0);
                                                     <div className="search-popup-text">
                                                         <div className="popup-text-header">
                                                             <p>Search Results</p>
+
+                                                            <div className="popup-text-header-icons">
+                                                                <div onClick={() => setShowSearchPopup(false)} className="close-icon">
+                                                                    <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        className="popup-text-header-svg"
+                                                                        viewBox="0 0 24 24"
+                                                                        width="20"
+                                                                        height="20"
+                                                                    >
+                                                                        <path
+                                                                            fill="none"
+                                                                            stroke="currentColor"
+                                                                            strokeLinecap="round"
+                                                                            strokeLinejoin="round"
+                                                                            strokeWidth="2"
+                                                                            d="M18 6L6 18M6 6l12 12"
+                                                                        />
+                                                                    </svg>
+                                                                </div>
+                                                            </div>
                                                         </div>
 
                                                         <div className="popup-text-contents-wrapper">
-                                                            {noMatchFound ? (
-                                                                <div className="no-results-body">
-                                                                    <div className="no-results-main">
-                                                                        <div className="no-results-icon">
-                                                                            <img src="../../../../public/assets/images/notes-dark.png" alt="" />
+                                                            {searchQuery.trim() === "" || noMatchFound ? (
+                                                                <div className="popup-no-body">
+                                                                    <div className="popup-no-main">
+                                                                        <div className="popup-no-icon">
+                                                                            <img
+                                                                                src={darkMode 
+                                                                                    ? "/assets/images/notes-dark.png" 
+                                                                                    : "/assets/images/notes-light.png"}
+                                                                                alt="Notes illustration"
+                                                                            />
                                                                         </div>
 
-                                                                        <div className="no-results-header">
-                                                                            <p>No notes found</p>
-                                                                        </div>
-
-                                                                        <div className="no-results-text">
+                                                                        <div className="popup-no-header">
                                                                             <p>
-                                                                                "{searchQuery}" did not match any notes. <br/> Please try again or <span>create a new note</span>.
+                                                                                {searchQuery.trim()
+                                                                                    ? "No results found"
+                                                                                    : "No search results"}
                                                                             </p>
                                                                         </div>
 
-                                                                        <div className="no-results-clear">
+                                                                        <div className="popup-no-text">
+                                                                            <p>
+  {searchQuery.trim() ? (
+    <>
+      "{searchQuery}" didn’t match any files in this note.{" "}
+      <span
+        onClick={() => navigate("./Notes.jsx")}
+        style={{ color: "#3b82f6", cursor: "pointer", textDecoration: "underline" }}
+      >
+        Check a different note.
+      </span>
+    </>
+  ) : (
+    "Type a keyword in the search bar above to search within this note."
+  )}
+</p>
+
+                                                                        </div>
+
+                                                                        <div className="popup-no-clear">
                                                                             <button
                                                                                 onClick={() => {
                                                                                     setSearchQuery("");
                                                                                     setSearchResults([]);
                                                                                 }}
                                                                             >
-                                                                                Clear search
+                                                                                {searchQuery.trim() ? "Clear search" : "Start search"}
                                                                             </button>
                                                                         </div>
                                                                     </div>
@@ -559,39 +364,113 @@ const touchEndXRef = useRef(0);
                                                         </div>
                                                     </div> 
                                                 </div>
+
+                                                <div className="middle-slider-page middle-slider-list">
+                                                    <div className="search-popup-text">
+                                                        <div className="popup-text-header">
+                                                            <p>Recent Searches</p>
+
+                                                            <div className="popup-text-header-icons">
+                                                                <div onClick={() => setShowSearchPopup(false)} className="close-icon">
+                                                                    <svg
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        className="popup-text-header-svg"
+                                                                        viewBox="0 0 24 24"
+                                                                        width="20"
+                                                                        height="20"
+                                                                    >
+                                                                        <path
+                                                                            fill="none"
+                                                                            stroke="currentColor"
+                                                                            strokeLinecap="round"
+                                                                            strokeLinejoin="round"
+                                                                            strokeWidth="2"
+                                                                            d="M18 6L6 18M6 6l12 12"
+                                                                        />
+                                                                    </svg>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="popup-text-contents-wrapper">
+                                                            {(searchQuery.trim() ? searchResults : recentSearches).length === 0 ? (
+                                                               <div className="popup-no-body">
+                                                                    <div className="popup-no-main">
+                                                                        <div className="popup-no-icon">
+                                                                            <img
+                                                                                src={darkMode 
+                                                                                    ? "/assets/images/notes-dark.png" 
+                                                                                    : "/assets/images/notes-light.png"
+                                                                                }
+                                                                                alt="Notes illustration"
+                                                                            />
+                                                                        </div>
+
+                                                                        <div className="popup-no-header">
+                                                                            <p>No recent searches</p>
+                                                                        </div>
+
+                                                                        <div className="popup-no-text">
+                                                                            <p>
+                                                                                You have no recent searches. <br />
+                                                                                Enter a keyword in the search bar.  
+                                                                            </p>
+                                                                        </div>
+
+                                                                        <div className="popup-no-clear">
+                                                                            <button
+                                                                                onClick={() => setSearchStep(0)}
+                                                                            >
+                                                                                Start search
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            ) : (
+                                                                (searchQuery.trim() ? searchResults : recentSearches).map((doc) => (
+                                                                    <div
+                                                                        className="popup-text-contents"
+                                                                        key={doc.id}
+                                                                        onClick={() => {
+                                                                            addToRecentSearches(doc);
+                                                                            setShowSearchPopup(false);
+                                                                        }}
+                                                                    >
+                                                                        <div className="popup-text-item">
+                                                                            <p className="popup-text-item-p">{doc.title}</p>
+                                                                            <p className="popup-text-sub">{doc.subtitle}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                ))
+                                                            )}
+                                                        </div>
+                                                    </div> 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="tasks-popup-bottom">
-                                        {taskStep < 1 ? (
-                                                        <div 
-                                                                className="tasks-slider-button"
-                                                                onClick={() => {
-                                                                    addNewTodoTask();
-                                                                    setShowTodoPopup(false);
-                                                                    setTaskStep(0);
-                                                                }}
-                                                            >
-                                                                <p>Add task</p>
-                                                            </div>
-                                                        ) : (
-                                                            <div 
-                                                                className="tasks-slider-button"
-                                                                onClick={() => {
-                                                                    addNewTodoTask();
-                                                                    setShowTodoPopup(false);
-                                                                    setTaskStep(0);
-                                                                }}
-                                                            >
-                                                                <p>Add task</p>
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                </div>
+                                   <div className="tasks-popup-bottom">
+                                        {searchStep === 0 ? (
+                                            <div 
+                                                className="tasks-slider-button" 
+                                                onClick={() => setSearchStep(1)}
+                                            >
+                                                <p>Recent searches</p>
                                             </div>
-                                        </div>
-                                    )}
+                                        ) : (
+                                            <div 
+                                                className="tasks-slider-button" 
+                                                onClick={() => setSearchStep(0)}
+                                            >
+                                                <p>Search results</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 <div className="folder-body">

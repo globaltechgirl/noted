@@ -161,6 +161,12 @@
   color: var(--text-primary);
 }
 
+.hide-search-top {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Search popup middle */
 .search-popup-middle {
   display: flex;
@@ -214,11 +220,7 @@
   height: 9.5px;
   display: block;
   cursor: pointer;
-}
-
-.popup-text-header-svg path {
-  fill: var(--bg-secondary);
-  stroke: var(--text-primary);
+  color: var(--text-primary);
 }
 
 .search-popup-text .popup-text-contents-wrapper {
@@ -230,7 +232,7 @@
 .search-popup-text .popup-text-contents {
   display: flex;
   flex-direction: column;
-  height: 47px;
+  height: 46px;
   justify-content: space-between;
   background: var(--bg-secondary);
   border: 0.5px solid var(--border-primary);
@@ -245,7 +247,7 @@
   color: var(--text-primary);
   opacity: 0.9;
   padding: 5px;
-  padding-bottom: 2px;
+  padding-bottom: 0;
 }
 
 .search-popup-text .popup-text-sub {
@@ -255,111 +257,8 @@
   color: var(--text-secondary);
 }
 
-/* Search popup recent & quick */
-.search-popup-recent,
-.search-popup-quick {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  padding: 0 15px 0 0;
-}
-
-.search-popup-quick {
-  padding: 5px 0 0 0;
-}
-
-.search-recent-header,
-.search-quick-header {
-  padding: 0 0 0 15px;
-  font-size: 0.54rem;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  color: var(--text-primary);
-}
-
-.search-recent-body,
-.search-quick-body {
-  display: flex;
-  flex-direction: column;
-}
-
-.search-recent-main,
-.search-quick-main {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
-  padding: 8px;
-  margin: 0 0 0 7.5px;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s ease;
-  cursor: pointer;
-}
-
-.search-quick-main {
-  margin: 0 0 0 7.5px;
-}
-
-.search-recent-main:hover,
-.search-quick-main:hover {
-  padding: 8px;
-  margin: 0 -7px 0 6.8px;
-  background: var(--bg-primary);
-  border: 0.5px solid var(--border-primary);
-}
-
-.search-quick-main:hover {
-  margin: 0 7px 0 6.8px;
-}
-
-.recent-main-icon,
-.quick-main-icon {
-  padding: 6px 6.5px;
-  border-radius: 0.4rem;
-  background: var(--bg-primary);
-  border: 0.5px solid var(--border-primary);
-}
-
-.recent-main-icon-svg,
-.quick-main-icon-svg {
-  width: 14px;
-  height: 14px;
-  display: block;
-}
-
-.recent-main-icon-svg path,
-.quick-main-icon-svg path {
-  fill: var(--bg-secondary);
-  stroke: var(--text-secondary);
-}
-
-.recent-main-header,
-.quick-main-header {
-  font-size: 0.52rem;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  color: var(--text-primary);
-  margin-bottom: 4.3px;
-}
-
-.recent-main-text,
-.quick-main-text {
-  font-size: 0.5rem;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  color: var(--text-secondary);
-}
-
-.search-recent-empty {
-  margin: 5px 0 0 15px;
-  font-size: 0.52rem;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  color: var(--text-secondary);
-}
-
-/* Search no results */
-.no-results-main {
+/* Popup no body */
+.popup-no-main {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -373,40 +272,40 @@
   padding: 6px 5px 6px 5px;
 }
 
-.no-results-icon img {
+.popup-no-icon img {
   width: 25px;
   height: 25px;
   display: block;
 }
 
-.no-results-icon-svg path {
+.popup-no-icon-svg path {
   fill: var(--bg-secondary);
   stroke: var(--text-secondary);
 }
 
-.no-results-header {
+.popup-no-header {
   font-size: 0.47rem;
   font-weight: 500;
   letter-spacing: 0.6px;
   color: var(--text-primary);
 }
 
-.no-results-text {
+.popup-no-text {
   font-size: 0.45rem;
   font-weight: 500;
   letter-spacing: 0.6px;
-  width: 60%;
+  width: 40%;
   line-height: 1.6;
   color: var(--text-secondary);
 }
 
-.no-results-text span {
+.popup-no-text span {
   color: var(--text-primary);
   opacity: 0.8;
   cursor: pointer;
 }
 
-.no-results-clear button {
+.popup-no-clear button {
   all: unset;
   background: var(--bg-primary);
   border: 0.5px solid var(--border-primary);
@@ -420,7 +319,7 @@
   transition: background-color 0.2s ease;
 }
 
-.no-results-clear button:hover {
+.popup-no-clear button:hover {
   background: var(--bg-secondary);
   border: 0.5px solid var(--border-primary);
 }
