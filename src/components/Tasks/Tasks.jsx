@@ -77,6 +77,7 @@ function Tasks ({ }) {
     const [showCategoryMenu, setShowCategoryMenu] = useState(false);
     const [showCategorySelector, setShowCategorySelector] = useState(false);
     const [showTimeDropdown, setShowTimeDropdown] = useState(false);
+    const [showMenuDropdown, setShowMenuDropdown] = useState(false);
 
     const [editingTaskTitle, setEditingTaskTitle] = useState(false);
     const [newTaskTitle, setNewTaskTitle] = useState("");
@@ -87,7 +88,10 @@ function Tasks ({ }) {
     const [taskStep, setTaskStep] = useState(0);
 
     const [categoryFilter, setCategoryFilter] = useState({ priority: "", status: "" });
-    const [selectedTimeFilter, setSelectedTimeFilter] = useState("Last Month");
+    const [selectedTimeFilter, setSelectedTimeFilter] = useState("Today");
+
+    const [highlightInput, setHighlightInput] = useState(false);
+    const isInvalidLength = newCategoryName.length < 50 || newCategoryName.length > 100;
 
     // Refs
     const touchStartXRef = useRef(0);
@@ -96,6 +100,7 @@ function Tasks ({ }) {
     const inProgressDropdownRef = useRef(null);
     const completedDropdownRef = useRef(null);
     const categoryDropdownRef = useRef(null);
+    const menuDropdownRef = useRef(null);
 
     // Utility Functions
     const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
@@ -438,22 +443,172 @@ function Tasks ({ }) {
                                 </svg>
                             </div>
 
-                            <div className="tasks-menu">
-                                <svg 
-                                    xmlns="http://www.w3.org/2000/svg" 
-                                    className="tasks-menu-svg" 
+                            <div 
+                                className="tasks-menu"
+                                onClick={() => {
+                                    setShowMenuDropdown(prev => !prev);
+                                }}
+                                ref={menuDropdownRef}
+                                style={{ position: "relative" }}
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="tasks-menu-svg"
                                     viewBox="0 0 24 24"
                                 >
-                                    <path 
-                                        fill="none" 
-                                        stroke="currentColor" 
-                                        strokeLinecap="round" 
-                                        strokeLinejoin="round" 
+                                    <path
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                         strokeWidth={2}
                                         d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0 7a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0-14a1 1 0 1 0 2 0a1 1 0 1 0-2 0"
-                                    ></path>
+                                    />
                                 </svg>
+
+                                {showMenuDropdown && (
+                                    <div className="tasks-dropdown-options">
+                                        <div
+                                            className="tasks-dropdown-item"
+                                            onClick={() => {
+                                                setShowCategoryPopup(true);
+                                                setShowPlusDropdown(false);
+                                            }}
+                                        >
+                                            Add Category
+                                        </div>
+                                        <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>Deleted Tasks</div>
+                                        <div className="tasks-dropdown-item" onClick={archiveSelectedTask}>Archived Tasks</div>
+                                    </div>
+                                )}
                             </div>
+
+                            {showCategoryPopup && (
+                                <div className="tasks-popup-overlay" onClick={() => setShowCategoryPopup(false)}>
+                                    <div className="tasks-popup" onClick={(e) => e.stopPropagation()}>
+                                        <div className="tasks-popup-content">
+                                            <div className="tasks-popup-middle">
+                                                <div className="tasks-popup-middle-wrapper">
+                                                    <div className="popup-middle-slider">
+                                                        <div className="middle-slider-page">
+                                                            <div className="tasks-popup-text">
+                                                                <div className="popup-text-header">
+                                                                    <p>Task Category</p>
+
+                                                                    <div className="popup-text-header-icons">
+                                                                        <svg 
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            className="popup-text-header-svg" 
+                                                                            viewBox="0 0 24 24"
+                                                                        >   
+                                                                            <g 
+                                                                                fill="none" 
+                                                                                stroke="currentColor" 
+                                                                                strokeLinecap="round" 
+                                                                                strokeLinejoin="round" 
+                                                                                strokeWidth={2}
+                                                                            >
+                                                                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
+                                                                                <path d="m9 12l2 2l4-4"></path>
+                                                                            </g>
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="popup-text-contents-wrapper">
+                                                                    <div className={`popup-text-contents ${highlightInput ? "highlight-content-blink" : ""}`}>
+                                                                        {editingCategory ? (
+                                                                            <textarea
+                                                                                maxLength={100}
+                                                                                value={newCategoryName}
+onChange={(e) => {
+  const value = e.target.value;
+
+  if (value.length > 100) return;
+
+  if (value.length === 100) {
+    setNewCategoryName(value);
+
+    setHighlightInput(false);
+    requestAnimationFrame(() => setHighlightInput(true));
+    setTimeout(() => setHighlightInput(false), 600);
+    return;
+  }
+
+  setNewCategoryName(value); 
+}}
+
+
+
+
+
+
+                                                                                onBlur={() => setEditingCategory(false)}
+                                                                                 onKeyDown={(e) => {
+  // 1. If pressing Enter (without Shift) → end editing
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    setEditingCategory(false);
+  }
+
+  // 2. If text is already 100 chars → blink when any key is pressed
+  if (newCategoryName.length >= 100) {
+    setHighlightInput(false);
+    requestAnimationFrame(() => setHighlightInput(true));
+    setTimeout(() => setHighlightInput(false), 600);
+  }
+}}
+
+                                                                                autoFocus
+                                                                                className="popup-text-input"
+                                                                            />
+                                                                        ) : (
+                                                                            <p
+                                                                                className="popup-text-input-p"
+                                                                                onClick={() => setEditingCategory(true)}
+                                                                            >
+                                                                                {newCategoryName || "Enter new category"}
+                                                                            </p>
+                                                                        )}
+
+                                                                        <div className="popup-text-footer">
+                                                                            <svg 
+                                                                                xmlns="http://www.w3.org/2000/svg" 
+                                                                                className="text-footer-svg" 
+                                                                                viewBox="0 0 24 24"
+                                                                            >   
+                                                                                <path 
+                                                                                    fill="currentColor" 
+                                                                                    d="M19 2a3 3 0 0 1 2.995 2.824L22 5v14a3 3 0 0 1-2.824 2.995L19 22H5a3 3 0 0 1-2.995-2.824L2 19V5a3 3 0 0 1 2.824-2.995L5 2zm-7 9h-1l-.117.007a1 1 0 0 0 0 1.986L11 13v3l.007.117a1 1 0 0 0 .876.876L12 17h1l.117-.007a1 1 0 0 0 .876-.876L14 16l-.007-.117a1 1 0 0 0-.764-.857l-.112-.02L13 15v-3l-.007-.117a1 1 0 0 0-.876-.876zm.01-3l-.127.007a1 1 0 0 0 0 1.986L12 10l.127-.007a1 1 0 0 0 0-1.986z"
+                                                                                ></path>
+                                                                            </svg>
+                                                                                        
+                                                                            <p>Must be between 50 and 100 characters</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                                    <div className="tasks-popup-bottom">
+                                                        <div 
+                                                            className="tasks-slider-button"
+                                                            onClick={() => {
+                                                                addNewCategory();
+                                                                setShowCategoryPopup(false);
+                                                                setTaskStep(0);
+                                                            }}
+                                                        >
+                                                            <p>Add Category</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                         </div>
                     </div>
 
@@ -1694,100 +1849,6 @@ function Tasks ({ }) {
                                                                 <p>Add task</p>
                                                             </div>
                                                         )}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    {showCategoryPopup && (
-                                        <div className="tasks-popup-overlay" onClick={() => setShowCategoryPopup(false)}>
-                                            <div className="tasks-popup" onClick={(e) => e.stopPropagation()}>
-                                                <div className="tasks-popup-content">
-                                                    <div className="tasks-popup-middle">
-                                                        <div className="tasks-popup-middle-wrapper">
-                                                            <div className="popup-middle-slider">
-                                                                <div className="middle-slider-page">
-                                                                    <div className="tasks-popup-text">
-                                                                        <div className="popup-text-header">
-                                                                            <p>Task Category</p>
-
-                                                                            <div className="popup-text-header-icons">
-                                                                                <svg 
-                                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                                    className="popup-text-header-svg" 
-                                                                                    viewBox="0 0 24 24"
-                                                                                >   
-                                                                                    <g 
-                                                                                        fill="none" 
-                                                                                        stroke="currentColor" 
-                                                                                        strokeLinecap="round" 
-                                                                                        strokeLinejoin="round" 
-                                                                                        strokeWidth={2}
-                                                                                    >
-                                                                                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
-                                                                                        <path d="m9 12l2 2l4-4"></path>
-                                                                                    </g>
-                                                                                </svg>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div className="popup-text-contents-wrapper">
-                                                                            <div className="popup-text-contents">
-                                                                                {editingCategory ? (
-                                                                                    <input
-                                                                                        type="text"
-                                                                                        value={newCategoryName}
-                                                                                        onChange={(e) => setNewCategoryName(e.target.value)}
-                                                                                        onBlur={() => setEditingCategory(false)}
-                                                                                        onKeyDown={(e) => {
-                                                                                            if (e.key === "Enter") setEditingCategory(false);
-                                                                                        }}
-                                                                                        autoFocus
-                                                                                        className="popup-text-input"
-                                                                                    />
-                                                                                ) : (
-                                                                                    <p
-                                                                                        className="popup-text-input-p"
-                                                                                        onClick={() => setEditingCategory(true)}
-                                                                                    >
-                                                                                        {newCategoryName || "Enter new category"}
-                                                                                    </p>
-                                                                                )}
-
-                                                                                <div className="popup-text-footer">
-                                                                                    <svg 
-                                                                                        xmlns="http://www.w3.org/2000/svg" 
-                                                                                        className="text-footer-svg" 
-                                                                                        viewBox="0 0 24 24"
-                                                                                    >   
-                                                                                        <path 
-                                                                                            fill="currentColor" 
-                                                                                            d="M19 2a3 3 0 0 1 2.995 2.824L22 5v14a3 3 0 0 1-2.824 2.995L19 22H5a3 3 0 0 1-2.995-2.824L2 19V5a3 3 0 0 1 2.824-2.995L5 2zm-7 9h-1l-.117.007a1 1 0 0 0 0 1.986L11 13v3l.007.117a1 1 0 0 0 .876.876L12 17h1l.117-.007a1 1 0 0 0 .876-.876L14 16l-.007-.117a1 1 0 0 0-.764-.857l-.112-.02L13 15v-3l-.007-.117a1 1 0 0 0-.876-.876zm.01-3l-.127.007a1 1 0 0 0 0 1.986L12 10l.127-.007a1 1 0 0 0 0-1.986z"
-                                                                                        ></path>
-                                                                                    </svg>
-                                                                                        
-                                                                                    <p>Must be between 50 and 100 characters</p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> 
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="tasks-popup-bottom">
-                                                        <div 
-                                                            className="tasks-slider-button"
-                                                            onClick={() => {
-                                                                addNewCategory();
-                                                                setShowCategoryPopup(false);
-                                                                setTaskStep(0);
-                                                            }}
-                                                        >
-                                                            <p>Add Category</p>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
