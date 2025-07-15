@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-
 import Folder from "../Folder";
 import { useTheme } from "../../../Context/ThemeContext";
 import { useDashboardView } from "../GridControls/DashboardViewContext";
@@ -14,8 +13,6 @@ function OneFolder({ folderName }) {
 
     // Starred filter toggle
     const [starredOnly, setStarredOnly] = useState(false);
-
-
 
     // Search popup state
     const [showSearchPopup, setShowSearchPopup] = useState(false);
@@ -94,8 +91,8 @@ function OneFolder({ folderName }) {
             const [taskStep, setTaskStep] = useState(0);
 const touchStartXRef = useRef(0);
 const touchEndXRef = useRef(0);
-    const [taskInputs, setTaskInputs] = useState([""]);
-    const [editingIndex, setEditingIndex] = useState(null);
+const [highlightSearchInput, setHighlightSearchInput] = useState(false);
+
 
 
     return (
@@ -206,7 +203,7 @@ const touchEndXRef = useRef(0);
                         <div className="search-popup-overlay" onClick={() => setShowSearchPopup(false)}>
                             <div className="search-popup" onClick={(e) => e.stopPropagation()}>
                                 <div className="search-popup-content">
-                                    <div className={`search-popup-top ${searchStep === 1 ? "hide-search-top" : ""}`}>
+                                    <div className={`search-popup-top ${searchStep === 1 ? "hide-search-top" : ""} ${highlightSearchInput ? "highlight-blink" : ""}`}>
                                         <div className="search-popup-input">
                                              <div className="search-input-box">
                                                 <input
@@ -315,28 +312,27 @@ const touchEndXRef = useRef(0);
 
                                                                         <div className="popup-no-text">
                                                                             <p>
-  {searchQuery.trim() ? (
-    <>
-      "{searchQuery}" didn’t match any files in this note.{" "}
-      <span
-        onClick={() => navigate("./Notes.jsx")}
-        style={{ color: "#3b82f6", cursor: "pointer", textDecoration: "underline" }}
-      >
-        Check a different note.
-      </span>
-    </>
-  ) : (
-    "Type a keyword in the search bar above to search within this note."
-  )}
-</p>
-
+                                                                                {searchQuery.trim()
+                                                                                    ? 
+                                                                                        ( <>
+                                                                                                "{searchQuery}" didn’t match any files in this note. 
+                                                                                                <a href="./Notes.jsx"> Check a different note.</a>
+                                                                                        </> )
+                                                                                    : "Type a keyword in the search bar above to search within this note."
+                                                                                }
+                                                                            </p>
                                                                         </div>
 
-                                                                        <div className="popup-no-clear">
+                                                                        <div className="popup-no-button">
                                                                             <button
                                                                                 onClick={() => {
-                                                                                    setSearchQuery("");
-                                                                                    setSearchResults([]);
+                                                                                    if (!searchQuery.trim()) {
+                                                                                        setHighlightSearchInput(true);
+                                                                                        setTimeout(() => setHighlightSearchInput(false), 1000); 
+                                                                                    } else {
+                                                                                        setSearchQuery("");
+                                                                                        setSearchResults([]);
+                                                                                    }
                                                                                 }}
                                                                             >
                                                                                 {searchQuery.trim() ? "Clear search" : "Start search"}
@@ -412,14 +408,20 @@ const touchEndXRef = useRef(0);
 
                                                                         <div className="popup-no-text">
                                                                             <p>
-                                                                                You have no recent searches. <br />
-                                                                                Enter a keyword in the search bar.  
+                                                                                You have no recent searches. Enter a keyword in the search bar.  
                                                                             </p>
                                                                         </div>
 
-                                                                        <div className="popup-no-clear">
+                                                                        <div className="popup-no-button">
                                                                             <button
-                                                                                onClick={() => setSearchStep(0)}
+                                                                                onClick={() => {
+                                                                                    setSearchStep(0); 
+
+                                                                                    setTimeout(() => {
+                                                                                        setHighlightSearchInput(true);
+                                                                                        setTimeout(() => setHighlightSearchInput(false), 1000); 
+                                                                                    }, 300); 
+                                                                                }}
                                                                             >
                                                                                 Start search
                                                                             </button>

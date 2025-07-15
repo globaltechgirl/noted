@@ -518,7 +518,7 @@
 .tasks-popup-text .popup-text-contents {
   display: flex;
   flex-direction: column;
-  height: 33px;
+  height: 70px;
   justify-content: space-between;
   background: var(--bg-secondary);
   border: 0.5px solid var(--border-primary);
@@ -526,7 +526,7 @@
   padding: 6px 5px 6px 5px;
 }
 
-.tasks-popup-text .middle-slider-list .popup-text-contents {
+.tasks-popup-text .popup-text-list {
   height: 32px;
 }
 
@@ -633,7 +633,7 @@
 /* Tasks dropdown options */
 .tasks-dropdown-options {
   position: absolute;
-  top: 100%;
+  top: 120%;
   right: -5px;
   margin-top: 5px;
   z-index: 100;
@@ -665,15 +665,13 @@
 }
 
 .tasks-dropdown-item-icon {
-  padding: 1.5px 2px 1.5px 1.5px;
+  padding: 1.5px 2px 1.5px 2px;
   cursor: pointer;
   background: var(--bg-primary);
   border: 0.5px solid var(--border-primary);
   border-radius: 0.2rem;
   width: fit-content;
   margin-left: auto;
-  margin-top: 1px;
-  margin-right: 2px;
   margin-bottom: 2px;
 }
 

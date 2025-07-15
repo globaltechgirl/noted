@@ -1430,22 +1430,29 @@ function Tasks ({ }) {
                                                                         <div className="popup-text-header">
                                                                             <p>Task Title</p>
 
-                                                                            <svg 
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                className="popup-text-save-svg" 
-                                                                                viewBox="0 0 24 24"
-                                                                            >   
-                                                                                <g 
-                                                                                    fill="none" 
-                                                                                    stroke="currentColor" 
-                                                                                    strokeLinecap="round" 
-                                                                                    strokeLinejoin="round" 
-                                                                                    strokeWidth={2}
+                                                                            <div className="popup-text-header-icons">
+                                                                                <div 
+                                                                                    className="popup-text-header-next"
+                                                                                     onClick={() => {
+                                                                                        if (taskStep < 2) setTaskStep((prev) => prev + 1);
+                                                                                    }}
                                                                                 >
-                                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
-                                                                                    <path d="m9 12l2 2l4-4"></path>
-                                                                                </g>
-                                                                            </svg>
+                                                                                    <svg 
+                                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                                        className="popup-text-header-svg" 
+                                                                                        viewBox="0 0 24 24"
+                                                                                    >   
+                                                                                        <path 
+                                                                                            fill="none" 
+                                                                                            stroke="currentColor" 
+                                                                                            strokeLinecap="round" 
+                                                                                            strokeLinejoin="round" 
+                                                                                            strokeWidth={2} 
+                                                                                            d="M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0-18m4 9l-4-4m4 4H8m4 4l4-4"
+                                                                                        ></path>
+                                                                                    </svg>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
 
                                                                         <div className="popup-text-contents">
@@ -1495,22 +1502,51 @@ function Tasks ({ }) {
                                                                         <div className="popup-text-header">
                                                                             <p>Task Subtitle</p>
 
-                                                                            <svg 
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                className="popup-text-save-svg" 
-                                                                                viewBox="0 0 24 24"
-                                                                            >   
-                                                                                <g 
-                                                                                    fill="none" 
-                                                                                    stroke="currentColor" 
-                                                                                    strokeLinecap="round" 
-                                                                                    strokeLinejoin="round" 
-                                                                                    strokeWidth={2}
+                                                                            <div className="popup-text-header-icons">
+                                                                                <div 
+                                                                                    className="popup-text-header-prev"
+                                                                                    onClick={() => {
+                                                                                        if (taskStep > 0) setTaskStep((prev) => prev - 1);
+                                                                                    }}
                                                                                 >
-                                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
-                                                                                    <path d="m9 12l2 2l4-4"></path>
-                                                                                </g>
-                                                                            </svg>
+                                                                                    <svg 
+                                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                                        className="popup-text-header-svg" 
+                                                                                        viewBox="0 0 24 24"
+                                                                                    >   
+                                                                                        <path 
+                                                                                            fill="none" 
+                                                                                            stroke="currentColor" 
+                                                                                            strokeLinecap="round" 
+                                                                                            strokeLinejoin="round" 
+                                                                                            strokeWidth={2} 
+                                                                                            d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-4-9l4 4m-4-4h8m-4-4l-4 4"
+                                                                                        ></path>
+                                                                                    </svg>
+                                                                                </div>
+
+                                                                                <div 
+                                                                                    className="popup-text-header-next"
+                                                                                     onClick={() => {
+                                                                                        if (taskStep < 2) setTaskStep((prev) => prev + 1);
+                                                                                    }}
+                                                                                >
+                                                                                    <svg 
+                                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                                        className="popup-text-header-svg" 
+                                                                                        viewBox="0 0 24 24"
+                                                                                    >   
+                                                                                        <path 
+                                                                                            fill="none" 
+                                                                                            stroke="currentColor" 
+                                                                                            strokeLinecap="round" 
+                                                                                            strokeLinejoin="round" 
+                                                                                            strokeWidth={2} 
+                                                                                            d="M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0-18m4 9l-4-4m4 4H8m4 4l4-4"
+                                                                                        ></path>
+                                                                                    </svg>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
 
                                                                         <div className="popup-text-contents">
@@ -1555,32 +1591,39 @@ function Tasks ({ }) {
                                                                     </div> 
                                                                 </div>
 
-                                                                <div className="middle-slider-page middle-slider-list">
+                                                                <div className="middle-slider-page">
                                                                     <div className="tasks-popup-text">
                                                                         <div className="popup-text-header">
                                                                             <p>Task List</p>
 
-                                                                            <svg 
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                className="popup-text-save-svg" 
-                                                                                viewBox="0 0 24 24"
-                                                                            >   
-                                                                                <g 
-                                                                                    fill="none" 
-                                                                                    stroke="currentColor" 
-                                                                                    strokeLinecap="round" 
-                                                                                    strokeLinejoin="round" 
-                                                                                    strokeWidth={2}
+                                                                            <div className="popup-text-header-icons">
+                                                                                <div 
+                                                                                    className="popup-text-header-prev"
+                                                                                    onClick={() => {
+                                                                                        if (taskStep > 0) setTaskStep((prev) => prev - 1);
+                                                                                    }}
                                                                                 >
-                                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
-                                                                                    <path d="m9 12l2 2l4-4"></path>
-                                                                                </g>
-                                                                            </svg>
+                                                                                    <svg 
+                                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                                        className="popup-text-header-svg" 
+                                                                                        viewBox="0 0 24 24"
+                                                                                    >   
+                                                                                        <path 
+                                                                                            fill="none" 
+                                                                                            stroke="currentColor" 
+                                                                                            strokeLinecap="round" 
+                                                                                            strokeLinejoin="round" 
+                                                                                            strokeWidth={2} 
+                                                                                            d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18m-4-9l4 4m-4-4h8m-4-4l-4 4"
+                                                                                        ></path>
+                                                                                    </svg>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
 
                                                                         <div className="popup-text-contents-wrapper">
                                                                             {taskInputs.map((task, index) => (
-                                                                                <div key={index} className="popup-text-contents">
+                                                                                <div key={index} className="popup-text-contents popup-text-list">
                                                                                     <div className="popup-text-item">
                                                                                         {editingIndex === index ? (
                                                                                             <input
@@ -1610,7 +1653,7 @@ function Tasks ({ }) {
                                                                                 </div>
                                                                             ))}
 
-                                                                            <div className="popup-text-contents">
+                                                                            <div className="popup-text-contents popup-text-list">
                                                                                 <div
                                                                                     className="popup-text-item add-task-block"
                                                                                     onClick={() => {
@@ -1669,22 +1712,24 @@ function Tasks ({ }) {
                                                                         <div className="popup-text-header">
                                                                             <p>Task Category</p>
 
-                                                                            <svg 
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                className="popup-text-save-svg" 
-                                                                                viewBox="0 0 24 24"
-                                                                            >   
-                                                                                <g 
-                                                                                    fill="none" 
-                                                                                    stroke="currentColor" 
-                                                                                    strokeLinecap="round" 
-                                                                                    strokeLinejoin="round" 
-                                                                                    strokeWidth={2}
-                                                                                >
-                                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
-                                                                                    <path d="m9 12l2 2l4-4"></path>
-                                                                                </g>
-                                                                            </svg>
+                                                                            <div className="popup-text-header-icons">
+                                                                                <svg 
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    className="popup-text-header-svg" 
+                                                                                    viewBox="0 0 24 24"
+                                                                                >   
+                                                                                    <g 
+                                                                                        fill="none" 
+                                                                                        stroke="currentColor" 
+                                                                                        strokeLinecap="round" 
+                                                                                        strokeLinejoin="round" 
+                                                                                        strokeWidth={2}
+                                                                                    >
+                                                                                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path>
+                                                                                        <path d="m9 12l2 2l4-4"></path>
+                                                                                    </g>
+                                                                                </svg>
+                                                                            </div>
                                                                         </div>
 
                                                                         <div className="popup-text-contents-wrapper">
@@ -1793,7 +1838,7 @@ function Tasks ({ }) {
                                                 ) : (
                                                     <div className="menu-slide">
                                                         <div
-                                                            className="tasks-dropdown-item tasks-dropdown-item-icon"
+                                                            className="tasks-dropdown-item-icon"
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 setShowCategorySelector(false);
