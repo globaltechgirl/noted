@@ -208,6 +208,12 @@
   letter-spacing: 0.6px;
 }
 
+.tasks-toggle .tasks-toggle-svg {
+  width: 9px;
+  height: 9px;
+  display: block;
+}
+
 /* Tasks right - icons */
 .tasks-right .tasks-search,
 .tasks-right .tasks-menu {
@@ -221,9 +227,7 @@
   position: relative;
 }
 
-.tasks-search .tasks-search-svg,
-.tasks-menu .tasks-menu-svg,
-.tasks-toggle .tasks-toggle-svg {
+.tasks-menu .tasks-menu-svg {
   width: 10px;
   height: 10px;
   display: block;
@@ -241,11 +245,11 @@
   stroke: var(--text-secondary);
 }
 
-/* Tasks dropdown menu */
-.tasks-dropdown-menu {
+/* Tasks dropdown options */
+.tasks-dropdown-options {
   position: absolute;
-  top: 117px;
-  right: 79px;
+  top: 15px;
+  right: -0.5px;
   margin-top: 5px;
   z-index: 100;
   width: max-content;
@@ -257,21 +261,51 @@
   font-weight: 500;
   letter-spacing: 0.6px;
   color: var(--text-primary);
-  width: 74px;
+  overflow: hidden;
+  width: 90px;
   transition: height 0.3s ease;
 }
 
-.tasks-dropdown-menu .tasks-dropdown-item {
+.tasks-dropdown-time {
+  top: 20px;
+  right: 0;
+  width: 74px;
+}
+
+.tasks-dropdown-menu {
+  top: 20px;
+  right: 0;
+}
+
+.tasks-dropdown-options .tasks-dropdown-item {
   margin: 0;
   padding: 3px 6px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
-.tasks-dropdown-menu .tasks-dropdown-item:hover {
+.tasks-dropdown-options .tasks-dropdown-item:hover {
   background: var(--bg-primary);
   border-radius: 0.25rem;
   border: 0.5px solid var(--border-primary);
+}
+
+.tasks-dropdown-item-icon {
+  padding: 1.5px 2px 1.5px 2px;
+  cursor: pointer;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-primary);
+  border-radius: 0.2rem;
+  width: fit-content;
+  margin-left: auto;
+  margin-bottom: 2px;
+}
+
+.tasks-dropdown-item-icon-svg {
+  width: 8px;
+  height: 8px;
+  display: block;
+  color: var(--text-secondary);
 }
 
 /* Tasks main */
@@ -389,7 +423,7 @@
   margin: 0 auto;
   padding: 1.5px;
   border: 0.5px solid var(--border-primary);
-  border-radius: 0.6rem;
+  border-radius: 0.35rem;
   background: var(--bg-primary);
   gap: 0.4rem;
   padding-left: 2px;
@@ -432,7 +466,7 @@
   height: 100%;
   width: 100%;
   background: var(--bg-secondary);
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   border: 0.5px solid var(--border-primary);
 }
 
@@ -523,16 +557,24 @@
 .tasks-popup-text .popup-text-contents {
   display: flex;
   flex-direction: column;
-  height: 70px;
   justify-content: space-between;
   background: var(--bg-secondary);
   border: 0.5px solid var(--border-primary);
   border-radius: 0.35rem;
-  padding: 6px 5px 6px 5px;
+  padding: 6px 5px;
+  min-height: 70px;
+}
+
+.category-popup-text .popup-text-contents {
+  min-height: 30px;
 }
 
 .tasks-popup-text .popup-text-list {
-  height: 32px;
+  min-height: 30px;
+}
+
+.tasks-popup-text .popup-text-list-wrapper {
+  min-height: 25px;
 }
 
 .tasks-popup-text .popup-text-contents-wrapper {
@@ -566,7 +608,9 @@
   width: 100%;
   resize: none;
   overflow: hidden;
-  height: 100%;
+  min-height: 35px;
+  max-height: 35px;
+  transition: height 0.15s ease;
 }
 
 .add-task-block {
@@ -574,17 +618,8 @@
 }
 
 .popup-text-footer {
-  display: flex;
-  align-items: center;
-  gap: 0.2rem;
-  padding-left: 3px;
   padding-top: 6px;
-}
-
-.text-footer-svg {
-  width: 6.5px;
-  height: 6.5px;
-  color: var(--text-secondary);
+  margin-left: auto;
 }
 
 .popup-text-footer p {
@@ -664,58 +699,6 @@
   padding: 4px;
 }
 
-/* Tasks dropdown options */
-.tasks-dropdown-options {
-  position: absolute;
-  top: 120%;
-  right: -5px;
-  margin-top: 5px;
-  z-index: 100;
-  width: max-content;
-  background: var(--bg-secondary);
-  border: 0.5px solid var(--border-primary);
-  border-radius: 0.35rem;
-  padding: 3px;
-  font-size: 0.46rem;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  color: var(--text-primary);
-  overflow: hidden;
-  width: 90px;
-  transition: height 0.3s ease;
-}
-
-.tasks-dropdown-options .tasks-dropdown-item {
-  margin: 0;
-  padding: 3px 6px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.tasks-dropdown-options .tasks-dropdown-item:hover {
-  background: var(--bg-primary);
-  border-radius: 0.25rem;
-  border: 0.5px solid var(--border-primary);
-}
-
-.tasks-dropdown-item-icon {
-  padding: 1.5px 2px 1.5px 2px;
-  cursor: pointer;
-  background: var(--bg-primary);
-  border: 0.5px solid var(--border-primary);
-  border-radius: 0.2rem;
-  width: fit-content;
-  margin-left: auto;
-  margin-bottom: 2px;
-}
-
-.tasks-dropdown-item-icon-svg {
-  width: 8px;
-  height: 8px;
-  display: block;
-  color: var(--text-secondary);
-}
-
 /* Tasks body list */
 .tasks-body-list {
   display: flex;
@@ -745,7 +728,7 @@
 .tasks-list-toggle-wrapper {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.3rem;
 }
 
 .tasks-list-toggle {

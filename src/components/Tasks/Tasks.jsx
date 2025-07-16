@@ -53,6 +53,34 @@ function Tasks ({ }) {
                 { id: 2, text: "Audit Twitter", done: false },
             ],
         },
+        {
+            id: 4,
+            title: "User Onboarding Flow Improvements",
+            subtitle: "UI/UX Optimization",
+            priority: "High",
+            status: "todo",
+            category: "General",
+            createdAt: "2025-07-07T10:00:00Z",
+            subtasks: [
+                { id: 1, text: "Redesign welcome screens", done: false },
+                { id: 2, text: "Add tooltips for new users", done: false },
+                { id: 3, text: "Create quick-start guide", done: false },
+            ],
+        },
+        {
+            id: 5,
+            title: "Payment Gateway Integration",
+            subtitle: "Stripe and PayPal setup",
+            priority: "Low",
+            status: "todo",
+            category: "General",
+            createdAt: "2025-07-07T10:00:00Z",
+            subtasks: [
+                { id: 1, text: "Configure Stripe keys", done: false },
+                { id: 2, text: "Test sandbox payments", done: false },
+                { id: 3, text: "Setup PayPal webhook", done: false },
+            ],
+        },
     ];
 
     // States
@@ -70,7 +98,6 @@ function Tasks ({ }) {
     const [showTodoPopup, setShowTodoPopup] = useState(false);
     const [showCategoryTaskPopup, setShowCategoryTaskPopup] = useState(false);
     const [showCategoryPopup, setShowCategoryPopup] = useState(false);
-    const [showPlusDropdown, setShowPlusDropdown] = useState(false);
     const [showTodoDropdown, setShowTodoDropdown] = useState(false);
     const [showInProgressDropdown, setShowInProgressDropdown] = useState(false);
     const [showCompletedDropdown, setShowCompletedDropdown] = useState(false);
@@ -91,16 +118,21 @@ function Tasks ({ }) {
     const [selectedTimeFilter, setSelectedTimeFilter] = useState("Today");
 
     const [highlightInput, setHighlightInput] = useState(false);
-    const isInvalidLength = newCategoryName.length < 50 || newCategoryName.length > 100;
+    const isInvalidCategory = newCategoryName.length === 0 || newCategoryName.length > 50;
+    const isInvalidTitle = newTaskTitle.length < 50 || newTaskTitle.length > 100;
+    const isInvalidSubtitle = newTaskSubtitle.length < 50 || newTaskSubtitle.length > 100;
+    const isInvalidTaskInputs = taskInputs.some((input) => input.length < 50 || input.length > 100);
 
     // Refs
+    const timeDropdownRef = useRef(null);
+    const menuDropdownRef = useRef(null);
     const touchStartXRef = useRef(0);
     const touchEndXRef = useRef(0);
     const todoDropdownRef = useRef(null);
     const inProgressDropdownRef = useRef(null);
     const completedDropdownRef = useRef(null);
     const categoryDropdownRef = useRef(null);
-    const menuDropdownRef = useRef(null);
+    const inputRef = useRef(null);
 
     // Utility Functions
     const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
@@ -152,7 +184,7 @@ function Tasks ({ }) {
         return ["Today", "This Week", "This Month", "This Year", "All Tasks"];
     };
 
-    const availableTimeFilters = getAvailableTimeFilters(tasks);
+    const availableTimeFilters = getAvailableTimeFilters();
 
     const handleTimeFilter = (filter) => {
         setSelectedTimeFilter(filter);
@@ -302,6 +334,8 @@ function Tasks ({ }) {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
+            if (timeDropdownRef.current && !timeDropdownRef.current.contains(event.target)) setShowTimeDropdown(false);
+            if (menuDropdownRef.current && !menuDropdownRef.current.contains(event.target)) setShowMenuDropdown(false);
             if (todoDropdownRef.current && !todoDropdownRef.current.contains(event.target)) setShowTodoDropdown(false);
             if (inProgressDropdownRef.current && !inProgressDropdownRef.current.contains(event.target)) setShowInProgressDropdown(false);
             if (completedDropdownRef.current && !completedDropdownRef.current.contains(event.target)) setShowCompletedDropdown(false);
@@ -390,41 +424,58 @@ function Tasks ({ }) {
                         </div>
 
                         <div className="tasks-right">
-                            <div className="tasks-toggle" onClick={() => setShowTimeDropdown(prev => !prev)}>
-                                <p>{selectedTimeFilter}</p>
-
-                                <svg 
-                                    xmlns="http://www.w3.org/2000/svg" 
-                                    className="tasks-toggle-svg" 
-                                    viewBox="0 0 24 24"
+                            <div 
+                                className="tasks-time-container" 
+                                ref={timeDropdownRef} 
+                                style={{ position: "relative" }}
+                            >
+                                <div 
+                                    className="tasks-toggle" 
+                                    onClick={() => {
+                                        setShowTimeDropdown(prev => !prev);
+                                        setShowMenuDropdown(false);
+                                        setShowTodoDropdown(false);
+                                        setShowInProgressDropdown(false);
+                                        setShowCompletedDropdown(false);
+                                        setShowCategoryMenu(false);
+                                    }}
                                 >
-                                    <path 
-                                        fill="none" 
-                                        stroke="currentColor" 
-                                        strokeLinecap="round" 
-                                        strokeLinejoin="round" 
-                                        strokeWidth={2}
-                                        d="m6 9l6 6l6-6"
-                                    ></path>
-                                </svg>
-                            </div>
+                                    <p>{selectedTimeFilter}</p>
 
-                            {showTimeDropdown && (
-                                <div className="tasks-dropdown-menu">
-                                    {getAvailableTimeFilters().map(filter => (
-                                        <div
-                                            key={filter}
-                                            className={`tasks-dropdown-item ${selectedTimeFilter === filter ? "active" : ""}`}
-                                            onClick={() => {
-                                                setSelectedTimeFilter(filter); 
-                                                setShowTimeDropdown(false);
-                                            }}
-                                        >
-                                            {filter}
-                                        </div>
-                                    ))}
+                                    <svg 
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        className="tasks-toggle-svg" 
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path 
+                                            fill="none" 
+                                            stroke="currentColor" 
+                                            strokeLinecap="round" 
+                                            strokeLinejoin="round" 
+                                            strokeWidth={2}
+                                            d="m6 9l6 6l6-6"
+                                        ></path>
+                                    </svg>
                                 </div>
-                            )}
+
+                                {showTimeDropdown && (
+                                    <div className="tasks-dropdown-options tasks-dropdown-time">
+                                        {getAvailableTimeFilters().map(filter => (
+                                            <div
+                                                key={filter}
+                                                className={`tasks-dropdown-item ${selectedTimeFilter === filter ? "active" : ""}`}
+                                                onClick={() => {
+                                                    console.log("Clicked filter:", filter);
+                                                    setSelectedTimeFilter(filter); 
+                                                    setShowTimeDropdown(false);
+                                                }}
+                                            >
+                                                {filter}
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
 
                             <div className="tasks-search">
                                 <svg 
@@ -447,6 +498,11 @@ function Tasks ({ }) {
                                 className="tasks-menu"
                                 onClick={() => {
                                     setShowMenuDropdown(prev => !prev);
+                                    setShowTimeDropdown(false);
+                                    setShowTodoDropdown(false);
+                                    setShowInProgressDropdown(false);
+                                    setShowCompletedDropdown(false);
+                                    setShowCategoryMenu(false);
                                 }}
                                 ref={menuDropdownRef}
                                 style={{ position: "relative" }}
@@ -467,7 +523,7 @@ function Tasks ({ }) {
                                 </svg>
 
                                 {showMenuDropdown && (
-                                    <div className="tasks-dropdown-options">
+                                    <div className="tasks-dropdown-options tasks-dropdown-menu">
                                         <div
                                             className="tasks-dropdown-item"
                                             onClick={() => {
@@ -491,7 +547,7 @@ function Tasks ({ }) {
                                                 <div className="tasks-popup-middle-wrapper">
                                                     <div className="popup-middle-slider">
                                                         <div className="middle-slider-page">
-                                                            <div className="tasks-popup-text">
+                                                            <div className="tasks-popup-text category-popup-text">
                                                                 <div className="popup-text-header">
                                                                     <p>Task Category</p>
 
@@ -519,48 +575,34 @@ function Tasks ({ }) {
                                                                     <div className={`popup-text-contents ${highlightInput ? "highlight-content-blink" : ""}`}>
                                                                         {editingCategory ? (
                                                                             <textarea
-                                                                                maxLength={100}
                                                                                 value={newCategoryName}
-onChange={(e) => {
-  const value = e.target.value;
+                                                                                onChange={(e) => {
+                                                                                    const value = e.target.value;
 
-  if (value.length > 100) return;
-
-  if (value.length === 100) {
-    setNewCategoryName(value);
-
-    setHighlightInput(false);
-    requestAnimationFrame(() => setHighlightInput(true));
-    setTimeout(() => setHighlightInput(false), 600);
-    return;
-  }
-
-  setNewCategoryName(value); 
-}}
-
-
-
-
-
-
+                                                                                    if (value.length > 50) {
+                                                                                        setHighlightInput(false);
+                                                                                        requestAnimationFrame(() => setHighlightInput(true));
+                                                                                        setTimeout(() => setHighlightInput(false), 600);
+                                                                                        return;
+                                                                                    }
+                                                                                    setNewCategoryName(value);
+                                                                                }}
                                                                                 onBlur={() => setEditingCategory(false)}
-                                                                                 onKeyDown={(e) => {
-  // 1. If pressing Enter (without Shift) → end editing
-  if (e.key === "Enter" && !e.shiftKey) {
-    e.preventDefault();
-    setEditingCategory(false);
-  }
+                                                                                onKeyDown={(e) => {
+                                                                                    if (e.key === "Enter" && !e.shiftKey) {
+                                                                                        e.preventDefault();
+                                                                                        setEditingCategory(false);
+                                                                                    }
 
-  // 2. If text is already 100 chars → blink when any key is pressed
-  if (newCategoryName.length >= 100) {
-    setHighlightInput(false);
-    requestAnimationFrame(() => setHighlightInput(true));
-    setTimeout(() => setHighlightInput(false), 600);
-  }
-}}
-
-                                                                                autoFocus
+                                                                                    if (newCategoryName.length >= 50) {
+                                                                                        setHighlightInput(false);
+                                                                                        requestAnimationFrame(() => setHighlightInput(true));
+                                                                                        setTimeout(() => setHighlightInput(false), 600);
+                                                                                    }
+                                                                                }}
                                                                                 className="popup-text-input"
+                                                                                autoFocus
+                                                                                maxLength={50} 
                                                                             />
                                                                         ) : (
                                                                             <p
@@ -571,19 +613,8 @@ onChange={(e) => {
                                                                             </p>
                                                                         )}
 
-                                                                        <div className="popup-text-footer">
-                                                                            <svg 
-                                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                                className="text-footer-svg" 
-                                                                                viewBox="0 0 24 24"
-                                                                            >   
-                                                                                <path 
-                                                                                    fill="currentColor" 
-                                                                                    d="M19 2a3 3 0 0 1 2.995 2.824L22 5v14a3 3 0 0 1-2.824 2.995L19 22H5a3 3 0 0 1-2.995-2.824L2 19V5a3 3 0 0 1 2.824-2.995L5 2zm-7 9h-1l-.117.007a1 1 0 0 0 0 1.986L11 13v3l.007.117a1 1 0 0 0 .876.876L12 17h1l.117-.007a1 1 0 0 0 .876-.876L14 16l-.007-.117a1 1 0 0 0-.764-.857l-.112-.02L13 15v-3l-.007-.117a1 1 0 0 0-.876-.876zm.01-3l-.127.007a1 1 0 0 0 0 1.986L12 10l.127-.007a1 1 0 0 0 0-1.986z"
-                                                                                ></path>
-                                                                            </svg>
-                                                                                        
-                                                                            <p>Must be between 50 and 100 characters</p>
+                                                                        <div className="popup-text-footer">      
+                                                                            <p>{newCategoryName.length} / 50</p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -593,22 +624,22 @@ onChange={(e) => {
                                                 </div>
                                             </div>
 
-                                                    <div className="tasks-popup-bottom">
-                                                        <div 
-                                                            className="tasks-slider-button"
-                                                            onClick={() => {
-                                                                addNewCategory();
-                                                                setShowCategoryPopup(false);
-                                                                setTaskStep(0);
-                                                            }}
-                                                        >
-                                                            <p>Add Category</p>
-                                                        </div>
-                                                    </div>
+                                            <div className="tasks-popup-bottom">
+                                                <div 
+                                                    className="tasks-slider-button"
+                                                    onClick={() => {
+                                                        addNewCategory();
+                                                        setShowCategoryPopup(false);
+                                                        setTaskStep(0);
+                                                    }}
+                                                >
+                                                    <p>Add Category</p>
                                                 </div>
                                             </div>
                                         </div>
-                                    )}
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
 
@@ -741,20 +772,38 @@ onChange={(e) => {
                                                                             </div>
                                                                         </div>
 
-                                                                        <div className="popup-text-contents">
+                                                                        <div className={`popup-text-contents ${highlightInput ? "highlight-content-blink" : ""}`}>
                                                                             {editingTaskTitle ? (
-                                                                                <input
-                                                                                    type="text"
+                                                                                <textarea
                                                                                     value={newTaskTitle}
-                                                                                    onChange={(e) => setNewTaskTitle(e.target.value)}
-                                                                                    onBlur={() => setEditingTaskTitle(false)} 
+                                                                                    onChange={(e) => {
+                                                                                        const value = e.target.value;
+
+                                                                                        if (value.length > 100) {
+                                                                                            setHighlightInput(false);
+                                                                                            requestAnimationFrame(() => setHighlightInput(true));
+                                                                                            setTimeout(() => setHighlightInput(false), 600);
+                                                                                            return;
+                                                                                        }
+
+                                                                                        setNewTaskTitle(value);
+                                                                                    }}
+                                                                                    onBlur={() => setEditingTaskTitle(false)}
                                                                                     onKeyDown={(e) => {
-                                                                                        if (e.key === "Enter") {
+                                                                                        if (e.key === "Enter" && !e.shiftKey) {
+                                                                                            e.preventDefault();
                                                                                             setEditingTaskTitle(false);
+                                                                                        }
+
+                                                                                        if (newTaskTitle.length >= 100) {
+                                                                                            setHighlightInput(false);
+                                                                                            requestAnimationFrame(() => setHighlightInput(true));
+                                                                                            setTimeout(() => setHighlightInput(false), 600);
                                                                                         }
                                                                                     }}
                                                                                     className="popup-text-input"
                                                                                     autoFocus
+                                                                                    maxLength={100} 
                                                                                 />
                                                                             ) : (
                                                                                 <p
@@ -765,19 +814,8 @@ onChange={(e) => {
                                                                                 </p>
                                                                             )}
 
-                                                                            <div className="popup-text-footer">
-                                                                                <svg 
-                                                                                    xmlns="http://www.w3.org/2000/svg" 
-                                                                                    className="text-footer-svg" 
-                                                                                    viewBox="0 0 24 24"
-                                                                                >   
-                                                                                    <path 
-                                                                                        fill="currentColor" 
-                                                                                        d="M19 2a3 3 0 0 1 2.995 2.824L22 5v14a3 3 0 0 1-2.824 2.995L19 22H5a3 3 0 0 1-2.995-2.824L2 19V5a3 3 0 0 1 2.824-2.995L5 2zm-7 9h-1l-.117.007a1 1 0 0 0 0 1.986L11 13v3l.007.117a1 1 0 0 0 .876.876L12 17h1l.117-.007a1 1 0 0 0 .876-.876L14 16l-.007-.117a1 1 0 0 0-.764-.857l-.112-.02L13 15v-3l-.007-.117a1 1 0 0 0-.876-.876zm.01-3l-.127.007a1 1 0 0 0 0 1.986L12 10l.127-.007a1 1 0 0 0 0-1.986z"
-                                                                                    ></path>
-                                                                                </svg>
-                                                                                    
-                                                                                <p>Must be between 50 and 100 characters</p>
+                                                                            <div className="popup-text-footer">      
+                                                                                <p>{newTaskTitle.length} / 100</p>
                                                                             </div>
                                                                         </div>
                                                                     </div> 
@@ -835,20 +873,38 @@ onChange={(e) => {
                                                                             </div>
                                                                         </div>
 
-                                                                        <div className="popup-text-contents">
+                                                                        <div className={`popup-text-contents ${highlightInput ? "highlight-content-blink" : ""}`}>
                                                                             {editingTaskSubtitle ? (
-                                                                                <input
-                                                                                    type="text"
+                                                                                <textarea
                                                                                     value={newTaskSubtitle}
-                                                                                    onChange={(e) => setNewTaskSubtitle(e.target.value)}
-                                                                                    onBlur={() => setEditingTaskSubtitle(false)} 
+                                                                                    onChange={(e) => {
+                                                                                        const value = e.target.value;
+
+                                                                                        if (value.length > 100) {
+                                                                                            setHighlightInput(false);
+                                                                                            requestAnimationFrame(() => setHighlightInput(true));
+                                                                                            setTimeout(() => setHighlightInput(false), 600);
+                                                                                            return;
+                                                                                        }
+
+                                                                                        setNewTaskSubtitle(value);
+                                                                                    }}
+                                                                                    onBlur={() => setEditingTaskSubtitle(false)}
                                                                                     onKeyDown={(e) => {
-                                                                                        if (e.key === "Enter") {
+                                                                                        if (e.key === "Enter" && !e.shiftKey) {
+                                                                                            e.preventDefault();
                                                                                             setEditingTaskSubtitle(false);
+                                                                                        }
+
+                                                                                        if (newTaskSubtitle.length >= 100) {
+                                                                                            setHighlightInput(false);
+                                                                                            requestAnimationFrame(() => setHighlightInput(true));
+                                                                                            setTimeout(() => setHighlightInput(false), 600);
                                                                                         }
                                                                                     }}
                                                                                     className="popup-text-input"
                                                                                     autoFocus
+                                                                                    maxLength={100} 
                                                                                 />
                                                                             ) : (
                                                                                 <p
@@ -860,18 +916,7 @@ onChange={(e) => {
                                                                             )}
 
                                                                             <div className="popup-text-footer">
-                                                                                <svg 
-                                                                                    xmlns="http://www.w3.org/2000/svg" 
-                                                                                    className="text-footer-svg" 
-                                                                                    viewBox="0 0 24 24"
-                                                                                >   
-                                                                                    <path 
-                                                                                        fill="currentColor" 
-                                                                                        d="M19 2a3 3 0 0 1 2.995 2.824L22 5v14a3 3 0 0 1-2.824 2.995L19 22H5a3 3 0 0 1-2.995-2.824L2 19V5a3 3 0 0 1 2.824-2.995L5 2zm-7 9h-1l-.117.007a1 1 0 0 0 0 1.986L11 13v3l.007.117a1 1 0 0 0 .876.876L12 17h1l.117-.007a1 1 0 0 0 .876-.876L14 16l-.007-.117a1 1 0 0 0-.764-.857l-.112-.02L13 15v-3l-.007-.117a1 1 0 0 0-.876-.876zm.01-3l-.127.007a1 1 0 0 0 0 1.986L12 10l.127-.007a1 1 0 0 0 0-1.986z"
-                                                                                    ></path>
-                                                                                </svg>
-                                                                                    
-                                                                                <p>Must be between 50 and 100 characters</p>
+                                                                                <p>{newTaskSubtitle.length} / 100</p>
                                                                             </div>
                                                                         </div>
                                                                     </div> 
@@ -909,23 +954,48 @@ onChange={(e) => {
 
                                                                         <div className="popup-text-contents-wrapper">
                                                                             {taskInputs.map((task, index) => (
-                                                                                <div key={index} className="popup-text-contents">
+                                                                                <div 
+                                                                                    key={index} 
+                                                                                    className={`popup-text-contents popup-text-list ${highlightInput ? "highlight-content-blink" : ""}`}
+                                                                                >
                                                                                     <div className="popup-text-item">
                                                                                         {editingIndex === index ? (
-                                                                                            <input
-                                                                                                type="text"
+                                                                                            <textarea
+                                                                                                ref={inputRef}
                                                                                                 value={task}
                                                                                                 onChange={(e) => {
+                                                                                                    const value = e.target.value;
+
+                                                                                                    if (value.length > 100) {
+                                                                                                        setHighlightInput(false);
+                                                                                                        requestAnimationFrame(() => setHighlightInput(true));
+                                                                                                        setTimeout(() => setHighlightInput(false), 600);
+                                                                                                        return;
+                                                                                                    }
+                                                                                                    if (inputRef.current) {
+                                                                                                        inputRef.current.style.height = "auto"; 
+                                                                                                        inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+                                                                                                    }
                                                                                                     const updated = [...taskInputs];
-                                                                                                    updated[index] = e.target.value;
+                                                                                                    updated[index] = value;
                                                                                                     setTaskInputs(updated);
                                                                                                 }}
-                                                                                                onBlur={() => setEditingIndex(null)}
+                                                                                                onBlur={() => setEditingIndex(false)}
                                                                                                 onKeyDown={(e) => {
-                                                                                                    if (e.key === "Enter") setEditingIndex(null);
+                                                                                                    if (e.key === "Enter" && !e.shiftKey) {
+                                                                                                        e.preventDefault();
+                                                                                                        setEditingIndex(false);
+                                                                                                    }
+
+                                                                                                    if (task.length >= 100) {
+                                                                                                        setHighlightInput(false);
+                                                                                                        requestAnimationFrame(() => setHighlightInput(true));
+                                                                                                        setTimeout(() => setHighlightInput(false), 600);
+                                                                                                    }
                                                                                                 }}
-                                                                                                autoFocus
                                                                                                 className="popup-text-input"
+                                                                                                autoFocus
+                                                                                                maxLength={100} 
                                                                                             />
                                                                                         ) : (
                                                                                             <p
@@ -939,7 +1009,7 @@ onChange={(e) => {
                                                                                 </div>
                                                                             ))}
 
-                                                                            <div className="popup-text-contents">
+                                                                            <div className="popup-text-contents popup-text-list-wrapper">
                                                                                 <div
                                                                                     className="popup-text-item add-task-block"
                                                                                     onClick={() => {
@@ -990,7 +1060,11 @@ onChange={(e) => {
                                         className="todo-menu tasks-menu"
                                         onClick={() => {
                                             setShowTodoDropdown(prev => !prev);
+                                            setShowTimeDropdown(false);
+                                            setShowMenuDropdown(false);
                                             setShowInProgressDropdown(false);
+                                            setShowCompletedDropdown(false);
+                                            setShowCategoryMenu(false);
                                         }}
                                         ref={todoDropdownRef}
                                         style={{ position: "relative" }}
@@ -1149,7 +1223,11 @@ onChange={(e) => {
                                         className="inprogress-menu tasks-menu"
                                         onClick={() => {
                                             setShowInProgressDropdown(prev => !prev);
-                                            setShowTodoDropdown(false);
+                                            setShowTimeDropdown(false);
+                                            setShowMenuDropdown(false);
+                                            setShowTodoDropdown(false);                       
+                                            setShowCompletedDropdown(false);
+                                            setShowCategoryMenu(false);
                                         }}
                                         ref={inProgressDropdownRef}
                                         style={{ position: "relative" }}
@@ -1308,8 +1386,11 @@ onChange={(e) => {
                                         className="completed-menu tasks-menu"
                                         onClick={() => {
                                             setShowCompletedDropdown(prev => !prev);
+                                            setShowTimeDropdown(false);
+                                            setShowMenuDropdown(false);
                                             setShowTodoDropdown(false);
                                             setShowInProgressDropdown(false);
+                                            setShowCategoryMenu(false);
                                         }}
                                         ref={completedDropdownRef}
                                         style={{ position: "relative" }}
@@ -1465,10 +1546,9 @@ onChange={(e) => {
                                 <div className="tasks-header-right">
                                     <div style={{ position: "relative" }}>
                                         <div
-                                            className="todo-plus tasks-plus"
+                                            className="todo-plus tasks-plus" 
                                             onClick={() => {
-                                                setShowPlusDropdown(prev => !prev);
-                                                setShowCategoryMenu(false); 
+                                                setShowCategoryTaskPopup(true);
                                             }}
                                         >
                                             <svg
@@ -1486,31 +1566,6 @@ onChange={(e) => {
                                                 />
                                             </svg>
                                         </div>
-
-                                        {showPlusDropdown && (
-                                            <div className="tasks-dropdown-options plus-dropdown">
-                                                <div
-                                                    className="tasks-dropdown-item"
-                                                    onClick={() => {
-                                                        setShowCategoryTaskPopup(true)
-                                                        setShowPlusDropdown(false);
-                                                        setTaskSource("category")
-                                                    }}
-                                                >
-                                                    Add Task
-                                                </div>
-
-                                                <div
-                                                    className="tasks-dropdown-item"
-                                                    onClick={() => {
-                                                        setShowCategoryPopup(true);
-                                                        setShowPlusDropdown(false);
-                                                    }}
-                                                >
-                                                    Add Category
-                                                </div>
-                                            </div>
-                                        )}
                                     </div>
 
                                     {showCategoryTaskPopup && (
@@ -1610,20 +1665,38 @@ onChange={(e) => {
                                                                             </div>
                                                                         </div>
 
-                                                                        <div className="popup-text-contents">
+                                                                        <div className={`popup-text-contents ${highlightInput ? "highlight-content-blink" : ""}`}>
                                                                             {editingTaskTitle ? (
-                                                                                <input
-                                                                                    type="text"
+                                                                                <textarea
                                                                                     value={newTaskTitle}
-                                                                                    onChange={(e) => setNewTaskTitle(e.target.value)}
-                                                                                    onBlur={() => setEditingTaskTitle(false)} 
+                                                                                    onChange={(e) => {
+                                                                                        const value = e.target.value;
+
+                                                                                        if (value.length > 100) {
+                                                                                            setHighlightInput(false);
+                                                                                            requestAnimationFrame(() => setHighlightInput(true));
+                                                                                            setTimeout(() => setHighlightInput(false), 600);
+                                                                                            return;
+                                                                                        }
+
+                                                                                        setNewTaskTitle(value);
+                                                                                    }}
+                                                                                    onBlur={() => setEditingTaskTitle(false)}
                                                                                     onKeyDown={(e) => {
-                                                                                        if (e.key === "Enter") {
+                                                                                        if (e.key === "Enter" && !e.shiftKey) {
+                                                                                            e.preventDefault();
                                                                                             setEditingTaskTitle(false);
+                                                                                        }
+
+                                                                                        if (newTaskTitle.length >= 100) {
+                                                                                            setHighlightInput(false);
+                                                                                            requestAnimationFrame(() => setHighlightInput(true));
+                                                                                            setTimeout(() => setHighlightInput(false), 600);
                                                                                         }
                                                                                     }}
                                                                                     className="popup-text-input"
                                                                                     autoFocus
+                                                                                    maxLength={100} 
                                                                                 />
                                                                             ) : (
                                                                                 <p
@@ -1634,19 +1707,8 @@ onChange={(e) => {
                                                                                 </p>
                                                                             )}
 
-                                                                            <div className="popup-text-footer">
-                                                                                <svg 
-                                                                                    xmlns="http://www.w3.org/2000/svg" 
-                                                                                    className="text-footer-svg" 
-                                                                                    viewBox="0 0 24 24"
-                                                                                >   
-                                                                                    <path 
-                                                                                        fill="currentColor" 
-                                                                                        d="M19 2a3 3 0 0 1 2.995 2.824L22 5v14a3 3 0 0 1-2.824 2.995L19 22H5a3 3 0 0 1-2.995-2.824L2 19V5a3 3 0 0 1 2.824-2.995L5 2zm-7 9h-1l-.117.007a1 1 0 0 0 0 1.986L11 13v3l.007.117a1 1 0 0 0 .876.876L12 17h1l.117-.007a1 1 0 0 0 .876-.876L14 16l-.007-.117a1 1 0 0 0-.764-.857l-.112-.02L13 15v-3l-.007-.117a1 1 0 0 0-.876-.876zm.01-3l-.127.007a1 1 0 0 0 0 1.986L12 10l.127-.007a1 1 0 0 0 0-1.986z"
-                                                                                    ></path>
-                                                                                </svg>
-                                                                                    
-                                                                                <p>Must be between 50 and 100 characters</p>
+                                                                            <div className="popup-text-footer">      
+                                                                                <p>{newTaskTitle.length} / 100</p>
                                                                             </div>
                                                                         </div>
                                                                     </div> 
@@ -1704,20 +1766,38 @@ onChange={(e) => {
                                                                             </div>
                                                                         </div>
 
-                                                                        <div className="popup-text-contents">
+                                                                        <div className={`popup-text-contents ${highlightInput ? "highlight-content-blink" : ""}`}>
                                                                             {editingTaskSubtitle ? (
-                                                                                <input
-                                                                                    type="text"
+                                                                                <textarea
                                                                                     value={newTaskSubtitle}
-                                                                                    onChange={(e) => setNewTaskSubtitle(e.target.value)}
-                                                                                    onBlur={() => setEditingTaskSubtitle(false)} 
+                                                                                    onChange={(e) => {
+                                                                                        const value = e.target.value;
+
+                                                                                        if (value.length > 100) {
+                                                                                            setHighlightInput(false);
+                                                                                            requestAnimationFrame(() => setHighlightInput(true));
+                                                                                            setTimeout(() => setHighlightInput(false), 600);
+                                                                                            return;
+                                                                                        }
+
+                                                                                        setNewTaskSubtitle(value);
+                                                                                    }}
+                                                                                    onBlur={() => setEditingTaskSubtitle(false)}
                                                                                     onKeyDown={(e) => {
-                                                                                        if (e.key === "Enter") {
+                                                                                        if (e.key === "Enter" && !e.shiftKey) {
+                                                                                            e.preventDefault();
                                                                                             setEditingTaskSubtitle(false);
+                                                                                        }
+
+                                                                                        if (newTaskSubtitle.length >= 100) {
+                                                                                            setHighlightInput(false);
+                                                                                            requestAnimationFrame(() => setHighlightInput(true));
+                                                                                            setTimeout(() => setHighlightInput(false), 600);
                                                                                         }
                                                                                     }}
                                                                                     className="popup-text-input"
                                                                                     autoFocus
+                                                                                    maxLength={100} 
                                                                                 />
                                                                             ) : (
                                                                                 <p
@@ -1729,24 +1809,13 @@ onChange={(e) => {
                                                                             )}
 
                                                                             <div className="popup-text-footer">
-                                                                                <svg 
-                                                                                    xmlns="http://www.w3.org/2000/svg" 
-                                                                                    className="text-footer-svg" 
-                                                                                    viewBox="0 0 24 24"
-                                                                                >   
-                                                                                    <path 
-                                                                                        fill="currentColor" 
-                                                                                        d="M19 2a3 3 0 0 1 2.995 2.824L22 5v14a3 3 0 0 1-2.824 2.995L19 22H5a3 3 0 0 1-2.995-2.824L2 19V5a3 3 0 0 1 2.824-2.995L5 2zm-7 9h-1l-.117.007a1 1 0 0 0 0 1.986L11 13v3l.007.117a1 1 0 0 0 .876.876L12 17h1l.117-.007a1 1 0 0 0 .876-.876L14 16l-.007-.117a1 1 0 0 0-.764-.857l-.112-.02L13 15v-3l-.007-.117a1 1 0 0 0-.876-.876zm.01-3l-.127.007a1 1 0 0 0 0 1.986L12 10l.127-.007a1 1 0 0 0 0-1.986z"
-                                                                                    ></path>
-                                                                                </svg>
-                                                                                    
-                                                                                <p>Must be between 50 and 100 characters</p>
+                                                                                <p>{newTaskSubtitle.length} / 100</p>
                                                                             </div>
                                                                         </div>
                                                                     </div> 
                                                                 </div>
 
-                                                                <div className="middle-slider-page">
+                                                                <div className="middle-slider-page middle-slider-list">
                                                                     <div className="tasks-popup-text">
                                                                         <div className="popup-text-header">
                                                                             <p>Task List</p>
@@ -1778,23 +1847,48 @@ onChange={(e) => {
 
                                                                         <div className="popup-text-contents-wrapper">
                                                                             {taskInputs.map((task, index) => (
-                                                                                <div key={index} className="popup-text-contents popup-text-list">
+                                                                                <div 
+                                                                                    key={index} 
+                                                                                    className={`popup-text-contents popup-text-list ${highlightInput ? "highlight-content-blink" : ""}`}
+                                                                                >
                                                                                     <div className="popup-text-item">
                                                                                         {editingIndex === index ? (
-                                                                                            <input
-                                                                                                type="text"
+                                                                                            <textarea
+                                                                                                ref={inputRef}
                                                                                                 value={task}
                                                                                                 onChange={(e) => {
+                                                                                                    const value = e.target.value;
+
+                                                                                                    if (value.length > 100) {
+                                                                                                        setHighlightInput(false);
+                                                                                                        requestAnimationFrame(() => setHighlightInput(true));
+                                                                                                        setTimeout(() => setHighlightInput(false), 600);
+                                                                                                        return;
+                                                                                                    }
+                                                                                                    if (inputRef.current) {
+                                                                                                        inputRef.current.style.height = "auto"; 
+                                                                                                        inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+                                                                                                    }
                                                                                                     const updated = [...taskInputs];
-                                                                                                    updated[index] = e.target.value;
+                                                                                                    updated[index] = value;
                                                                                                     setTaskInputs(updated);
                                                                                                 }}
-                                                                                                onBlur={() => setEditingIndex(null)}
+                                                                                                onBlur={() => setEditingIndex(false)}
                                                                                                 onKeyDown={(e) => {
-                                                                                                    if (e.key === "Enter") setEditingIndex(null);
+                                                                                                    if (e.key === "Enter" && !e.shiftKey) {
+                                                                                                        e.preventDefault();
+                                                                                                        setEditingIndex(false);
+                                                                                                    }
+
+                                                                                                    if (task.length >= 100) {
+                                                                                                        setHighlightInput(false);
+                                                                                                        requestAnimationFrame(() => setHighlightInput(true));
+                                                                                                        setTimeout(() => setHighlightInput(false), 600);
+                                                                                                    }
                                                                                                 }}
-                                                                                                autoFocus
                                                                                                 className="popup-text-input"
+                                                                                                autoFocus
+                                                                                                maxLength={100} 
                                                                                             />
                                                                                         ) : (
                                                                                             <p
@@ -1808,7 +1902,7 @@ onChange={(e) => {
                                                                                 </div>
                                                                             ))}
 
-                                                                            <div className="popup-text-contents popup-text-list">
+                                                                            <div className="popup-text-contents popup-text-list-wrapper">
                                                                                 <div
                                                                                     className="popup-text-item add-task-block"
                                                                                     onClick={() => {
@@ -1859,10 +1953,13 @@ onChange={(e) => {
                                         className="category-menu tasks-menu"
                                         onClick={() => {
                                             setShowCategoryMenu(prev => !prev);
+                                            setShowTimeDropdown(false);
+                                            setShowMenuDropdown(false);
                                             setShowTodoDropdown(false);
                                             setShowInProgressDropdown(false);
                                             setShowCompletedDropdown(false);
                                         }}
+                                        ref={categoryDropdownRef}
                                         style={{ position: "relative" }}
                                     >
                                         <svg
