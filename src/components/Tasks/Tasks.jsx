@@ -88,6 +88,7 @@ function Tasks ({ }) {
     const [selectedTaskIds, setSelectedTaskIds] = useState([]);
     const [priority, setPriority] = useState("low");
     const [taskSource, setTaskSource] = useState("todo");
+    const [editingTaskId, setEditingTaskId] = useState(null);
 
     const [categories, setCategories] = useState(["Work", "Personal", "Daily"]);
     const [newCategoryName, setNewCategoryName] = useState("");
@@ -114,6 +115,8 @@ function Tasks ({ }) {
     const [editingIndex, setEditingIndex] = useState(null);
     const [taskStep, setTaskStep] = useState(0);
 
+    
+
     const [categoryFilter, setCategoryFilter] = useState({ priority: "", status: "" });
     const [selectedTimeFilter, setSelectedTimeFilter] = useState("Today");
 
@@ -135,6 +138,47 @@ function Tasks ({ }) {
     const inputRef = useRef(null);
 
     // Utility Functions
+    const updateTodoTask = () => {
+  setTasks((prevTasks) =>
+    prevTasks.map((task) =>
+      task.id === editingTaskId
+        ? {
+            ...task,
+            title: newTaskTitle,
+            subtitle: newTaskSubtitle,
+            priority: capitalize(priority),
+            subtasks: taskInputs.map((text, idx) => ({
+              id: idx + 1,
+              text,
+              done: false,
+            })),
+          }
+        : task
+    )
+  );
+};
+
+    const updateCategoryTask = () => {
+  setTasks((prevTasks) =>
+    prevTasks.map((task) =>
+      task.id === editingTaskId
+        ? {
+            ...task,
+            title: newTaskTitle,
+            subtitle: newTaskSubtitle,
+            priority: capitalize(priority),
+            subtasks: taskInputs.map((text, idx) => ({
+              id: idx + 1,
+              text,
+              done: false,
+            })),
+          }
+        : task
+    )
+  );
+};
+
+
     const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
     const getProgress = (subtasks) => {
@@ -246,10 +290,48 @@ function Tasks ({ }) {
         );
     };
 
-    const deleteSelectedTask = () => {
-        setTasks((prev) => prev.filter((task) => !selectedTaskIds.includes(task.id)));
-        setSelectedTaskIds([]);
-    };
+const deleteSelectedTask = () => {
+  setTasks((prev) =>
+    prev.map((task) =>
+      selectedTaskIds.includes(task.id) ? { ...task, status: "deleted" } : task
+    )
+  );
+  setSelectedTaskIds([]);
+};
+
+
+
+
+const [selectedView, setSelectedView] = useState("active");
+
+const visibleTasks = tasks.filter((task) => {
+  const isInTime = isWithinTimeFilter(task.createdAt, selectedTimeFilter);
+  const isInCategory = selectedCategory === "All" || task.category === selectedCategory;
+  const matchesPriority = !categoryFilter.priority || task.priority === categoryFilter.priority;
+  const matchesStatus = !categoryFilter.status || task.status === categoryFilter.status;
+
+  if (selectedView === "deleted") {
+    return task.status === "deleted";
+  }
+
+  if (selectedView === "archived") {
+    return task.status === "archived";
+  }
+
+  return (
+    task.status !== "archived" &&
+    task.status !== "deleted" &&
+    isInTime &&
+    isInCategory &&
+    matchesPriority &&
+    matchesStatus
+  );
+});
+
+const todoTasks = visibleTasks.filter(task => task.status === "todo");
+const inProgressTasks = visibleTasks.filter(task => task.status === "inprogress");
+const completedTasks = visibleTasks.filter(task => task.status === "completed");
+
 
     const archiveSelectedTask = () => {
         setTasks((prev) =>
@@ -278,6 +360,7 @@ function Tasks ({ }) {
         setTaskInputs([""]);
         setEditingIndex(null);
         setTaskStep(0);
+        setEditingTaskId(null);
     };
 
     const addNewTodoTask = () => {
@@ -344,6 +427,71 @@ function Tasks ({ }) {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
+
+    const renderTaskCard = (task) => {
+  const progress = getProgress(task.subtasks);
+  return (
+    <div 
+      key={task.id} 
+      className={`tasks-body-list ${selectedTaskIds.includes(task.id) ? "selected" : ""}`}
+    >
+      <div className="tasks-list-top">
+        <div className="tasks-list-toggle">
+          <p>{task.priority}</p>
+        </div>
+        <div 
+          className="select-task-check"
+          onClick={(e) => {
+            e.stopPropagation(); 
+            toggleTaskSelection(task.id);
+          }}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className={`check-task-icon ${selectedTaskIds.includes(task.id) ? "selected" : ""}`} viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m5 12l5 5L20 7" />
+          </svg>
+        </div>
+      </div>
+
+      <div className="tasks-list-middle">
+        <div className="tasks-list-header"><p>{task.title}</p></div>
+        <div className="tasks-list-text"><p>{task.subtitle}</p></div>
+        <div className="tasks-list-checks">
+          <ul>
+            {task.subtasks.map(sub => (
+              <li key={sub.id} onClick={() => toggleCheck(task.id, sub.id)} className={sub.done ? "subtask-done" : ""}>
+                <svg xmlns="http://www.w3.org/2000/svg" className={`tasks-list-checks-svg ${sub.done ? "subtask-done" : ""}`} viewBox="0 0 24 24">
+                  <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m5 12l5 5L20 7" />
+                </svg>
+                <p className={sub.done ? "subtask-done" : ""}>{sub.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="tasks-list-bottom">
+        <div className="tasks-list-progress">
+          <div className="tasks-progress-top">
+            <p>{progress}%</p>
+            <div className="tasks-list-date">
+              <svg xmlns="http://www.w3.org/2000/svg" className="tasks-list-date-svg" viewBox="0 0 24 24">
+                <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
+                  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0"></path>
+                  <path d="M12 7v5l3 3"></path>
+                </g>
+              </svg>
+              <p>{getTimeAgo(task.createdAt)}</p>
+            </div>
+          </div>
+          <div className="tasks-progress-bar">
+            <div className="tasks-progress-fill" style={{ width: `${progress}%` }} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 
     return (
         <div className="tasks-container">
@@ -527,14 +675,42 @@ function Tasks ({ }) {
                                         <div
                                             className="tasks-dropdown-item"
                                             onClick={() => {
+                                                setSelectedView("active"); 
+                                                setShowMenuDropdown(false);
+                                            }}
+                                        >
+                                            Active Tasks
+                                        </div>
+
+                                        <div
+                                            className="tasks-dropdown-item"
+                                            onClick={() => {
+                                                setSelectedView("archived");
+                                                setShowMenuDropdown(false);
+                                            }}
+                                        >
+                                            Archived Tasks
+                                        </div>
+
+                                        <div
+                                            className="tasks-dropdown-item"
+                                            onClick={() => {
+                                                setSelectedView("deleted");
+                                                setShowMenuDropdown(false);
+                                            }}
+                                        >
+                                            Deleted Tasks
+                                        </div>
+
+                                        <div
+                                            className="tasks-dropdown-item"
+                                            onClick={() => {
                                                 setShowCategoryPopup(true);
-                                                setShowPlusDropdown(false);
+                                                setShowMenuDropdown(false);
                                             }}
                                         >
                                             Add Category
                                         </div>
-                                        <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>Deleted Tasks</div>
-                                        <div className="tasks-dropdown-item" onClick={archiveSelectedTask}>Archived Tasks</div>
                                     </div>
                                 )}
                             </div>
@@ -750,7 +926,7 @@ function Tasks ({ }) {
                                                                             <div className="popup-text-header-icons">
                                                                                 <div 
                                                                                     className="popup-text-header-next"
-                                                                                     onClick={() => {
+                                                                                    onClick={() => {
                                                                                         if (taskStep < 2) setTaskStep((prev) => prev + 1);
                                                                                     }}
                                                                                 >
@@ -851,7 +1027,7 @@ function Tasks ({ }) {
 
                                                                                 <div 
                                                                                     className="popup-text-header-next"
-                                                                                     onClick={() => {
+                                                                                    onClick={() => {
                                                                                         if (taskStep < 2) setTaskStep((prev) => prev + 1);
                                                                                     }}
                                                                                 >
@@ -971,11 +1147,13 @@ function Tasks ({ }) {
                                                                                                         requestAnimationFrame(() => setHighlightInput(true));
                                                                                                         setTimeout(() => setHighlightInput(false), 600);
                                                                                                         return;
-                                                                                                    }
+                                                                                                    }   
+
                                                                                                     if (inputRef.current) {
                                                                                                         inputRef.current.style.height = "auto"; 
                                                                                                         inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
                                                                                                     }
+
                                                                                                     const updated = [...taskInputs];
                                                                                                     updated[index] = value;
                                                                                                     setTaskInputs(updated);
@@ -1042,12 +1220,18 @@ function Tasks ({ }) {
                                                             <div 
                                                                 className="tasks-slider-button"
                                                                 onClick={() => {
-                                                                    addNewTodoTask();
+                                                                    if (editingTaskId) {
+                                                                        updateTodoTask();
+                                                                    } else {
+                                                                        addNewTodoTask();
+                                                                    }
+
                                                                     setShowTodoPopup(false);
+                                                                    setEditingTaskId(null);
                                                                     setTaskStep(0);
                                                                 }}
                                                             >
-                                                                <p>Add task</p>
+                                                                <p>{editingTaskId ? "Update Task" : "Add Task"}</p>
                                                             </div>
                                                         )}
                                                     </div>
@@ -1086,8 +1270,27 @@ function Tasks ({ }) {
 
                                         {showTodoDropdown && (
                                             <div className="tasks-dropdown-options">
+                                                <div
+                                                    className="tasks-dropdown-item"
+                                                    onClick={() => {
+                                                        const taskToEdit = tasks.find((t) => selectedTaskIds.includes(t.id));
+                                                        if (!taskToEdit) return;
+
+                                                        setNewTaskTitle(taskToEdit.title);
+                                                        setNewTaskSubtitle(taskToEdit.subtitle);
+                                                        setTaskInputs(taskToEdit.subtasks.map((sub) => sub.text));
+                                                        setPriority(taskToEdit.priority.toLowerCase());
+                                                        setEditingTaskId(taskToEdit.id);
+                                                        setTaskStep(0);
+                                                        setShowTodoPopup(true);
+                                                    }}
+                                                >
+                                                    Edit Task
+                                                </div>
+
                                                 <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>Delete Task</div>
-                                                <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>Archive Task</div>
+
+                                                <div className="tasks-dropdown-item" onClick={archiveSelectedTask}>Archive Task</div>
                                             </div>
                                         )}
                                     </div>
@@ -1095,119 +1298,7 @@ function Tasks ({ }) {
                             </div>
 
                             <div className="tasks-todo">
-                                {generalTodoTasks.map(task => {
-                                    const progress = getProgress(task.subtasks);
-                                    return (
-                                        <div 
-                                            key={task.id} 
-                                            className={`tasks-body-list ${selectedTaskIds.includes(task.id) ? "selected" : ""}`}
-                                        >
-                                            <div className="tasks-list-top">
-                                                <div className="tasks-list-toggle">
-                                                    <p>{task.priority}</p>
-                                                </div>
-
-                                                <div 
-                                                    className="select-task-check"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation(); 
-                                                        toggleTaskSelection(task.id);
-                                                    }}
-                                                >
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        className={`check-task-icon ${selectedTaskIds.includes(task.id) ? "selected" : ""}`}
-                                                        viewBox="0 0 24 24"
-                                                    >
-                                                        <path
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="m5 12l5 5L20 7"
-                                                        />
-                                                    </svg>
-                                                </div>
-                                            </div>
-
-                                            <div className="tasks-list-middle">
-                                                <div className="tasks-list-header">
-                                                    <p>{task.title}</p>
-                                                </div>
-
-                                                <div className="tasks-list-text">
-                                                    <p>{task.subtitle}</p>
-                                                </div>
-
-                                                <div className="tasks-list-checks">
-                                                    <ul>
-                                                        {task.subtasks.map(sub => (
-                                                            <li
-                                                                key={sub.id}
-                                                                onClick={() => toggleCheck(task.id, sub.id)}
-                                                                className={sub.done ? "subtask-done" : ""}
-                                                            >
-                                                                <svg
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                    className={`tasks-list-checks-svg ${sub.done ? "subtask-done" : ""}`}
-                                                                    viewBox="0 0 24 24"
-                                                                >
-                                                                    <path
-                                                                        fill="none"
-                                                                        stroke="currentColor"
-                                                                        strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                        strokeWidth={2}
-                                                                        d="m5 12l5 5L20 7"
-                                                                    />
-                                                                </svg>
-
-                                                                <p className={sub.done ? "subtask-done" : ""}>{sub.text}</p>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            <div className="tasks-list-bottom">
-                                                <div className="tasks-list-progress">
-                                                    <div className="tasks-progress-top">
-                                                        <p>{progress}%</p>
-
-                                                        <div className="tasks-list-date">
-                                                            <svg   
-                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                className="tasks-list-date-svg" 
-                                                                viewBox="0 0 24 24"
-                                                            >   
-                                                                <g 
-                                                                    fill="none" 
-                                                                    stroke="currentColor" 
-                                                                    strokeLinecap="round" 
-                                                                    strokeLinejoin="round" 
-                                                                    strokeWidth={2}
-                                                                >
-                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0"></path>
-                                                                    <path d="M12 7v5l3 3"></path>
-                                                                </g>
-                                                            </svg>
-
-                                                            <p>{getTimeAgo(task.createdAt)}</p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="tasks-progress-bar">
-                                                        <div
-                                                            className="tasks-progress-fill"
-                                                            style={{ width: `${progress}%` }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
+                                {generalTodoTasks.map(task => renderTaskCard(task))}
                             </div>
                         </div>
 
@@ -1258,119 +1349,7 @@ function Tasks ({ }) {
                             </div>
 
                             <div className="tasks-todo">
-                                {generalInProgressTasks.map(task => {
-                                    const progress = getProgress(task.subtasks);
-                                    return (
-                                        <div 
-                                            key={task.id} 
-                                            className={`tasks-body-list ${selectedTaskIds.includes(task.id) ? "selected" : ""}`}
-                                        >
-                                            <div className="tasks-list-top">
-                                                <div className="tasks-list-toggle">
-                                                    <p>{task.priority}</p>
-                                                </div>
-
-                                                <div 
-                                                    className="select-task-check"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation(); 
-                                                        toggleTaskSelection(task.id);
-                                                    }}
-                                                >
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        className={`check-task-icon ${selectedTaskIds.includes(task.id) ? "selected" : ""}`}
-                                                        viewBox="0 0 24 24"
-                                                    >
-                                                        <path
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="m5 12l5 5L20 7"
-                                                        />
-                                                    </svg>
-                                                </div>
-                                            </div>
-
-                                            <div className="tasks-list-middle">
-                                                <div className="tasks-list-header">
-                                                    <p>{task.title}</p>
-                                                </div>
-
-                                                <div className="tasks-list-text">
-                                                    <p>{task.subtitle}</p>
-                                                </div>
-
-                                                <div className="tasks-list-checks">
-                                                    <ul>
-                                                        {task.subtasks.map(sub => (
-                                                            <li
-                                                                key={sub.id}
-                                                                onClick={() => toggleCheck(task.id, sub.id)}
-                                                                className={sub.done ? "subtask-done" : ""}
-                                                            >
-                                                                <svg
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                    className={`tasks-list-checks-svg ${sub.done ? "subtask-done" : ""}`}
-                                                                    viewBox="0 0 24 24"
-                                                                >
-                                                                    <path
-                                                                        fill="none"
-                                                                        stroke="currentColor"
-                                                                        strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                        strokeWidth={2}
-                                                                        d="m5 12l5 5L20 7"
-                                                                    />
-                                                                </svg>
-
-                                                                <p className={sub.done ? "subtask-done" : ""}>{sub.text}</p>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            <div className="tasks-list-bottom">
-                                                <div className="tasks-list-progress">
-                                                    <div className="tasks-progress-top">
-                                                        <p>{progress}%</p>
-
-                                                        <div className="tasks-list-date">
-                                                            <svg   
-                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                className="tasks-list-date-svg" 
-                                                                viewBox="0 0 24 24"
-                                                            >   
-                                                                <g 
-                                                                    fill="none" 
-                                                                    stroke="currentColor" 
-                                                                    strokeLinecap="round" 
-                                                                    strokeLinejoin="round" 
-                                                                    strokeWidth={2}
-                                                                >
-                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0"></path>
-                                                                    <path d="M12 7v5l3 3"></path>
-                                                                </g>
-                                                            </svg>
-
-                                                            <p>{getTimeAgo(task.createdAt)}</p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="tasks-progress-bar">
-                                                        <div
-                                                            className="tasks-progress-fill"
-                                                            style={{ width: `${progress}%` }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
+                                {generalInProgressTasks.map(task => renderTaskCard(task))}
                             </div>
                         </div>
 
@@ -1412,7 +1391,9 @@ function Tasks ({ }) {
 
                                         {showCompletedDropdown && (
                                             <div className="tasks-dropdown-options">
-                                                <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>Archive Task</div>
+                                                <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>
+                                                    Archive Task
+                                                </div>
                                             </div>
                                         )}
                                     </div>
@@ -1420,121 +1401,9 @@ function Tasks ({ }) {
                             </div>
 
                             <div className="tasks-todo">
-                                {generalCompletedTasks.map(task => {
-                                    const progress = getProgress(task.subtasks);
-                                    return (
-                                        <div 
-                                            key={task.id} 
-                                            className={`tasks-body-list ${selectedTaskIds.includes(task.id) ? "selected" : ""}`}
-                                        >
-                                            <div className="tasks-list-top">
-                                                <div className="tasks-list-toggle">
-                                                    <p>{task.priority}</p>
-                                                </div>
-
-                                                <div 
-                                                    className="select-task-check"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation(); 
-                                                        toggleTaskSelection(task.id);
-                                                    }}
-                                                >
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        className={`check-task-icon ${selectedTaskIds.includes(task.id) ? "selected" : ""}`}
-                                                        viewBox="0 0 24 24"
-                                                    >
-                                                        <path
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="m5 12l5 5L20 7"
-                                                        />
-                                                    </svg>
-                                                </div>
-                                            </div>
-
-                                            <div className="tasks-list-middle">
-                                                <div className="tasks-list-header">
-                                                    <p>{task.title}</p>
-                                                </div>
-
-                                                <div className="tasks-list-text">
-                                                    <p>{task.subtitle}</p>
-                                                </div>
-
-                                                <div className="tasks-list-checks">
-                                                    <ul>
-                                                        {task.subtasks.map(sub => (
-                                                            <li
-                                                                key={sub.id}
-                                                                onClick={() => toggleCheck(task.id, sub.id)}
-                                                                className={sub.done ? "subtask-done" : ""}
-                                                            >
-                                                                <svg
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                    className={`tasks-list-checks-svg ${sub.done ? "subtask-done" : ""}`}
-                                                                    viewBox="0 0 24 24"
-                                                                >
-                                                                    <path
-                                                                        fill="none"
-                                                                        stroke="currentColor"
-                                                                        strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                        strokeWidth={2}
-                                                                        d="m5 12l5 5L20 7"
-                                                                    />
-                                                                </svg>
-
-                                                                <p className={sub.done ? "subtask-done" : ""}>{sub.text}</p>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            <div className="tasks-list-bottom">
-                                                <div className="tasks-list-progress">
-                                                    <div className="tasks-progress-top">
-                                                        <p>{progress}%</p>
-
-                                                        <div className="tasks-list-date">
-                                                            <svg   
-                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                className="tasks-list-date-svg" 
-                                                                viewBox="0 0 24 24"
-                                                            >   
-                                                                <g 
-                                                                    fill="none" 
-                                                                    stroke="currentColor" 
-                                                                    strokeLinecap="round" 
-                                                                    strokeLinejoin="round" 
-                                                                    strokeWidth={2}
-                                                                >
-                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0"></path>
-                                                                    <path d="M12 7v5l3 3"></path>
-                                                                </g>
-                                                            </svg>
-
-                                                            <p>{getTimeAgo(task.createdAt)}</p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="tasks-progress-bar">
-                                                        <div
-                                                            className="tasks-progress-fill"
-                                                            style={{ width: `${progress}%` }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
+                                {generalCompletedTasks.map(task => renderTaskCard(task))}
                             </div>
-                        </div>
+                        </div>                
 
                         <div className="tasks-section">
                             <div className="tasks-main-header">
@@ -1542,7 +1411,7 @@ function Tasks ({ }) {
                                     <p className="tasks-header-name">{selectedCategory}</p>
                                     <p className="tasks-header-text">{filteredCategoryTasks.length}</p>
                                 </div>
-
+                            
                                 <div className="tasks-header-right">
                                     <div style={{ position: "relative" }}>
                                         <div
@@ -1935,12 +1804,18 @@ function Tasks ({ }) {
                                                             <div 
                                                                 className="tasks-slider-button"
                                                                 onClick={() => {
-                                                                    addNewCategoryTask();
+                                                                    if (editingTaskId) {
+                                                                        updateCategoryTask();
+                                                                    } else {
+                                                                        addNewCategoryTask();
+                                                                    }
+
                                                                     setShowCategoryTaskPopup(false);
+                                                                    setEditingTaskId(null);
                                                                     setTaskStep(0);
                                                                 }}
                                                             >
-                                                                <p>Add task</p>
+                                                                <p>{editingTaskId ? "Update Task" : "Add Task"}</p>
                                                             </div>
                                                         )}
                                                     </div>
@@ -2037,145 +1912,13 @@ function Tasks ({ }) {
                                             </div>
                                         )}
                                     </div>
-                                </div>
+                                </div>                    
                             </div>
 
                             <div className="tasks-todo">
-                                {filteredCategoryTasks.map(task => {
-                                    const progress = getProgress(task.subtasks);
-                                    return (
-                                        <div
-                                            key={task.id}
-                                            className={`tasks-body-list ${selectedTaskIds.includes(task.id) ? "selected" : ""} $ 
-                                                {task.category === "Work" ? "special-category-task" : ""
-                                            }`}
-                                        >
-                                            <div className="tasks-list-top">
-                                                <div className="tasks-list-toggle-wrapper">
-                                                    <div className="tasks-list-toggle">
-                                                        <p className={`status-label ${task.status}`}>
-                                                            {task.status === "todo"
-                                                                ? "To-do"
-                                                                : task.status === "inprogress"
-                                                                ? "In Progress"
-                                                                : "Completed"}
-                                                        </p>
-                                                    </div>
-                                                    
-                                                    <div className="tasks-list-toggle">
-                                                        <p>{task.priority}</p>
-                                                    </div>
-                                                </div>
-
-                                                <div
-                                                    className="select-task-check"
-                                                    onClick={e => {
-                                                        e.stopPropagation();
-                                                        toggleTaskSelection(task.id);
-                                                    }}
-                                                >
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        className={`check-task-icon ${
-                                                            selectedTaskIds.includes(task.id) ? "selected" : ""
-                                                        }`}
-                                                        viewBox="0 0 24 24"
-                                                    >
-                                                        <path
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="m5 12l5 5L20 7"
-                                                        />
-                                                    </svg>
-                                                </div>
-                                            </div>
-
-                                            <div className="tasks-list-middle">
-                                                <div className="tasks-list-header">
-                                                    <p>{task.title}</p>
-                                                </div>
-
-                                                <div className="tasks-list-text">
-                                                    <p>{task.subtitle}</p>
-                                                </div>
-
-                                                <div className="tasks-list-checks">
-                                                    <ul>
-                                                        {task.subtasks.map(sub => (
-                                                            <li
-                                                                key={sub.id}
-                                                                onClick={() => toggleCheck(task.id, sub.id)}
-                                                                className={sub.done ? "subtask-done" : ""}
-                                                            >
-                                                                <svg
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                    className={`tasks-list-checks-svg ${
-                                                                        sub.done ? "subtask-done" : ""
-                                                                    }`}
-                                                                    viewBox="0 0 24 24"
-                                                                >
-                                                                    <path
-                                                                        fill="none"
-                                                                        stroke="currentColor"
-                                                                        strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                        strokeWidth={2}
-                                                                        d="m5 12l5 5L20 7"
-                                                                    />
-                                                                </svg>
-
-                                                                <p className={sub.done ? "subtask-done" : ""}>
-                                                                    {sub.text}
-                                                                </p>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            <div className="tasks-list-bottom">
-                                                <div className="tasks-list-progress">
-                                                    <div className="tasks-progress-top">
-                                                        <p>{progress}%</p>
-
-                                                        <div className="tasks-list-date">
-                                                            <svg   
-                                                                xmlns="http://www.w3.org/2000/svg" 
-                                                                className="tasks-list-date-svg" 
-                                                                viewBox="0 0 24 24"
-                                                            >   
-                                                                <g 
-                                                                    fill="none" 
-                                                                    stroke="currentColor" 
-                                                                    strokeLinecap="round" 
-                                                                    strokeLinejoin="round" 
-                                                                    strokeWidth={2}
-                                                                >
-                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0"></path>
-                                                                    <path d="M12 7v5l3 3"></path>
-                                                                </g>
-                                                            </svg>
-
-                                                            <p>{getTimeAgo(task.createdAt)}</p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="tasks-progress-bar">
-                                                        <div
-                                                            className="tasks-progress-fill"
-                                                            style={{ width: `${progress}%` }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
+                                {filteredCategoryTasks.map(task => renderTaskCard(task))}
                             </div>
-                        </div>
+                        </div>                
                     </div>
                 </div>
             </div>
