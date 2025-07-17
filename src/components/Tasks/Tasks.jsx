@@ -26,6 +26,8 @@ function Tasks ({ }) {
                 { id: 2, text: "Landing page assets", done: false },
                 { id: 3, text: "Newsletter campaign assets", done: false },
             ],
+            archived: false,
+            deleted: false,
         },
         {
             id: 2,
@@ -39,6 +41,8 @@ function Tasks ({ }) {
                 { id: 1, text: "Design hero section", done: false },
                 { id: 2, text: "Implement responsive styles", done: false },
             ],
+            archived: false,
+            deleted: false,
         },
         {
             id: 3,
@@ -52,6 +56,8 @@ function Tasks ({ }) {
                 { id: 1, text: "Analyze Instagram", done: false },
                 { id: 2, text: "Audit Twitter", done: false },
             ],
+            archived: false,
+            deleted: false,
         },
         {
             id: 4,
@@ -66,6 +72,8 @@ function Tasks ({ }) {
                 { id: 2, text: "Add tooltips for new users", done: false },
                 { id: 3, text: "Create quick-start guide", done: false },
             ],
+            archived: false,
+            deleted: false,
         },
         {
             id: 5,
@@ -80,8 +88,11 @@ function Tasks ({ }) {
                 { id: 2, text: "Test sandbox payments", done: false },
                 { id: 3, text: "Setup PayPal webhook", done: false },
             ],
+            archived: false,
+            deleted: false,
         },
     ];
+    
 
     // States
     const [tasks, setTasks] = useState(initialTasks);
@@ -245,9 +256,34 @@ function Tasks ({ }) {
             (!categoryFilter.status || task.status === categoryFilter.status)
     );
 
-    const generalTodoTasks = generalTasks.filter((task) => task.status === "todo");
-    const generalInProgressTasks = generalTasks.filter((task) => task.status === "inprogress");
-    const generalCompletedTasks = generalTasks.filter((task) => task.status === "completed");
+const generalTodoTasks = tasks.filter(
+  (task) =>
+    task.status === "todo" &&
+    task.category === "General" &&
+    isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+    (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+    (!categoryFilter.status || task.status === categoryFilter.status)
+);
+
+const generalInProgressTasks = tasks.filter(
+  (task) =>
+    task.status === "inprogress" &&
+    task.category === "General" &&
+    isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+    (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+    (!categoryFilter.status || task.status === categoryFilter.status)
+);
+
+const generalCompletedTasks = tasks.filter(
+  (task) =>
+    task.status === "completed" &&
+    task.category === "General" &&
+    isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+    (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+    (!categoryFilter.status || task.status === categoryFilter.status)
+);
+
+
 
     const categoryTasks = tasks.filter(
         (task) =>
@@ -259,8 +295,22 @@ function Tasks ({ }) {
             (!categoryFilter.status || task.status === categoryFilter.status)
     );
 
-    const filteredCategoryTasks =
-            selectedCategory === "All" ? [...generalTasks, ...categoryTasks] : categoryTasks;
+const filteredCategoryTasks = tasks.filter((task) => {
+  const isMatchingCategory =
+    selectedCategory === "All" ||
+    selectedCategory === "General"
+      ? task.category === "General"
+      : task.category === selectedCategory;
+
+  return (
+    !task.archived &&
+    !task.deleted &&
+    isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+    isMatchingCategory &&
+    (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+    (!categoryFilter.status || task.status === categoryFilter.status)
+  );
+});
 
     // Task Actions
     const toggleCheck = (taskId, subtaskId) => {
@@ -299,24 +349,20 @@ const deleteSelectedTask = () => {
   setSelectedTaskIds([]);
 };
 
-
-
-
 const [selectedView, setSelectedView] = useState("active");
 
 const visibleTasks = tasks.filter((task) => {
+  if (selectedView === "deleted") return task.status === "deleted";
+  if (selectedView === "archived") return task.status === "archived";
+
+  if (selectedView === "category") {
+    return selectedCategory === "All" || task.category === selectedCategory;
+  }
+
   const isInTime = isWithinTimeFilter(task.createdAt, selectedTimeFilter);
   const isInCategory = selectedCategory === "All" || task.category === selectedCategory;
   const matchesPriority = !categoryFilter.priority || task.priority === categoryFilter.priority;
   const matchesStatus = !categoryFilter.status || task.status === categoryFilter.status;
-
-  if (selectedView === "deleted") {
-    return task.status === "deleted";
-  }
-
-  if (selectedView === "archived") {
-    return task.status === "archived";
-  }
 
   return (
     task.status !== "archived" &&
@@ -328,9 +374,33 @@ const visibleTasks = tasks.filter((task) => {
   );
 });
 
-const todoTasks = visibleTasks.filter(task => task.status === "todo");
-const inProgressTasks = visibleTasks.filter(task => task.status === "inprogress");
-const completedTasks = visibleTasks.filter(task => task.status === "completed");
+
+
+const todoTasks = tasks.filter(
+  (task) =>
+    task.status === "todo" &&
+    task.category === "General" &&
+    !task.archived &&
+    !task.deleted 
+);
+
+const inProgressTasks = tasks.filter(
+  (task) =>
+    task.status === "inprogress" &&
+    task.category === "General" &&
+    !task.archived &&
+    !task.deleted 
+);
+
+const completedTasks = tasks.filter(
+  (task) =>
+    task.status === "completed" &&
+    task.category === "General" &&
+    !task.archived &&
+    !task.deleted 
+);
+
+
 
 
     const archiveSelectedTask = () => {
@@ -491,6 +561,8 @@ const completedTasks = visibleTasks.filter(task => task.status === "completed");
     </div>
   );
 };
+
+
 
 
     return (
@@ -1298,7 +1370,11 @@ const completedTasks = visibleTasks.filter(task => task.status === "completed");
                             </div>
 
                             <div className="tasks-todo">
-                                {generalTodoTasks.map(task => renderTaskCard(task))}
+                                {generalTodoTasks.length > 0 ? (
+                                    generalTodoTasks.map(task => renderTaskCard(task))
+                                ) : (
+                                    <p className="no-tasks-message">No tasks to display</p>
+                                )}
                             </div>
                         </div>
 
@@ -1349,7 +1425,11 @@ const completedTasks = visibleTasks.filter(task => task.status === "completed");
                             </div>
 
                             <div className="tasks-todo">
-                                {generalInProgressTasks.map(task => renderTaskCard(task))}
+                                {generalInProgressTasks.length > 0 ? (
+                                    generalInProgressTasks.map(task => renderTaskCard(task))
+                                ) : (
+                                    <p className="no-tasks-message">No tasks to display</p>
+                                )}
                             </div>
                         </div>
 
@@ -1401,7 +1481,11 @@ const completedTasks = visibleTasks.filter(task => task.status === "completed");
                             </div>
 
                             <div className="tasks-todo">
-                                {generalCompletedTasks.map(task => renderTaskCard(task))}
+                                {generalCompletedTasks.length > 0 ? (
+                                    generalCompletedTasks.map(task => renderTaskCard(task))
+                                ) : (
+                                    <p className="no-tasks-message">No tasks to display</p>
+                                )}
                             </div>
                         </div>                
 
@@ -1916,7 +2000,11 @@ const completedTasks = visibleTasks.filter(task => task.status === "completed");
                             </div>
 
                             <div className="tasks-todo">
-                                {filteredCategoryTasks.map(task => renderTaskCard(task))}
+                                {filteredCategoryTasks.length > 0 ? (
+                                    filteredCategoryTasks.map((task) => renderTaskCard(task))
+                                ) : (
+                                    <p className="no-tasks-message">No tasks to display</p>
+                                )}
                             </div>
                         </div>                
                     </div>
