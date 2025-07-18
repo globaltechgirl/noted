@@ -11,6 +11,7 @@ function Tasks ({ }) {
 
     // Theme context
     const { darkMode, toggleTheme } = useTheme();
+    
 
     const initialTasks = [
         {
@@ -26,8 +27,6 @@ function Tasks ({ }) {
                 { id: 2, text: "Landing page assets", done: false },
                 { id: 3, text: "Newsletter campaign assets", done: false },
             ],
-            archived: false,
-            deleted: false,
         },
         {
             id: 2,
@@ -41,8 +40,6 @@ function Tasks ({ }) {
                 { id: 1, text: "Design hero section", done: false },
                 { id: 2, text: "Implement responsive styles", done: false },
             ],
-            archived: false,
-            deleted: false,
         },
         {
             id: 3,
@@ -56,8 +53,6 @@ function Tasks ({ }) {
                 { id: 1, text: "Analyze Instagram", done: false },
                 { id: 2, text: "Audit Twitter", done: false },
             ],
-            archived: false,
-            deleted: false,
         },
         {
             id: 4,
@@ -72,8 +67,6 @@ function Tasks ({ }) {
                 { id: 2, text: "Add tooltips for new users", done: false },
                 { id: 3, text: "Create quick-start guide", done: false },
             ],
-            archived: false,
-            deleted: false,
         },
         {
             id: 5,
@@ -88,10 +81,9 @@ function Tasks ({ }) {
                 { id: 2, text: "Test sandbox payments", done: false },
                 { id: 3, text: "Setup PayPal webhook", done: false },
             ],
-            archived: false,
-            deleted: false,
         },
     ];
+    
     
 
     // States
@@ -126,8 +118,7 @@ function Tasks ({ }) {
     const [editingIndex, setEditingIndex] = useState(null);
     const [taskStep, setTaskStep] = useState(0);
 
-    
-
+ 
     const [categoryFilter, setCategoryFilter] = useState({ priority: "", status: "" });
     const [selectedTimeFilter, setSelectedTimeFilter] = useState("Today");
 
@@ -245,6 +236,12 @@ function Tasks ({ }) {
         setSelectedTimeFilter(filter);
         setShowTimeDropdown(false);
     };
+const deletedTasks = tasks.filter(
+  (task) =>
+    task.status === "deleted" &&
+    (selectedCategory === "All" || task.category === selectedCategory)
+);
+
 
     // Derived Data
     const generalTasks = tasks.filter(
@@ -256,44 +253,43 @@ function Tasks ({ }) {
             (!categoryFilter.status || task.status === categoryFilter.status)
     );
 
-const generalTodoTasks = tasks.filter(
-  (task) =>
-    task.status === "todo" &&
-    task.category === "General" &&
-    isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
-    (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
-    (!categoryFilter.status || task.status === categoryFilter.status)
+const generalTodoTasks = tasks.filter(task =>
+  task.status === "todo" &&
+  task.category === "General" &&
+  isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+  !task.archived && !task.deleted &&
+  (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+  (!categoryFilter.status || task.status === categoryFilter.status)
 );
 
-const generalInProgressTasks = tasks.filter(
-  (task) =>
-    task.status === "inprogress" &&
-    task.category === "General" &&
-    isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
-    (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
-    (!categoryFilter.status || task.status === categoryFilter.status)
+const generalInProgressTasks = tasks.filter(task =>
+  task.status === "inprogress" &&
+  task.category === "General" &&
+  isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+  !task.archived && !task.deleted &&
+  (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+  (!categoryFilter.status || task.status === categoryFilter.status)
 );
 
-const generalCompletedTasks = tasks.filter(
-  (task) =>
-    task.status === "completed" &&
-    task.category === "General" &&
-    isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
-    (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
-    (!categoryFilter.status || task.status === categoryFilter.status)
+const generalCompletedTasks = tasks.filter(task =>
+  task.status === "completed" &&
+  task.category === "General" &&
+  isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+  !task.archived && !task.deleted &&
+  (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+  (!categoryFilter.status || task.status === categoryFilter.status)
 );
 
+const categoryTasks = tasks.filter(task =>
+  task.category !== "General" &&
+  !task.archived &&
+  !task.deleted &&
+  isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+  (selectedCategory === "All" || task.category === selectedCategory) &&
+  (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+  (!categoryFilter.status || task.status === categoryFilter.status)
+);
 
-
-    const categoryTasks = tasks.filter(
-        (task) =>
-            task.category !== "General" &&
-            task.status !== "archived" &&
-            isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
-            (selectedCategory === "All" || task.category === selectedCategory) &&
-            (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
-            (!categoryFilter.status || task.status === categoryFilter.status)
-    );
 
 const filteredCategoryTasks = tasks.filter((task) => {
   const isMatchingCategory =
@@ -311,6 +307,7 @@ const filteredCategoryTasks = tasks.filter((task) => {
     (!categoryFilter.status || task.status === categoryFilter.status)
   );
 });
+
 
     // Task Actions
     const toggleCheck = (taskId, subtaskId) => {
@@ -341,76 +338,149 @@ const filteredCategoryTasks = tasks.filter((task) => {
     };
 
 const deleteSelectedTask = () => {
-  setTasks((prev) =>
-    prev.map((task) =>
-      selectedTaskIds.includes(task.id) ? { ...task, status: "deleted" } : task
+  setTasks(prev =>
+    prev.map(task =>
+      selectedTaskIds.includes(task.id)
+        ? { ...task, status: "deleted", previousStatus: task.status }
+        : task
     )
   );
   setSelectedTaskIds([]);
 };
 
+const archiveSelectedTask = () => {
+  setTasks(prev =>
+    prev.map(task =>
+      selectedTaskIds.includes(task.id)
+        ? { ...task, status: "archived", previousStatus: task.status }
+        : task
+    )
+  );
+  setSelectedTaskIds([]);
+};
+
+
+const deletedTodoTasks = tasks.filter(task =>
+  task.status === "deleted" && task.previousStatus === "todo"
+);
+
+const deletedInProgressTasks = tasks.filter(task =>
+  task.status === "deleted" && task.previousStatus === "inprogress"
+);
+
+const deletedCompletedTasks = tasks.filter(task =>
+  task.status === "deleted" && task.previousStatus === "completed"
+);
+
+const deletedfilteredCategoryTasks = tasks.filter((task) =>
+  task.status === "deleted" &&
+  task.category !== "General" &&
+  (selectedCategory === "All" || task.category === selectedCategory) &&
+  isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+  (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+  (!categoryFilter.status || task.previousStatus === categoryFilter.status)
+);
+
+console.log("All tasks:", tasks);
+
+
+
+const archivedTodoTasks = tasks.filter(task =>
+  task.status === "archived" && task.previousStatus === "todo"
+);
+
+const archivedInProgressTasks = tasks.filter(task =>
+  task.status === "archived" && task.previousStatus === "inprogress"
+);
+
+const archivedCompletedTasks = tasks.filter(task =>
+  task.status === "archived" && task.previousStatus === "completed"
+);
+
+const archivedfilteredCategoryTasks = tasks.filter((task) =>
+  task.status === "archived" &&
+  task.category !== "General" &&
+  (selectedCategory === "All" || task.category === selectedCategory) &&
+  isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+  (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+  (!categoryFilter.status || task.previousStatus === categoryFilter.status)
+);
+
+
+
 const [selectedView, setSelectedView] = useState("active");
 
-const visibleTasks = tasks.filter((task) => {
-  if (selectedView === "deleted") return task.status === "deleted";
-  if (selectedView === "archived") return task.status === "archived";
-
-  if (selectedView === "category") {
-    return selectedCategory === "All" || task.category === selectedCategory;
-  }
-
+const visibleTasks = tasks.filter(task => {
   const isInTime = isWithinTimeFilter(task.createdAt, selectedTimeFilter);
   const isInCategory = selectedCategory === "All" || task.category === selectedCategory;
   const matchesPriority = !categoryFilter.priority || task.priority === categoryFilter.priority;
   const matchesStatus = !categoryFilter.status || task.status === categoryFilter.status;
 
+  if (selectedView === "deleted") return task.status === "deleted";
+  if (selectedView === "archived") return task.status === "archived";
+  if (selectedView === "category") return isInCategory && task.category !== "General";
+
   return (
     task.status !== "archived" &&
     task.status !== "deleted" &&
-    isInTime &&
-    isInCategory &&
-    matchesPriority &&
-    matchesStatus
+    isInTime && isInCategory && matchesPriority && matchesStatus
   );
 });
-
-
 
 const todoTasks = tasks.filter(
   (task) =>
     task.status === "todo" &&
     task.category === "General" &&
-    !task.archived &&
-    !task.deleted 
+    !["archived", "deleted"].includes(task.status)
 );
 
 const inProgressTasks = tasks.filter(
   (task) =>
     task.status === "inprogress" &&
     task.category === "General" &&
-    !task.archived &&
-    !task.deleted 
+    !["archived", "deleted"].includes(task.status)
 );
 
 const completedTasks = tasks.filter(
   (task) =>
     task.status === "completed" &&
     task.category === "General" &&
-    !task.archived &&
-    !task.deleted 
+    !["archived", "deleted"].includes(task.status)
 );
 
+const getTodoTasksByView = () => {
+  if (selectedView === "deleted") return deletedTodoTasks;
+  if (selectedView === "archived") return archivedTodoTasks;
+  if (selectedView === "active") return generalTodoTasks;
+  return [];
+};
 
 
 
-    const archiveSelectedTask = () => {
-        setTasks((prev) =>
-            prev.map((task) =>
-                selectedTaskIds.includes(task.id) ? { ...task, status: "archived" } : task
-            )
-        );
-        setSelectedTaskIds([]);
-    };
+const getInProgressTasksByView = () => {
+  if (selectedView === "deleted") return deletedInProgressTasks;
+  if (selectedView === "archived") return archivedInProgressTasks;
+  if (selectedView === "active") return generalInProgressTasks;
+  return [];
+};
+
+const getCompletedTasksByView = () => {
+  if (selectedView === "deleted") return deletedCompletedTasks;
+  if (selectedView === "archived") return archivedCompletedTasks;
+  if (selectedView === "active") return generalCompletedTasks;
+  return [];
+};
+
+
+
+const getfilteredCategoryTasksByView = () => {
+  if (selectedView === "deleted") return deletedfilteredCategoryTasks;
+  if (selectedView === "archived") return archivedfilteredCategoryTasks;
+  if (selectedView === "active") return filteredCategoryTasks;
+  return [];
+};
+
+
 
     const moveSelectedTasksToCategory = (newCategory) => {
         setTasks((prev) =>
@@ -896,7 +966,18 @@ const completedTasks = tasks.filter(
                             <div className="tasks-main-header">
                                 <div className="tasks-header-left">
                                     <p className="tasks-header-name">To Do</p>
-                                    <p className="tasks-header-text">{generalTodoTasks.length}</p>
+
+<p className="tasks-header-text">
+  {selectedView === "deleted"
+    ? deletedTodoTasks.length
+    : selectedView === "archived"
+    ? archivedTodoTasks.length
+    : selectedView === "active"
+    ? generalTodoTasks.length
+    : 0}
+</p>
+
+
                                 </div>
 
                                 <div className="tasks-header-right">
@@ -1369,13 +1450,28 @@ const completedTasks = tasks.filter(
                                 </div>
                             </div>
 
-                            <div className="tasks-todo">
-                                {generalTodoTasks.length > 0 ? (
-                                    generalTodoTasks.map(task => renderTaskCard(task))
-                                ) : (
-                                    <p className="no-tasks-message">No tasks to display</p>
-                                )}
-                            </div>
+<div className="tasks-todo">
+  {getTodoTasksByView().length > 0 ? (
+    getTodoTasksByView().map((task) => renderTaskCard(task))
+  ) : (
+    <p className="no-tasks-message">
+      {selectedView === "deleted"
+        ? "No deleted todo tasks"
+        : selectedView === "archived"
+        ? "No archived todo tasks"
+        : selectedView === "active"
+        ? "No todo tasks"
+        : "No tasks found"}
+    </p>
+  )}
+</div>
+
+
+
+
+
+
+
                         </div>
 
                         <div className="tasks-section">
@@ -1424,13 +1520,25 @@ const completedTasks = tasks.filter(
                                 </div>
                             </div>
 
-                            <div className="tasks-todo">
-                                {generalInProgressTasks.length > 0 ? (
-                                    generalInProgressTasks.map(task => renderTaskCard(task))
-                                ) : (
-                                    <p className="no-tasks-message">No tasks to display</p>
-                                )}
-                            </div>
+<div className="tasks-todo">
+  {getInProgressTasksByView().length > 0 ? (
+    getInProgressTasksByView().map((task) => renderTaskCard(task))
+  ) : (
+    <p className="no-tasks-message">
+      {selectedView === "deleted"
+        ? "No deleted todo tasks"
+        : selectedView === "archived"
+        ? "No archived todo tasks"
+        : selectedView === "active"
+        ? "No todo tasks"
+        : "No tasks found"}
+    </p>
+  )}
+</div>
+
+
+
+
                         </div>
 
                         <div className="tasks-section">
@@ -1480,13 +1588,26 @@ const completedTasks = tasks.filter(
                                 </div>
                             </div>
 
-                            <div className="tasks-todo">
-                                {generalCompletedTasks.length > 0 ? (
-                                    generalCompletedTasks.map(task => renderTaskCard(task))
-                                ) : (
-                                    <p className="no-tasks-message">No tasks to display</p>
-                                )}
-                            </div>
+<div className="tasks-todo">
+  {getCompletedTasksByView().length > 0 ? (
+    getCompletedTasksByView().map((task) => renderTaskCard(task))
+  ) : (
+    <p className="no-tasks-message">
+      {selectedView === "deleted"
+        ? "No deleted todo tasks"
+        : selectedView === "archived"
+        ? "No archived todo tasks"
+        : selectedView === "active"
+        ? "No todo tasks"
+        : "No tasks found"}
+    </p>
+  )}
+</div>
+
+
+
+
+
                         </div>                
 
                         <div className="tasks-section">
@@ -1998,14 +2119,27 @@ const completedTasks = tasks.filter(
                                     </div>
                                 </div>                    
                             </div>
+<div className="tasks-todo">
+  {getfilteredCategoryTasksByView().length > 0 ? (
+    getfilteredCategoryTasksByView().map((task) => renderTaskCard(task))
+  ) : (
+    <p className="no-tasks-message">
+      {selectedView === "deleted"
+        ? "No deleted tasks in this category"
+        : selectedView === "archived"
+        ? "No archived tasks in this category"
+        : selectedView === "active"
+        ? "No tasks in this category"
+        : "No tasks found"}
+    </p>
+  )}
+</div>
 
-                            <div className="tasks-todo">
-                                {filteredCategoryTasks.length > 0 ? (
-                                    filteredCategoryTasks.map((task) => renderTaskCard(task))
-                                ) : (
-                                    <p className="no-tasks-message">No tasks to display</p>
-                                )}
-                            </div>
+
+
+
+
+
                         </div>                
                     </div>
                 </div>
