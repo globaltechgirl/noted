@@ -391,6 +391,13 @@
   stroke: var(--text-secondary);
 }
 
+.menu-disabled {
+  background-color: var(--bg-primary);
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 /* Tasks popup overlay */
 .tasks-popup-overlay {
   position: fixed;

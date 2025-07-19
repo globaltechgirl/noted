@@ -123,10 +123,9 @@ function Tasks ({ }) {
     const [selectedTimeFilter, setSelectedTimeFilter] = useState("Today");
 
     const [highlightInput, setHighlightInput] = useState(false);
-    const isInvalidCategory = newCategoryName.length === 0 || newCategoryName.length > 50;
-    const isInvalidTitle = newTaskTitle.length < 50 || newTaskTitle.length > 100;
-    const isInvalidSubtitle = newTaskSubtitle.length < 50 || newTaskSubtitle.length > 100;
-    const isInvalidTaskInputs = taskInputs.some((input) => input.length < 50 || input.length > 100);
+
+
+
 
     // Refs
     const timeDropdownRef = useRef(null);
@@ -140,7 +139,7 @@ function Tasks ({ }) {
     const inputRef = useRef(null);
 
     // Utility Functions
-    const updateTodoTask = () => {
+const updateTask = () => {
   setTasks((prevTasks) =>
     prevTasks.map((task) =>
       task.id === editingTaskId
@@ -154,31 +153,15 @@ function Tasks ({ }) {
               text,
               done: false,
             })),
+            // 🔒 KEEP ORIGINAL CATEGORY (don't override with selectedCategory)
+            category: task.category,
           }
         : task
     )
   );
 };
 
-    const updateCategoryTask = () => {
-  setTasks((prevTasks) =>
-    prevTasks.map((task) =>
-      task.id === editingTaskId
-        ? {
-            ...task,
-            title: newTaskTitle,
-            subtitle: newTaskSubtitle,
-            priority: capitalize(priority),
-            subtasks: taskInputs.map((text, idx) => ({
-              id: idx + 1,
-              text,
-              done: false,
-            })),
-          }
-        : task
-    )
-  );
-};
+
 
 
     const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
@@ -188,20 +171,26 @@ function Tasks ({ }) {
         return Math.round((completed / subtasks.length) * 100);
     };
 
-    const getTimeAgo = (createdAt) => {
-        const now = new Date();
-        const created = new Date(createdAt);
-        const diffInSeconds = Math.floor((now - created) / 1000);
+const getTimeAgo = (createdAt) => {
+  const now = new Date();
+  const created = new Date(createdAt);
+  const diffInSeconds = Math.floor((now - created) / 1000);
 
-        const minutes = Math.floor(diffInSeconds / 60);
-        const hours = Math.floor(diffInSeconds / 3600);
-        const days = Math.floor(diffInSeconds / 86400);
+  const minutes = Math.floor(diffInSeconds / 60);
+  const hours = Math.floor(diffInSeconds / 3600);
+  const days = Math.floor(diffInSeconds / 86400);
 
-        if (days > 0) return `${days}d`;
-        if (hours > 0) return `${hours}h`;
-        if (minutes > 0) return `${minutes}m`;
-        return "Just now";
-    };
+  if (diffInSeconds < 60) return "Just now";
+  if (minutes < 60) return `${minutes}m`;
+  if (hours < 24) return `${hours}h`;
+  if (days <= 7) return `${days}d`;
+
+  return created.toLocaleDateString("en-US", {
+    month: "short", 
+    day: "numeric",
+  });
+};
+
 
     const isWithinTimeFilter = (createdAt, filter) => {
         const created = new Date(createdAt);
@@ -230,28 +219,11 @@ function Tasks ({ }) {
         return ["Today", "This Week", "This Month", "This Year", "All Tasks"];
     };
 
-    const availableTimeFilters = getAvailableTimeFilters();
 
-    const handleTimeFilter = (filter) => {
-        setSelectedTimeFilter(filter);
-        setShowTimeDropdown(false);
-    };
-const deletedTasks = tasks.filter(
-  (task) =>
-    task.status === "deleted" &&
-    (selectedCategory === "All" || task.category === selectedCategory)
-);
 
 
     // Derived Data
-    const generalTasks = tasks.filter(
-        (task) =>
-            task.category === "General" &&
-            task.status !== "archived" &&
-            isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
-            (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
-            (!categoryFilter.status || task.status === categoryFilter.status)
-    );
+
 
 const generalTodoTasks = tasks.filter(task =>
   task.status === "todo" &&
@@ -280,16 +252,6 @@ const generalCompletedTasks = tasks.filter(task =>
   (!categoryFilter.status || task.status === categoryFilter.status)
 );
 
-const categoryTasks = tasks.filter(task =>
-  task.category !== "General" &&
-  !task.archived &&
-  !task.deleted &&
-  isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
-  (selectedCategory === "All" || task.category === selectedCategory) &&
-  (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
-  (!categoryFilter.status || task.status === categoryFilter.status)
-);
-
 
 const filteredCategoryTasks = tasks.filter((task) => {
   const isMatchingCategory =
@@ -310,26 +272,35 @@ const filteredCategoryTasks = tasks.filter((task) => {
 
 
     // Task Actions
-    const toggleCheck = (taskId, subtaskId) => {
-        setTasks((prev) =>
-            prev.map((task) => {
-                if (task.id !== taskId) return task;
+const toggleCheck = (taskId, subtaskId) => {
+  setTasks((prev) =>
+    prev.map((task) => {
+      if (task.id !== taskId) return task;
 
-                const updatedSubtasks = task.subtasks.map((sub) =>
-                    sub.id === subtaskId ? { ...sub, done: !sub.done } : sub
-                );
+      const updatedSubtasks = task.subtasks.map((sub) =>
+        sub.id === subtaskId ? { ...sub, done: !sub.done } : sub
+      );
 
-                const progress = getProgress(updatedSubtasks);
-                const newStatus = progress === 100 ? "completed" : progress >= 50 ? "inprogress" : "todo";
+      // Only change status if it's an active task
+      if (["archived", "deleted"].includes(task.status)) {
+        return {
+          ...task,
+          subtasks: updatedSubtasks
+        };
+      }
 
-                return {
-                    ...task,
-                    subtasks: updatedSubtasks,
-                    status: newStatus,
-                };
-            })
-        );
-    };
+      const progress = getProgress(updatedSubtasks);
+      const newStatus =
+        progress === 100 ? "completed" : progress >= 50 ? "inprogress" : "todo";
+
+      return {
+        ...task,
+        subtasks: updatedSubtasks,
+        status: newStatus,
+      };
+    })
+  );
+};
 
     const toggleTaskSelection = (taskId) => {
         setSelectedTaskIds((prev) =>
@@ -372,16 +343,16 @@ const deletedCompletedTasks = tasks.filter(task =>
   task.status === "deleted" && task.previousStatus === "completed"
 );
 
-const deletedfilteredCategoryTasks = tasks.filter((task) =>
-  task.status === "deleted" &&
-  task.category !== "General" &&
-  (selectedCategory === "All" || task.category === selectedCategory) &&
-  isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
-  (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
-  (!categoryFilter.status || task.previousStatus === categoryFilter.status)
-);
+const deletedfilteredCategoryTasks = tasks.filter((task) => {
+  if (task.status !== "deleted" || task.category === "General") return false;
+  if (selectedCategory !== "All" && task.category !== selectedCategory) return false;
 
-console.log("All tasks:", tasks);
+  if (categoryFilter.priority && task.priority !== categoryFilter.priority) return false;
+  if (categoryFilter.status && task.previousStatus !== categoryFilter.status) return false;
+  if (!isWithinTimeFilter(task.createdAt, selectedTimeFilter)) return false;
+
+  return true;
+});
 
 
 
@@ -409,44 +380,9 @@ const archivedfilteredCategoryTasks = tasks.filter((task) =>
 
 
 const [selectedView, setSelectedView] = useState("active");
+  const isMenuDisabled = selectedView === "archived" || selectedView === "deleted";
+const [categoryMenuDisabled, setCategoryMenuDisabled] = useState(false); 
 
-const visibleTasks = tasks.filter(task => {
-  const isInTime = isWithinTimeFilter(task.createdAt, selectedTimeFilter);
-  const isInCategory = selectedCategory === "All" || task.category === selectedCategory;
-  const matchesPriority = !categoryFilter.priority || task.priority === categoryFilter.priority;
-  const matchesStatus = !categoryFilter.status || task.status === categoryFilter.status;
-
-  if (selectedView === "deleted") return task.status === "deleted";
-  if (selectedView === "archived") return task.status === "archived";
-  if (selectedView === "category") return isInCategory && task.category !== "General";
-
-  return (
-    task.status !== "archived" &&
-    task.status !== "deleted" &&
-    isInTime && isInCategory && matchesPriority && matchesStatus
-  );
-});
-
-const todoTasks = tasks.filter(
-  (task) =>
-    task.status === "todo" &&
-    task.category === "General" &&
-    !["archived", "deleted"].includes(task.status)
-);
-
-const inProgressTasks = tasks.filter(
-  (task) =>
-    task.status === "inprogress" &&
-    task.category === "General" &&
-    !["archived", "deleted"].includes(task.status)
-);
-
-const completedTasks = tasks.filter(
-  (task) =>
-    task.status === "completed" &&
-    task.category === "General" &&
-    !["archived", "deleted"].includes(task.status)
-);
 
 const getTodoTasksByView = () => {
   if (selectedView === "deleted") return deletedTodoTasks;
@@ -480,6 +416,14 @@ const getfilteredCategoryTasksByView = () => {
   return [];
 };
 
+
+const STATUS_LABELS = {
+  todo: "To Do",
+  inprogress: "In Progress",
+  completed: "Completed",
+  archived: "Archived",
+  deleted: "Deleted",
+};
 
 
     const moveSelectedTasksToCategory = (newCategory) => {
@@ -576,9 +520,18 @@ const getfilteredCategoryTasksByView = () => {
       className={`tasks-body-list ${selectedTaskIds.includes(task.id) ? "selected" : ""}`}
     >
       <div className="tasks-list-top">
-        <div className="tasks-list-toggle">
-          <p>{task.priority}</p>
-        </div>
+      <div className="tasks-list-toggle-wrapper">
+    <div className="tasks-list-toggle">
+      <p>{task.priority}</p>
+    </div>
+
+    {task.category !== "General" && (
+      <div className="tasks-list-toggle">
+       <p className="task-status">{STATUS_LABELS[task.status] || capitalize(task.status)}</p>
+      </div>
+    )}
+  </div>
+
         <div 
           className="select-task-check"
           onClick={(e) => {
@@ -1374,7 +1327,7 @@ const getfilteredCategoryTasksByView = () => {
                                                                 className="tasks-slider-button"
                                                                 onClick={() => {
                                                                     if (editingTaskId) {
-                                                                        updateTodoTask();
+                                                                        updateTask();
                                                                     } else {
                                                                         addNewTodoTask();
                                                                     }
@@ -1394,8 +1347,9 @@ const getfilteredCategoryTasksByView = () => {
                                     )}
 
                                     <div 
-                                        className="todo-menu tasks-menu"
+                                        className={`todo-menu tasks-menu ${isMenuDisabled ? "menu-disabled" : ""}`}
                                         onClick={() => {
+                                            if (isMenuDisabled) return;
                                             setShowTodoDropdown(prev => !prev);
                                             setShowTimeDropdown(false);
                                             setShowMenuDropdown(false);
@@ -1478,13 +1432,22 @@ const getfilteredCategoryTasksByView = () => {
                             <div className="tasks-main-header">
                                 <div className="tasks-header-left">
                                     <p className="tasks-header-name">In Progress</p>
-                                    <p className="tasks-header-text">{generalInProgressTasks.length}</p>
+                                  <p className="tasks-header-text">
+  {selectedView === "deleted"
+    ? deletedInProgressTasks.length
+    : selectedView === "archived"
+    ? archivedInProgressTasks.length
+    : selectedView === "active"
+    ? generalInProgressTasks.length
+    : 0}
+</p>
                                 </div>
 
                                 <div className="tasks-header-right">
                                     <div 
-                                        className="inprogress-menu tasks-menu"
+                                        className={`inprogress-menu tasks-menu ${isMenuDisabled ? "menu-disabled" : ""}`}
                                         onClick={() => {
+                                            if (isMenuDisabled) return;
                                             setShowInProgressDropdown(prev => !prev);
                                             setShowTimeDropdown(false);
                                             setShowMenuDropdown(false);
@@ -1545,13 +1508,22 @@ const getfilteredCategoryTasksByView = () => {
                             <div className="tasks-main-header">
                                 <div className="tasks-header-left">
                                     <p className="tasks-header-name">Completed</p>
-                                    <p className="tasks-header-text">{generalCompletedTasks.length}</p>
+                                  <p className="tasks-header-text">
+  {selectedView === "deleted"
+    ? deletedCompletedTasks.length
+    : selectedView === "archived"
+    ? archivedCompletedTasks.length
+    : selectedView === "active"
+    ? generalCompletedTasks.length
+    : 0}
+</p>
                                 </div>
 
                                 <div className="tasks-header-right">
                                     <div 
-                                        className="completed-menu tasks-menu"
+                                        className={`completed-menu tasks-menu ${isMenuDisabled ? "menu-disabled" : ""}`}
                                         onClick={() => {
+                                            if (isMenuDisabled) return;
                                             setShowCompletedDropdown(prev => !prev);
                                             setShowTimeDropdown(false);
                                             setShowMenuDropdown(false);
@@ -1579,9 +1551,7 @@ const getfilteredCategoryTasksByView = () => {
 
                                         {showCompletedDropdown && (
                                             <div className="tasks-dropdown-options">
-                                                <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>
-                                                    Archive Task
-                                                </div>
+                                                <div className="tasks-dropdown-item" onClick={archiveSelectedTask}>Archive Task</div>
                                             </div>
                                         )}
                                     </div>
@@ -1614,7 +1584,15 @@ const getfilteredCategoryTasksByView = () => {
                             <div className="tasks-main-header">
                                 <div className="tasks-header-left">
                                     <p className="tasks-header-name">{selectedCategory}</p>
-                                    <p className="tasks-header-text">{filteredCategoryTasks.length}</p>
+                                 <p className="tasks-header-text">
+  {selectedView === "deleted"
+    ? deletedfilteredCategoryTasks.length
+    : selectedView === "archived"
+    ? archivedfilteredCategoryTasks.length
+    : selectedView === "active"
+    ? filteredCategoryTasks.length
+    : 0}
+</p>
                                 </div>
                             
                                 <div className="tasks-header-right">
@@ -2010,7 +1988,7 @@ const getfilteredCategoryTasksByView = () => {
                                                                 className="tasks-slider-button"
                                                                 onClick={() => {
                                                                     if (editingTaskId) {
-                                                                        updateCategoryTask();
+                                                                        updateTask();
                                                                     } else {
                                                                         addNewCategoryTask();
                                                                     }
@@ -2030,7 +2008,7 @@ const getfilteredCategoryTasksByView = () => {
                                     )}
                                     
                                     <div
-                                        className="category-menu tasks-menu"
+                                        className={`category-menu tasks-menu`}
                                         onClick={() => {
                                             setShowCategoryMenu(prev => !prev);
                                             setShowTimeDropdown(false);
@@ -2061,8 +2039,35 @@ const getfilteredCategoryTasksByView = () => {
                                             <div className="tasks-dropdown-options" ref={categoryDropdownRef}>
                                                 {!showCategorySelector ? (
                                                     <div className="menu-slide">
-                                                        <div className="tasks-dropdown-item">Delete Task</div>
-                                                        <div className="tasks-dropdown-item">Archive Task</div>
+{selectedView === "active" && (
+  <>
+    <div
+      className="tasks-dropdown-item"
+      onClick={() => {
+        const taskToEdit = tasks.find((t) => selectedTaskIds.includes(t.id));
+        if (!taskToEdit) return;
+
+        setNewTaskTitle(taskToEdit.title);
+        setNewTaskSubtitle(taskToEdit.subtitle);
+        setTaskInputs(taskToEdit.subtasks.map((sub) => sub.text));
+        setPriority(taskToEdit.priority.toLowerCase());
+        setEditingTaskId(taskToEdit.id);
+        setTaskStep(0);
+        setShowCategoryTaskPopup(true);
+      }}
+    >
+      Edit Task
+    </div>
+
+    <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>
+      Delete Task
+    </div>
+
+    <div className="tasks-dropdown-item" onClick={archiveSelectedTask}>
+      Archive Task
+    </div>
+  </>
+)}
                                                         <div
                                                             className="tasks-dropdown-item"
                                                             onClick={(e) => {
