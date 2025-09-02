@@ -92,6 +92,9 @@ function Tasks ({ }) {
     const [priority, setPriority] = useState("low");
     const [taskSource, setTaskSource] = useState("todo");
     const [editingTaskId, setEditingTaskId] = useState(null);
+const selectedTask = tasks.find((t) => selectedTaskIds.includes(t.id));
+
+
 
     const [categories, setCategories] = useState(["Work", "Personal", "Daily"]);
     const [newCategoryName, setNewCategoryName] = useState("");
@@ -308,10 +311,25 @@ const toggleCheck = (taskId, subtaskId) => {
         );
     };
 
-const deleteSelectedTask = () => {
+const archiveTasks = (status, category) => {
   setTasks(prev =>
     prev.map(task =>
-      selectedTaskIds.includes(task.id)
+      selectedTaskIds.includes(task.id) &&
+      task.status === status &&
+      task.category === category
+        ? { ...task, status: "archived", previousStatus: task.status }
+        : task
+    )
+  );
+  setSelectedTaskIds([]); 
+};
+
+const deleteTasks = (status, category) => {
+  setTasks(prev =>
+    prev.map(task =>
+      selectedTaskIds.includes(task.id) &&
+      task.status === status &&
+      task.category === category
         ? { ...task, status: "deleted", previousStatus: task.status }
         : task
     )
@@ -319,16 +337,32 @@ const deleteSelectedTask = () => {
   setSelectedTaskIds([]);
 };
 
-const archiveSelectedTask = () => {
+
+const archiveCategoryTasks = (category) => {
   setTasks(prev =>
     prev.map(task =>
-      selectedTaskIds.includes(task.id)
+      task.category === category
         ? { ...task, status: "archived", previousStatus: task.status }
         : task
     )
   );
-  setSelectedTaskIds([]);
+  setSelectedTaskIds([]); 
 };
+
+
+const deleteCategoryTasks = (category) => {
+  setTasks(prev =>
+    prev.map(task =>
+      task.category === category
+        ? { ...task, status: "deleted", previousStatus: task.status }
+        : task
+    )
+  );
+  setSelectedTaskIds([]); 
+};
+
+
+
 
 
 const deletedTodoTasks = tasks.filter(task =>
@@ -381,7 +415,12 @@ const archivedfilteredCategoryTasks = tasks.filter((task) =>
 
 const [selectedView, setSelectedView] = useState("active");
   const isMenuDisabled = selectedView === "archived" || selectedView === "deleted";
-const [categoryMenuDisabled, setCategoryMenuDisabled] = useState(false); 
+
+  const isEditable =
+  selectedView === "active" &&
+  selectedTask &&
+  selectedTask.status === "todo";
+
 
 
 const getTodoTasksByView = () => {
@@ -421,8 +460,6 @@ const STATUS_LABELS = {
   todo: "To Do",
   inprogress: "In Progress",
   completed: "Completed",
-  archived: "Archived",
-  deleted: "Deleted",
 };
 
 
@@ -527,7 +564,11 @@ const STATUS_LABELS = {
 
     {task.category !== "General" && (
       <div className="tasks-list-toggle">
-       <p className="task-status">{STATUS_LABELS[task.status] || capitalize(task.status)}</p>
+<p className="task-status">
+  {STATUS_LABELS[task.status] || capitalize(task.status)}
+</p>
+
+
       </div>
     )}
   </div>
@@ -1395,9 +1436,9 @@ const STATUS_LABELS = {
                                                     Edit Task
                                                 </div>
 
-                                                <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>Delete Task</div>
+                                                <div className="tasks-dropdown-item" onClick={() => deleteTasks("todo", "General")}>Delete Task</div>
 
-                                                <div className="tasks-dropdown-item" onClick={archiveSelectedTask}>Archive Task</div>
+                                                <div className="tasks-dropdown-item" onClick={() => archiveTasks("todo", "General")}>Archive Task</div>
                                             </div>
                                         )}
                                     </div>
@@ -1475,8 +1516,10 @@ const STATUS_LABELS = {
 
                                         {showInProgressDropdown && (
                                             <div className="tasks-dropdown-options">
-                                                <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>Delete Task</div>
-                                                <div className="tasks-dropdown-item" onClick={archiveSelectedTask}>Archive Task</div>
+                                                
+                                                <div className="tasks-dropdown-item" onClick={() => deleteTasks("inprogress", "General")}>Delete Task</div>
+
+                                                <div className="tasks-dropdown-item" onClick={() => archiveTasks("inprogress", "General")}>Archive Task</div>
                                             </div>
                                         )}
                                     </div>
@@ -1551,7 +1594,7 @@ const STATUS_LABELS = {
 
                                         {showCompletedDropdown && (
                                             <div className="tasks-dropdown-options">
-                                                <div className="tasks-dropdown-item" onClick={archiveSelectedTask}>Archive Task</div>
+                                                <div className="tasks-dropdown-item" onClick={() => archiveTasks("completed", "General")}>Archive Task</div>
                                             </div>
                                         )}
                                     </div>
@@ -2041,31 +2084,36 @@ const STATUS_LABELS = {
                                                     <div className="menu-slide">
 {selectedView === "active" && (
   <>
-    <div
-      className="tasks-dropdown-item"
-      onClick={() => {
-        const taskToEdit = tasks.find((t) => selectedTaskIds.includes(t.id));
-        if (!taskToEdit) return;
+<div
+  className={`tasks-dropdown-item ${isEditable ? "" : "disabled-task-option"}`}
+  onClick={() => {
+    if (!isEditable) return;
 
-        setNewTaskTitle(taskToEdit.title);
-        setNewTaskSubtitle(taskToEdit.subtitle);
-        setTaskInputs(taskToEdit.subtasks.map((sub) => sub.text));
-        setPriority(taskToEdit.priority.toLowerCase());
-        setEditingTaskId(taskToEdit.id);
-        setTaskStep(0);
-        setShowCategoryTaskPopup(true);
-      }}
-    >
-      Edit Task
-    </div>
+    const taskToEdit = selectedTask; 
+    if (!taskToEdit) return;
 
-    <div className="tasks-dropdown-item" onClick={deleteSelectedTask}>
-      Delete Task
-    </div>
+    setNewTaskTitle(taskToEdit.title);
+    setNewTaskSubtitle(taskToEdit.subtitle);
+    setTaskInputs(taskToEdit.subtasks.map((sub) => sub.text));
+    setPriority(taskToEdit.priority.toLowerCase());
+    setEditingTaskId(taskToEdit.id);
+    setTaskStep(0);
+    setShowCategoryTaskPopup(true);
+  }}
+  style={{ opacity: isEditable ? 1 : 0.5, pointerEvents: isEditable ? "auto" : "none" }}
+>
+  Edit Task
+</div>
 
-    <div className="tasks-dropdown-item" onClick={archiveSelectedTask}>
-      Archive Task
-    </div>
+
+  <div className="tasks-dropdown-item" onClick={() => deleteCategoryTasks(selectedCategory)}>
+  Delete Tasks
+</div>
+
+<div className="tasks-dropdown-item" onClick={() => archiveCategoryTasks(selectedCategory)}>
+  Archive Tasks
+</div>
+
   </>
 )}
                                                         <div
