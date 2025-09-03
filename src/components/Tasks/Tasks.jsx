@@ -156,7 +156,6 @@ const updateTask = () => {
               text,
               done: false,
             })),
-            // 🔒 KEEP ORIGINAL CATEGORY (don't override with selectedCategory)
             category: task.category,
           }
         : task
@@ -232,7 +231,6 @@ const generalTodoTasks = tasks.filter(task =>
   task.status === "todo" &&
   task.category === "General" &&
   isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
-  !task.archived && !task.deleted &&
   (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
   (!categoryFilter.status || task.status === categoryFilter.status)
 );
@@ -241,7 +239,6 @@ const generalInProgressTasks = tasks.filter(task =>
   task.status === "inprogress" &&
   task.category === "General" &&
   isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
-  !task.archived && !task.deleted &&
   (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
   (!categoryFilter.status || task.status === categoryFilter.status)
 );
@@ -250,7 +247,6 @@ const generalCompletedTasks = tasks.filter(task =>
   task.status === "completed" &&
   task.category === "General" &&
   isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
-  !task.archived && !task.deleted &&
   (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
   (!categoryFilter.status || task.status === categoryFilter.status)
 );
@@ -258,20 +254,18 @@ const generalCompletedTasks = tasks.filter(task =>
 
 const filteredCategoryTasks = tasks.filter((task) => {
   const isMatchingCategory =
-    selectedCategory === "All" ||
-    selectedCategory === "General"
-      ? task.category === "General"
-      : task.category === selectedCategory;
+    selectedCategory === "All" || task.category === selectedCategory;
 
   return (
-    !task.archived &&
-    !task.deleted &&
-    isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+    ["todo", "inprogress", "completed"].includes(task.status) && // ✅ active only
     isMatchingCategory &&
+    isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
     (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
     (!categoryFilter.status || task.status === categoryFilter.status)
   );
 });
+
+
 
 
     // Task Actions
@@ -284,7 +278,6 @@ const toggleCheck = (taskId, subtaskId) => {
         sub.id === subtaskId ? { ...sub, done: !sub.done } : sub
       );
 
-      // Only change status if it's an active task
       if (["archived", "deleted"].includes(task.status)) {
         return {
           ...task,
@@ -339,28 +332,26 @@ const deleteTasks = (status, category) => {
 
 
 const archiveCategoryTasks = (category) => {
-  setTasks(prev =>
-    prev.map(task =>
+  setTasks((prev) =>
+    prev.map((task) =>
       task.category === category
-        ? { ...task, status: "archived", previousStatus: task.status }
+        ? { ...task, previousStatus: task.status, status: "archived" }
         : task
     )
   );
-  setSelectedTaskIds([]); 
 };
+
 
 
 const deleteCategoryTasks = (category) => {
-  setTasks(prev =>
-    prev.map(task =>
+  setTasks((prev) =>
+    prev.map((task) =>
       task.category === category
-        ? { ...task, status: "deleted", previousStatus: task.status }
+        ? { ...task, previousStatus: task.status, status: "deleted" }
         : task
     )
   );
-  setSelectedTaskIds([]); 
 };
-
 
 
 
@@ -378,15 +369,18 @@ const deletedCompletedTasks = tasks.filter(task =>
 );
 
 const deletedfilteredCategoryTasks = tasks.filter((task) => {
-  if (task.status !== "deleted" || task.category === "General") return false;
-  if (selectedCategory !== "All" && task.category !== selectedCategory) return false;
+  const isMatchingCategory =
+    selectedCategory === "All" || task.category === selectedCategory;
 
-  if (categoryFilter.priority && task.priority !== categoryFilter.priority) return false;
-  if (categoryFilter.status && task.previousStatus !== categoryFilter.status) return false;
-  if (!isWithinTimeFilter(task.createdAt, selectedTimeFilter)) return false;
-
-  return true;
+  return (
+    task.status === "deleted" && // strictly deleted
+    isMatchingCategory &&
+    isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+    (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+    (!categoryFilter.status || task.previousStatus === categoryFilter.status)
+  );
 });
+
 
 
 
@@ -402,14 +396,18 @@ const archivedCompletedTasks = tasks.filter(task =>
   task.status === "archived" && task.previousStatus === "completed"
 );
 
-const archivedfilteredCategoryTasks = tasks.filter((task) =>
-  task.status === "archived" &&
-  task.category !== "General" &&
-  (selectedCategory === "All" || task.category === selectedCategory) &&
-  isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
-  (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
-  (!categoryFilter.status || task.previousStatus === categoryFilter.status)
-);
+const archivedfilteredCategoryTasks = tasks.filter((task) => {
+  const isMatchingCategory =
+    selectedCategory === "All" || task.category === selectedCategory;
+
+  return (
+    task.status === "archived" && // strictly archived
+    isMatchingCategory &&
+    isWithinTimeFilter(task.createdAt, selectedTimeFilter) &&
+    (!categoryFilter.priority || task.priority === categoryFilter.priority) &&
+    (!categoryFilter.status || task.previousStatus === categoryFilter.status)
+  );
+});
 
 
 
@@ -449,11 +447,12 @@ const getCompletedTasksByView = () => {
 
 
 const getfilteredCategoryTasksByView = () => {
-  if (selectedView === "deleted") return deletedfilteredCategoryTasks;
-  if (selectedView === "archived") return archivedfilteredCategoryTasks;
   if (selectedView === "active") return filteredCategoryTasks;
+  if (selectedView === "archived") return archivedfilteredCategoryTasks;
+  if (selectedView === "deleted") return deletedfilteredCategoryTasks;
   return [];
 };
+
 
 
 const STATUS_LABELS = {
